@@ -2,6 +2,7 @@ import tw from 'tailwind-styled-components';
 
 type PageLayoutProps = {
   children: React.ReactNode;
+  className?: React.ComponentProps<'div'>['className'];
 };
 
 const PageLayout = ({ children, ...rest }: PageLayoutProps) => {
