@@ -1060,6 +1060,7 @@ __metadata:
     next: 13.3.1
     postcss: ^8.4.23
     prettier: ^2.8.8
+    prettier-plugin-tailwind-styled-components: ^0.0.2
     prettier-plugin-tailwindcss: ^0.2.7
     react: 18.2.0
     react-dom: 18.2.0
@@ -3556,6 +3557,38 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-tailwind-styled-components@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "prettier-plugin-tailwind-styled-components@npm:0.0.2"
+  peerDependencies:
+    "@trivago/prettier-plugin-sort-imports": "*"
+    prettier: ">=2.8.0"
+    prettier-plugin-css-order: "*"
+    prettier-plugin-import-sort: "*"
+    prettier-plugin-jsdoc: "*"
+    prettier-plugin-organize-attributes: "*"
+    prettier-plugin-organize-imports: "*"
+    prettier-plugin-style-order: "*"
+    tailwind-styled-components: ">=2.2.0"
+  peerDependenciesMeta:
+    "@trivago/prettier-plugin-sort-imports":
+      optional: true
+    prettier-plugin-css-order:
+      optional: true
+    prettier-plugin-import-sort:
+      optional: true
+    prettier-plugin-jsdoc:
+      optional: true
+    prettier-plugin-organize-attributes:
+      optional: true
+    prettier-plugin-organize-imports:
+      optional: true
+    prettier-plugin-style-order:
+      optional: true
+  checksum: 9ef540c8ca9a8bbe09ac8be22ee2157bd681db8f9e2d59df7720a2a51e55e2ea954b9048230b2b90c75fe05683a9c22bf5c41e045d712f7af1d599eef292f224
   languageName: node
   linkType: hard
 
