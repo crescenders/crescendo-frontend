@@ -12,7 +12,7 @@ const LoginModal = ({ isOpen, close }) => {
           src={'/svg/logo_text.svg'}
           width={270}
           height={42}
-          alt={''}
+          alt="logo"
         />
         <TextWrapper>
           <span>로그인을 하여</span>
