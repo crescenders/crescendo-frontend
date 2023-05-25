@@ -13,15 +13,15 @@ const Button = ({ text, onClick, isNormal, ...rest }: ButtonProps) => {
       {text}
     </NormalButton>
   ) : (
-    <ShadowButton {...rest} onClick={onClick} text={text}>
+    <PurpleButton {...rest} onClick={onClick} text={text}>
       {text}
-    </ShadowButton>
+    </PurpleButton>
   );
 };
 
 export default Button;
 
-const ShadowButton = tw.button<ButtonProps>`
+const PurpleButton = tw.button<ButtonProps>`
 flex justify-center items-center whitespace-nowrap rounded-full bg-brand cursor-pointer text-white text-[14px] shadow-button
 `;
 
