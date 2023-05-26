@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <PageLayout>
       <button onClick={() => setIsOpen(true)}>Login Modal</button>
-      {isOpen && <LoginModal isOpen={isOpen} close={closeModal} />}
+      {isOpen && <LoginModal isOpen={isOpen} handleClose={closeModal} />}
     </PageLayout>
   );
 };

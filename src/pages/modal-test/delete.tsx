@@ -16,8 +16,8 @@ const Basic = () => {
       {isOpen && (
         <DeleteModal
           isOpen={isOpen}
-          close={closeModal}
-          handleDelete={() => alert('삭제')}
+          handleClose={closeModal}
+          handleClick={() => alert('삭제')}
           title="과제 삭제"
           firstText="삭제한 결과는 복구할 수 없어요."
           secondText="삭제 진행하시겠어요?"

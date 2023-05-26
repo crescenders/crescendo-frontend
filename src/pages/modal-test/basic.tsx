@@ -30,7 +30,7 @@ const Basic = () => {
       {nothingModalIsOpen && (
         <BasicModal
           isOpen={nothingModalIsOpen}
-          close={handleClose('nothingModal')}
+          handleClose={handleClose('nothingModal')}
           title="참여 신청자"
         >
           <ModalWrapper>
@@ -47,7 +47,7 @@ const Basic = () => {
         <BasicModal
           isPurple
           isOpen={purpleTitleModalIsOpen}
-          close={handleClose('purpleTitleModal')}
+          handleClose={handleClose('purpleTitleModal')}
           title="참여 신청자"
         >
           <ModalWrapper>
@@ -63,9 +63,9 @@ const Basic = () => {
           isPurple
           isButton
           isOpen={allModalIsOpen}
-          close={handleClose('allModal')}
+          handleClose={handleClose('allModal')}
           title="참여 신청자"
-          onClick={handleClick}
+          handleClick={handleClick}
         >
           <ModalWrapper>
             <div className=" mt-[20px] h-[30px] w-[50px] bg-slate-400"></div>
