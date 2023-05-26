@@ -2,9 +2,9 @@ import tw from 'tailwind-styled-components';
 import Layout from './Layout';
 import Image from 'next/image';
 
-const LoginModal = ({ isOpen, close }) => {
+const LoginModal = ({ isOpen, handleClose }: Modal) => {
   return (
-    <Layout isOpen={isOpen} close={close}>
+    <Layout isOpen={isOpen} handleClose={handleClose}>
       <ModalWrapper>
         <Image src={'/svg/logo_symbol.svg'} width={63} height={100} alt={''} />
         <Image
@@ -30,7 +30,7 @@ const LoginModal = ({ isOpen, close }) => {
         </Btn>
         <span
           className="cursor-pointer text-[14px] underline underline-offset-2"
-          onClick={close}
+          onClick={handleClose}
         >
           로그인 없이 이용하기
         </span>

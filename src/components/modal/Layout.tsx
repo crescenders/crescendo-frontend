@@ -1,15 +1,9 @@
 import { createPortal } from 'react-dom';
 import tw from 'tailwind-styled-components';
 
-type LayoutProps = {
-  children: React.ReactNode;
-  isOpen: boolean;
-  close: () => void;
-};
-
-const Layout = ({ children, isOpen, close }: LayoutProps) => {
+const Layout = ({ children, isOpen, handleClose }: Modal) => {
   const handleClick = () => {
-    close();
+    handleClose();
   };
 
   const portalDiv = document.querySelector('#modal-root');

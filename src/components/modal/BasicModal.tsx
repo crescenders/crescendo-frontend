@@ -1,20 +1,13 @@
 import Layout from './Layout';
 import Button from '@components/common/Button';
 
-type BasicModalProps = {
-  isOpen: boolean;
+type BasicModalProps = Modal & {
   isPurple?: boolean;
   isButton?: boolean;
-  close: () => void;
   title: string;
-  onClick?: () => void;
-  children: React.ReactNode;
 };
 
-type TitleProps = {
-  isPurple?: boolean;
-  title: string;
-};
+type TitleProps = Pick<BasicModalProps, 'isPurple' | 'title'>;
 
 const Title = ({ isPurple, title }: TitleProps) => {
   return (
@@ -27,24 +20,24 @@ const Title = ({ isPurple, title }: TitleProps) => {
 const BasicModal = ({
   isOpen,
   isPurple,
-  close,
+  handleClose,
   isButton,
   title,
   children,
-  onClick,
+  handleClick,
 }: BasicModalProps) => {
   return (
-    <Layout isOpen={isOpen} close={close}>
+    <Layout isOpen={isOpen} handleClose={handleClose}>
       <div className="mx-[68px] mt-[26px] flex flex-col items-center">
         <Title isPurple={isPurple} title={title} />
         <div>{children}</div>
         {isButton && (
           <div className="mb-[26px] mt-[68px] flex gap-[18px]">
-            <Button isNormal text="취소" onClick={close} />
+            <Button isNormal text="취소" onClick={handleClose} />
             <Button
               className="h-[39px] w-[105px]"
               text="제출"
-              onClick={onClick}
+              onClick={handleClick}
             />
           </div>
         )}
