@@ -5,14 +5,14 @@ import BasicModal from '@components/modal/BasicModal';
 import { useState } from 'react';
 
 const Basic = () => {
-  const [nothingModalIsOpen, setNothingModalIsOpen] = useState(false);
+  const [defaultModalIsOpen, setDefaultModalIsOpen] = useState(false);
   const [purpleTitleModalIsOpen, setPurpleTitleModalIsOpen] = useState(false);
-  const [allModalIsOpen, setAllModalIsOpen] = useState(false);
+  const [purpleButtonModalIsOpen, setPurpleButtonModalIsOpen] = useState(false);
 
   const modalObj = {
-    nothingModal: () => setNothingModalIsOpen(false),
+    defaultModal: () => setDefaultModalIsOpen(false),
     purpleTitleModal: () => setPurpleTitleModalIsOpen(false),
-    allModal: () => setAllModalIsOpen(false),
+    purpleButtonModal: () => setPurpleButtonModalIsOpen(false),
   };
 
   const handleClose = (modalName) => {
@@ -25,12 +25,13 @@ const Basic = () => {
 
   return (
     <PageLayout>
-      {/* Nothing Modal */}
-      <button onClick={() => setNothingModalIsOpen(true)}>Nothing Modal</button>
-      {nothingModalIsOpen && (
+      {/* Default Modal */}
+      {/* isPurple : x , isButton : x */}
+      <button onClick={() => setDefaultModalIsOpen(true)}>Default Modal</button>
+      {defaultModalIsOpen && (
         <BasicModal
-          isOpen={nothingModalIsOpen}
-          handleClose={handleClose('nothingModal')}
+          isOpen={defaultModalIsOpen}
+          handleClose={handleClose('defaultModal')}
           title="참여 신청자"
         >
           <ModalWrapper>
@@ -40,6 +41,7 @@ const Basic = () => {
       )}
 
       {/* PurpleTitle Modal */}
+      {/* isPurple : o , isButton : x */}
       <button onClick={() => setPurpleTitleModalIsOpen(true)}>
         PurpleTitle Modal
       </button>
@@ -56,14 +58,17 @@ const Basic = () => {
         </BasicModal>
       )}
 
-      {/* All Modal */}
-      <button onClick={() => setAllModalIsOpen(true)}>All Modal</button>
-      {allModalIsOpen && (
+      {/* PurpleButton Modal */}
+      {/* isPurple : o , isButton : o */}
+      <button onClick={() => setPurpleButtonModalIsOpen(true)}>
+        PurpleButton Modal
+      </button>
+      {purpleButtonModalIsOpen && (
         <BasicModal
           isPurple
           isButton
-          isOpen={allModalIsOpen}
-          handleClose={handleClose('allModal')}
+          isOpen={purpleButtonModalIsOpen}
+          handleClose={handleClose('purpleButtonModal')}
           title="참여 신청자"
           handleClick={handleClick}
         >
