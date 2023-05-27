@@ -27,7 +27,9 @@ const Basic = () => {
     <PageLayout>
       {/* Default Modal */}
       {/* isPurple : x , isButton : x */}
-      <button onClick={() => setDefaultModalIsOpen(true)}>Default Modal</button>
+      <ButtonStyled onClick={() => setDefaultModalIsOpen(true)}>
+        Default Modal
+      </ButtonStyled>
       {defaultModalIsOpen && (
         <BasicModal
           isOpen={defaultModalIsOpen}
@@ -42,9 +44,9 @@ const Basic = () => {
 
       {/* PurpleTitle Modal */}
       {/* isPurple : o , isButton : x */}
-      <button onClick={() => setPurpleTitleModalIsOpen(true)}>
+      <ButtonStyled onClick={() => setPurpleTitleModalIsOpen(true)}>
         PurpleTitle Modal
-      </button>
+      </ButtonStyled>
       {purpleTitleModalIsOpen && (
         <BasicModal
           isPurple
@@ -60,9 +62,9 @@ const Basic = () => {
 
       {/* PurpleButton Modal */}
       {/* isPurple : o , isButton : o */}
-      <button onClick={() => setPurpleButtonModalIsOpen(true)}>
+      <ButtonStyled onClick={() => setPurpleButtonModalIsOpen(true)}>
         PurpleButton Modal
-      </button>
+      </ButtonStyled>
       {purpleButtonModalIsOpen && (
         <BasicModal
           isPurple
@@ -82,6 +84,14 @@ const Basic = () => {
 };
 
 export default Basic;
+
+const ButtonStyled = tw.button`
+  border-brand
+  m-1
+  border
+  border-solid
+  p-1
+`;
 
 const ModalWrapper = tw.div`
   mx-[58px]
