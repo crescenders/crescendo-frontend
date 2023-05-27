@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import tw from 'tailwind-styled-components';
 
-const Layout = ({ children, isOpen, handleClose }: Modal) => {
+const ModalLayout = ({ children, isOpen, handleClose }: Modal) => {
   const handleClick = () => {
     handleClose();
   };
@@ -23,7 +23,7 @@ const Layout = ({ children, isOpen, handleClose }: Modal) => {
   );
 };
 
-export default Layout;
+export default ModalLayout;
 
 const Wrapper = tw.div`
   fixed
