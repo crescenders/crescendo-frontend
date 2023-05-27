@@ -1,10 +1,10 @@
 import tw from 'tailwind-styled-components';
-import Layout from './Layout';
+import ModalLayout from '@components/modal/ModalLayout';
 import Image from 'next/image';
 
 const LoginModal = ({ isOpen, handleClose }: Modal) => {
   return (
-    <Layout isOpen={isOpen} handleClose={handleClose}>
+    <ModalLayout isOpen={isOpen} handleClose={handleClose}>
       <ModalWrapper>
         <Image src={'/svg/logo_symbol.svg'} width={63} height={100} alt={''} />
         <Image
@@ -35,7 +35,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
           로그인 없이 이용하기
         </span>
       </ModalWrapper>
-    </Layout>
+    </ModalLayout>
   );
 };
 

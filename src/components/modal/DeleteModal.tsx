@@ -1,4 +1,4 @@
-import Layout from './Layout';
+import ModalLayout from '@components/modal/ModalLayout';
 import Button from '@components/common/Button';
 
 type DeleteModalProps = Modal & {
@@ -16,7 +16,7 @@ const DeleteModal = ({
   handleClick,
 }: DeleteModalProps) => {
   return (
-    <Layout isOpen={isOpen} handleClose={handleClose}>
+    <ModalLayout isOpen={isOpen} handleClose={handleClose}>
       <div className="mx-[68px] mt-[26px] flex flex-col items-center">
         <span className="font-bold">{title}</span>
         <div className="mt-[33px] flex flex-col items-center justify-center text-[12px] text-text-primary">
@@ -28,7 +28,7 @@ const DeleteModal = ({
           <Button isNormal text="삭제" onClick={handleClick} />
         </div>
       </div>
-    </Layout>
+    </ModalLayout>
   );
 };
 

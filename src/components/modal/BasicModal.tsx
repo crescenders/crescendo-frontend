@@ -1,4 +1,4 @@
-import Layout from './Layout';
+import ModalLayout from '@components/modal/ModalLayout';
 import Button from '@components/common/Button';
 
 type BasicModalProps = Modal & {
@@ -27,7 +27,7 @@ const BasicModal = ({
   handleClick,
 }: BasicModalProps) => {
   return (
-    <Layout isOpen={isOpen} handleClose={handleClose}>
+    <ModalLayout isOpen={isOpen} handleClose={handleClose}>
       <div className="mx-[68px] mt-[26px] flex flex-col items-center">
         <Title isPurple={isPurple} title={title} />
         <div>{children}</div>
@@ -42,7 +42,7 @@ const BasicModal = ({
           </div>
         )}
       </div>
-    </Layout>
+    </ModalLayout>
   );
 };
 
