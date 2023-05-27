@@ -26,7 +26,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
             height={24}
             alt="logo"
           />
-          <span>Google 로그인</span>
+          <span className="text-18">Google 로그인</span>
         </Btn>
         <span
           className="cursor-pointer text-[14px] underline underline-offset-2"
@@ -74,7 +74,6 @@ const Btn = tw.div`
   items-center
   justify-center
   rounded-2xl
-  text-[18px]
   font-bold
   text-white
 `;
