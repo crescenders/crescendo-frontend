@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import NavigateList, { NavigateListProps } from './header/NavigateList';
 import LoginModal from '@components/modal/LoginModal';
+import NavigateList, {
+  NavigateListProps,
+} from '@components/header/NavigateList';
 
 const NAVIGATE_LIST: NavigateListProps[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
