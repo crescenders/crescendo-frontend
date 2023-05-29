@@ -1,4 +1,5 @@
 import tw from 'tailwind-styled-components';
+import Header from '@components/common/Header';
 
 type PageLayoutProps = {
   children: React.ReactNode;
@@ -6,11 +7,20 @@ type PageLayoutProps = {
 };
 
 const PageLayout = ({ children, ...rest }: PageLayoutProps) => {
-  return <PageLayoutWrapper {...rest}>{children}</PageLayoutWrapper>;
+  return (
+    <PageLayoutBox {...rest}>
+      <Header />
+      {children}
+    </PageLayoutBox>
+  );
 };
 
 export default PageLayout;
 
-const PageLayoutWrapper = tw.div`
-relative w-full min-h-screen max-w-[1024px] bg-white
+const PageLayoutBox = tw.div`
+  relative
+  min-h-screen
+  w-full
+  max-w-[1024px]
+  bg-white
 `;
