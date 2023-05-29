@@ -3,7 +3,7 @@ import { useState } from 'react';
 import LoginModal from '@components/modal/LoginModal';
 import NavigateList, {
   NavigateListProps,
-} from '@components/header/NavigateList';
+} from '@components/common/NavigateList';
 
 const NAVIGATE_LIST: NavigateListProps[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
