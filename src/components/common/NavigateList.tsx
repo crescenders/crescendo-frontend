@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-export type NavigateListProps = {
+export type NavigateListType = {
   id?: number;
   text: string;
   path: string;
 };
 
-const NavigateList = ({ text, path }: NavigateListProps) => {
+const NavigateList = ({ text, path }: NavigateListType) => {
   return (
     <Link href={`${path}`}>
       <li className="flex h-[60px] items-center justify-center bg-white px-3">

@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { useState } from 'react';
 import LoginModal from '@components/modal/LoginModal';
 import NavigateList, {
-  NavigateListProps,
+  NavigateListType,
 } from '@components/common/NavigateList';
 
-const NAVIGATE_LIST: NavigateListProps[] = [
+const NAVIGATE_LIST: NavigateListType[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
   { id: 2, text: '스터디 관리', path: '' },
   { id: 3, text: '로그아웃', path: '' },
