@@ -13,7 +13,7 @@ const NAVIGATE_LIST: NavigateListType[] = [
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [isHover, setIsHover] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
   return (
@@ -29,10 +29,14 @@ const Header = () => {
         <div className="flex cursor-pointer gap-x-5 text-16 font-bold text-brand">
           <span>스터디 개설</span>
           <span
-            onMouseEnter={() => {
-              setIsHover(true);
+            onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
+              e.stopPropagation();
+              setIsOpen(true);
             }}
-            onClick={() => setIsHover(false)}
+            onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
           >
             닉네임
           </span>
@@ -45,7 +49,7 @@ const Header = () => {
           로그인 / 회원가입
         </span>
       )}
-      {isHover && (
+      {isOpen && (
         <ul className="absolute right-4 top-12 flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl">
           {NAVIGATE_LIST.map(({ id, text, path }) => (
             <NavigateList key={id} text={text} path={path} />
