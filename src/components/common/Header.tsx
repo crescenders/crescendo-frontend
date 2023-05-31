@@ -14,7 +14,7 @@ const NAVIGATE_LIST: NavigateListType[] = [
 ];
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
@@ -30,11 +30,11 @@ const Header = () => {
         />
       </Link>
       {isLogin ? (
-        <div className="flex cursor-pointer gap-x-5 ">
+        <div className="flex cursor-pointer gap-x-5">
           <span className="text-16 font-medium">스터디 개설</span>
           <div className="w-[2px] h-7 bg-[#D9D9D9]" />
           <span
-            className="text-16 font-bold text-brand"
+            className="text-16 font-bold text-brand mr-5"
             onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
               e.stopPropagation();
               setIsOpen(true);
@@ -52,17 +52,20 @@ const Header = () => {
         </span>
       )}
       {isOpen && (
-        <ul
-          className="absolute right-4 top-[75px] flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl"
-          onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-            e.stopPropagation();
-            setIsOpen(false);
-          }}
-        >
-          {NAVIGATE_LIST.map(({ id, text, path }) => (
-            <NavigateList key={id} text={text} path={path} />
-          ))}
-        </ul>
+        <div className="absolute right-4 top-[70px] flex items-center flex-col">
+          <div className="relative w-4 h-4 bg-white rotate-[135deg] top-2 shadow-sm" />
+          <ul
+            className="flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl z-10"
+            onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+              e.stopPropagation();
+              setIsOpen(false);
+            }}
+          >
+            {NAVIGATE_LIST.map(({ id, text, path }) => (
+              <NavigateList key={id} text={text} path={path} />
+            ))}
+          </ul>
+        </div>
       )}
       {isModal && (
         <LoginModal isOpen={isModal} handleClose={() => setIsModal(false)} />
