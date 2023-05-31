@@ -14,7 +14,7 @@ const NAVIGATE_LIST: NavigateListType[] = [
 ];
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
@@ -37,7 +37,7 @@ const Header = () => {
             className="text-16 font-bold text-brand mr-5"
             onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
               e.stopPropagation();
-              setIsOpen(true);
+              setIsOpen(false);
             }}
           >
             닉네임 님
