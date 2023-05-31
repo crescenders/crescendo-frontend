@@ -30,7 +30,7 @@ const Header = () => {
         />
       </Link>
       {isLogin ? (
-        <div className="flex cursor-pointer gap-x-5">
+        <div className="flex cursor-pointer gap-x-7">
           <span className="text-16 font-medium">스터디 개설</span>
           <div className="w-[2px] h-7 bg-[#D9D9D9]" />
           <span
@@ -52,7 +52,7 @@ const Header = () => {
         </span>
       )}
       {isOpen && (
-        <div className="absolute right-4 top-[70px] flex items-center flex-col">
+        <div className="absolute right-2 top-[70px] flex items-center flex-col">
           <div className="relative w-4 h-4 bg-white rotate-[135deg] top-2 shadow-sm" />
           <ul
             className="flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl z-10"
