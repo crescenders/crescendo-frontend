@@ -30,11 +30,11 @@ const Header = () => {
         />
       </Link>
       {isLogin ? (
-        <div className="flex cursor-pointer gap-x-7">
+        <div className="flex cursor-pointer gap-x-7 relative">
           <span className="text-16 font-medium">스터디 개설</span>
           <div className="w-[2px] h-7 bg-[#D9D9D9]" />
           <span
-            className="text-16 font-bold text-brand mr-5"
+            className="text-16 font-bold text-brand mr-5 relative"
             onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
               e.stopPropagation();
               setIsOpen(true);
@@ -42,6 +42,22 @@ const Header = () => {
           >
             닉네임 님
           </span>
+          {isOpen && (
+            <div className="absolute flex items-center flex-col top-[50px] left-2/4">
+              <div className="relative w-4 h-4 bg-white rotate-[135deg] top-2 shadow-sm" />
+              <ul
+                className="flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl z-10"
+                onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+              >
+                {NAVIGATE_LIST.map(({ id, text, path }) => (
+                  <NavigateList key={id} text={text} path={path} />
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       ) : (
         <span
@@ -51,22 +67,7 @@ const Header = () => {
           로그인 / 회원가입
         </span>
       )}
-      {isOpen && (
-        <div className="absolute right-2 top-[70px] flex items-center flex-col">
-          <div className="relative w-4 h-4 bg-white rotate-[135deg] top-2 shadow-sm" />
-          <ul
-            className="flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl z-10"
-            onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-              e.stopPropagation();
-              setIsOpen(false);
-            }}
-          >
-            {NAVIGATE_LIST.map(({ id, text, path }) => (
-              <NavigateList key={id} text={text} path={path} />
-            ))}
-          </ul>
-        </div>
-      )}
+
       {isModal && (
         <LoginModal isOpen={isModal} handleClose={() => setIsModal(false)} />
       )}
