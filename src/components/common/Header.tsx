@@ -37,7 +37,7 @@ const Header = () => {
             className="text-16 font-bold text-brand mr-5"
             onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
               e.stopPropagation();
-              setIsOpen(false);
+              setIsOpen(true);
             }}
           >
             닉네임 님
