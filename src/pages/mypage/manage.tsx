@@ -1,0 +1,105 @@
+import Button from '@components/common/Button';
+import PageLayout from '@components/common/PageLayout';
+import OpenStudyCard from '@components/manage/OpenStudyCard';
+import tw from 'tailwind-styled-components';
+
+export type MyStudyListType = {
+  id?: number;
+  title: string;
+  category: string[];
+  personnel: number;
+  study_period: string;
+  recruitment_period: string;
+};
+
+const MY_STUDY_LIST: MyStudyListType[] = [
+  {
+    id: 1,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
+  {
+    id: 2,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
+  {
+    id: 3,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
+];
+
+const Manage = () => {
+  return (
+    <PageLayout>
+      <TitleArea>
+        <Title>개설한 스터디</Title>
+      </TitleArea>
+      {MY_STUDY_LIST.length > 0 ? (
+        <StudyList>
+          {MY_STUDY_LIST.map(
+            ({
+              id,
+              title,
+              category,
+              personnel,
+              study_period,
+              recruitment_period,
+            }) => (
+              <OpenStudyCard
+                key={id}
+                title={title}
+                category={category}
+                personnel={personnel}
+                study_period={study_period}
+                recruitment_period={recruitment_period}
+              />
+            ),
+          )}
+          <Button className="w-[134px] h-9" text="스터디 개설하기" />
+        </StudyList>
+      ) : (
+        <>
+          <div className="flex h-[70vh] items-center justify-center ">
+            <span className="text-center text-[#8A8A8A]">
+              등록한 과제가 없습니다. <br /> 새로운 과제를 등록해보세요!
+            </span>
+          </div>
+          <div className="flex justify-center">
+            <Button className="w-[134px] h-9" text="스터디 개설하기" />
+          </div>
+        </>
+      )}
+    </PageLayout>
+  );
+};
+
+export default Manage;
+
+const Title = tw.span`
+  text-20
+  font-bold
+`;
+
+const TitleArea = tw.div`
+  ml-48
+  mt-[55px]
+`;
+
+const StudyList = tw.div`
+  mt-5
+  flex
+  flex-col
+  items-center
+  gap-y-5
+`;
