@@ -37,6 +37,30 @@ const MY_STUDY_LIST: MyStudyListType[] = [
     study_period: '2023.01.01 - 2023.02.02',
     recruitment_period: '2023.01.01 - 2023.02.02',
   },
+  {
+    id: 4,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
+  {
+    id: 5,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
+  {
+    id: 6,
+    title: '스터디명스터디명스터디명스터디명',
+    category: ['Frontend', 'Backend', 'interview'],
+    personnel: 5,
+    study_period: '2023.01.01 - 2023.02.02',
+    recruitment_period: '2023.01.01 - 2023.02.02',
+  },
 ];
 
 const Manage = () => {
@@ -93,7 +117,7 @@ const Title = tw.span`
 
 const TitleArea = tw.div`
   ml-48
-  mt-[55px]
+  mt-[125px]
 `;
 
 const StudyList = tw.div`
