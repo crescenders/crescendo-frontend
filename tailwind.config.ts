@@ -40,6 +40,8 @@ module.exports = {
         loginButton: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         button:
           '2px 4px 12px rgba(0, 0, 0, 0.1), 0px 0px 4px rgba(0, 0, 0, 0.1)',
+        header:
+          '0px 10px 15px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.05)',
       },
     },
   },
