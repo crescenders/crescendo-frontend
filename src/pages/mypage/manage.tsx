@@ -90,7 +90,7 @@ const Manage = () => {
               />
             ),
           )}
-          <Button className="w-[134px] h-9" text="스터디 개설하기" />
+          <Button className="w-[134px] h-9 mb-4" text="스터디 개설하기" />
         </StudyList>
       ) : (
         <>
