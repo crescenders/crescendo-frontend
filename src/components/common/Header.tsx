@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const NAVIGATE_LIST: NavigateListType[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
-  { id: 2, text: '스터디 관리', path: '' },
+  { id: 2, text: '스터디 관리', path: '/mypage/manage' },
   { id: 3, text: '정보 수정', path: '' },
   { id: 4, text: '로그아웃', path: '' },
 ];
@@ -19,7 +19,7 @@ const Header = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
 
   return (
-    <header className="flex h-[70px] w-full items-center justify-between bg-white px-7 shadow-header">
+    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 shadow-header">
       <Link href={'/home'}>
         <Image
           src="/svg/logo_light_mode.svg"
