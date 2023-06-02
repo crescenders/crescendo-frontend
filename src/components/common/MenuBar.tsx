@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import tw from 'tailwind-styled-components';
 
-type MenuBar = {
+type MenuBarProps = {
   focusedPosition: 'left' | 'right';
   leftText: string;
   rightText: string;
-  href: string;
+  path: string;
 };
 
 const focusStyle = {
@@ -14,11 +14,16 @@ const focusStyle = {
   notFocus: 'text-[#AC85C8] px-[23px]',
 };
 
-const MenuBar = ({ focusedPosition, leftText, rightText, href }: MenuBar) => {
+const MenuBar = ({
+  focusedPosition,
+  leftText,
+  rightText,
+  path,
+}: MenuBarProps) => {
   return (
     <Wrapper>
       <Basic
-        href={focusedPosition === 'left' ? '#' : href}
+        href={focusedPosition === 'left' ? '#' : path}
         className={`${
           focusedPosition === 'left'
             ? focusStyle['focus']
@@ -28,7 +33,7 @@ const MenuBar = ({ focusedPosition, leftText, rightText, href }: MenuBar) => {
         {leftText}
       </Basic>
       <Basic
-        href={focusedPosition === 'left' ? href : '#'}
+        href={focusedPosition === 'left' ? path : '#'}
         className={`${
           focusedPosition === 'left'
             ? focusStyle['notFocus']
