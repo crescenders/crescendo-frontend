@@ -1,8 +1,16 @@
 import DeleteModal from '@components/modal/DeleteModal';
 import Image from 'next/image';
-import { MyStudyListType } from 'pages/mypage/manage';
 import { useState } from 'react';
 import tw from 'tailwind-styled-components';
+
+export type MyStudyListType = {
+  id?: number;
+  title: string;
+  category: string[];
+  personnel: number;
+  study_period: string;
+  recruitment_period: string;
+};
 
 const OpenStudyCard = ({
   title,
