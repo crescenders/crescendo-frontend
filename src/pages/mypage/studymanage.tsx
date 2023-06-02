@@ -1,16 +1,9 @@
 import Button from '@components/common/Button';
 import PageLayout from '@components/common/PageLayout';
-import OpenStudyCard from '@components/manage/OpenStudyCard';
+import OpenStudyCard, {
+  MyStudyListType,
+} from '@components/manage/OpenStudyCard';
 import tw from 'tailwind-styled-components';
-
-export type MyStudyListType = {
-  id?: number;
-  title: string;
-  category: string[];
-  personnel: number;
-  study_period: string;
-  recruitment_period: string;
-};
 
 const MY_STUDY_LIST: MyStudyListType[] = [
   {
@@ -63,7 +56,7 @@ const MY_STUDY_LIST: MyStudyListType[] = [
   },
 ];
 
-const Manage = () => {
+const StudyManage = () => {
   return (
     <PageLayout>
       <TitleArea>
@@ -108,7 +101,7 @@ const Manage = () => {
   );
 };
 
-export default Manage;
+export default StudyManage;
 
 const Title = tw.span`
   text-20
