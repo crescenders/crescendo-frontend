@@ -75,6 +75,7 @@ const StudyManage = () => {
             }) => (
               <OpenStudyCard
                 key={id}
+                id={id}
                 title={title}
                 category={category}
                 personnel={personnel}

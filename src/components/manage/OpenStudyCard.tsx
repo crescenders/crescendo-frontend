@@ -1,10 +1,11 @@
 import DeleteModal from '@components/modal/DeleteModal';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import tw from 'tailwind-styled-components';
 
 export type MyStudyListType = {
-  id?: number;
+  id: number;
   title: string;
   category: string[];
   personnel: number;
@@ -13,6 +14,7 @@ export type MyStudyListType = {
 };
 
 const OpenStudyCard = ({
+  id,
   title,
   category,
   personnel,
@@ -24,7 +26,9 @@ const OpenStudyCard = ({
   return (
     <StudyCard>
       <div className="flex justify-between">
-        <span className="text-[17px]">{title}</span>
+        <Link href={`/studymanage/assignment/${id}`}>
+          <span className="text-[17px]">{title}</span>
+        </Link>
         <div className="flex items-center gap-x-0.5 mr-2">
           <Image src="/svg/person.svg" width={18} height={18} alt="인원" />
           <span className="text-12">{personnel}</span>
