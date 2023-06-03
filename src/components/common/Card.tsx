@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import tw from 'tailwind-styled-components';
+import getDiffDate from 'utils/getDiffDate';
 
 type CardProps = {
   path: string;
@@ -34,15 +34,6 @@ const Card = ({
   startDate,
   endDate,
 }: CardProps) => {
-  const getDiffDate = (startDate: string) => {
-    const theDate = new Date(startDate);
-    const today = new Date();
-    const diffTime = theDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    return Math.abs(diffDays) > 0 ? Math.abs(diffDays) : 'day';
-  };
-
   return (
     <Wrapper href={path} className={`${WrapperStyle[size]}`}>
       {size === 'medium' && !isApprove && (
