@@ -52,7 +52,7 @@ const Card = ({
         {size === 'big' && isCanApply && (
           <DDayBox
             className={`${
-              Number(getDiffDate(startDate))
+              typeof getDiffDate(startDate) === 'number'
                 ? 'bg-[#8266FF]'
                 : 'bg-status-error'
             } `}
