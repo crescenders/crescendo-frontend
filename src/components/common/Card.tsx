@@ -60,7 +60,7 @@ const Card = ({
             D - {getDiffDate(startDate)}
           </DDayBox>
         )}
-        <Image src={img} alt="thumbnail" fill style={{ objectFit: 'cover' }} />
+        <Image src={img} alt="thumbnail" fill className="object-cover" />
         {size === 'big' && !isCanApply && (
           <div className="absolute flex h-full  w-full flex-col items-center justify-center gap-2 bg-black/50">
             <Image
