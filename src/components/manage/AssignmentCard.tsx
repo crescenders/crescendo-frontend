@@ -1,12 +1,18 @@
+import Button from '@components/common/Button';
+import BasicModal from '@components/modal/BasicModal';
+import DeleteModal from '@components/modal/DeleteModal';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import tw from 'tailwind-styled-components';
 
-export type AssignmentListType = {
-  id?: number;
+type AssignmentListProps = {
   week: number;
   period: string;
   content: string;
   initialFolding?: boolean;
+  isSubmit?: boolean;
+  isEdit?: boolean;
+  isDelete?: boolean;
 };
 
 const AssignmentCard = ({
@@ -14,8 +20,12 @@ const AssignmentCard = ({
   period,
   content,
   initialFolding,
-}: AssignmentListType) => {
+  isSubmit,
+  isEdit,
+  isDelete,
+}: AssignmentListProps) => {
   const [isFold, setIsFold] = useState(true);
+  const [isModal, setIsModal] = useState<boolean>(false);
   useEffect(() => {
     if (initialFolding === false) {
       setIsFold(false);
@@ -43,7 +53,7 @@ const AssignmentCard = ({
           </div>
         </StudyCard>
       ) : (
-        <StudyCard className="pb-8">
+        <StudyCard>
           <div className="flex justify-between items-center mb-[60px]">
             <div className="flex flex-col gap-y-1">
               <span className="font-bold text-brand text-17">
@@ -61,8 +71,98 @@ const AssignmentCard = ({
             </span>
           </div>
           <span>{content}</span>
+          {isSubmit && (
+            <ButtonWrapper>
+              <Button
+                text="과제 제출"
+                className="w-[75px] h-[34px]"
+                onClick={() => setIsModal(true)}
+              />
+            </ButtonWrapper>
+          )}
+          {isEdit && (
+            <ButtonWrapper>
+              <Button
+                text="과제 수정"
+                className="w-[75px] h-[34px]"
+                onClick={() => setIsModal(true)}
+              />
+            </ButtonWrapper>
+          )}
+          {isDelete && (
+            <ButtonWrapper>
+              <Button
+                text="삭제하기"
+                className="w-[75px] h-[34px]"
+                onClick={() => setIsModal(true)}
+              />
+            </ButtonWrapper>
+          )}
         </StudyCard>
       )}
+      {isModal &&
+        (isSubmit ? (
+          <BasicModal
+            className="px-[38px] pt-[26px]"
+            isPurple
+            isButton
+            isOpen={isModal}
+            handleClose={() => setIsModal(false)}
+            title="과제 제출"
+            handleClick={() => alert('제출')}
+          >
+            <InputContainer>
+              <Image
+                src="/svg/link.svg"
+                width={18}
+                height={18}
+                alt="링크"
+                className="relative left-9"
+              />
+              <InputBox
+                type="url"
+                required
+                placeholder="링크를 입력해주세요."
+              />
+            </InputContainer>
+          </BasicModal>
+        ) : isEdit ? (
+          <BasicModal
+            isPurple
+            isButton
+            isOpen={isModal}
+            handleClose={() => setIsModal(false)}
+            title="과제 수정"
+            handleClick={() => alert('제출')}
+          >
+            <InputContainer>
+              <Image
+                src="/svg/link.svg"
+                width={18}
+                height={18}
+                alt="링크"
+                className="relative left-9"
+              />
+              <InputBox
+                type="url"
+                required
+                placeholder="링크를 입력해주세요."
+              />
+            </InputContainer>
+            <div className="flex justify-end">
+              <Button text="수정" className="w-[52px] h-[29px]" />
+            </div>
+          </BasicModal>
+        ) : isDelete ? (
+          <DeleteModal
+            isOpen={isModal}
+            handleClose={() => setIsModal(false)}
+            handleClick={() => alert('삭제')}
+            title="과제 삭제"
+            firstText="삭제한 결과는 복구할 수 없어요."
+            secondText="삭제 진행하시겠어요?"
+          />
+        ) : null)}
     </>
   );
 };
@@ -76,5 +176,29 @@ const StudyCard = tw.div`
   rounded-[20px]
   bg-white
   px-8
-  pt-8
+  py-8
+`;
+
+const ButtonWrapper = tw.div`
+  mt-[35px]
+  flex
+  justify-end
+`;
+
+const InputContainer = tw.div`
+  mb-2
+  mt-[61px]
+  flex
+  items-center
+`;
+
+const InputBox = tw.input`
+  text-14
+  h-12
+  w-[340px]
+  rounded-lg
+  border-[1px]
+  border-[#E1E6F9]
+  bg-white
+  px-12
 `;
