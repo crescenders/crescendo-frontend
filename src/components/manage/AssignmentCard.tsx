@@ -9,7 +9,7 @@ type AssignmentListProps = {
   week: number;
   period: string;
   content: string;
-  initialFolding?: boolean;
+  isInitialFold?: boolean;
   isSubmit?: boolean;
   isEdit?: boolean;
   isDelete?: boolean;
@@ -19,7 +19,7 @@ const AssignmentCard = ({
   week,
   period,
   content,
-  initialFolding,
+  isInitialFold,
   isSubmit,
   isEdit,
   isDelete,
@@ -27,7 +27,7 @@ const AssignmentCard = ({
   const [isFold, setIsFold] = useState(true);
   const [isModal, setIsModal] = useState<boolean>(false);
   useEffect(() => {
-    if (initialFolding === false) {
+    if (isInitialFold === false) {
       setIsFold(false);
     }
   }, []);
