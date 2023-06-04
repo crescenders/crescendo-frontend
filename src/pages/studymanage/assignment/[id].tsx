@@ -1,10 +1,15 @@
 import Button from '@components/common/Button';
 import PageLayout from '@components/common/PageLayout';
-import AssignmentCard, {
-  AssignmentListType,
-} from '@components/manage/AssignmentCard';
+import AssignmentCard from '@components/manage/AssignmentCard';
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
+
+export type AssignmentListType = {
+  id: number;
+  week: number;
+  period: string;
+  content: string;
+};
 
 const ASSIGNMENT_LIST: AssignmentListType[] = [
   {
