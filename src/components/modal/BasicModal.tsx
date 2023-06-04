@@ -1,10 +1,12 @@
 import ModalLayout from '@components/modal/ModalLayout';
 import Button from '@components/common/Button';
+import tw from 'tailwind-styled-components';
 
 type BasicModalProps = Modal & {
   isPurple?: boolean;
   isButton?: boolean;
   title: string;
+  className?: React.ComponentProps<'div'>['className'];
 };
 
 type TitleProps = Pick<BasicModalProps, 'isPurple' | 'title'>;
@@ -25,10 +27,11 @@ const BasicModal = ({
   title,
   children,
   handleClick,
+  ...rest
 }: BasicModalProps) => {
   return (
     <ModalLayout isOpen={isOpen} handleClose={handleClose}>
-      <div className="mx-[68px] mt-[26px] flex flex-col items-center">
+      <ModalContentContainer {...rest}>
         <Title isPurple={isPurple} title={title} />
         <div>{children}</div>
         {isButton && (
@@ -41,9 +44,15 @@ const BasicModal = ({
             />
           </div>
         )}
-      </div>
+      </ModalContentContainer>
     </ModalLayout>
   );
 };
 
 export default BasicModal;
+
+const ModalContentContainer = tw.div`
+  flex
+  flex-col
+  items-center
+`;
