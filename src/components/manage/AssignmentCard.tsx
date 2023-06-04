@@ -128,6 +128,7 @@ const AssignmentCard = ({
           </BasicModal>
         ) : isEdit ? (
           <BasicModal
+            className="px-[38px] pt-[26px]"
             isPurple
             isButton
             isOpen={isModal}
