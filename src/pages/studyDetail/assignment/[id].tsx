@@ -125,8 +125,19 @@ const ViewAssiginment = () => {
             )}
           </div>
           <AssignmentList>
-            {ASSIGNMENT_INFO.assignments.map(
-              ({ id, week, period, content }) => (
+            {ASSIGNMENT_INFO.assignments.map(({ id, week, period, content }) =>
+              ASSIGNMENT_INFO.assignments.length < 3 ? (
+                <AssignmentCard
+                  key={id}
+                  week={week}
+                  period={period}
+                  content={content}
+                  isSubmit={isSubmit}
+                  isEdit={isEdit}
+                  isDelete={isDelete}
+                  isInitialFold={false}
+                />
+              ) : (
                 <AssignmentCard
                   key={id}
                   week={week}
