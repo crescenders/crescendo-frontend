@@ -10,7 +10,7 @@ const Search = () => {
 
   return (
     <PageLayout>
-      <ul className="mt-[100px] flex gap-x-10 justify-center">
+      <ul className="mt-[100px] flex gap-x-5 justify-center">
         <CategoryBox
           className={`${all ? 'border-[#8266FF] ' : 'border-[#EAEAEB]'}`}
           onClick={() => setAll(true)}
