@@ -1,4 +1,4 @@
-import useCategory from 'hooks/useCategory';
+import useCategory from '@hooks/useCategory';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import tw from 'tailwind-styled-components';
 
