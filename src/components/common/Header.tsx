@@ -19,7 +19,7 @@ const Header = () => {
   const [isModal, setIsModal] = useState<boolean>(false);
 
   return (
-    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 shadow-header">
+    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 shadow-header z-[900]">
       <Link href={'/home'}>
         <Image
           src="/svg/logo_light_mode.svg"

@@ -8,6 +8,7 @@
     "plugin:tailwindcss/recommended"
   ],
   "rules": {
+    "prefer-const": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",

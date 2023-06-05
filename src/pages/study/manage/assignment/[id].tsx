@@ -1,10 +1,15 @@
 import Button from '@components/common/Button';
 import PageLayout from '@components/common/PageLayout';
-import AssignmentCard, {
-  AssignmentListType,
-} from '@components/manage/AssignmentCard';
+import AssignmentCard from '@components/manage/AssignmentCard';
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
+
+export type AssignmentListType = {
+  id: number;
+  week: number;
+  period: string;
+  content: string;
+};
 
 const ASSIGNMENT_LIST: AssignmentListType[] = [
   {
@@ -38,7 +43,7 @@ const Assignment = () => {
         <span>스터디원 관리</span>
       </div>
       {ASSIGNMENT_LIST.length > 0 ? (
-        ASSIGNMENT_LIST.length === 1 ? (
+        ASSIGNMENT_LIST.length < 3 ? (
           <StudyList>
             {ASSIGNMENT_LIST.map(({ id, week, period, content }) => (
               <AssignmentCard
@@ -46,7 +51,7 @@ const Assignment = () => {
                 week={week}
                 period={period}
                 content={content}
-                initialFolding={false}
+                isInitialFold={false}
               />
             ))}
             <Button className="w-[134px] h-9 mb-4 mt-9" text="과제 등록하기" />
