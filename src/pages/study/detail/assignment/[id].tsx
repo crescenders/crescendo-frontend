@@ -5,7 +5,7 @@ import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { AssignmentListType } from 'pages/studymanage/assignment/[id]';
+import { AssignmentListType } from 'pages/study/manage/assignment/[id]';
 import { useState } from 'react';
 import tw from 'tailwind-styled-components';
 
@@ -58,7 +58,7 @@ const ViewAssiginment = () => {
           focusedPosition="right"
           leftText="정보 보기"
           rightText="과제 보기"
-          path={`/studyDetail/${id}`}
+          path={`/study/detail/${id}`}
         />
         <StudyTitle>{ASSIGNMENT_INFO.title}</StudyTitle>
       </div>

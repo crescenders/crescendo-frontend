@@ -26,7 +26,7 @@ const OpenStudyCard = ({
   return (
     <StudyCard>
       <div className="flex justify-between">
-        <Link href={`/studymanage/assignment/${id}`}>
+        <Link href={`/study/manage/assignment/${id}`}>
           <span className="text-[17px]">{title}</span>
         </Link>
         <div className="flex items-center gap-x-0.5 mr-2">

@@ -12,7 +12,7 @@ const StudyDetail = () => {
           focusedPosition="left"
           leftText="정보 보기"
           rightText="과제 보기"
-          path={`/studyDetail/assignment/${id}`}
+          path={`/study/detail/assignment/${id}`}
         />
       </div>
     </PageLayout>
