@@ -136,6 +136,7 @@ const DDayBox = tw.div`
   absolute
   right-3
   top-2
+  z-[2]
   flex
   h-[22px]
   w-[42px]
