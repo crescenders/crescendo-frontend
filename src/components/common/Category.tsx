@@ -1,3 +1,4 @@
+import useCategory from 'hooks/useCategory';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import tw from 'tailwind-styled-components';
 
@@ -16,12 +17,8 @@ const Category = ({
   all,
   setAll,
 }: CategoryProps) => {
-  const handleCategoryBtn = () => {
-    if (!category.includes(name)) {
-      return setCategory((prev) => [...prev, name]);
-    }
-    return setCategory((cats) => cats.filter((item) => item !== name));
-  };
+  const { handleCategoryBtn } = useCategory({ name, category, setCategory });
+
   useEffect(() => {
     if (category.length > 0) {
       setAll(false);
