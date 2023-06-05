@@ -23,7 +23,8 @@
       "@styles/*": ["./styles/*"],
       "@public/*": ["../public/*"],
       "@config": ["../config.ts"],
-      "@constants/*": ["./constants/*"]
+      "@constants/*": ["./constants/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
