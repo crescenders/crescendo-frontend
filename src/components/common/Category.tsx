@@ -20,7 +20,7 @@ const Category = ({
     if (!category.includes(name)) {
       return setCategory((prev) => [...prev, name]);
     }
-    return setCategory((prev) => prev.filter((item) => item !== name));
+    return setCategory((cats) => cats.filter((item) => item !== name));
   };
   useEffect(() => {
     if (category.length > 0) {
