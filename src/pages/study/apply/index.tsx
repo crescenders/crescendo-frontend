@@ -100,38 +100,6 @@ const Apply = () => {
       img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
       isApprove: true,
     },
-    {
-      id: 13,
-      studyName: '승인 예시9',
-      startDate: '2023.06.10',
-      endDate: '2023.07.10',
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
-      isApprove: true,
-    },
-    {
-      id: 14,
-      studyName: '거절 예시5',
-      startDate: '2023.06.10',
-      endDate: '2023.07.10',
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
-      isApprove: false,
-    },
-    {
-      id: 15,
-      studyName: '승인 예시10',
-      startDate: '2023.06.10',
-      endDate: '2023.07.10',
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
-      isApprove: true,
-    },
-    {
-      id: 16,
-      studyName: '승인 예시11',
-      startDate: '2023.06.10',
-      endDate: '2023.07.10',
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
-      isApprove: true,
-    },
   ];
   return (
     <PageLayout>
@@ -143,7 +111,7 @@ const Apply = () => {
           path={'/study/current-status'}
         />
       </div>
-      <div className="my-[57px] flex flex-wrap gap-[40px] px-[78px]">
+      <div className="my-[57px] flex flex-wrap justify-center gap-[40px] px-[78px]">
         {DUMMY_DATA.map(
           ({ id, img, studyName, startDate, endDate, isApprove }) => (
             <Card
