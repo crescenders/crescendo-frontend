@@ -34,4 +34,4 @@ export const categories = [
     emoji: '/svg/category/interview.svg',
     name: 'Interview',
   },
-];
+] as const;

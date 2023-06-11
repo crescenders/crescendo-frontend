@@ -1,6 +1,5 @@
 import Card from '@components/common/Card';
 import PageLayout from '@components/common/PageLayout';
-import { categories } from 'constants/Category';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,6 +7,7 @@ import { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import Lottie from 'lottie-react';
 import animation from '@public/animation/main.json';
+import { categories } from '@constants/category';
 
 const Home = () => {
   const [searchContent, setSearchContent] = useState('');
