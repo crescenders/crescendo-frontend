@@ -13,7 +13,7 @@ export type SortStateType = {
   [key in SortType]: boolean;
 };
 
-export const SortingObject: SortStateType = {
+export const SORT_OBJ: SortStateType = {
   최신순: false,
   마감순: false,
   모집중: false,
@@ -31,7 +31,7 @@ const RIGHT_SELECT_OPTION: SelectListType[] = [
 ];
 
 const Search = () => {
-  const [isOpen, setIsOpen] = useState<SortStateType>(SortingObject);
+  const [isOpen, setIsOpen] = useState<SortStateType>(SORT_OBJ);
   const [leftValue, setLeftValue] = useState<string>('최신순');
   const [rightValue, setRightValue] = useState<string>('모집중');
   return (
