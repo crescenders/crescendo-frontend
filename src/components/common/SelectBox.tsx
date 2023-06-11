@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SelectListType, SortStateType, SortingObject } from 'pages/search';
+import { SelectListType, SortStateType, SORT_OBJ } from 'pages/search';
 import { Dispatch, SetStateAction } from 'react';
 import tw from 'tailwind-styled-components';
 
@@ -23,7 +23,7 @@ const SelectBox = ({
       <SelectBoxWrapper
         onClick={() =>
           setIsOpen({
-            ...SortingObject,
+            ...SORT_OBJ,
             [value]: !isOpen[value],
           })
         }
