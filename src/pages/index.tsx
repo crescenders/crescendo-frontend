@@ -7,7 +7,7 @@ import { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import Lottie from 'lottie-react';
 import animation from '@public/animation/main.json';
-import { categories } from '@constants/category';
+import { categories } from '@constants/categories';
 
 const Home = () => {
   const [searchContent, setSearchContent] = useState('');
