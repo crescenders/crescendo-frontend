@@ -22,7 +22,8 @@
       "@apis/*": ["./apis/*"],
       "@styles/*": ["./styles/*"],
       "@public/*": ["../public/*"],
-      "@config": ["../config.ts"]
+      "@config": ["../config.ts"],
+      "@constants/*": ["./constants/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
