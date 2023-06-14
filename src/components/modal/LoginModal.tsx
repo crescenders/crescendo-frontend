@@ -16,7 +16,7 @@ type CredentialResponse = {
 };
 
 const LoginModal = ({ isOpen, handleClose }: Modal) => {
-  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const [{ isLogin }, setUserInfo] = useRecoilState(userState);
   const googleSignInButton = useRef<HTMLDivElement>(null);
 
   const GoogleLogin = () => {
@@ -53,8 +53,8 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
   });
 
   useEffect(() => {
-    if (userInfo.isLogin) handleClose();
-  }, [userInfo]);
+    if (isLogin) handleClose();
+  }, [isLogin]);
 
   return (
     <ModalLayout isOpen={isOpen} handleClose={handleClose}>
