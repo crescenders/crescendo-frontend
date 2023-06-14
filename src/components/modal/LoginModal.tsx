@@ -1,8 +1,61 @@
 import tw from 'tailwind-styled-components';
 import ModalLayout from '@components/modal/ModalLayout';
 import Image from 'next/image';
+import authApi from '@apis/auth/authApi';
+import { setToken } from '@utils/token';
+import { useEffect, useRef } from 'react';
+import useScript from '@hooks/useScript';
+import { CONFIG } from '@config';
+import { useRecoilState } from 'recoil';
+import { userState } from '@recoil/auth';
+
+type CredentialResponse = {
+  clientId: string;
+  credential: string;
+  select_by: string;
+};
 
 const LoginModal = ({ isOpen, handleClose }: Modal) => {
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const googleSignInButton = useRef<HTMLDivElement>(null);
+
+  const GoogleLogin = () => {
+    const el = document.querySelector(
+      'div[aria-labelledby="button-label"]',
+    ) as HTMLDivElement;
+    el.click();
+  };
+
+  const login = async (res: CredentialResponse) => {
+    const { credential } = res;
+    const { access_token, refresh_token }: Token = await authApi.googleLogin(
+      credential,
+    );
+    const token = { access_token, refresh_token };
+    if (token) {
+      setToken(token);
+      setUserInfo((info) => {
+        return { ...info, isLogin: true };
+      });
+    } else {
+      alert('로그인에 실패하였어요. 다시 시도해주세요.');
+    }
+  };
+  useScript('https://accounts.google.com/gsi/client', () => {
+    window.google.accounts.id.initialize({
+      client_id: CONFIG.API_KEY.GOOGLE_CLIENT_ID,
+      callback: login,
+      auto_select: false,
+    });
+    window.google.accounts.id.renderButton(googleSignInButton.current, {
+      type: 'button',
+    });
+  });
+
+  useEffect(() => {
+    if (userInfo.isLogin) handleClose();
+  }, [userInfo]);
+
   return (
     <ModalLayout isOpen={isOpen} handleClose={handleClose}>
       <ModalWrapper>
@@ -18,7 +71,8 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
           <span>로그인을 하여</span>
           <span>스터디에 참여해보세요!</span>
         </TextWrapper>
-        <Btn onClick={() => alert('clicked')}>
+        <div ref={googleSignInButton} className="hidden" />
+        <Btn onClick={GoogleLogin}>
           <Image
             className="absolute left-[23px]"
             src={'/svg/google_symbol.svg'}
