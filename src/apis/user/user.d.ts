@@ -5,3 +5,7 @@ type User = {
   created_at: string;
   username: string;
 };
+
+type TUser = TResponse & {
+  results: User[];
+};
