@@ -22,7 +22,10 @@
       "@apis/*": ["./apis/*"],
       "@styles/*": ["./styles/*"],
       "@public/*": ["../public/*"],
-      "@config": ["../config.ts"]
+      "@config": ["../config.ts"],
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@recoil/*": ["./recoil/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
