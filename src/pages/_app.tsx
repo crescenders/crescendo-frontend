@@ -2,8 +2,14 @@ import '@styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { RecoilRoot } from 'recoil';
 import Layout from '@components/common/Layout';
+import { RecoilRoot } from 'recoil';
+
+declare global {
+  interface Window {
+    google: any;
+  }
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
