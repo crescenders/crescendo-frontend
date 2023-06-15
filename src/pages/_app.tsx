@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import Layout from '@components/common/Layout';
-import { RecoilRoot } from 'recoil';
+import { RecoilEnv, RecoilRoot } from 'recoil';
 
 declare global {
   interface Window {
@@ -24,6 +24,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
