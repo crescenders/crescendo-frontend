@@ -19,14 +19,14 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
   const [{ isLogin }, setUserInfo] = useRecoilState(userState);
   const googleSignInButton = useRef<HTMLDivElement>(null);
 
-  const GoogleLogin = () => {
+  const onClickGoogleBtn = () => {
     const el = document.querySelector(
       'div[aria-labelledby="button-label"]',
     ) as HTMLDivElement;
     el.click();
   };
 
-  const login = async (res: CredentialResponse) => {
+  const handleGoogleLogin = async (res: CredentialResponse) => {
     const { credential } = res;
     const { access_token, refresh_token }: Token = await authApi.googleLogin(
       credential,
@@ -44,7 +44,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
   useScript('https://accounts.google.com/gsi/client', () => {
     window.google.accounts.id.initialize({
       client_id: CONFIG.API_KEY.GOOGLE_CLIENT_ID,
-      callback: login,
+      callback: handleGoogleLogin,
       auto_select: false,
     });
     window.google.accounts.id.renderButton(googleSignInButton.current, {
@@ -72,7 +72,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
           <span>스터디에 참여해보세요!</span>
         </TextWrapper>
         <div ref={googleSignInButton} className="hidden" />
-        <Btn onClick={GoogleLogin}>
+        <Btn onClick={onClickGoogleBtn}>
           <Image
             className="absolute left-[23px]"
             src={'/svg/google_symbol.svg'}
