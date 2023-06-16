@@ -23,6 +23,9 @@
       "@styles/*": ["./styles/*"],
       "@public/*": ["../public/*"],
       "@config": ["../config.ts"],
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@recoil/*": ["./recoil/*"],
       "@constants/*": ["./constants/*"]
     }
   },
