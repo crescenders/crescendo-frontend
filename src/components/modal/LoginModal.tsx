@@ -28,19 +28,15 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
 
   const handleGoogleLogin = async (res: CredentialResponse) => {
     const { credential } = res;
-    try {
-      const { access_token, refresh_token }: Token = await authApi.googleLogin(
-        credential,
-      );
-      const token = { access_token, refresh_token };
-      if (token) {
-        setToken(token);
-        setUserInfo((info) => {
-          return { ...info, isLogin: true };
-        });
-      }
-    } catch (error) {
-      alert('로그인에 실패하였어요. 다시 시도해주세요.');
+    const { access_token, refresh_token }: Token = await authApi.googleLogin(
+      credential,
+    );
+    const token = { access_token, refresh_token };
+    if (token) {
+      setToken(token);
+      setUserInfo((info) => {
+        return { ...info, isLogin: true };
+      });
     }
   };
   useScript('https://accounts.google.com/gsi/client', () => {
