@@ -7,7 +7,7 @@ import NavigateList, {
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
-import useMounted from '@hooks/useMounted';
+import useIsMounted from '@hooks/useIsMounted';
 
 const NAVIGATE_LIST: NavigateListType[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
@@ -17,12 +17,12 @@ const NAVIGATE_LIST: NavigateListType[] = [
 ];
 
 const Header = () => {
-  const mounted = useMounted();
+  const isMounted = useIsMounted();
   const { isLogin } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
-  if (!mounted) return null;
+  if (!isMounted) return null;
 
   return (
     <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 shadow-header z-[900]">
