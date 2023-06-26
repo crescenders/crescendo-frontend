@@ -37,8 +37,6 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
       setUserInfo((info) => {
         return { ...info, isLogin: true };
       });
-    } else {
-      alert('로그인에 실패하였어요. 다시 시도해주세요.');
     }
   };
   useScript('https://accounts.google.com/gsi/client', () => {
