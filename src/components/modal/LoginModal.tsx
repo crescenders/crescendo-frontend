@@ -1,13 +1,14 @@
 import tw from 'tailwind-styled-components';
-import ModalLayout from '@components/modal/ModalLayout';
+import ModalLayout from '@components/portal/ModalPortal';
 import Image from 'next/image';
 import authApi from '@apis/auth/authApi';
 import { setToken } from '@utils/token';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import useScript from '@hooks/useScript';
 import { CONFIG } from '@config';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { userState } from '@recoil/auth';
+import useModal from '@hooks/useModal';
 
 type CredentialResponse = {
   clientId: string;
@@ -15,9 +16,10 @@ type CredentialResponse = {
   select_by: string;
 };
 
-const LoginModal = ({ isOpen, handleClose }: Modal) => {
-  const [{ isLogin }, setUserInfo] = useRecoilState(userState);
+const LoginModal = () => {
+  const setUserInfo = useSetRecoilState(userState);
   const googleSignInButton = useRef<HTMLDivElement>(null);
+  const { closeModal } = useModal();
 
   const onClickGoogleBtn = () => {
     const el = document.querySelector(
@@ -37,6 +39,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
       setUserInfo((info) => {
         return { ...info, isLogin: true };
       });
+      closeModal();
     }
   };
   useScript('https://accounts.google.com/gsi/client', () => {
@@ -50,12 +53,8 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
     });
   });
 
-  useEffect(() => {
-    if (isLogin) handleClose();
-  }, [isLogin]);
-
   return (
-    <ModalLayout isOpen={isOpen} handleClose={handleClose}>
+    <ModalLayout>
       <ModalWrapper>
         <Image src={'/svg/logo_symbol.svg'} width={63} height={100} alt={''} />
         <Image
@@ -82,7 +81,7 @@ const LoginModal = ({ isOpen, handleClose }: Modal) => {
         </Btn>
         <span
           className="cursor-pointer text-[14px] underline underline-offset-2"
-          onClick={handleClose}
+          onClick={closeModal}
         >
           로그인 없이 이용하기
         </span>
