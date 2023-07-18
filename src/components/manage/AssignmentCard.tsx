@@ -1,7 +1,8 @@
 import Button from '@components/common/Button';
-import BasicModal from '@components/modal/BasicModal';
 import DeleteModal from '@components/modal/DeleteModal';
-import Image from 'next/image';
+import EditModal from '@components/modal/EditModal';
+import SubmitModal from '@components/modal/SubmitModal';
+import useModal from '@hooks/useModal';
 import { useEffect, useState } from 'react';
 import tw from 'tailwind-styled-components';
 
@@ -25,18 +26,19 @@ const AssignmentCard = ({
   isDelete,
 }: AssignmentListProps) => {
   const [isFold, setIsFold] = useState(true);
-  const [isModal, setIsModal] = useState<boolean>(false);
+  const { openModal } = useModal();
   useEffect(() => {
     if (isInitialFold === false) {
       setIsFold(false);
     }
   }, []);
+
   return (
     <>
       {isFold ? (
         <StudyCard className="py-6">
           <div className="flex justify-between items-center">
-            <div className="flex items-center ">
+            <div className="flex items-center">
               <span className="font-bold text-brand text-17">
                 {week}주차 과제
               </span>
@@ -76,7 +78,11 @@ const AssignmentCard = ({
               <Button
                 text="과제 제출"
                 className="w-[75px] h-[34px]"
-                onClick={() => setIsModal(true)}
+                onClick={() =>
+                  openModal(
+                    <SubmitModal handleClick={() => console.log('click')} />,
+                  )
+                }
               />
             </ButtonWrapper>
           )}
@@ -85,7 +91,11 @@ const AssignmentCard = ({
               <Button
                 text="과제 수정"
                 className="w-[75px] h-[34px]"
-                onClick={() => setIsModal(true)}
+                onClick={() =>
+                  openModal(
+                    <EditModal handleClick={() => console.log('click')} />,
+                  )
+                }
               />
             </ButtonWrapper>
           )}
@@ -94,76 +104,21 @@ const AssignmentCard = ({
               <Button
                 text="삭제하기"
                 className="w-[75px] h-[34px]"
-                onClick={() => setIsModal(true)}
+                onClick={() =>
+                  openModal(
+                    <DeleteModal
+                      handleClick={() => alert('삭제')}
+                      title="과제 삭제"
+                      firstText="삭제한 결과는 복구할 수 없어요."
+                      secondText="삭제 진행하시겠어요?"
+                    />,
+                  )
+                }
               />
             </ButtonWrapper>
           )}
         </StudyCard>
       )}
-      {isModal &&
-        (isSubmit ? (
-          <BasicModal
-            className="px-[38px] pt-[26px]"
-            isPurple
-            isButton
-            isOpen={isModal}
-            handleClose={() => setIsModal(false)}
-            title="과제 제출"
-            handleClick={() => alert('제출')}
-          >
-            <InputContainer>
-              <Image
-                src="/svg/link.svg"
-                width={18}
-                height={18}
-                alt="링크"
-                className="relative left-9"
-              />
-              <InputBox
-                type="url"
-                required
-                placeholder="링크를 입력해주세요."
-              />
-            </InputContainer>
-          </BasicModal>
-        ) : isEdit ? (
-          <BasicModal
-            className="px-[38px] pt-[26px]"
-            isPurple
-            isButton
-            isOpen={isModal}
-            handleClose={() => setIsModal(false)}
-            title="과제 수정"
-            handleClick={() => alert('제출')}
-          >
-            <InputContainer>
-              <Image
-                src="/svg/link.svg"
-                width={18}
-                height={18}
-                alt="링크"
-                className="relative left-9"
-              />
-              <InputBox
-                type="url"
-                required
-                placeholder="링크를 입력해주세요."
-              />
-            </InputContainer>
-            <div className="flex justify-end">
-              <Button text="수정" className="w-[52px] h-[29px]" />
-            </div>
-          </BasicModal>
-        ) : isDelete ? (
-          <DeleteModal
-            isOpen={isModal}
-            handleClose={() => setIsModal(false)}
-            handleClick={() => alert('삭제')}
-            title="과제 삭제"
-            firstText="삭제한 결과는 복구할 수 없어요."
-            secondText="삭제 진행하시겠어요?"
-          />
-        ) : null)}
     </>
   );
 };
@@ -184,22 +139,4 @@ const ButtonWrapper = tw.div`
   mt-[35px]
   flex
   justify-end
-`;
-
-const InputContainer = tw.div`
-  mb-2
-  mt-[61px]
-  flex
-  items-center
-`;
-
-const InputBox = tw.input`
-  text-14
-  h-12
-  w-[340px]
-  rounded-lg
-  border-[1px]
-  border-[#E1E6F9]
-  bg-white
-  px-12
 `;
