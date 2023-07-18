@@ -101,6 +101,7 @@ const Apply = () => {
       isApprove: true,
     },
   ];
+
   return (
     <PageLayout>
       <div className="mt-[110px] flex  w-full flex-col items-center px-[46px]">
