@@ -1,5 +1,5 @@
+import { SORT_OBJ, SelectListType, SortStateType } from '@constants/search';
 import Image from 'next/image';
-import { SelectListType, SortStateType, SORT_OBJ } from 'pages/search';
 import { Dispatch, SetStateAction } from 'react';
 import tw from 'tailwind-styled-components';
 
