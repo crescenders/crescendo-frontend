@@ -1,15 +1,25 @@
+import { modalComponentState, modalVisibleState } from '@recoil/modal';
+import { useRecoilValue } from 'recoil';
 import tw from 'tailwind-styled-components';
+import { PropsWithChildren } from 'react';
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
-
-const Layout = ({ children }: LayoutProps) => {
-  return <LayoutWrapper>{children}</LayoutWrapper>;
+const Layout = ({ children }: PropsWithChildren) => {
+  const isModal = useRecoilValue(modalVisibleState);
+  const modalComponent = useRecoilValue(modalComponentState);
+  return (
+    <LayoutWrapper>
+      {children}
+      {isModal && modalComponent}
+    </LayoutWrapper>
+  );
 };
 
 export default Layout;
 
 const LayoutWrapper = tw.div`
-w-screen h-full flex justify-center overflow-x-hidden 
+  flex
+  h-full
+  w-screen
+  justify-center
+  overflow-x-hidden
 `;

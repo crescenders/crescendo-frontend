@@ -1,29 +1,27 @@
+import useModal from '@hooks/useModal';
+import { PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
 import tw from 'tailwind-styled-components';
 
-const ModalLayout = ({ children, isOpen, handleClose }: Modal) => {
-  const handleClick = () => {
-    handleClose();
-  };
-
+const ModalPortal = ({ children }: PropsWithChildren) => {
+  const { closeModal } = useModal();
   const portalDiv = document.querySelector('#modal-root');
   if (!portalDiv) return null;
 
   return (
     <>
-      {isOpen &&
-        createPortal(
-          <Wrapper>
-            <Overlay onClick={handleClick} />
-            <Box>{children}</Box>
-          </Wrapper>,
-          portalDiv,
-        )}
+      {createPortal(
+        <Wrapper>
+          <Overlay onClick={closeModal} />
+          <Box>{children}</Box>
+        </Wrapper>,
+        portalDiv,
+      )}
     </>
   );
 };
 
-export default ModalLayout;
+export default ModalPortal;
 
 const Wrapper = tw.div`
   fixed
