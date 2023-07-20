@@ -36,6 +36,9 @@ module.exports = {
           success: '#2BD239',
           error: '#FC5A2F',
         },
+        line: {
+          primary: '#C7C8D2',
+        },
       },
       boxShadow: {
         card: '0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)',
