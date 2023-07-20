@@ -13,7 +13,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 type StyledInputProps = {
   $variant: string;
-  readonly?: boolean;
+  disabled?: boolean;
   $link?: boolean;
 };
 
@@ -69,7 +69,7 @@ const InputBox = tw.input<StyledInputProps>`
     ($variant === 'small' && 'w-[270px]') ||
     ($variant === 'middle' && 'w-[340px]') ||
     ($variant === 'large' && 'w-[550px]')}
-  ${({ readOnly }) => readOnly && 'text-text-primary bg-[#F0F0F0]'}
+  ${({ disabled }) => disabled && 'text-text-primary bg-[#F0F0F0]'}
   ${({ $link }) => ($link ? 'px-11' : 'pl-[18px]')}
   border-line-primary
   focus:border-brand
