@@ -6,18 +6,15 @@ const useModal = () => {
   const setIsShowModal = useSetRecoilState(modalVisibleState);
   const setModal = useSetRecoilState(modalComponentState);
 
-  const openModal = useCallback(
-    (Component: React.ReactElement | '') => {
-      setIsShowModal(true);
-      setModal(Component);
-    },
-    [setIsShowModal, setModal],
-  );
+  const openModal = (Component: React.ReactElement | '') => {
+    setIsShowModal(true);
+    setModal(Component);
+  };
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setIsShowModal(false);
     setModal('');
-  }, [setIsShowModal, setModal]);
+  };
 
   return { openModal, closeModal };
 };
