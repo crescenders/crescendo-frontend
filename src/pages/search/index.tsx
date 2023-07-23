@@ -1,34 +1,12 @@
 import PageLayout from '@components/common/PageLayout';
 import SelectBox from '@components/common/SelectBox';
+import {
+  LEFT_SELECT_OPTION,
+  RIGHT_SELECT_OPTION,
+  SORT_OBJ,
+  SortStateType,
+} from '@constants/search';
 import { useState } from 'react';
-
-export type SelectListType = {
-  id: number;
-  name: SortType;
-};
-
-type SortType = '최신순' | '마감순' | '모집중' | '모집완료';
-
-export type SortStateType = {
-  [key in SortType]: boolean;
-};
-
-export const SORT_OBJ: SortStateType = {
-  최신순: false,
-  마감순: false,
-  모집중: false,
-  모집완료: false,
-};
-
-const LEFT_SELECT_OPTION: SelectListType[] = [
-  { id: 1, name: '최신순' },
-  { id: 2, name: '마감순' },
-];
-
-const RIGHT_SELECT_OPTION: SelectListType[] = [
-  { id: 1, name: '모집중' },
-  { id: 2, name: '모집완료' },
-];
 
 const Search = () => {
   const [isOpen, setIsOpen] = useState<SortStateType>(SORT_OBJ);

@@ -1,12 +1,15 @@
-import ModalLayout from '@components/modal/ModalLayout';
+import ModalLayout from '@components/portal/ModalPortal';
 import Button from '@components/common/Button';
 import tw from 'tailwind-styled-components';
+import useModal from '@hooks/useModal';
+import { PropsWithChildren } from 'react';
 
-type BasicModalProps = Modal & {
+type BasicModalProps = {
   isPurple?: boolean;
   isButton?: boolean;
   title: string;
   className?: React.ComponentProps<'div'>['className'];
+  handleClick?: () => void;
 };
 
 type TitleProps = Pick<BasicModalProps, 'isPurple' | 'title'>;
@@ -20,23 +23,22 @@ const Title = ({ isPurple, title }: TitleProps) => {
 };
 
 const BasicModal = ({
-  isOpen,
   isPurple,
-  handleClose,
   isButton,
   title,
   children,
   handleClick,
   ...rest
-}: BasicModalProps) => {
+}: PropsWithChildren<BasicModalProps>) => {
+  const { closeModal } = useModal();
   return (
-    <ModalLayout isOpen={isOpen} handleClose={handleClose}>
+    <ModalLayout>
       <ModalContentContainer {...rest}>
         <Title isPurple={isPurple} title={title} />
         <div>{children}</div>
         {isButton && (
           <div className="mb-[26px] mt-[68px] flex gap-[18px]">
-            <Button isNormal text="취소" onClick={handleClose} />
+            <Button isNormal text="취소" onClick={closeModal} />
             <Button
               className="h-[39px] w-[105px]"
               text="제출"

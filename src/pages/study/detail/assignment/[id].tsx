@@ -44,7 +44,7 @@ const ASSIGNMENT_INFO: studyInfoType = {
 };
 
 const ViewAssiginment = () => {
-  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const [isSubmit, setIsSubmit] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isDelete, setIsDelete] = useState<boolean>(false);
   let progress = 20;
@@ -86,6 +86,7 @@ const ViewAssiginment = () => {
                 onClick={() => {
                   setIsEdit(false);
                   setIsDelete(false);
+                  setIsSubmit(true);
                 }}
               />
             ) : (
@@ -97,6 +98,7 @@ const ViewAssiginment = () => {
                 onClick={() => {
                   setIsEdit(true);
                   setIsDelete(false);
+                  setIsSubmit(false);
                 }}
               />
             )}
@@ -109,6 +111,7 @@ const ViewAssiginment = () => {
                 onClick={() => {
                   setIsDelete(false);
                   setIsEdit(false);
+                  setIsSubmit(true);
                 }}
               />
             ) : (
@@ -120,6 +123,7 @@ const ViewAssiginment = () => {
                 onClick={() => {
                   setIsEdit(false);
                   setIsDelete(true);
+                  setIsSubmit(false);
                 }}
               />
             )}

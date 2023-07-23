@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import LoginModal from '@components/modal/LoginModal';
 import NavigateList, {
   NavigateListType,
 } from '@components/common/NavigateList';
@@ -8,6 +7,8 @@ import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
 import useIsMounted from '@hooks/useIsMounted';
+import useModal from '@hooks/useModal';
+import LoginModal from '@components/modal/LoginModal';
 
 const NAVIGATE_LIST: NavigateListType[] = [
   { id: 1, text: '마이페이지', path: '/mypage' },
@@ -20,12 +21,12 @@ const Header = () => {
   const isMounted = useIsMounted();
   const { isLogin } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isModal, setIsModal] = useState<boolean>(false);
+  const { openModal } = useModal();
 
   if (!isMounted) return null;
 
   return (
-    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 shadow-header z-[900]">
+    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 z-[900]">
       <Link href={'/'}>
         <Image
           src="/svg/logo_light_mode.svg"
@@ -68,14 +69,11 @@ const Header = () => {
       ) : (
         <span
           className="cursor-pointer text-16 font-bold text-brand"
-          onClick={() => setIsModal(true)}
+          onClick={() => openModal(<LoginModal />)}
+          // TODO: 코드 스플리팅 하는 게 맞을까 ..
         >
           로그인 / 회원가입
         </span>
-      )}
-
-      {isModal && (
-        <LoginModal isOpen={isModal} handleClose={() => setIsModal(false)} />
       )}
     </header>
   );

@@ -1,7 +1,7 @@
 import DeleteModal from '@components/modal/DeleteModal';
+import useModal from '@hooks/useModal';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import tw from 'tailwind-styled-components';
 
 export type MyStudyListType = {
@@ -21,7 +21,7 @@ const OpenStudyCard = ({
   study_period,
   recruitment_period,
 }: MyStudyListType) => {
-  const [isModal, setIsModal] = useState(false);
+  const { openModal } = useModal();
 
   return (
     <StudyCard>
@@ -54,19 +54,18 @@ const OpenStudyCard = ({
           height={40}
           alt="삭제"
           className="cursor-pointer"
-          onClick={() => setIsModal(true)}
+          onClick={() =>
+            openModal(
+              <DeleteModal
+                handleClick={() => alert('삭제')}
+                title="스터디 삭제"
+                firstText="삭제한 스터디는 복구할 수 없어요."
+                secondText="삭제 진행하시겠어요?"
+              />,
+            )
+          }
         />
       </div>
-      {isModal && (
-        <DeleteModal
-          isOpen={isModal}
-          handleClose={() => setIsModal(false)}
-          handleClick={() => alert('삭제')}
-          title="스터디 삭제"
-          firstText="삭제한 스터디는 복구할 수 없어요."
-          secondText="삭제 진행하시겠어요?"
-        />
-      )}
     </StudyCard>
   );
 };
