@@ -2,16 +2,18 @@ import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 import PageLayout from '@components/common/PageLayout';
 import { validateUsername } from '@utils/validate';
+import Image from 'next/image';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 
 const Edit = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
 
   const handleUserName = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    if (!value || !usernameRef.current) return;
+    setName(value);
     setError(validateUsername(value));
   };
 
@@ -23,18 +25,37 @@ const Edit = () => {
     }
   };
 
+  const handleClearButton = () => {
+    setName('');
+    setError('');
+    usernameRef.current?.focus();
+  };
+
   return (
     <PageLayout>
       <EditForm onSubmit={SubmitMyInfo}>
-        <Input
-          id="username-input"
-          variant="small"
-          label="닉네임"
-          ref={usernameRef}
-          maxLength={10}
-          onChange={handleUserName}
-          error={error}
-        />
+        <div className="flex justify-end items-center relative">
+          <Input
+            id="username-input"
+            variant="small"
+            label="닉네임"
+            ref={usernameRef}
+            maxLength={10}
+            onChange={handleUserName}
+            error={error}
+            value={name}
+          />
+          {name && (
+            <Image
+              src={'/svg/clear_button.svg'}
+              width={20}
+              height={20}
+              alt=""
+              className="cursor-pointer absolute mr-4 mt-4"
+              onClick={handleClearButton}
+            />
+          )}
+        </div>
         <Input
           id="email-input"
           variant="small"
