@@ -10,10 +10,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-      - name: Install dependencies
-        run: yarn ci
-      - name: Build
+      - name: Checkout source code. 
+        uses: actions/checkout@v2
+      - name: Check Node v 
+        run: node -v
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build # 빌드.
         run: yarn build
+      - name: zip create 
+        run: zip -qq -r ./test-build.zip . 
+        shell: bash
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -23,3 +30,4 @@ jobs:
       - name: Copy files to S3 with the AWS CLI
         run: |
           aws s3 sync ./out s3://crescendo-frontend/
+ 
