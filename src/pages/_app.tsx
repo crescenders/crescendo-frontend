@@ -4,8 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
-import { useEffect, useState } from 'react';
-import useMocking from '@hooks/useIsWorker';
+import useIsWorker from '@hooks/useIsWorker';
 
 declare global {
   interface Window {
@@ -30,7 +29,7 @@ const queryClient = new QueryClient({
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { shouldRender } = useMocking();
+  const { shouldRender } = useIsWorker();
 
   if (!shouldRender) return null;
 

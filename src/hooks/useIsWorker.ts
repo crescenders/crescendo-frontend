@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useMocking = () => {
+const useIsWorker = () => {
   const mockingEnabled = !!process.env.NEXT_PUBLIC_API_MOCKING;
   const [shouldRender, setShouldRender] = useState(!mockingEnabled);
   useEffect(() => {
@@ -15,4 +15,4 @@ const useMocking = () => {
   return { shouldRender };
 };
 
-export default useMocking;
+export default useIsWorker;
