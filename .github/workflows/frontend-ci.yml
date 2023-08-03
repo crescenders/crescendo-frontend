@@ -1,0 +1,25 @@
+name: frontend CI
+on: 
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-20.04 
+    steps:
+      - name: Checkout source code. 
+        uses: actions/checkout@v2
+      - name: Check Node v 
+        run: node -v
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build # 빌드.
+        run: yarn build
+      - name: zip create 
+        run: zip -qq -r ./test-build.zip . 
+        shell: bash
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
