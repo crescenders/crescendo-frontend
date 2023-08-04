@@ -9,6 +9,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   required?: boolean;
   label: string;
   link?: boolean;
+  error?: string;
 };
 
 type StyledInputProps = {
@@ -18,7 +19,7 @@ type StyledInputProps = {
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, label, required, variant, link, ...rest }, ref) => {
+  ({ id, label, required, variant, link, error, ...rest }, ref) => {
     return (
       <Container>
         <LabelContainer>
@@ -39,6 +40,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <InputBox ref={ref} $variant={variant} $link={link} {...rest} />
         </div>
+        <span className="text-status-error text-12 h-2">{error}</span>
       </Container>
     );
   },

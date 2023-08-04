@@ -1,21 +1,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import NavigateList, {
-  NavigateListType,
-} from '@components/common/NavigateList';
+import NavigateList from '@components/common/NavigateList';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
 import useIsMounted from '@hooks/useIsMounted';
 import useModal from '@hooks/useModal';
 import LoginModal from '@components/modal/LoginModal';
-
-const NAVIGATE_LIST: NavigateListType[] = [
-  { id: 1, text: '마이페이지', path: '/mypage' },
-  { id: 2, text: '스터디 관리', path: '/studymanage' },
-  { id: 3, text: '정보 수정', path: '' },
-  { id: 4, text: '로그아웃', path: '' },
-];
+import { NAVIGATE_LIST } from '@constants/index';
 
 const Header = () => {
   const isMounted = useIsMounted();

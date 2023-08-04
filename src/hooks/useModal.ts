@@ -1,5 +1,4 @@
 import { modalComponentState, modalVisibleState } from '@recoil/modal';
-import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 const useModal = () => {

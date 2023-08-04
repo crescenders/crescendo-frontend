@@ -3,13 +3,12 @@ import { deleteToken } from '@utils/token';
 import Link from 'next/link';
 import { useSetRecoilState } from 'recoil';
 
-export type NavigateListType = {
-  id?: number;
+type NavigateListProps = {
   text: string;
   path: string;
 };
 
-const NavigateList = ({ text, path }: NavigateListType) => {
+const NavigateList = ({ text, path }: NavigateListProps) => {
   const setUserInfo = useSetRecoilState(userState);
   const handleLogout = () => {
     if (text === '로그아웃') {
