@@ -27,6 +27,3 @@ jobs:
           aws-region: ap-northeast-2  
           
       - run: aws s3 sync .next/ s3://${{ secrets.AWS_S3_BUCKET_NAME }}
-
-      - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.AWS_S3_BUCKET_NAME }}/$GITHUB_SHA.zip --source .
