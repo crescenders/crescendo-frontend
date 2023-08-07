@@ -101,7 +101,7 @@ export default Search;
 
 const StudyList = tw.div`
   mb-[100px]
-  mt-[98px]
+  mt-[120px]
   flex
   flex-wrap
   justify-center
