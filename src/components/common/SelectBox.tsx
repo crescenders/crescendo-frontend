@@ -71,7 +71,8 @@ const SelectBoxWrapper = tw.button`
 
 const SelectList = tw.ul`
   text-13
-  mt-[7px]
+  absolute
+  mt-[45px]
   flex
   h-[68px]
   w-[92px]
