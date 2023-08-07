@@ -32,8 +32,6 @@ const Search = () => {
     }
   }, [isIntersecting]);
 
-  console.log(isFetching);
-
   return (
     <PageLayout>
       <div className="ml-[143px] mt-[150px] flex gap-x-2">
