@@ -1,13 +1,14 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import NavigateList from '@components/common/NavigateList';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
 import useIsMounted from '@hooks/useIsMounted';
 import useModal from '@hooks/useModal';
-import LoginModal from '@components/modal/LoginModal';
 import { NAVIGATE_LIST } from '@constants/index';
+
+const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
 const Header = () => {
   const isMounted = useIsMounted();
@@ -62,7 +63,6 @@ const Header = () => {
         <span
           className="cursor-pointer text-16 font-bold text-brand"
           onClick={() => openModal(<LoginModal />)}
-          // TODO: 코드 스플리팅 하는 게 맞을까 ..
         >
           로그인 / 회원가입
         </span>
