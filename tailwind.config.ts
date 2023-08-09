@@ -51,6 +51,11 @@ module.exports = {
           '0px 8px 20px rgba(0, 0, 0, 0.1), 0px 2px 8px rgba(0, 0, 0, 0.1)',
         base: ' 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.1)',
       },
+      animation: {
+        bounce1: 'bounce 0.5s infinite',
+        bounce2: 'bounce 0.5s infinite 50ms',
+        bounce3: 'bounce 0.5s infinite 100ms',
+      },
     },
   },
   plugins: [],
