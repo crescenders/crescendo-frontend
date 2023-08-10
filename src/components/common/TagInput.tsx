@@ -69,6 +69,7 @@ export default TagInput;
 const Container = tw.div<{ $isError: boolean }>`
   ${({ $isError }) => $isError && 'gap-y-4'}
   flex
+  w-[550px]
   flex-col
 `;
 
