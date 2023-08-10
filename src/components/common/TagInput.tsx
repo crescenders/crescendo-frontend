@@ -12,7 +12,11 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value && e.key === 'Enter') {
+    if (
+      e.currentTarget.value &&
+      e.key === 'Enter' &&
+      e.nativeEvent.isComposing === false
+    ) {
       const newTag = e.currentTarget.value;
       e.currentTarget.value = '';
 
