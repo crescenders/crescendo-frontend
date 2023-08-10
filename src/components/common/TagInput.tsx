@@ -23,7 +23,7 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   };
 
   const handleClickRemoveButton = (targetIndex: number) => {
-    setTagList((prev) => prev.filter((_tag, index) => index !== targetIndex));
+    setTagList((prev) => prev.filter((_, index) => index !== targetIndex));
   };
 
   return (
