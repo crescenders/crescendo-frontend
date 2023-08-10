@@ -11,7 +11,7 @@ type CardProps = {
   img: string;
   title?: string;
   studyName: string;
-  tag?: string;
+  tags?: string[];
   writer?: string;
   participant?: number;
   personnel?: number;
@@ -27,7 +27,7 @@ const Card = ({
   img,
   title,
   studyName,
-  tag,
+  tags,
   writer,
   personnel,
   participant,
@@ -69,7 +69,14 @@ const Card = ({
           <>
             <div className="text-14">{title}</div>
             <div className="my-[8px] text-12">{studyName}</div>
-            <div className="mb-[8px] text-[8px]">{tag}</div>
+            <div className="flex gap-x-1">
+              {tags?.map((tag) => (
+                <div key={tag} className="mb-[8px] text-[8px]">
+                  {tag}
+                </div>
+              ))}
+            </div>
+
             <div className="flex items-center justify-between text-[12px] text-[#666666]">
               <div>{writer}</div>
               <div className="flex items-center justify-center gap-[5px]">

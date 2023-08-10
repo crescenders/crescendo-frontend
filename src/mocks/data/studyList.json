@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Python",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 2,
+    "title": "Java",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 3,
+    "title": "Javascript",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 4,
+    "title": "스터디 제목",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 5,
+    "title": "스터디 제목",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 6,
+    "title": "스터디 제목",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": false
+  },
+  {
+    "id": 7,
+    "title": "스터디 제목",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  },
+  {
+    "id": 8,
+    "title": "스터디 제목",
+    "studyName": "스터디명",
+    "tags": ["태그1", "태그2", "태그3"],
+    "writer": "태현",
+    "participant": 3,
+    "personnel": 5,
+    "startDate": "2023.08.16",
+    "img": "https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407",
+    "isCanApply": true
+  }
+]

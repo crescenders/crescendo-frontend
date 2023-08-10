@@ -10,16 +10,17 @@ import animation from '@public/animation/main.json';
 import { categories } from '@constants/categories';
 
 const Home = () => {
-  const [searchContent, setSearchContent] = useState('');
+  const [keyword, setKeyword] = useState('');
   const router = useRouter();
 
-  const onChange = (e) => {
-    setSearchContent(e.target.value);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
   };
 
-  const onKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      router.push(`/search?${searchContent}`);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!(e.target instanceof HTMLInputElement)) return;
+    if (e.key === 'Enter') {
+      router.push(`/search?keyword=${keyword}`);
     }
   };
 
@@ -32,7 +33,7 @@ const Home = () => {
       writer: 'Lami',
       participant: 3,
       personnel: 5,
-      tag: '#리액트#노드',
+      tags: ['태그1', '태그2', '태그3'],
       startDate: '2023.06.04',
     },
     {
@@ -43,7 +44,7 @@ const Home = () => {
       writer: 'Lami2',
       participant: 4,
       personnel: 10,
-      tag: '#리액트#노드',
+      tags: ['태그1', '태그2', '태그3'],
       startDate: '2023.06.12',
     },
     {
@@ -54,7 +55,7 @@ const Home = () => {
       writer: 'Lami3',
       participant: 2,
       personnel: 8,
-      tag: '#리액트#노드',
+      tags: ['태그1', '태그2', '태그3'],
       startDate: '2023.06.05',
     },
     {
@@ -65,7 +66,7 @@ const Home = () => {
       writer: 'Lami4',
       participant: 3,
       personnel: 6,
-      tag: '#리액트#노드',
+      tags: ['태그1', '태그2', '태그3'],
       startDate: '2023.06.20',
     },
   ];
@@ -81,12 +82,12 @@ const Home = () => {
             <input
               onChange={onChange}
               onKeyDown={onKeyDown}
-              value={searchContent}
+              value={keyword}
               type="text"
-              placeholder="제목, 내용 또는 태그를 검색해주세요."
+              placeholder="제목, 스터디명 또는 태그를 검색해주세요."
               className="h-[40px] w-[368px] rounded-xl bg-white py-[10px] pl-[12px] pr-[32px] focus:outline-none"
             />
-            <Link href={`/search?${searchContent}`}>
+            <Link href={`/search?keyword=${keyword}`}>
               <Image
                 src={'/svg/search_icon.svg'}
                 width={16}
@@ -124,7 +125,7 @@ const Home = () => {
             writer,
             participant,
             personnel,
-            tag,
+            tags,
             startDate,
           }) => (
             <Card
@@ -138,8 +139,8 @@ const Home = () => {
               writer={writer}
               participant={participant}
               personnel={personnel}
-              tag={tag}
-              startDate={startDate}
+              tags={tags}
+              startDate={startDate as string}
             />
           ),
         )}
