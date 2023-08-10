@@ -1,5 +1,5 @@
 import tw from 'tailwind-styled-components';
-import ModalLayout from '@components/portal/ModalPortal';
+import ModalPortal from '@components/portal/ModalPortal';
 import Image from 'next/image';
 import authApi from '@apis/auth/authApi';
 import { setToken } from '@utils/token';
@@ -54,7 +54,7 @@ const LoginModal = () => {
   });
 
   return (
-    <ModalLayout>
+    <ModalPortal>
       <ModalWrapper>
         <Image src={'/svg/logo_symbol.svg'} width={63} height={100} alt={''} />
         <Image
@@ -86,7 +86,7 @@ const LoginModal = () => {
           로그인 없이 이용하기
         </span>
       </ModalWrapper>
-    </ModalLayout>
+    </ModalPortal>
   );
 };
 

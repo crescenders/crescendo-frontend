@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { toastMessageState } from '@recoil/toast';
-import ToastLayout from '@components/portal/ToastPortal';
+import ToastPortal from '@components/portal/ToastPortal';
 
 const ToastItem = ({ type, message }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -37,11 +37,11 @@ const Toast = () => {
   const toasts = useRecoilValue(toastMessageState);
 
   return (
-    <ToastLayout>
+    <ToastPortal>
       {toasts.map((toast) => (
         <ToastItem key={toast.id} {...toast} />
       ))}
-    </ToastLayout>
+    </ToastPortal>
   );
 };
 
