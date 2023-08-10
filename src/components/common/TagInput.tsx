@@ -37,11 +37,11 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   return (
     <Container $isError={!!errorMessage}>
       <Input
-        id={'tags'}
-        variant={'large'}
-        label={''}
+        id="tags"
+        variant="large"
+        label=""
+        placeholder="태그 입력 후 엔터를 눌러주세요."
         onKeyDown={handleKeyDown}
-        placeholder={'태그 입력 후 엔터를 눌러주세요.'}
         error={errorMessage}
       />
       <TagContainer>
@@ -50,7 +50,7 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
             <TagItem key={index}>
               <TagLabel>{tag}</TagLabel>
               <Image
-                src={'/svg/clear_button_nobackground.svg'}
+                src="/svg/clear_button_nobackground.svg"
                 width={12}
                 height={12}
                 alt="삭제"
