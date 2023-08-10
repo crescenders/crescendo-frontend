@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { Dispatch, SetStateAction, KeyboardEvent } from 'react';
+import { Dispatch, SetStateAction, KeyboardEvent, useState } from 'react';
 import tw from 'tailwind-styled-components';
+import Input from '@components/common/Input';
 
 type TagInputProps = {
   tagList: string[];
@@ -8,16 +9,19 @@ type TagInputProps = {
 };
 
 const TagInput = ({ tagList, setTagList }: TagInputProps) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.currentTarget.value && e.key === 'Enter') {
       const newTag = e.currentTarget.value;
       e.currentTarget.value = '';
 
       if (tagList.includes(newTag)) {
-        alert('중복된 태그입니다.');
+        setErrorMessage('중복된 태그입니다.');
         return;
       }
 
+      setErrorMessage('');
       setTagList((prev) => [...prev, newTag]);
     }
   };
@@ -27,10 +31,14 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   };
 
   return (
-    <Container>
+    <Container $isError={!!errorMessage}>
       <Input
+        id={'tags'}
+        variant={'large'}
+        label={''}
         onKeyDown={handleKeyDown}
-        placeholder="태그 입력 후 엔터를 눌러주세요."
+        placeholder={'태그 입력 후 엔터를 눌러주세요.'}
+        error={errorMessage}
       />
       <TagContainer>
         {tagList &&
@@ -54,23 +62,10 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
 
 export default TagInput;
 
-const Container = tw.div`
+const Container = tw.div<{ $isError: boolean }>`
+  ${({ $isError }) => $isError && 'gap-y-4'}
   flex
-  w-[550px]
   flex-col
-  gap-y-3
-`;
-
-const Input = tw.input`
-  border-line-primary
-  focus:border-brand
-  placeholder:text-14
-  h-11
-  w-full
-  rounded-lg
-  border-[1px]
-  pl-[18px]
-  outline-none
 `;
 
 const TagContainer = tw.div`
