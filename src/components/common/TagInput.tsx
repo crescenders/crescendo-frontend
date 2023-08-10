@@ -7,7 +7,7 @@ type TagInputProps = {
   setTagList: Dispatch<SetStateAction<string[]>>;
 };
 
-function TagInput({ tagList, setTagList }: TagInputProps) {
+const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.currentTarget.value && e.key === 'Enter') {
       const newTag = e.currentTarget.value;
@@ -50,7 +50,7 @@ function TagInput({ tagList, setTagList }: TagInputProps) {
       </TagContainer>
     </Container>
   );
-}
+};
 
 export default TagInput;
 
