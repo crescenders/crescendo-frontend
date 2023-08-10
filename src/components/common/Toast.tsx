@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { toastMessageState } from '@recoil/toast';
+import ToastLayout from '@components/portal/ToastPortal';
 
 const ToastItem = ({ type, message }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -16,7 +17,7 @@ const ToastItem = ({ type, message }) => {
 
   return (
     <div
-      className={`fixed bottom-[47px] flex w-[280px] select-none rounded bg-dark px-4 py-3 transition-all duration-500 ease-in-out ${
+      className={`fixed bottom-[47px] left-[50%] flex w-[280px] translate-x-[-50%] select-none rounded bg-dark px-4 py-3 transition-all duration-500 ease-in-out ${
         isVisible ? 'opacity-80' : 'opacity-0'
       }`}
     >
@@ -36,11 +37,11 @@ const Toast = () => {
   const toasts = useRecoilValue(toastMessageState);
 
   return (
-    <>
+    <ToastLayout>
       {toasts.map((toast) => (
         <ToastItem key={toast.id} {...toast} />
       ))}
-    </>
+    </ToastLayout>
   );
 };
 
