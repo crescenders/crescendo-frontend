@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import tw from 'tailwind-styled-components';
-import ModalLayout from '@components/portal/ModalPortal';
+import ModalPortal from '@components/portal/ModalPortal';
 import Button from '@components/common/Button';
 import useModal from '@hooks/useModal';
 
@@ -11,7 +11,7 @@ type SubmitModalProps = {
 const SubmitModal = ({ handleClick }: SubmitModalProps) => {
   const { closeModal } = useModal();
   return (
-    <ModalLayout>
+    <ModalPortal>
       <ModalContentContainer>
         <span className="font-bold mt-4">과제 제출</span>
         <InputContainer>
@@ -33,7 +33,7 @@ const SubmitModal = ({ handleClick }: SubmitModalProps) => {
           />
         </div>
       </ModalContentContainer>
-    </ModalLayout>
+    </ModalPortal>
   );
 };
 

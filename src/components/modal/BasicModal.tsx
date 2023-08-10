@@ -1,4 +1,4 @@
-import ModalLayout from '@components/portal/ModalPortal';
+import ModalPortal from '@components/portal/ModalPortal';
 import Button from '@components/common/Button';
 import tw from 'tailwind-styled-components';
 import useModal from '@hooks/useModal';
@@ -32,7 +32,7 @@ const BasicModal = ({
 }: PropsWithChildren<BasicModalProps>) => {
   const { closeModal } = useModal();
   return (
-    <ModalLayout>
+    <ModalPortal>
       <ModalContentContainer {...rest}>
         <Title isPurple={isPurple} title={title} />
         <div>{children}</div>
@@ -47,7 +47,7 @@ const BasicModal = ({
           </div>
         )}
       </ModalContentContainer>
-    </ModalLayout>
+    </ModalPortal>
   );
 };
 
