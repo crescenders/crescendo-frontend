@@ -13,13 +13,9 @@ jobs:
         with:
           node-version: 18
           
-      - name: caching
-        uses: actions/cache@v3
-        with:
-          path: '**/crescendo-frontend/.yarn/cache'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Get yarn berry cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
             
       - name: Install Dependencies
         if: steps.node-cache.outputs.cache-hit != 'true'
