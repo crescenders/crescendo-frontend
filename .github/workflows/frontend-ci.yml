@@ -20,7 +20,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
+            
+      - name: Install Dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn install
           
-      - name: Build
+      - name: Run Build
         run: 
           yarn build
