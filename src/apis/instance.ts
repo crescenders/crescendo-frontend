@@ -8,14 +8,14 @@ const instance = axios.create({
 });
 
 const ReissuanceToken = async (): Promise<string> => {
-  const refreshToken = getToken().refresh_token;
+  const refreshToken = getToken().refreshToken;
   const res = await authApi.refreshToken(refreshToken);
-  return res.access_token;
+  return res.access;
 };
 
 instance.interceptors.request.use(
   (config) => {
-    const token = getToken().access_token;
+    const token = getToken().accessToken;
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },

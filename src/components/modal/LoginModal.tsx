@@ -30,10 +30,8 @@ const LoginModal = () => {
 
   const handleGoogleLogin = async (res: CredentialResponse) => {
     const { credential } = res;
-    const { access_token, refresh_token }: Token = await authApi.googleLogin(
-      credential,
-    );
-    const token = { access_token, refresh_token };
+    const { access, refresh }: Token = await authApi.googleLogin(credential);
+    const token = { access, refresh };
     if (token) {
       setToken(token);
       setUserInfo((info) => {
