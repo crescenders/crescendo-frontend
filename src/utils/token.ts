@@ -4,17 +4,17 @@ import {
   setLocalStorage,
 } from '@utils/localStorage';
 
-export interface Token {
-  access_token: string | undefined;
-  refresh_token: string | undefined;
-}
+type UserToken = {
+  accessToken: string | undefined;
+  refreshToken: string | undefined;
+};
 
 const TOKEN_KEY = '@token';
 
-export const getToken = (): Token => {
-  const token = getLocalStorage<Token>(TOKEN_KEY, {
-    access_token: undefined,
-    refresh_token: undefined,
+export const getToken = (): UserToken => {
+  const token = getLocalStorage<UserToken>(TOKEN_KEY, {
+    accessToken: undefined,
+    refreshToken: undefined,
   });
   return token;
 };
