@@ -17,7 +17,7 @@ const ToastItem = ({ type, message }) => {
 
   return (
     <div
-      className={`fixed bottom-[47px] left-[50%] flex w-[280px] translate-x-[-50%] select-none rounded bg-dark px-4 py-3 transition-all duration-500 ease-in-out ${
+      className={`fixed bottom-[47px] left-1/2 flex w-fit translate-x-[-50%] select-none justify-center rounded bg-dark px-12 py-3 transition-all duration-500 ease-in-out ${
         isVisible ? 'opacity-80' : 'opacity-0'
       }`}
     >
@@ -28,7 +28,7 @@ const ToastItem = ({ type, message }) => {
         alt=""
         className="absolute left-4"
       />
-      <p className="w-full text-center text-[14px] text-white">{message}</p>
+      <p className="ml-3 text-center text-[14px] text-white">{message}</p>
     </div>
   );
 };
