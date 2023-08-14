@@ -1,11 +1,9 @@
 import userApi from '@apis/user/userApi';
-import useDeleteToken from '@hooks/useDeleteToken';
 import useToast from '@hooks/useToast';
 import { useMutation } from 'react-query';
 
 export const usePutUser = () => {
   const { showToast } = useToast();
-  const { initUserState } = useDeleteToken();
 
   return useMutation((nickname: string) => userApi.putUser(nickname), {
     onSuccess: () => {
@@ -13,7 +11,6 @@ export const usePutUser = () => {
         type: 'success',
         message: '프로필을 저장했어요.',
       });
-      initUserState();
     },
     onError: () => {
       showToast({
