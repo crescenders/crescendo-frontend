@@ -7,7 +7,7 @@ import {
   SORT_OBJ,
   SortStateType,
 } from '@constants/search';
-import { useGetStudyByKeyword } from '@hooks/query/useGetStudy';
+import { useGetStudyByKeyword } from '@hooks/queries/useGetStudy';
 import useIntersection from '@hooks/useIntersection';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
