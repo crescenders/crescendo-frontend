@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { lazy, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import NavigateList from '@components/common/NavigateList';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
@@ -7,6 +7,7 @@ import { userState } from '@recoil/auth';
 import useIsMounted from '@hooks/useIsMounted';
 import useModal from '@hooks/useModal';
 import { NAVIGATE_LIST } from '@constants/index';
+import Loader from '@components/common/Loader';
 
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
@@ -19,7 +20,7 @@ const Header = () => {
   if (!isMounted) return null;
 
   return (
-    <header className="fixed flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7 z-[900]">
+    <header className="fixed z-[900] flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7">
       <Link href={'/'}>
         <Image
           src="/svg/logo_light_mode.svg"
@@ -30,11 +31,11 @@ const Header = () => {
         />
       </Link>
       {isLogin ? (
-        <div className="flex cursor-pointer gap-x-7 relative">
+        <div className="relative flex cursor-pointer gap-x-7">
           <span className="text-16 font-medium">스터디 개설</span>
-          <div className="w-[2px] h-7 bg-[#D9D9D9]" />
+          <div className="h-7 w-[2px] bg-[#D9D9D9]" />
           <span
-            className="text-16 font-bold text-brand mr-5 relative"
+            className="relative mr-5 text-16 font-bold text-brand"
             onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
               e.stopPropagation();
               setIsOpen(true);
@@ -43,10 +44,10 @@ const Header = () => {
             닉네임 님
           </span>
           {isOpen && (
-            <div className="absolute flex items-center flex-col top-[50px] left-2/4">
-              <div className="relative w-4 h-4 bg-white rotate-[135deg] top-2 shadow-sm" />
+            <div className="absolute left-2/4 top-[50px] flex flex-col items-center">
+              <div className="relative top-2 h-4 w-4 rotate-[135deg] bg-white shadow-sm" />
               <ul
-                className="flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl z-10"
+                className="z-10 flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl"
                 onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
                   e.stopPropagation();
                   setIsOpen(false);
@@ -62,7 +63,13 @@ const Header = () => {
       ) : (
         <span
           className="cursor-pointer text-16 font-bold text-brand"
-          onClick={() => openModal(<LoginModal />)}
+          onClick={() =>
+            openModal(
+              <Suspense fallback={<Loader isFull />}>
+                <LoginModal />
+              </Suspense>,
+            )
+          }
         >
           로그인 / 회원가입
         </span>
