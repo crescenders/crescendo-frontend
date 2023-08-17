@@ -43,7 +43,6 @@ const Calendar = ({
   const [viewDate, setViewDate] = useState<Date>(selectedDate || today);
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
-
   const firstDayOfMonth = startOfMonth(viewDate).getDay();
   const daysInMonth = endOfMonth(viewDate).getDate();
   const calendarDays = Array.from(
@@ -139,14 +138,12 @@ const Calendar = ({
           onClick={() => setViewDate(addMonths(viewDate, 1))}
         />
       </div>
-
       <div className="grid grid-cols-[repeat(7,minmax(35px,auto))] text-center">
         {WEEKDAYS.map((day, index) => (
           <Day key={index} $isWeekend={[5, 6].includes(index)}>
             {day}
           </Day>
         ))}
-
         {Array.from(
           { length: firstDayOfMonth ? firstDayOfMonth - 1 : 6 },
           (_, index) => (
