@@ -4,9 +4,15 @@ import { format } from 'date-fns';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 
-const SelectDate = (props: CalendarProps) => {
+const SelectDate = ({
+  minDate,
+  selectRange,
+  selectedDate,
+  setSelectedDate,
+  selectedEndDate,
+  setSelectedEndDate,
+}: CalendarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedDate, selectedEndDate, selectRange } = props;
 
   return (
     <div className="relative flex flex-col gap-[18px]">
@@ -49,7 +55,14 @@ const SelectDate = (props: CalendarProps) => {
             isOpen && 'animate-slideDown'
           }`}
         >
-          <Calendar {...props} />
+          <Calendar
+            minDate={minDate}
+            selectRange={selectRange}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            selectedEndDate={selectedEndDate}
+            setSelectedEndDate={setSelectedEndDate}
+          />
         </div>
       )}
     </div>
