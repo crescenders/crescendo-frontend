@@ -40,7 +40,7 @@ const Edit = () => {
     router.back();
   };
 
-  const handleWithDrawal = () => {
+  const handleWithdrawal = () => {
     openModal(
       <DeleteModal
         handleClick={() => {
@@ -82,7 +82,7 @@ const Edit = () => {
         />
         <span
           className="cursor-pointer font-bold text-dark"
-          onClick={handleWithDrawal}
+          onClick={handleWithdrawal}
         >
           회원 탈퇴하기
         </span>
