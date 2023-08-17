@@ -12,6 +12,7 @@ import {
 } from 'date-fns';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
+import { WEEKDAYS } from '@constants/weekdays';
 
 export type CalendarProps = {
   minDate?: Date | null;
@@ -38,8 +39,6 @@ const Calendar = ({
   selectedEndDate,
   setSelectedEndDate,
 }: CalendarProps) => {
-  const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-
   const today = startOfToday();
   const [viewDate, setViewDate] = useState<Date>(selectedDate || today);
   const year = viewDate.getFullYear();
@@ -142,7 +141,7 @@ const Calendar = ({
       </div>
 
       <div className="grid grid-cols-[repeat(7,minmax(35px,auto))] text-center">
-        {weekdays.map((day, index) => (
+        {WEEKDAYS.map((day, index) => (
           <Day key={index} $isWeekend={[5, 6].includes(index)}>
             {day}
           </Day>
