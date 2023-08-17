@@ -40,7 +40,7 @@ const Header = () => {
               setIsOpen(true);
             }}
           >
-            {username} 님
+            {username ? `${username} 님` : '내 정보'}
           </span>
           {isOpen && (
             <div className="absolute flex items-center flex-col top-[50px] left-2/4">
