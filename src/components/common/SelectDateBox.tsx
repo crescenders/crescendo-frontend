@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 
-const SelectDate = ({
+const SelectDateBox = ({
   minDate,
   selectRange,
   selectedDate,
@@ -69,7 +69,7 @@ const SelectDate = ({
   );
 };
 
-export default SelectDate;
+export default SelectDateBox;
 
 const SelectBoxWrapper = tw.button`
   relative
