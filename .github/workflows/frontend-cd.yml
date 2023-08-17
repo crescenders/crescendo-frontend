@@ -25,7 +25,7 @@ jobs:
           destination-github-username: thyeone
           destination-repository-name: crescendo-frontend
           user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
+          commit-message: ${{ github.event.commits[1].message }}
           target-branch: dev
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
