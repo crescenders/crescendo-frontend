@@ -9,6 +9,7 @@ import { CONFIG } from '@config';
 import { useSetRecoilState } from 'recoil';
 import { userState } from '@recoil/auth';
 import useModal from '@hooks/useModal';
+import userApi from '@apis/user/userApi';
 
 type CredentialResponse = {
   clientId: string;
@@ -34,9 +35,8 @@ const LoginModal = () => {
     const token = { access, refresh };
     if (token) {
       setToken({ accessToken: access, refreshToken: refresh });
-      setUserInfo((info) => {
-        return { ...info, isLogin: true };
-      });
+      const { username } = await userApi.getUser();
+      setUserInfo({ isLogin: true, username: username });
       closeModal();
     }
   };
