@@ -2,8 +2,6 @@ name: git push into another repo to deploy to vercel
 on:
   push:
     branches: [dev]
-  pull_request:
-    branches: [dev]
 
 jobs:
   build:
@@ -15,6 +13,9 @@ jobs:
         run: apk add ruby && gem install mustache
       - name: creates output
         run: sh ./build.sh
+      - name: Logging
+        run: |
+          echo "${{toJSON(github.event)}}"
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main

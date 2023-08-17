@@ -33,7 +33,7 @@ const LoginModal = () => {
     const { access, refresh }: Token = await authApi.googleLogin(credential);
     const token = { access, refresh };
     if (token) {
-      setToken(token);
+      setToken({ accessToken: access, refreshToken: refresh });
       setUserInfo((info) => {
         return { ...info, isLogin: true };
       });
