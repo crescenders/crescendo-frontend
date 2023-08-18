@@ -12,7 +12,7 @@ import {
 } from 'date-fns';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
-import { WEEKDAYS } from '@constants/weekdays';
+import { WEEKDAYS } from '@constants/index';
 
 export type CalendarProps = {
   minDate?: Date | null;
