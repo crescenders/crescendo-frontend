@@ -36,7 +36,7 @@ const LoginModal = () => {
     if (token) {
       setToken({ accessToken: access, refreshToken: refresh });
       const { username } = await userApi.getUser();
-      setUserInfo({ isLogin: true, username: username });
+      setUserInfo({ isLogin: true, username });
       closeModal();
     }
   };
