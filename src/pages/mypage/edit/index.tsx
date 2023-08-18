@@ -4,6 +4,7 @@ import PageLayout from '@components/common/PageLayout';
 import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteUser } from '@hooks/mutations/useDeleteUser';
 import { usePutUser } from '@hooks/mutations/usePutUser';
+import { useGetProfile } from '@hooks/queries/useGetProfile';
 import useModal from '@hooks/useModal';
 import useToast from '@hooks/useToast';
 import { validateUsername } from '@utils/validate';
@@ -14,6 +15,7 @@ import tw from 'tailwind-styled-components';
 const Edit = () => {
   const { mutate: putUser } = usePutUser();
   const { mutate: deleteUser } = useDeleteUser();
+  const { data: profile } = useGetProfile();
   const { showToast } = useToast();
   const { openModal, closeModal } = useModal();
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -73,7 +75,7 @@ const Edit = () => {
           label="이메일"
           type="email"
           disabled
-          defaultValue="user@email.com"
+          defaultValue={profile?.email}
         />
         <Button
           text="저장하기"

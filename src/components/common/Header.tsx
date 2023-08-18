@@ -13,7 +13,7 @@ const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
 const Header = () => {
   const isMounted = useIsMounted();
-  const { isLogin } = useRecoilValue(userState);
+  const { isLogin, username } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
 
@@ -41,7 +41,7 @@ const Header = () => {
               setIsOpen(true);
             }}
           >
-            닉네임 님
+            {username ? `${username} 님` : '내 정보'}
           </span>
           {isOpen && (
             <div className="absolute left-2/4 top-[50px] flex flex-col items-center">
