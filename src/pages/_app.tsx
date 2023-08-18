@@ -5,8 +5,6 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import useIsWorker from '@hooks/useIsWorker';
-import { Suspense } from 'react';
-import Loader from '@components/common/Loader';
 
 declare global {
   interface Window {
@@ -36,18 +34,16 @@ export default function App({ Component, pageProps }: AppProps) {
   if (!shouldRender) return null;
 
   return (
-    <Suspense fallback={<Loader />}>
-      <RecoilRoot>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <Hydrate state={pageProps.dehydratedState}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Hydrate>
-        </QueryClientProvider>
-      </RecoilRoot>
-    </Suspense>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Hydrate state={pageProps.dehydratedState}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Hydrate>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 

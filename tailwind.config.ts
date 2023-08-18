@@ -55,6 +55,20 @@ module.exports = {
         bounce1: 'bounce 0.5s infinite',
         bounce2: 'bounce 0.5s infinite 50ms',
         bounce3: 'bounce 0.5s infinite 100ms',
+        'skeleton-gradient': 'skeleton-gradient 1.35s infinite ease-in-out',
+      },
+      keyframes: {
+        'skeleton-gradient': {
+          '0%': {
+            'background-color': 'rgba(165, 165, 165, 0.7)',
+          },
+          '50%': {
+            'background-color': 'rgba(165, 165, 165, 0.99)',
+          },
+          '100%': {
+            'background-color': 'rgba(165, 165, 165, 0.7)',
+          },
+        },
       },
     },
   },
