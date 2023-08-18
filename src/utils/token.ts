@@ -19,7 +19,7 @@ export const getToken = (): UserToken => {
   return token;
 };
 
-export const setToken = (token: Token) => {
+export const setToken = (token: UserToken) => {
   setLocalStorage(TOKEN_KEY, token);
 };
 

@@ -1,7 +1,5 @@
-import { userState } from '@recoil/auth';
-import { deleteToken } from '@utils/token';
+import useDeleteToken from '@hooks/useDeleteToken';
 import Link from 'next/link';
-import { useSetRecoilState } from 'recoil';
 
 type NavigateListProps = {
   text: string;
@@ -9,11 +7,11 @@ type NavigateListProps = {
 };
 
 const NavigateList = ({ text, path }: NavigateListProps) => {
-  const setUserInfo = useSetRecoilState(userState);
+  const { initUserState } = useDeleteToken();
+
   const handleLogout = () => {
     if (text === '로그아웃') {
-      deleteToken();
-      setUserInfo({ isLogin: false, username: '' });
+      initUserState();
     }
   };
 

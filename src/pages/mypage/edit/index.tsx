@@ -1,14 +1,24 @@
 import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 import PageLayout from '@components/common/PageLayout';
+import DeleteModal from '@components/modal/DeleteModal';
+import { useDeleteUser } from '@hooks/mutations/useDeleteUser';
+import { usePutUser } from '@hooks/mutations/usePutUser';
+import useModal from '@hooks/useModal';
+import useToast from '@hooks/useToast';
 import { validateUsername } from '@utils/validate';
-import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 
 const Edit = () => {
+  const { mutate: putUser } = usePutUser();
+  const { mutate: deleteUser } = useDeleteUser();
+  const { showToast } = useToast();
+  const { openModal, closeModal } = useModal();
   const usernameRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleUserName = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -20,8 +30,29 @@ const Edit = () => {
     e.preventDefault();
     if (error || !usernameRef.current?.value) {
       usernameRef.current?.focus();
-      alert('올바른 형식으로 입력해주세요.'); // TODO: 임의로 넣어봤는데 추후 토스트로 대체하면 좋을듯..?
+      showToast({
+        type: 'fail',
+        message: '올바른 형식으로 입력해주세요.',
+      });
+      return;
     }
+    putUser(usernameRef.current.value as string);
+    router.back();
+  };
+
+  const handleWithdrawal = () => {
+    openModal(
+      <DeleteModal
+        handleClick={() => {
+          deleteUser();
+          closeModal();
+          router.replace('/');
+        }}
+        title="회원 탈퇴"
+        firstText="탈퇴한 계정은 복구할 수 없어요."
+        secondText="그래도 탈퇴를 진행하시겠어요?"
+      />,
+    );
   };
 
   return (
@@ -47,9 +78,12 @@ const Edit = () => {
         <Button
           text="저장하기"
           isNormal={false}
-          className="w-[270px] h-11 rounded-md font-bold text-[15px]"
+          className="h-11 w-[270px] rounded-md text-[15px] font-bold"
         />
-        <span className="font-bold cursor-pointer text-dark">
+        <span
+          className="cursor-pointer font-bold text-dark"
+          onClick={handleWithdrawal}
+        >
           회원 탈퇴하기
         </span>
       </EditForm>

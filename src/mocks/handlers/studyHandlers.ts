@@ -5,7 +5,7 @@ import { CONFIG } from '@config';
 export const studyHandlers = [
   // 검색어로 스터디 조회
   rest.get(`${CONFIG.BASE_URL}/api/v1/studies`, (req, res, ctx) => {
-    const PAGINATE_UNIT = 4;
+    const PAGINATE_UNIT = 12;
     const keyword = String(req.url.searchParams.get('keyword'));
     const page = Number(req.url.searchParams.get('page'));
     const findByKeyword = studyList.filter(
