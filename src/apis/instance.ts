@@ -38,10 +38,10 @@ instance.interceptors.response.use(
         setToken({ accessToken, refreshToken: getToken().refreshToken });
         return instance.request(originalRequest);
       }
-      deleteToken();
       CONFIG.ENV === 'development'
         ? (window.location.href = `${CONFIG.LOCAL}`)
         : (window.location.href = `${CONFIG.DOMAIN}`);
+      deleteToken();
     }
 
     return Promise.reject(error);
