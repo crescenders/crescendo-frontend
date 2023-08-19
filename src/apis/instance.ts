@@ -38,7 +38,8 @@ instance.interceptors.response.use(
         setToken({ accessToken, refreshToken: getToken().refreshToken });
         return instance.request(originalRequest);
       }
-      alert('세션이 만료되었습니다. 다시 로그인해주세요.');
+      typeof window !== undefined &&
+        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
       deleteToken();
       CONFIG.ENV === 'development'
         ? (window.location.href = `${CONFIG.LOCAL}`)
