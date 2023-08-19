@@ -38,11 +38,7 @@ instance.interceptors.response.use(
         setToken({ accessToken, refreshToken: getToken().refreshToken });
         return instance.request(originalRequest);
       }
-      CONFIG.ENV === 'development'
-        ? (window.location.href = `${CONFIG.LOCAL}`)
-        : (window.location.href = `${CONFIG.DOMAIN}`);
     }
-
     return Promise.reject(error);
   },
 );
