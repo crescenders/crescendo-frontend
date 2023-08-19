@@ -41,7 +41,6 @@ instance.interceptors.response.use(
       CONFIG.ENV === 'development'
         ? (window.location.href = `${CONFIG.LOCAL}`)
         : (window.location.href = `${CONFIG.DOMAIN}`);
-      deleteToken();
     }
 
     return Promise.reject(error);
