@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import studyList from '@mocks/data/studyList.json';
+import studyInfo from '@mocks/data/studyInfo.json';
 import { CONFIG } from '@config';
 
 export const studyHandlers = [
@@ -28,4 +29,22 @@ export const studyHandlers = [
 
     return res(ctx.status(200), ctx.delay(1000), ctx.json(paginatedStudies));
   }),
+
+  // 스터디 상세페이지 조회
+  rest.get(
+    `${CONFIG.BASE_URL}/api/v1/studygroup/studies/:id/`,
+    (req, res, ctx) => {
+      const { id } = req.params;
+      const detail = {
+        ...studyInfo,
+        posts: {
+          ...studyInfo.posts,
+          title: studyInfo.posts.title + `${id}`,
+          study_group: studyInfo.posts.study_group + `${id}`,
+        },
+      };
+
+      return res(ctx.status(200), ctx.delay(300), ctx.json(detail));
+    },
+  ),
 ];

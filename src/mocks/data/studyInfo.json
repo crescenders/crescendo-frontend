@@ -1,0 +1,22 @@
+{
+  "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "name": "string",
+  "user_limit": 99999999999,
+  "start_date": "2023-08-22",
+  "end_date": "2023-08-22",
+  "posts": {
+    "id": 1,
+    "created_at": "2023-08-22T12:43:02.393Z",
+    "updated_at": "2023-08-22T12:43:02.393Z",
+    "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "head_image": "string",
+    "title": "게시글 제목",
+    "content": "스터디 소개입니다.",
+    "deadline": "2023-08-22",
+    "study_group": "스터디 이름",
+    "author": "작성자"
+  },
+  "categories": ["Frontend", "Backend", "Etc"],
+  "tags": ["JS", "Java"],
+  "studygroup_members": ["a", "b", "c"]
+}
