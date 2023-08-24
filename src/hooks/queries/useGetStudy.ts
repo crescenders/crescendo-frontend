@@ -1,5 +1,5 @@
 import studyApi from '@apis/study/studyApi';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 
 export const useGetStudyByKeyword = (keyword: string) => {
   return useInfiniteQuery(
@@ -13,6 +13,16 @@ export const useGetStudyByKeyword = (keyword: string) => {
         return lastPage.studies.length > 0 ? lastPage.page + 1 : undefined;
       },
       enabled: !!keyword,
+    },
+  );
+};
+
+export const useGetStudyDetail = (id: number) => {
+  return useQuery(
+    ['useGetStudyDetail', id],
+    () => studyApi.getStudyDetail(id),
+    {
+      enabled: !!id,
     },
   );
 };
