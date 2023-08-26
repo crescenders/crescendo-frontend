@@ -17,7 +17,7 @@ export const validateFile = (file: FileList | null) => {
   return '';
 };
 
-export const validateInput = (input: Partial<NewStudy>) => {
+export const validateInput = (input: string | number | Date) => {
   if (typeof input === 'object') {
     if (input === null) return ERROR_MESSAGE.required;
     if (Array.isArray(input) && !input.length) return ERROR_MESSAGE.required;
