@@ -4,11 +4,12 @@ import tw from 'tailwind-styled-components';
 import Input from '@components/common/Input';
 
 type TagInputProps = {
+  error: string;
   tagList: string[];
   setTagList: Dispatch<SetStateAction<string[]>>;
 };
 
-const TagInput = ({ tagList, setTagList }: TagInputProps) => {
+const TagInput = ({ error, tagList, setTagList }: TagInputProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -42,7 +43,7 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
         label=""
         placeholder="태그 입력 후 엔터를 눌러주세요."
         onKeyDown={handleKeyDown}
-        error={errorMessage}
+        error={tagList.length ? errorMessage : error}
       />
       <TagContainer>
         {tagList &&
