@@ -16,3 +16,11 @@ export const validateFile = (file: FileList | null) => {
   if (file[0].size > MAX_FILE_SIZE) return ERROR_MESSAGE.maxSize;
   return '';
 };
+
+export const validateInput = (input: Partial<NewStudy>) => {
+  if (typeof input === 'object') {
+    if (input === null) return ERROR_MESSAGE.required;
+    if (Array.isArray(input) && !input.length) return ERROR_MESSAGE.required;
+  } else if (!input) return ERROR_MESSAGE.required;
+  return '';
+};
