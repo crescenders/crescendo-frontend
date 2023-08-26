@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Button from '@components/common/Button';
 import { validateFile } from '@utils/validate';
 
-const UploadImage = forwardRef<HTMLInputElement>(({ ...rest }, ref) => {
+const UploadImage = forwardRef<HTMLInputElement>((_, ref) => {
   const [image, setImage] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -39,6 +39,7 @@ const UploadImage = forwardRef<HTMLInputElement>(({ ...rest }, ref) => {
       <input
         ref={ref}
         name="head_image"
+        id="head-image"
         type="file"
         className="hidden"
         accept="image/jpeg, image/png"
