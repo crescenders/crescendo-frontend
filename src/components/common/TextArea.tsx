@@ -38,6 +38,7 @@ const BaseTextArea = tw.textarea`
   focus:border-brand
   h-[150px]
   w-[550px]
+  resize-none
   rounded-lg
   border-[1px]
   p-4
