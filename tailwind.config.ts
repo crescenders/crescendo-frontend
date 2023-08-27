@@ -56,6 +56,7 @@ module.exports = {
         bounce2: 'bounce 0.5s infinite 50ms',
         bounce3: 'bounce 0.5s infinite 100ms',
         slideDown: 'slide 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
+        slideUp: 'slideUp 0.3s',
         'skeleton-gradient': 'skeleton-gradient 1.35s infinite ease-in-out',
       },
       keyframes: {
@@ -78,6 +79,16 @@ module.exports = {
           },
           '100%': {
             'background-color': 'rgba(165, 165, 165, 0.7)',
+          },
+        },
+        slideUp: {
+          '0%': {
+            transform: 'translateY(100%)',
+            opacity: 0,
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: 1,
           },
         },
       },

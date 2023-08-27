@@ -25,13 +25,8 @@ const AssignmentCard = ({
   isEdit,
   isDelete,
 }: AssignmentListProps) => {
-  const [isFold, setIsFold] = useState(true);
+  const [isFold, setIsFold] = useState(isInitialFold ?? false);
   const { openModal } = useModal();
-  useEffect(() => {
-    if (isInitialFold === false) {
-      setIsFold(false);
-    }
-  }, []);
 
   return (
     <>
