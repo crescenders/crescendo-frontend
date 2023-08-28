@@ -15,7 +15,7 @@ import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 import useToast from '@hooks/useToast';
 import { validateInput } from '@utils/validate';
 
-const NewStudy = () => {
+const CreateStudy = () => {
   const router = useRouter();
   const { mutate: createStudy } = useCreateStudy();
   const { showToast } = useToast();
@@ -178,4 +178,4 @@ const NewStudy = () => {
   );
 };
 
-export default NewStudy;
+export default CreateStudy;
