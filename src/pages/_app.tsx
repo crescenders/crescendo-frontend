@@ -5,10 +5,10 @@ import {
   QueryClientProvider,
   Hydrate,
 } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import useIsWorker from '@hooks/useIsWorker';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 declare global {
   interface Window {
