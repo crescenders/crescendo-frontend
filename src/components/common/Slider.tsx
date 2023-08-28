@@ -4,7 +4,7 @@ import tw from 'tailwind-styled-components';
 const Slider = forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
->(({ ...props }, ref) => {
+>(({ ...rest }, ref) => {
   const [memberLimit, setMemberLimit] = useState<string>('1');
 
   return (
@@ -21,7 +21,7 @@ const Slider = forwardRef<
         min="1"
         step="1"
         onInput={(e) => setMemberLimit(e.currentTarget.value)}
-        {...props}
+        {...rest}
       />
       <ul className="absolute left-[10px] top-7 flex w-[310px] justify-between">
         {Array.from({ length: 11 }).map((_, index) => (
