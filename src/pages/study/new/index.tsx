@@ -85,17 +85,17 @@ const NewStudy = () => {
               해당하는 카테고리를 모두 선택해주세요.
             </p>
             <div className="flex flex-wrap gap-3">
-              {[...categories, { name: 'Etc' }].map((category) => (
+              {categories.map(({ name }) => (
                 <div
-                  key={category.name}
+                  key={name}
                   onClick={handleCategoryList}
                   className={`${
-                    study.categories.includes(category.name)
+                    study.categories.includes(name)
                       ? 'border-[#8266FF] text-[#8266FF]'
                       : 'border-[#EAEAEB] text-black'
                   } cursor-pointer select-none rounded-lg border  px-4 py-2 text-[14px]`}
                 >
-                  {category.name}
+                  {name}
                 </div>
               ))}
             </div>
