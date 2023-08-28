@@ -16,11 +16,7 @@ const QuillEditor = dynamic(
     return Quill;
   },
   {
-    loading: () => (
-      <div className="flex h-full w-full items-center justify-center">
-        <Loader />
-      </div>
-    ),
+    loading: () => <Loader />,
     ssr: false,
   },
 );
