@@ -1,15 +1,14 @@
 import Image from 'next/image';
-import { Dispatch, SetStateAction, KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import Input from '@components/common/Input';
 
 type TagInputProps = {
-  error: string;
   tagList: string[];
-  setTagList: Dispatch<SetStateAction<string[]>>;
+  setTagList: (key: string, value: string[]) => void;
 };
 
-const TagInput = ({ error, tagList, setTagList }: TagInputProps) => {
+const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -27,12 +26,15 @@ const TagInput = ({ error, tagList, setTagList }: TagInputProps) => {
       }
 
       setErrorMessage('');
-      setTagList((prev) => [...prev, newTag]);
+      setTagList('tags', [...tagList, newTag]);
     }
   };
 
-  const handleClickRemoveButton = (targetIndex: number) => {
-    setTagList((prev) => prev.filter((_, index) => index !== targetIndex));
+  const handleClickRemoveButton = (targetTag: string) => {
+    setTagList(
+      'tags',
+      tagList.filter((tag) => tag !== targetTag),
+    );
   };
 
   return (
@@ -43,7 +45,7 @@ const TagInput = ({ error, tagList, setTagList }: TagInputProps) => {
         label=""
         placeholder="태그 입력 후 엔터를 눌러주세요."
         onKeyDown={handleKeyDown}
-        error={tagList.length ? errorMessage : error}
+        error={errorMessage}
       />
       <TagContainer>
         {tagList &&
@@ -56,7 +58,7 @@ const TagInput = ({ error, tagList, setTagList }: TagInputProps) => {
                 height={12}
                 alt="삭제"
                 className="cursor-pointer"
-                onClick={() => handleClickRemoveButton(index)}
+                onClick={() => handleClickRemoveButton(tag)}
               />
             </TagItem>
           ))}

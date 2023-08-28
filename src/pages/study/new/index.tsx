@@ -22,9 +22,8 @@ const NewStudy = () => {
   const {
     study,
     getInputRef,
-    setCategoryList,
-    setTagList,
     handleDateChange,
+    handleListChange,
     handleSubmitInput,
   } = useStudyForm();
   const [errorMessage, setErrorMessage] = useState({
@@ -34,18 +33,18 @@ const NewStudy = () => {
     start_date: '',
     end_date: '',
     deadline: '',
-    tags: '',
     categories: '',
   });
 
   const handleCategoryList = (clickedCategory: string) => {
     if (study.categories.includes(clickedCategory)) {
-      setCategoryList((prev) =>
-        prev.filter((category) => category !== clickedCategory),
+      handleListChange(
+        'categories',
+        study.categories.filter((category) => category !== clickedCategory),
       );
       return;
     }
-    setCategoryList((prev) => [...prev, clickedCategory]);
+    handleListChange('categories', [...study.categories, clickedCategory]);
   };
 
   const handleCreateStudy = () => {
@@ -119,11 +118,7 @@ const NewStudy = () => {
             ref={getInputRef}
             error={errorMessage.study_name}
           />
-          <TagInput
-            tagList={study.tags}
-            setTagList={setTagList}
-            error={errorMessage.tags}
-          />
+          <TagInput setTagList={handleListChange} tagList={study.tags} />
           <div className="flex flex-col gap-[18px] self-start">
             <div className="text-base font-bold">모집인원</div>
             <Slider max="10" name="member_limit" ref={getInputRef} />

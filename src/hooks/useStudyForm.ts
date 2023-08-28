@@ -1,11 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
+
+type StudyFormType = {
+  head_image: File | null;
+  post_title: string;
+  post_content: string;
+  study_name: string;
+  start_date: Date | null;
+  end_date: Date | null;
+  deadline: Date | null;
+  tags: string[];
+  categories: string[];
+  member_limit: number;
+};
 
 const useStudyForm = () => {
   const inputRef = useRef<(HTMLInputElement | ReactQuill)[]>([]);
-  const [categoryList, setCategoryList] = useState<string[]>([]);
-  const [tagList, setTagList] = useState<string[]>([]);
-  const [study, setStudy] = useState({
+  const [study, setStudy] = useState<StudyFormType>({
     head_image: null,
     post_title: '',
     post_content: '',
@@ -13,8 +24,8 @@ const useStudyForm = () => {
     start_date: null,
     end_date: null,
     deadline: null,
-    tags: tagList,
-    categories: categoryList,
+    tags: [],
+    categories: [],
     member_limit: 1,
   });
 
@@ -24,6 +35,15 @@ const useStudyForm = () => {
   };
 
   const handleDateChange = (key: string, value: Date | null) => {
+    setStudy((prev) => {
+      return {
+        ...prev,
+        [key]: value,
+      };
+    });
+  };
+
+  const handleListChange = (key: string, value: string[]) => {
     setStudy((prev) => {
       return {
         ...prev,
@@ -44,30 +64,11 @@ const useStudyForm = () => {
     return submitData;
   };
 
-  useEffect(() => {
-    setStudy((prev) => {
-      return {
-        ...prev,
-        tags: tagList,
-      };
-    });
-  }, [tagList]);
-
-  useEffect(() => {
-    setStudy((prev) => {
-      return {
-        ...prev,
-        categories: categoryList,
-      };
-    });
-  }, [categoryList]);
-
   return {
     study,
     getInputRef,
-    setCategoryList,
-    setTagList,
     handleDateChange,
+    handleListChange,
     handleSubmitInput,
   };
 };
