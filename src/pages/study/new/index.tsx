@@ -38,9 +38,7 @@ const NewStudy = () => {
     categories: '',
   });
 
-  const handleCategoryList = (e: React.MouseEvent<HTMLDivElement>) => {
-    const clickedCategory = e.currentTarget.innerText;
-
+  const handleCategoryList = (clickedCategory: string) => {
     if (study.categories.includes(clickedCategory)) {
       setCategoryList((prev) =>
         prev.filter((category) => category !== clickedCategory),
@@ -84,11 +82,11 @@ const NewStudy = () => {
               <span className="mr-1 text-status-error">{REQUIRED}</span>
               해당하는 카테고리를 모두 선택해주세요.
             </p>
-            <div className="flex flex-wrap gap-3">
-              {categories.map(({ name }) => (
-                <div
-                  key={name}
-                  onClick={handleCategoryList}
+            <ul className="flex flex-wrap gap-3">
+              {categories.map(({ id, name }) => (
+                <li
+                  key={id}
+                  onClick={() => handleCategoryList(name)}
                   className={`${
                     study.categories.includes(name)
                       ? 'border-[#8266FF] text-[#8266FF]'
@@ -96,9 +94,9 @@ const NewStudy = () => {
                   } cursor-pointer select-none rounded-lg border  px-4 py-2 text-[14px]`}
                 >
                   {name}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
             <span className="h-2 w-full text-12 text-status-error">
               {errorMessage.categories}
             </span>
