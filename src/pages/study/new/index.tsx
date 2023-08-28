@@ -20,7 +20,7 @@ const NewStudy = () => {
   const { mutate: createStudy } = useCreateStudy();
   const { showToast } = useToast();
   const {
-    study,
+    studyForm,
     getInputRef,
     handleDateChange,
     handleListChange,
@@ -37,14 +37,14 @@ const NewStudy = () => {
   });
 
   const handleCategoryList = (clickedCategory: string) => {
-    if (study.categories.includes(clickedCategory)) {
+    if (studyForm.categories.includes(clickedCategory)) {
       handleListChange(
         'categories',
-        study.categories.filter((category) => category !== clickedCategory),
+        studyForm.categories.filter((category) => category !== clickedCategory),
       );
       return;
     }
-    handleListChange('categories', [...study.categories, clickedCategory]);
+    handleListChange('categories', [...studyForm.categories, clickedCategory]);
   };
 
   const handleCreateStudy = () => {
@@ -87,7 +87,7 @@ const NewStudy = () => {
                   key={id}
                   onClick={() => handleCategoryList(name)}
                   className={`${
-                    study.categories.includes(name)
+                    studyForm.categories.includes(name)
                       ? 'border-[#8266FF] text-[#8266FF]'
                       : 'border-[#EAEAEB] text-black'
                   } cursor-pointer select-none rounded-lg border  px-4 py-2 text-[14px]`}
@@ -118,14 +118,14 @@ const NewStudy = () => {
             ref={getInputRef}
             error={errorMessage.study_name}
           />
-          <TagInput setTagList={handleListChange} tagList={study.tags} />
+          <TagInput setTagList={handleListChange} tagList={studyForm.tags} />
           <div className="flex flex-col gap-[18px] self-start">
             <div className="text-base font-bold">모집인원</div>
             <Slider max="10" name="member_limit" ref={getInputRef} />
           </div>
           <div className="flex w-[550px] justify-between">
             <SelectDateBox
-              selectedDate={study.deadline}
+              selectedDate={studyForm.deadline}
               setSelectedDate={(date) =>
                 handleDateChange('deadline', date as Date | null)
               }
@@ -133,12 +133,12 @@ const NewStudy = () => {
             />
             <SelectDateBox
               selectRange
-              minDate={study.deadline}
-              selectedDate={study.start_date}
+              minDate={studyForm.deadline}
+              selectedDate={studyForm.start_date}
               setSelectedDate={(date) =>
                 handleDateChange('start_date', date as Date)
               }
-              selectedEndDate={study.end_date}
+              selectedEndDate={studyForm.end_date}
               setSelectedEndDate={(date) =>
                 handleDateChange('end_date', date as Date | null)
               }

@@ -16,7 +16,7 @@ type StudyFormType = {
 
 const useStudyForm = () => {
   const inputRef = useRef<(HTMLInputElement | ReactQuill)[]>([]);
-  const [study, setStudy] = useState<StudyFormType>({
+  const [studyForm, setStudyForm] = useState<StudyFormType>({
     head_image: null,
     post_title: '',
     post_content: '',
@@ -35,7 +35,7 @@ const useStudyForm = () => {
   };
 
   const handleDateChange = (key: string, value: Date | null) => {
-    setStudy((prev) => {
+    setStudyForm((prev) => {
       return {
         ...prev,
         [key]: value,
@@ -44,7 +44,7 @@ const useStudyForm = () => {
   };
 
   const handleListChange = (key: string, value: string[]) => {
-    setStudy((prev) => {
+    setStudyForm((prev) => {
       return {
         ...prev,
         [key]: value,
@@ -53,19 +53,19 @@ const useStudyForm = () => {
   };
 
   const handleSubmitInput = () => {
-    const submitData = study;
+    const submitData = studyForm;
 
     Object.keys(inputRef.current).map((key) => {
       if (key === 'head_image') submitData[key] = inputRef.current[key].files;
       else submitData[key] = inputRef.current[key].value;
     });
-    setStudy(submitData);
+    setStudyForm(submitData);
 
     return submitData;
   };
 
   return {
-    study,
+    studyForm,
     getInputRef,
     handleDateChange,
     handleListChange,
