@@ -1,5 +1,5 @@
 import studyApi from '@apis/study/studyApi';
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export const useGetStudyByKeyword = (keyword: string) => {
   return useInfiniteQuery(
