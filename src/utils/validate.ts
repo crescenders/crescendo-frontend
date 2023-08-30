@@ -17,7 +17,7 @@ export const validateFile = (file: FileList | null) => {
   return '';
 };
 
-export const validateInput = (input: string | number | Date) => {
+export const validateStudy = <T>(input: T): string => {
   if (typeof input === 'object') {
     if (input === null) return ERROR_MESSAGE.required;
     if (Array.isArray(input) && !input.length) return ERROR_MESSAGE.required;

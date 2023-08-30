@@ -13,7 +13,7 @@ import { REQUIRED } from '@constants/index';
 import useStudyForm from '@hooks/useStudyForm';
 import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 import useToast from '@hooks/useToast';
-import { validateInput } from '@utils/validate';
+import { validateStudy } from '@utils/validate';
 
 const CreateStudy = () => {
   const router = useRouter();
@@ -55,7 +55,7 @@ const CreateStudy = () => {
     if (head_image) formData.append('head_image', head_image[0]);
 
     for (const key in newStudy) {
-      emptyList[key] = validateInput(newStudy[key]);
+      if (key !== 'tags') emptyList[key] = validateStudy(newStudy[key]);
       if (!emptyList[key]) formData.append(key, newStudy[key]);
     }
 
