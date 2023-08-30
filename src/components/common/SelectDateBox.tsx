@@ -5,24 +5,28 @@ import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 
 const SelectDateBox = ({
+  error,
   minDate,
   selectRange,
   selectedDate,
   setSelectedDate,
   selectedEndDate,
   setSelectedEndDate,
-}: CalendarProps) => {
+}: CalendarProps & { error: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="relative flex flex-col gap-[18px]">
-      <div className="text-base font-bold">
-        {selectRange ? '스터디 기간' : '모집 마감 날짜'}
+      <div className="flex w-full flex-col gap-y-1">
+        <div className="text-base font-bold">
+          {selectRange ? '스터디 기간' : '모집 마감 날짜'}
+        </div>
+        <span className="h-2 w-full text-12 text-status-error">{error}</span>
       </div>
 
       <SelectBoxWrapper
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`${isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'}`}
+        className={`${isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'} z-20`}
       >
         <Image
           src={`/svg/calendar.svg`}
@@ -31,7 +35,7 @@ const SelectDateBox = ({
           alt=""
           className="cursor-pointer"
         />
-        <div className="grow pt-[2px] text-left text-sm">
+        <div className="grow pt-[2px] text-left text-[13px]">
           {selectedDate ? format(selectedDate, 'yyyy-MM-dd') : 'YYYY-MM-DD'}
           {selectRange &&
             ` ~ ${
@@ -51,7 +55,7 @@ const SelectDateBox = ({
 
       {isOpen && (
         <div
-          className={`absolute right-0 top-[110px] rounded-lg bg-white p-4 shadow-base ${
+          className={`absolute right-0 top-[110px] z-10 rounded-lg bg-white p-4 shadow-base ${
             isOpen && 'animate-slideDown'
           }`}
         >
@@ -75,7 +79,7 @@ const SelectBoxWrapper = tw.button`
   relative
   z-10
   flex
-  w-[280px]
+  w-[260px]
   cursor-pointer
   items-center
   justify-between

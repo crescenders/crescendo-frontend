@@ -29,7 +29,10 @@ export const studyHandlers = [
 
     return res(ctx.status(200), ctx.delay(1000), ctx.json(paginatedStudies));
   }),
-
+  // 스터디 작성
+  rest.post(`${CONFIG.BASE_URL}/api/v1/studygroup/studies`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(req.body));
+  }),
   // 스터디 상세페이지 조회
   rest.get(
     `${CONFIG.BASE_URL}/api/v1/studygroup/studies/:id/`,

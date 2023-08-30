@@ -32,7 +32,9 @@ const Header = () => {
       </Link>
       {isLogin ? (
         <div className="relative flex cursor-pointer gap-x-7">
-          <span className="text-16 font-medium">스터디 개설</span>
+          <Link href={'/study/create'}>
+            <span className="text-16 font-medium">스터디 개설</span>
+          </Link>
           <div className="h-7 w-[2px] bg-[#D9D9D9]" />
           <span
             className="relative mr-5 text-16 font-bold text-brand"

@@ -108,12 +108,15 @@ const Home = () => {
         </div>
       </div>
       <div className="mb-[35px] mt-[46px] flex h-[80px] items-center justify-center gap-[22px]">
-        {categories.map(({ id, emoji, name }) => (
-          <Category href={`/search?categories=${name}`} key={id}>
-            <Image src={emoji} alt="emoji" width={30} height={30} />
-            <span>{name}</span>
-          </Category>
-        ))}
+        {categories.map(
+          ({ id, emoji, name }) =>
+            emoji && (
+              <Category href={`/search?categories=${name}`} key={id}>
+                <Image src={emoji} alt="emoji" width={30} height={30} />
+                <span>{name}</span>
+              </Category>
+            ),
+        )}
       </div>
       <div className="flex justify-center gap-[41px]">
         {DUMMY_DATALIST.map(

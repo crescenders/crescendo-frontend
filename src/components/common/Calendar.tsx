@@ -15,12 +15,12 @@ import Image from 'next/image';
 import { WEEKDAYS } from '@constants/index';
 
 export type CalendarProps = {
-  minDate?: Date | null;
+  minDate?: TDate;
   selectRange?: boolean;
-  selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
-  selectedEndDate?: Date | null;
-  setSelectedEndDate?: React.Dispatch<React.SetStateAction<Date | null>>;
+  selectedDate: TDate;
+  setSelectedDate: React.Dispatch<React.SetStateAction<TDate>>;
+  selectedEndDate?: TDate;
+  setSelectedEndDate?: React.Dispatch<React.SetStateAction<TDate>>;
 };
 
 type StyledDayProps = {
@@ -56,7 +56,7 @@ const Calendar = ({
     setViewDate(date);
 
     if (!setSelectedEndDate) {
-      setSelectedDate(selectedDate ? null : date);
+      setSelectedDate(isSameDay(date, selectedDate || 0) ? null : date);
       return;
     }
 
@@ -138,7 +138,7 @@ const Calendar = ({
           onClick={() => setViewDate(addMonths(viewDate, 1))}
         />
       </div>
-      <div className="grid grid-cols-[repeat(7,minmax(35px,auto))] text-center">
+      <div className="grid grid-cols-[repeat(7,minmax(33px,auto))] text-center">
         {WEEKDAYS.map((day, index) => (
           <Day key={index} $isWeekend={[5, 6].includes(index)}>
             {day}
