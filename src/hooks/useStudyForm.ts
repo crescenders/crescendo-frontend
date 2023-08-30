@@ -6,9 +6,9 @@ type StudyFormType = {
   post_title: string;
   post_content: string;
   study_name: string;
-  start_date: Date | null;
-  end_date: Date | null;
-  deadline: Date | null;
+  start_date: TDate;
+  end_date: TDate;
+  deadline: TDate;
   tags: string[];
   categories: string[];
   member_limit: number;
@@ -34,7 +34,7 @@ const useStudyForm = () => {
     return (inputRef.current[key] = el);
   };
 
-  const handleDateChange = (key: string, value: Date | null) => {
+  const handleDateChange = (key: string, value: TDate) => {
     setStudyForm((prev) => {
       return {
         ...prev,

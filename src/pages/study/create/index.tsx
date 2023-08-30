@@ -127,7 +127,7 @@ const CreateStudy = () => {
             <SelectDateBox
               selectedDate={studyForm.deadline}
               setSelectedDate={(date) =>
-                handleDateChange('deadline', date as Date | null)
+                handleDateChange('deadline', date as TDate)
               }
               error={errorMessage.deadline}
             />
@@ -136,11 +136,11 @@ const CreateStudy = () => {
               minDate={studyForm.deadline}
               selectedDate={studyForm.start_date}
               setSelectedDate={(date) =>
-                handleDateChange('start_date', date as Date)
+                handleDateChange('start_date', date as TDate)
               }
               selectedEndDate={studyForm.end_date}
               setSelectedEndDate={(date) =>
-                handleDateChange('end_date', date as Date | null)
+                handleDateChange('end_date', date as TDate)
               }
               error={errorMessage.end_date}
             />

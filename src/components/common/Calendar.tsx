@@ -15,12 +15,12 @@ import Image from 'next/image';
 import { WEEKDAYS } from '@constants/index';
 
 export type CalendarProps = {
-  minDate?: Date | null;
+  minDate?: TDate;
   selectRange?: boolean;
-  selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
-  selectedEndDate?: Date | null;
-  setSelectedEndDate?: React.Dispatch<React.SetStateAction<Date | null>>;
+  selectedDate: TDate;
+  setSelectedDate: React.Dispatch<React.SetStateAction<TDate>>;
+  selectedEndDate?: TDate;
+  setSelectedEndDate?: React.Dispatch<React.SetStateAction<TDate>>;
 };
 
 type StyledDayProps = {
