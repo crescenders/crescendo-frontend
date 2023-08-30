@@ -1,7 +1,11 @@
 import '@styles/globals.css';
 import type { AppProps } from 'next/app';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  Hydrate,
+} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import useIsWorker from '@hooks/useIsWorker';

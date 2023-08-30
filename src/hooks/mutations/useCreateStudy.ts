@@ -1,6 +1,6 @@
 import studyApi from '@apis/study/studyApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 
 export const useCreateStudy = () => {
   const { showToast } = useToast();

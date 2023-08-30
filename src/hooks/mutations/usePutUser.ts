@@ -1,7 +1,7 @@
 import userApi from '@apis/user/userApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from 'react-query';
 import { userState } from '@recoil/auth';
+import { useMutation } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
 
 export const usePutUser = () => {
