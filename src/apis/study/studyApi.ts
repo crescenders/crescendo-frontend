@@ -4,13 +4,13 @@ const studyApi = {
   getStudyByKeyword: async (
     keyword: string,
     page: number,
-  ): Promise<Study[]> => {
+  ): Promise<StudyList[]> => {
     const { data } = await instance.get(
       `/api/v1/studies?keyword=${keyword}&page=${page}`,
     );
     return data;
   },
-  createStudy: async (formData: FormData): Promise<Study> => {
+  createStudy: async (formData: FormData): Promise<void> => {
     const { data } = await instance.post(
       '/api/v1/studygroup/studies',
       formData,
@@ -18,6 +18,10 @@ const studyApi = {
         headers: { 'Content-Type': 'multipart/form-data' },
       },
     );
+    return data;
+  },
+  getStudyDetail: async (id: number): Promise<StudyDetail> => {
+    const { data } = await instance.get(`/api/v1/studygroup/studies/${id}/`);
     return data;
   },
 };

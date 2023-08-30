@@ -40,7 +40,7 @@ const StudyList = () => {
             endDate,
           }) => (
             <Card
-              path="/"
+              path={`/study/detail/${id}`}
               key={id}
               size="big"
               title={title}
