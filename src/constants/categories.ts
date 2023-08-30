@@ -34,4 +34,9 @@ export const categories = [
     emoji: '/svg/category/interview.svg',
     name: 'Interview',
   },
+  {
+    id: 8,
+    emoji: '',
+    name: 'Etc',
+  },
 ] as const;

@@ -7,7 +7,7 @@ const Loader = ({ isFull }: LoaderProps) => {
     <div
       className={`${
         isFull && 'fixed left-0 top-0 z-[999] h-screen w-screen'
-      } flex items-center justify-center gap-x-2`}
+      } flex h-full w-full items-center justify-center gap-x-2`}
     >
       <div className="h-3 w-3 animate-bounce1 rounded-full bg-brand" />
       <div className="h-3 w-3 animate-bounce2 rounded-full bg-brand" />
