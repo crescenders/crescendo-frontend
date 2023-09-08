@@ -3,6 +3,7 @@ import { formatUTC } from '@utils/formatUTC';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
+import getDiffDate from 'utils/getDiffDate';
 
 const StudyDetailContent = () => {
   const router = useRouter();
@@ -51,9 +52,14 @@ const StudyDetailContent = () => {
                 {study?.start_date} ~ {study?.end_date}
               </BoldText>
             </div>
-            <div className="flex gap-x-1.5">
+            <div className="flex items-center gap-x-1.5">
               <GrayText>모집 기간</GrayText>
               <BoldText>{study?.deadline}</BoldText>
+              <span className="text-13 font-bold text-status-error">
+                {getDiffDate(study?.deadline as string)
+                  ? `(D-${getDiffDate(study?.deadline as string)})`
+                  : '마감'}
+              </span>
             </div>
           </div>
         </InfoTextContainer>
