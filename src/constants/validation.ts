@@ -1,6 +1,10 @@
 export const REGEX = {
   text: /^[가-힣a-zA-Z]+$/,
   file: /(.*?)\.(jpg|jpeg|png)$/,
+  code: /<pre((?!(<\/pre>))[\s\S])*<\/pre>/gi,
+  htmlTag: /<[^>]*>?/gi,
+  script:
+    /(&lt;script&gt;|&lt;script)((?!(&lt;\/script&gt;|\/&gt;)).)*(&lt;\/script&gt;|\/&gt;)/i,
 } as const;
 
 export const ERROR_MESSAGE = {
@@ -11,4 +15,5 @@ export const ERROR_MESSAGE = {
   extention: '확장자를 확인해주세요. (가능한 확장자: .jpg, .jpeg, .png)',
   maxSize: '업로드 가능한 최대 이미지 크기는 5MB입니다.',
   maxLength: '이미지는 한 장만 업로드 가능합니다.',
+  postContent: '사용할 수 없는 문자열(<script> 태그)이 포함되어있습니다.',
 } as const;
