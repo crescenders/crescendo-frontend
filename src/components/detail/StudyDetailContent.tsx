@@ -1,36 +1,48 @@
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import { formatUTC } from '@utils/formatUTC';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 
 const StudyDetailContent = () => {
   const router = useRouter();
-  const id = Number(router.query.id);
+  const id = String(router.query.id);
   const { data: study } = useGetStudyDetail(id);
+
+  console.log(study);
 
   return (
     <div className="mb-12 w-full px-[200px]">
       <div className="mt-[50px] flex flex-col gap-y-2">
-        <Title>{study?.posts.title}</Title>
+        <Title>{study?.post_title}</Title>
         <div className="flex gap-x-1">
-          <BoldText>{study?.posts.author}</BoldText>
+          <BoldText>{study?.leaders.map((v) => v.username)}</BoldText>
           <span>(user@email.com)</span>
         </div>
         <div className="flex justify-between">
           <span className="text-text-secondary">
-            작성일 {formatUTC(study?.posts.created_at as string)}
+            작성일 {formatUTC(study?.created_at as string)}
           </span>
           <div className="flex cursor-pointer gap-x-1 text-14">
             <span>수정 /</span>
             <span>삭제</span>
           </div>
         </div>
-        <ImageBox>{/* 이미지 요소 */}</ImageBox>
+        <ImageBox>
+          {
+            <Image
+              src={study?.head_image as string}
+              fill
+              alt="head-image"
+              className="object-contain"
+            />
+          }
+        </ImageBox>
         <InfoTextContainer>
           <div className="flex flex-col gap-y-4">
             <div className="flex gap-x-1.5 text-18">
               <GrayText>스터디명</GrayText>
-              <BoldText>{study?.posts.study_group}</BoldText>
+              <BoldText>{study?.study_name}</BoldText>
             </div>
             <GrayText>카테고리</GrayText>
           </div>
@@ -43,7 +55,7 @@ const StudyDetailContent = () => {
             </div>
             <div className="flex gap-x-1.5">
               <GrayText>모집 기간</GrayText>
-              <BoldText>{study?.posts.deadline}</BoldText>
+              <BoldText>{study?.deadline}</BoldText>
             </div>
           </div>
         </InfoTextContainer>
@@ -61,7 +73,12 @@ const StudyDetailContent = () => {
           </ul>
         </TagContainer>
         <DivisionBar />
-        <DescriptionTitle>스터디 소개</DescriptionTitle>
+        <ContentTitle>스터디 소개</ContentTitle>
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: study?.post_content as TrustedHTML,
+          }}
+        />
       </div>
     </div>
   );
@@ -87,6 +104,7 @@ const CategoryBox = tw.li`
 `;
 
 const ImageBox = tw.div`
+  relative
   mt-2
   h-[254px]
   w-full
@@ -112,7 +130,7 @@ const DivisionBar = tw.span`
   opacity-30
 `;
 
-const DescriptionTitle = tw.h2`
+const ContentTitle = tw.h2`
   text-text-secondary
   text-20
   font-bold
@@ -149,4 +167,9 @@ const Tag = tw.li`
   border-[#C8B4FF]
   px-3
   py-1
+`;
+
+const Content = tw.span`
+  mt-3
+  whitespace-pre-line
 `;
