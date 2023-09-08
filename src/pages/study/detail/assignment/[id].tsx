@@ -50,7 +50,7 @@ const ViewAssiginment = () => {
   let progress = 20;
 
   const router = useRouter();
-  const { id } = router.query;
+  const id = String(router.query.id);
   return (
     <PageLayout>
       <div className="flex items-center mt-[105px] flex-col">

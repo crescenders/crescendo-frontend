@@ -12,27 +12,14 @@ type StudyList = {
   isCanApply: boolean;
 };
 
-type StudyDetail = {
-  uuid: string;
-  name: string;
-  user_limit: number;
+type StudyDetail = TStudy & {
+  created_at: string;
+  updated_at: string;
+  post_content: string;
   start_date: string;
   end_date: string;
-  posts: {
-    id: number;
-    created_at: string;
-    updated_at: string;
-    uuid: string;
-    head_image: string;
-    title: string;
-    content: string;
-    deadline: string;
-    study_group: string;
-    author: string;
-  };
-  categories: string[];
-  tags: string[];
-  studygroup_members: string[];
+  deadline: string;
+  _links: TLink[];
 };
 
 type Study = {

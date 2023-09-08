@@ -9,7 +9,7 @@ import tw from 'tailwind-styled-components';
 
 const StudyDetail = () => {
   const router = useRouter();
-  const id = Number(router.query.id);
+  const id = String(router.query.id);
 
   return (
     <PageLayout>

@@ -20,7 +20,7 @@ const studyApi = {
     );
     return data;
   },
-  getStudyDetail: async (id: number): Promise<StudyDetail> => {
+  getStudyDetail: async (id: string): Promise<StudyDetail> => {
     const { data } = await instance.get(`/api/v1/studygroup/studies/${id}/`);
     return data;
   },
