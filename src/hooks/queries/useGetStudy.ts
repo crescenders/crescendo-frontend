@@ -17,7 +17,7 @@ export const useGetStudyByKeyword = (keyword: string) => {
   );
 };
 
-export const useGetStudyDetail = (id: number) => {
+export const useGetStudyDetail = (id: string) => {
   return useQuery(
     ['useGetStudyDetail', id],
     () => studyApi.getStudyDetail(id),
