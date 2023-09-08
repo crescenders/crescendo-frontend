@@ -14,6 +14,7 @@ import useStudyForm from '@hooks/useStudyForm';
 import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 import useToast from '@hooks/useToast';
 import { validateStudy } from '@utils/validate';
+import { ERROR_MESSAGE } from '@constants/validation';
 
 const CreateStudy = () => {
   const router = useRouter();
@@ -64,7 +65,7 @@ const CreateStudy = () => {
       showToast({
         type: 'fail',
         message: errorList.post_content.includes('script')
-          ? '입력 내용을 확인해주세요.'
+          ? ERROR_MESSAGE.postContent
           : '필수 항목을 모두 입력해주세요.',
       });
       return;
