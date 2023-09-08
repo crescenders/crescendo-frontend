@@ -5,5 +5,6 @@ import { getToken } from '@utils/token';
 export const useGetProfile = () => {
   return useQuery(['useGetProfile'], () => userApi.getUser(), {
     enabled: !!getToken().accessToken,
+    staleTime: Infinity,
   });
 };
