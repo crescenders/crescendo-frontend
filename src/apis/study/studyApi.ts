@@ -12,12 +12,16 @@ const studyApi = {
   },
   createStudy: async (formData: FormData): Promise<Study> => {
     const { data } = await instance.post(
-      '/api/v1/studygroup/studies',
+      '/api/v1/studygroup/studies/',
       formData,
       {
         headers: { 'Content-Type': 'multipart/form-data' },
       },
     );
+    return data;
+  },
+  getCategories: async (): Promise<Category[]> => {
+    const { data } = await instance.get('/api/v1/studygroup/categories/');
     return data;
   },
   getStudyDetail: async (id: string): Promise<StudyDetail> => {
