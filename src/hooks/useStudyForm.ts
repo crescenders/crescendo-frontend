@@ -27,7 +27,7 @@ const useStudyForm = () => {
     deadline: null,
     tags: [],
     categories: [],
-    member_limit: 1,
+    member_limit: 2,
   });
 
   const getInputRef = (el: HTMLInputElement | any) => {

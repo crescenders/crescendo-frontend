@@ -5,33 +5,33 @@ const Slider = forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
 >(({ ...rest }, ref) => {
-  const [memberLimit, setMemberLimit] = useState<string>('1');
+  const [memberLimit, setMemberLimit] = useState<string>('2');
 
   return (
     <div className="relative h-[50px] w-[315px]">
       <div className="absolute left-[7px] top-2 h-2 w-full rounded-full border border-text-primary bg-line-primary" />
       <div
-        style={{ width: `${memberLimit}0%` }}
+        style={{ width: `calc(100%/9*${+memberLimit - 1})` }}
         className="absolute left-[7px] top-2 h-2 rounded-full bg-brand after:block after:h-2 after:w-2 after:rounded-full after:bg-white after:ring-[7px] after:ring-brand"
       />
       <RangeInput
         ref={ref}
         type="range"
-        defaultValue="1"
-        min="1"
+        defaultValue="2"
+        min="2"
         step="1"
         onInput={(e) => setMemberLimit(e.currentTarget.value)}
         {...rest}
       />
       <ul className="absolute left-[10px] top-7 flex w-[310px] justify-between">
-        {Array.from({ length: 11 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <li
             key={index}
             className={`${
-              !index || index === +memberLimit ? 'visible' : 'invisible'
+              !index || index + 1 === +memberLimit ? 'visible' : 'invisible'
             } flex w-0 justify-center text-text-primary`}
           >
-            {index}
+            {index + 1}
           </li>
         ))}
       </ul>
