@@ -15,6 +15,7 @@ import { useGetCategories } from '@hooks/queries/useGetCategories';
 import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 import useToast from '@hooks/useToast';
 import { validateStudy } from '@utils/validate';
+import { ERROR_MESSAGE } from '@constants/validation';
 
 const CreateStudy = () => {
   const router = useRouter();
@@ -52,23 +53,26 @@ const CreateStudy = () => {
   const handleCreateStudy = () => {
     const formData = new FormData();
     const { head_image, ...newStudy } = handleSubmitInput();
-    const emptyList = errorMessage;
+    const errorList = errorMessage;
 
     if (head_image) formData.append('head_image', head_image[0]);
 
     for (const key in newStudy) {
-      if (key !== 'tags') emptyList[key] = validateStudy(newStudy[key]);
+      if (key !== 'tags') errorList[key] = validateStudy(newStudy[key]);
       if (Array.isArray(newStudy[key])) {
         newStudy[key].map((item: string) => {
           formData.append(key, item);
         });
       } else formData.append(key, newStudy[key]);
     }
-    if (Object.values(emptyList).join('').length) {
-      setErrorMessage({ ...emptyList });
+
+    if (Object.values(errorList).join('').length) {
+      setErrorMessage({ ...errorList });
       showToast({
         type: 'fail',
-        message: '필수 항목을 모두 입력해주세요.',
+        message: errorList.post_content.includes('script')
+          ? ERROR_MESSAGE.postContent
+          : '필수 항목을 모두 입력해주세요.',
       });
       return;
     }

@@ -21,6 +21,11 @@ export const validateStudy = <T>(input: T): string => {
   if (typeof input === 'object') {
     if (input === null) return ERROR_MESSAGE.required;
     if (Array.isArray(input) && !input.length) return ERROR_MESSAGE.required;
-  } else if (!input) return ERROR_MESSAGE.required;
+  } else if (typeof input === 'string') {
+    if (!input || !input.replace(REGEX.htmlTag, ''))
+      return ERROR_MESSAGE.required;
+    if (REGEX.script.test(input.replace(REGEX.code, '')))
+      return ERROR_MESSAGE.postContent;
+  }
   return '';
 };
