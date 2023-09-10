@@ -22,20 +22,7 @@ type StudyDetail = TStudy & {
   _links: TLink[];
 };
 
-type Study = {
-  head_image?: string;
-  leaders: [
-    {
-      username: string;
-      _links: string;
-    },
-  ];
-  post_title: string;
-  study_name: string;
-  until_deadline: number;
-  is_closed: boolean;
-  tags: string[];
-  categories: string[];
-  current_member_count: number;
-  member_limit: number;
+type CreateStudy = TStudy & {
+  uuid: string;
+  _links: TLink[];
 };

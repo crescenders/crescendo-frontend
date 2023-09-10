@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
+import { format, isDate } from 'date-fns';
 
 type StudyFormType = {
   head_image: File | null;
@@ -26,7 +27,7 @@ const useStudyForm = () => {
     deadline: null,
     tags: [],
     categories: [],
-    member_limit: 1,
+    member_limit: 2,
   });
 
   const getInputRef = (el: HTMLInputElement | any) => {
@@ -53,13 +54,16 @@ const useStudyForm = () => {
   };
 
   const handleSubmitInput = () => {
-    const submitData = studyForm;
+    const submitData = { ...studyForm };
 
     Object.keys(inputRef.current).map((key) => {
       if (key === 'head_image') submitData[key] = inputRef.current[key].files;
       else submitData[key] = inputRef.current[key].value;
     });
-    setStudyForm(submitData);
+    Object.keys(submitData).map((key) => {
+      if (isDate(submitData[key]))
+        submitData[key] = format(submitData[key], 'yyyy-MM-dd');
+    });
 
     return submitData;
   };
