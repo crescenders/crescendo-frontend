@@ -79,6 +79,7 @@ const StudyDetailContent = () => {
         <DivisionBar />
         <ContentTitle>스터디 소개</ContentTitle>
         <Content
+          className="prose"
           dangerouslySetInnerHTML={{
             __html: study?.post_content as TrustedHTML,
           }}
@@ -136,7 +137,7 @@ const DivisionBar = tw.span`
 
 const ContentTitle = tw.h2`
   text-text-secondary
-  text-20
+  text-[20px]
   font-bold
 `;
 
@@ -174,6 +175,6 @@ const Tag = tw.li`
 `;
 
 const Content = tw.span`
-  mt-3
+  mt-5
   whitespace-pre-line
 `;
