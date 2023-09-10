@@ -26,7 +26,3 @@ type Study = TStudy & {
   uuid: string;
   _links: TLink[];
 };
-
-type Category = {
-  name: string;
-};

@@ -20,10 +20,6 @@ const studyApi = {
     );
     return data;
   },
-  getCategories: async (): Promise<Category[]> => {
-    const { data } = await instance.get('/api/v1/studygroup/categories/');
-    return data;
-  },
   getStudyDetail: async (id: string): Promise<StudyDetail> => {
     const { data } = await instance.get(`/api/v1/studygroup/studies/${id}/`);
     return data;
