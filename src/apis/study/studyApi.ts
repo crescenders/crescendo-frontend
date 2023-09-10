@@ -10,7 +10,7 @@ const studyApi = {
     );
     return data;
   },
-  createStudy: async (formData: FormData): Promise<Study> => {
+  createStudy: async (formData: FormData): Promise<CreateStudy> => {
     const { data } = await instance.post(
       '/api/v1/studygroup/studies/',
       formData,

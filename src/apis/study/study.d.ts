@@ -22,7 +22,7 @@ type StudyDetail = TStudy & {
   _links: TLink[];
 };
 
-type Study = TStudy & {
+type CreateStudy = TStudy & {
   uuid: string;
   _links: TLink[];
 };
