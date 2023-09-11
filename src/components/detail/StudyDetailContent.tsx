@@ -1,5 +1,6 @@
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import { formatUTC } from '@utils/formatUTC';
+import DOMPurify from 'dompurify';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
@@ -81,7 +82,7 @@ const StudyDetailContent = () => {
         <Content
           className="prose"
           dangerouslySetInnerHTML={{
-            __html: study?.post_content as TrustedHTML,
+            __html: DOMPurify.sanitize(study?.post_content as string),
           }}
         />
       </div>
