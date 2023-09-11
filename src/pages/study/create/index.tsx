@@ -11,15 +11,14 @@ import TextEditor from '@components/editor/TextEditor';
 import Loader from '@components/common/Loader';
 import { REQUIRED } from '@constants/index';
 import useStudyForm from '@hooks/useStudyForm';
-import { useGetCategories } from '@hooks/queries/useGetCategories';
 import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 import useToast from '@hooks/useToast';
 import { validateStudy } from '@utils/validate';
 import { ERROR_MESSAGE } from '@constants/validation';
+import { categories } from '@constants/categories';
 
 const CreateStudy = () => {
   const router = useRouter();
-  const { data: categories } = useGetCategories();
   const { mutate: createStudy, isLoading } = useCreateStudy();
   const { showToast } = useToast();
   const {
@@ -94,20 +93,19 @@ const CreateStudy = () => {
                 해당하는 카테고리를 모두 선택해주세요.
               </p>
               <ul className="flex flex-wrap gap-3">
-                {categories &&
-                  categories.map(({ name }, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleCategoryList(name)}
-                      className={`${
-                        studyForm.categories.includes(name)
-                          ? 'border-[#8266FF] text-[#8266FF]'
-                          : 'border-[#EAEAEB] text-black'
-                      } cursor-pointer select-none rounded-lg border  px-4 py-2 text-[14px]`}
-                    >
-                      {name}
-                    </li>
-                  ))}
+                {categories.map(({ id, name }) => (
+                  <li
+                    key={id}
+                    onClick={() => handleCategoryList(name)}
+                    className={`${
+                      studyForm.categories.includes(name)
+                        ? 'border-[#8266FF] text-[#8266FF]'
+                        : 'border-[#EAEAEB] text-black'
+                    } cursor-pointer select-none rounded-lg border  px-4 py-2 text-[14px]`}
+                  >
+                    {name}
+                  </li>
+                ))}
               </ul>
               <span className="h-2 w-full text-12 text-status-error">
                 {errorMessage.categories}
