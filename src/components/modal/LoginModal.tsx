@@ -10,6 +10,7 @@ import { useSetRecoilState } from 'recoil';
 import { userState } from '@recoil/auth';
 import useModal from '@hooks/useModal';
 import userApi from '@apis/user/userApi';
+import { setCookie } from '@utils/cookie';
 
 type CredentialResponse = {
   clientId: string;
@@ -34,7 +35,8 @@ const LoginModal = () => {
     const { access, refresh }: Token = await authApi.googleLogin(credential);
     const token = { access, refresh };
     if (token) {
-      setToken({ accessToken: access, refreshToken: refresh });
+      setToken({ accessToken: access });
+      setCookie('refreshToken', refresh);
       const { username } = await userApi.getUser();
       setUserInfo({ isLogin: true, username });
       closeModal();

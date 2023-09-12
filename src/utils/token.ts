@@ -6,7 +6,6 @@ import {
 
 type UserToken = {
   accessToken: string | undefined;
-  refreshToken: string | undefined;
 };
 
 const TOKEN_KEY = '@token';
@@ -14,7 +13,6 @@ const TOKEN_KEY = '@token';
 export const getToken = (): UserToken => {
   const token = getLocalStorage<UserToken>(TOKEN_KEY, {
     accessToken: undefined,
-    refreshToken: undefined,
   });
   return token;
 };
