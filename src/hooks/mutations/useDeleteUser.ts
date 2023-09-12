@@ -1,5 +1,5 @@
 import userApi from '@apis/user/userApi';
-import useDeleteToken from '@hooks/useDeleteToken';
+import useDeleteToken from '@hooks/useUser';
 import useToast from '@hooks/useToast';
 import { useMutation } from '@tanstack/react-query';
 
