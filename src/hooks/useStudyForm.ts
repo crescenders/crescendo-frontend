@@ -1,15 +1,14 @@
 import { useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
-import { format, isDate } from 'date-fns';
 
-type StudyFormType = {
+export type StudyFormType = {
   head_image: File | null;
   post_title: string;
   post_content: string;
   study_name: string;
-  start_date: TDate;
-  end_date: TDate;
-  deadline: TDate;
+  start_date: string;
+  end_date: string;
+  deadline: string;
   tags: string[];
   categories: string[];
   member_limit: number;
@@ -22,9 +21,9 @@ const useStudyForm = () => {
     post_title: '',
     post_content: '',
     study_name: '',
-    start_date: null,
-    end_date: null,
-    deadline: null,
+    start_date: '',
+    end_date: '',
+    deadline: '',
     tags: [],
     categories: [],
     member_limit: 2,
@@ -35,10 +34,17 @@ const useStudyForm = () => {
     return (inputRef.current[key] = el);
   };
 
-  const handleDateChange = (key: string, value: TDate) => {
+  const handleDateChange = (key: string, value: string) => {
+    const isShouldResetRange =
+      key === 'deadline' && new Date(value) >= new Date(studyForm.start_date);
+
     setStudyForm((prev) => {
       return {
         ...prev,
+        ...(isShouldResetRange && {
+          start_date: '',
+          end_date: '',
+        }),
         [key]: value,
       };
     });
@@ -60,10 +66,7 @@ const useStudyForm = () => {
       if (key === 'head_image') submitData[key] = inputRef.current[key].files;
       else submitData[key] = inputRef.current[key].value;
     });
-    Object.keys(submitData).map((key) => {
-      if (isDate(submitData[key]))
-        submitData[key] = format(submitData[key], 'yyyy-MM-dd');
-    });
+    setStudyForm(submitData);
 
     return submitData;
   };

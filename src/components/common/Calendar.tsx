@@ -16,11 +16,10 @@ import { WEEKDAYS } from '@constants/index';
 
 export type CalendarProps = {
   minDate?: TDate;
-  selectRange?: boolean;
-  selectedDate: TDate;
-  setSelectedDate: React.Dispatch<React.SetStateAction<TDate>>;
-  selectedEndDate?: TDate;
-  setSelectedEndDate?: React.Dispatch<React.SetStateAction<TDate>>;
+  date: TDate;
+  setDate: React.Dispatch<React.SetStateAction<TDate>>;
+  optionalDate?: TDate;
+  setOptionalDate?: React.Dispatch<React.SetStateAction<TDate>>;
 };
 
 type StyledDayProps = {
@@ -33,14 +32,13 @@ type StyledDayProps = {
 
 const Calendar = ({
   minDate,
-  selectRange,
-  selectedDate,
-  setSelectedDate,
-  selectedEndDate,
-  setSelectedEndDate,
+  date,
+  setDate,
+  optionalDate,
+  setOptionalDate,
 }: CalendarProps) => {
   const today = startOfToday();
-  const [viewDate, setViewDate] = useState<Date>(selectedDate || today);
+  const [viewDate, setViewDate] = useState<Date>(date || today);
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
   const firstDayOfMonth = startOfMonth(viewDate).getDay();
@@ -50,69 +48,66 @@ const Calendar = ({
     (_, index) => index + 1,
   );
 
-  const handleClickDate = (date: Date) => {
-    if (compareAsc(date, minDate || today) <= 0) return;
+  const handleClickDate = (clickedDate: Date) => {
+    if (compareAsc(clickedDate, minDate || today) <= 0) return;
 
-    setViewDate(date);
+    setViewDate(clickedDate);
 
-    if (!setSelectedEndDate) {
-      setSelectedDate(isSameDay(date, selectedDate || 0) ? null : date);
+    if (!setOptionalDate) {
+      setDate(isSameDay(clickedDate, date || 0) ? null : clickedDate);
       return;
     }
 
-    if (!selectedDate || (selectedDate && selectedEndDate)) {
-      setSelectedDate(date);
-      setSelectedEndDate(null);
+    if (!date || (date && optionalDate)) {
+      setDate(clickedDate);
+      setOptionalDate(null);
       return;
     }
 
-    if (isSameDay(date, selectedDate)) {
-      setSelectedDate(null);
-      setSelectedEndDate(null);
+    if (isSameDay(clickedDate, date)) {
+      setDate(null);
+      setOptionalDate(null);
       return;
     }
 
-    if (compareAsc(date, selectedDate) > 0) {
-      setSelectedEndDate(date);
+    if (compareAsc(clickedDate, date) > 0) {
+      setOptionalDate(clickedDate);
       return;
     }
 
-    setSelectedDate(date);
-    setSelectedEndDate(null);
+    setDate(clickedDate);
+    setOptionalDate(null);
   };
 
-  const isDateSelected = (date: Date) => {
-    if (selectedDate) {
-      if (selectedEndDate)
-        return date >= selectedDate && date <= selectedEndDate;
-
-      return isSameDay(date, selectedDate);
+  const isDateSelected = (targetDate: Date) => {
+    if (date) {
+      if (optionalDate) return targetDate >= date && targetDate <= optionalDate;
+      return isSameDay(targetDate, date);
     }
-
     return false;
   };
 
-  const getRoundedStyle = (date: Date) => {
+  const getRoundedStyle = (targetDate: Date) => {
     if (
-      !selectRange ||
-      !selectedEndDate ||
-      isSameDay(date, today) ||
-      (isSameDay(date, selectedDate || 0) && date.getDay() === 0) ||
-      (isSameDay(date, selectedEndDate) && date.getDay() === 1)
+      !setOptionalDate ||
+      !optionalDate ||
+      isSameDay(targetDate, today) ||
+      (isSameDay(targetDate, date || 0) && targetDate.getDay() === 0) ||
+      (isSameDay(targetDate, optionalDate) && targetDate.getDay() === 1)
     )
       return 'full';
 
     if (
-      isSameDay(date, selectedDate || 0) ||
-      isSameDay(date, startOfMonth(date)) ||
-      date.getDay() === 1
+      isSameDay(targetDate, date || 0) ||
+      isSameDay(targetDate, startOfMonth(targetDate)) ||
+      targetDate.getDay() === 1
     )
       return 'left';
 
     if (
-      isSameDay(date, selectedEndDate) ||
-      isSameDay(date, endOfMonth(date)) ||
-      date.getDay() === 0
+      isSameDay(targetDate, optionalDate) ||
+      isSameDay(targetDate, endOfMonth(targetDate)) ||
+      targetDate.getDay() === 0
     )
       return 'right';
   };
