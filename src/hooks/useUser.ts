@@ -1,12 +1,14 @@
 import { userState } from '@recoil/auth';
+import { deleteCookie } from '@utils/cookie';
 import { deleteToken } from '@utils/token';
 import { useSetRecoilState } from 'recoil';
 
-const useDeleteToken = () => {
+const useUser = () => {
   const setUserState = useSetRecoilState(userState);
 
   const initUserState = () => {
     deleteToken();
+    deleteCookie('refreshToken');
     setUserState({
       isLogin: false,
       username: '',
@@ -16,4 +18,4 @@ const useDeleteToken = () => {
   return { initUserState };
 };
 
-export default useDeleteToken;
+export default useUser;
