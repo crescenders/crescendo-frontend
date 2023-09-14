@@ -4,7 +4,6 @@ import NavigateList from '@components/common/NavigateList';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
-import useIsMounted from '@hooks/useIsMounted';
 import useModal from '@hooks/useModal';
 import { NAVIGATE_LIST } from '@constants/index';
 import Loader from '@components/common/Loader';
@@ -12,12 +11,9 @@ import Loader from '@components/common/Loader';
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
 const Header = () => {
-  const isMounted = useIsMounted();
   const { isLogin, username } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
-
-  if (!isMounted) return null;
 
   return (
     <header className="fixed z-[900] flex h-[70px] w-full max-w-[1024px] items-center justify-between bg-white px-7">
