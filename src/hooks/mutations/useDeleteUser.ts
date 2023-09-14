@@ -1,11 +1,11 @@
 import userApi from '@apis/user/userApi';
-import useDeleteToken from '@hooks/useUser';
+import useUser from '@hooks/useUser';
 import useToast from '@hooks/useToast';
 import { useMutation } from '@tanstack/react-query';
 
 export const useDeleteUser = () => {
   const { showToast } = useToast();
-  const { initUserState } = useDeleteToken();
+  const { initUserState } = useUser();
 
   return useMutation(() => userApi.deleteUser(), {
     onSuccess: () => {

@@ -1,4 +1,4 @@
-import useDeleteToken from '@hooks/useUser';
+import useUser from '@hooks/useUser';
 import Link from 'next/link';
 
 type NavigateListProps = {
@@ -7,7 +7,7 @@ type NavigateListProps = {
 };
 
 const NavigateList = ({ text, path }: NavigateListProps) => {
-  const { initUserState } = useDeleteToken();
+  const { initUserState } = useUser();
 
   const handleLogout = () => {
     if (text === '로그아웃') {
