@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 
 export type StudyFormType = {
-  head_image: File | null;
+  head_image?: File | null;
   post_title: string;
   post_content: string;
   study_name: string;
@@ -14,7 +14,7 @@ export type StudyFormType = {
   member_limit: number;
 };
 
-const useStudyForm = () => {
+const useStudyForm = (initialStudy?: StudyDetail) => {
   const inputRef = useRef<(HTMLInputElement | ReactQuill)[]>([]);
   const [studyForm, setStudyForm] = useState<StudyFormType>({
     head_image: null,
@@ -28,6 +28,18 @@ const useStudyForm = () => {
     categories: [],
     member_limit: 2,
   });
+
+  const initStudyForm = () => {
+    if (!initialStudy) return;
+    const study = { ...studyForm };
+
+    for (const key in studyForm) {
+      if (inputRef.current[key] && key !== 'head_image')
+        inputRef.current[key].value = initialStudy[key];
+      study[key] = initialStudy[key];
+    }
+    setStudyForm(study);
+  };
 
   const getInputRef = (el: HTMLInputElement | any) => {
     const key = el?.name || 'post_content';
@@ -59,20 +71,26 @@ const useStudyForm = () => {
     });
   };
 
+  const getSubmitImage = (image: HTMLInputElement) => {
+    if (image.files?.length) return image.files[0];
+    if (initialStudy?.head_image !== image.src) return null;
+  };
+
   const handleSubmitInput = () => {
     const submitData = { ...studyForm };
 
     Object.keys(inputRef.current).map((key) => {
-      if (key === 'head_image') submitData[key] = inputRef.current[key].files;
+      if (key === 'head_image')
+        submitData[key] = getSubmitImage(inputRef.current[key]);
       else submitData[key] = inputRef.current[key].value;
     });
     setStudyForm(submitData);
-
     return submitData;
   };
 
   return {
     studyForm,
+    initStudyForm,
     getInputRef,
     handleDateChange,
     handleListChange,
