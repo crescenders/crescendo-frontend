@@ -24,6 +24,19 @@ const studyApi = {
     const { data } = await instance.get(`/api/v1/studygroup/studies/${id}/`);
     return data;
   },
+  editStudy: async (id: string, formData: FormData): Promise<StudyDetail> => {
+    const { data } = await instance.put(
+      `/api/v1/studygroup/studies/${id}/`,
+      formData,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      },
+    );
+    return data;
+  },
+  deleteStudy: async (id: string): Promise<void> => {
+    return await instance.delete(`/api/v1/studygroup/studies/${id}/`);
+  },
 };
 
 export default studyApi;
