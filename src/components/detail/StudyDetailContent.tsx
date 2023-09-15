@@ -1,7 +1,9 @@
+import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import { formatUTC } from '@utils/formatUTC';
 import DOMPurify from 'dompurify';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 import getDiffDate from 'utils/getDiffDate';
@@ -10,6 +12,7 @@ const StudyDetailContent = () => {
   const router = useRouter();
   const id = String(router.query.id);
   const { data: study } = useGetStudyDetail(id);
+  const { mutate: deleteStudy } = useDeleteStudy();
 
   return (
     <div className="mb-12 w-full px-[200px]">
@@ -24,8 +27,17 @@ const StudyDetailContent = () => {
             작성일 {formatUTC(study?.created_at as string)}
           </span>
           <div className="flex cursor-pointer gap-x-1 text-14">
-            <span>수정 /</span>
-            <span>삭제</span>
+            <span>
+              <Link href={`/study/detail/edit/${id}`}>수정</Link> /
+            </span>
+            <span
+              onClick={() => {
+                deleteStudy(id);
+                router.replace(`/`);
+              }}
+            >
+              삭제
+            </span>
           </div>
         </div>
         <ImageBox>
