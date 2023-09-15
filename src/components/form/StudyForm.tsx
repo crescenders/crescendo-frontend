@@ -50,9 +50,12 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
     handleListChange('categories', [...studyForm.categories, clickedCategory]);
   };
 
+  const handleEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter') e.preventDefault();
+  };
+
   const handleSubmitStudy = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData();
     const { head_image, ...newStudy } = handleSubmitInput();
     const errorList = errorMessage;
@@ -129,6 +132,7 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
         variant="large"
         label="제목을 입력해주세요."
         ref={getInputRef}
+        onKeyDown={handleEnterKeyDown}
         error={errorMessage.post_title}
       />
       <Input
@@ -138,6 +142,7 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
         variant="large"
         label="스터디명을 입력해주세요."
         ref={getInputRef}
+        onKeyDown={handleEnterKeyDown}
         error={errorMessage.study_name}
       />
       <TagInput setTagList={handleListChange} tagList={studyForm.tags} />

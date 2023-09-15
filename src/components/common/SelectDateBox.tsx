@@ -53,6 +53,7 @@ const SelectDateBox = ({
       </div>
 
       <SelectBoxWrapper
+        type="button"
         onClick={handleClickSelectBox}
         className={`${isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'} z-20`}
       >
