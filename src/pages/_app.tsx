@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
 import useIsWorker from '@hooks/useIsWorker';
+import useIsMounted from '@hooks/useIsMounted';
 
 declare global {
   interface Window {
@@ -34,8 +35,9 @@ RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component, pageProps }: AppProps) {
   const { shouldRender } = useIsWorker();
+  const isMounted = useIsMounted();
 
-  if (!shouldRender) return null;
+  if (!shouldRender || !isMounted) return null;
 
   return (
     <RecoilRoot>
