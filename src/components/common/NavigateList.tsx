@@ -1,4 +1,4 @@
-import useDeleteToken from '@hooks/useDeleteToken';
+import useUser from '@hooks/useUser';
 import Link from 'next/link';
 
 type NavigateListProps = {
@@ -7,7 +7,7 @@ type NavigateListProps = {
 };
 
 const NavigateList = ({ text, path }: NavigateListProps) => {
-  const { initUserState } = useDeleteToken();
+  const { initUserState } = useUser();
 
   const handleLogout = () => {
     if (text === '로그아웃') {
@@ -21,7 +21,7 @@ const NavigateList = ({ text, path }: NavigateListProps) => {
         className="flex h-[47px] items-center justify-center bg-white px-7"
         onClick={handleLogout}
       >
-        <span className="text-16 font-medium whitespace-nowrap hover:font-bold hover:text-brand">
+        <span className="whitespace-nowrap text-16 font-medium hover:font-bold hover:text-brand">
           {text}
         </span>
       </li>

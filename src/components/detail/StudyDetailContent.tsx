@@ -187,7 +187,6 @@ const Tag = tw.li`
   py-1
 `;
 
-const Content = tw.span`
-  mt-5
-  whitespace-pre-line
+const Content = tw.div`
+  mt-10
 `;

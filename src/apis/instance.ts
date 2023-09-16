@@ -2,6 +2,7 @@ import { CONFIG } from '@config';
 import { deleteToken, getToken, setToken } from '@utils/token';
 import axios from 'axios';
 import authApi from '@apis/auth/authApi';
+import { getCookie } from '@utils/cookie';
 
 const instance = axios.create({
   baseURL: CONFIG.BASE_URL,
@@ -9,7 +10,7 @@ const instance = axios.create({
 });
 
 const ReissuanceToken = async (): Promise<string | undefined> => {
-  const refreshToken = getToken().refreshToken;
+  const refreshToken = getCookie('refreshToken');
   if (refreshToken) {
     const res = await authApi.refreshToken(refreshToken);
     return res.access;
@@ -36,7 +37,7 @@ instance.interceptors.response.use(
     if (response?.status === 401) {
       const accessToken = await ReissuanceToken();
       if (accessToken) {
-        setToken({ accessToken, refreshToken: getToken().refreshToken });
+        setToken({ accessToken });
         return instance.request(originalRequest);
       } else {
         alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
