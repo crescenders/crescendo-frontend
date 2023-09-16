@@ -20,7 +20,7 @@ export default Layout;
 
 const LayoutWrapper = tw.div`
   flex
-  h-full
+  h-screen
   w-screen
   justify-center
   overflow-x-hidden
