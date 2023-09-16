@@ -4,7 +4,8 @@ import Button from '@components/common/Button';
 import { validateFile } from '@utils/validate';
 
 type UploadImageProps = {
-  defaultUrl: string;
+  defaultUrl?: string;
+  deleteImage: () => void;
 };
 
 type ImageType = {
@@ -13,7 +14,7 @@ type ImageType = {
 };
 
 const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
-  ({ defaultUrl }, ref) => {
+  ({ defaultUrl = '', deleteImage }, ref) => {
     const [image, setImage] = useState<ImageType>({
       file: null,
       url: defaultUrl,
@@ -87,6 +88,7 @@ const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
                   text="삭제"
                   className="h-[40px] w-[60px] bg-white text-black"
                   onClick={() => {
+                    deleteImage();
                     setImage({ file: null, url: '' });
                   }}
                 />

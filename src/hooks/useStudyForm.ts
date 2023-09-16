@@ -46,6 +46,10 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
     return (inputRef.current[key] = el);
   };
 
+  const handleDeleteImage = () => {
+    inputRef.current['head_image'].value = '';
+  };
+
   const handleDateChange = (key: string, value: string) => {
     const isShouldResetRange =
       key === 'deadline' && new Date(value) >= new Date(studyForm.start_date);
@@ -73,7 +77,7 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
 
   const getSubmitImage = (image: HTMLInputElement) => {
     if (image.files?.length) return image.files[0];
-    if (initialStudy?.head_image !== image.src) return null;
+    if (initialStudy?.head_image !== image.src) return new File([], '');
   };
 
   const handleSubmitInput = () => {
@@ -92,6 +96,7 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
     studyForm,
     initStudyForm,
     getInputRef,
+    handleDeleteImage,
     handleDateChange,
     handleListChange,
     handleSubmitInput,

@@ -25,6 +25,7 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
     studyForm,
     initStudyForm,
     getInputRef,
+    handleDeleteImage,
     handleDateChange,
     handleListChange,
     handleSubmitInput,
@@ -95,11 +96,8 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
     >
       <UploadImage
         ref={getInputRef}
-        defaultUrl={
-          study && !study.head_image.startsWith('https://picsum.photos')
-            ? study.head_image
-            : ''
-        }
+        deleteImage={handleDeleteImage}
+        defaultUrl={study?.head_image}
       />
       <div className="flex w-[550px] flex-col items-center justify-center gap-y-2">
         <p className="w-full text-left text-16 font-bold text-text-secondary">
@@ -185,7 +183,7 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
         </div>
         <TextEditor
           ref={getInputRef}
-          value={studyForm.post_content}
+          defaultValue={studyForm.post_content}
           id="text"
           className="h-[300px] w-[550px]"
           placeholder="스터디에 대해 소개해주세요!"
