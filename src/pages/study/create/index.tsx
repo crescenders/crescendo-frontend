@@ -14,7 +14,7 @@ const CreateStudy = () => {
       {isLoading ? (
         <Loader isFull />
       ) : (
-        <div className="mb-[40px] mt-[90px] flex items-center justify-center">
+        <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">
           <div className="flex flex-col items-center justify-center gap-[34px]">
             <StudyForm onSubmit={createStudy} />
             <div className="flex gap-3 self-end">
