@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 
 export type StudyFormType = {
-  head_image?: File | null;
+  head_image?: File | string;
   post_title: string;
   post_content: string;
   study_name: string;
@@ -17,7 +17,7 @@ export type StudyFormType = {
 const useStudyForm = (initialStudy?: StudyDetail) => {
   const inputRef = useRef<(HTMLInputElement | ReactQuill)[]>([]);
   const [studyForm, setStudyForm] = useState<StudyFormType>({
-    head_image: null,
+    head_image: '',
     post_title: '',
     post_content: '',
     study_name: '',
@@ -77,7 +77,7 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
 
   const getSubmitImage = (image: HTMLInputElement) => {
     if (image.files?.length) return image.files[0];
-    if (initialStudy?.head_image !== image.src) return new File([], '');
+    if (initialStudy?.head_image === image.src) return initialStudy.head_image;
   };
 
   const handleSubmitInput = () => {
