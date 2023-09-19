@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
 import PageLayout from '@components/common/PageLayout';
-import StudyForm from '@components/form/StudyForm';
 import Button from '@components/common/Button';
 import Loader from '@components/common/Loader';
-import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
+import StudyForm from '@components/form/StudyForm';
+import { useEditStudy } from '@hooks/mutations/useEditStudy';
 
-const CreateStudy = () => {
+const EditStudy = () => {
   const router = useRouter();
-  const { mutate: createStudy, isLoading } = useCreateStudy();
+  const id = String(router.query.id);
+  const { mutate: editStudy, isLoading } = useEditStudy();
 
   return (
     <PageLayout>
@@ -16,18 +17,21 @@ const CreateStudy = () => {
       ) : (
         <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">
           <div className="flex flex-col items-center justify-center gap-[34px]">
-            <StudyForm onSubmit={createStudy} />
+            <StudyForm
+              id={id}
+              onSubmit={(formData: FormData) => editStudy({ id, formData })}
+            />
             <div className="flex gap-3 self-end">
               <Button
                 isNormal
                 type="button"
                 text="취소"
                 className="h-[40px] w-[60px]"
-                onClick={() => router.back()}
+                onClick={() => router.replace(`/study/detail/${id}`)}
               />
               <Button
                 form="study"
-                text="글 등록"
+                text="글 수정"
                 className="h-[40px] w-[80px]"
               />
             </div>
@@ -38,4 +42,4 @@ const CreateStudy = () => {
   );
 };
 
-export default CreateStudy;
+export default EditStudy;

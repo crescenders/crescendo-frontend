@@ -4,22 +4,22 @@ import tw from 'tailwind-styled-components';
 const Slider = forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
->(({ ...rest }, ref) => {
-  const [memberLimit, setMemberLimit] = useState<string>('2');
+>(({ defaultValue = 2, ...rest }, ref) => {
+  const [memberLimit, setMemberLimit] = useState<string>('');
 
   return (
     <div className="relative h-[50px] w-[315px]">
       <div className="absolute left-[7px] top-2 h-2 w-full rounded-full border border-text-primary bg-line-primary" />
       <div
-        style={{ width: `calc(100%/9*${+memberLimit - 1})` }}
+        style={{ width: `calc(100%/9*${+(memberLimit || defaultValue) - 1})` }}
         className="absolute left-[7px] top-2 h-2 rounded-full bg-brand after:block after:h-2 after:w-2 after:rounded-full after:bg-white after:ring-[7px] after:ring-brand"
       />
       <RangeInput
         ref={ref}
         type="range"
-        defaultValue="2"
         min="2"
         step="1"
+        defaultValue={defaultValue}
         onInput={(e) => setMemberLimit(e.currentTarget.value)}
         {...rest}
       />
@@ -28,7 +28,9 @@ const Slider = forwardRef<
           <li
             key={index}
             className={`${
-              !index || index + 1 === +memberLimit ? 'visible' : 'invisible'
+              !index || index + 1 === +(memberLimit || defaultValue)
+                ? 'visible'
+                : 'invisible'
             } flex w-0 justify-center text-text-primary`}
           >
             {index + 1}

@@ -12,6 +12,7 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') e.preventDefault();
     if (
       e.currentTarget.value &&
       e.key === 'Enter' &&

@@ -1,31 +1,60 @@
-import { useState } from 'react';
-import Calendar, { CalendarProps } from '@components/common/Calendar';
-import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import Calendar from '@components/common/Calendar';
+import { format, startOfDay } from 'date-fns';
 import tw from 'tailwind-styled-components';
 import Image from 'next/image';
+
+type SelectDateBoxProps = {
+  minDate?: string;
+  selectedDate: string;
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
+  selectedEndDate?: string;
+  setSelectedEndDate?: React.Dispatch<React.SetStateAction<string>>;
+  error: string;
+};
 
 const SelectDateBox = ({
   error,
   minDate,
-  selectRange,
   selectedDate,
   setSelectedDate,
   selectedEndDate,
   setSelectedEndDate,
-}: CalendarProps & { error: string }) => {
+}: SelectDateBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [date, setDate] = useState<TDate>(null);
+  const [optionalDate, setOptionalDate] = useState<TDate>(null);
+
+  const handleClickSelectBox = () => {
+    setIsOpen((prev) => !prev);
+    if (isOpen) {
+      setSelectedDate(date ? format(date, 'yyyy-MM-dd') : '');
+      if (setSelectedEndDate)
+        setSelectedEndDate(
+          optionalDate ? format(optionalDate, 'yyyy-MM-dd') : '',
+        );
+    }
+  };
+
+  useEffect(() => {
+    setDate(selectedDate ? startOfDay(new Date(selectedDate)) : null);
+    setOptionalDate(
+      selectedEndDate ? startOfDay(new Date(selectedEndDate)) : null,
+    );
+  }, [selectedDate, selectedEndDate]);
 
   return (
     <div className="relative flex flex-col gap-[18px]">
       <div className="flex w-full flex-col gap-y-1">
         <div className="text-base font-bold">
-          {selectRange ? '스터디 기간' : '모집 마감 날짜'}
+          {setSelectedEndDate ? '스터디 기간' : '모집 마감 날짜'}
         </div>
         <span className="h-2 w-full text-12 text-status-error">{error}</span>
       </div>
 
       <SelectBoxWrapper
-        onClick={() => setIsOpen((prev) => !prev)}
+        type="button"
+        onClick={handleClickSelectBox}
         className={`${isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'} z-20`}
       >
         <Image
@@ -36,13 +65,8 @@ const SelectDateBox = ({
           className="cursor-pointer"
         />
         <div className="grow pt-[2px] text-left text-[13px]">
-          {selectedDate ? format(selectedDate, 'yyyy-MM-dd') : 'YYYY-MM-DD'}
-          {selectRange &&
-            ` ~ ${
-              selectedEndDate
-                ? format(selectedEndDate, 'yyyy-MM-dd')
-                : 'YYYY-MM-DD'
-            }`}
+          {selectedDate || 'YYYY-MM-DD'}
+          {setSelectedEndDate && ` ~ ${selectedEndDate || 'YYYY-MM-DD'}`}
         </div>
         <Image
           src={`/svg/arrow_down.svg`}
@@ -60,12 +84,10 @@ const SelectDateBox = ({
           }`}
         >
           <Calendar
-            minDate={minDate}
-            selectRange={selectRange}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            selectedEndDate={selectedEndDate}
-            setSelectedEndDate={setSelectedEndDate}
+            minDate={minDate ? new Date(minDate) : null}
+            date={date}
+            setDate={setDate}
+            {...(setSelectedEndDate && { optionalDate, setOptionalDate })}
           />
         </div>
       )}
