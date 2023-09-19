@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Input from '@components/common/Input';
 import SelectDateBox from '@components/common/SelectDateBox';
 import TagInput from '@components/common/TagInput';
@@ -83,10 +83,6 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
     }
     onSubmit(formData);
   };
-
-  useEffect(() => {
-    if (study) initStudyForm();
-  }, [study]);
 
   return (
     <form

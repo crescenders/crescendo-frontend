@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 
 export type StudyFormType = {
@@ -31,14 +31,16 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
 
   const initStudyForm = () => {
     if (!initialStudy) return;
-    const study = { ...studyForm };
-
     for (const key in studyForm) {
       if (inputRef.current[key] && key !== 'head_image')
         inputRef.current[key].value = initialStudy[key];
-      study[key] = initialStudy[key];
+      setStudyForm((prev) => {
+        return {
+          ...prev,
+          [key]: initialStudy[key],
+        };
+      });
     }
-    setStudyForm(study);
   };
 
   const getInputRef = (el: HTMLInputElement | any) => {
@@ -91,6 +93,10 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
     setStudyForm(submitData);
     return submitData;
   };
+
+  useEffect(() => {
+    initStudyForm();
+  }, []);
 
   return {
     studyForm,
