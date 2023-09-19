@@ -23,6 +23,7 @@ export const useGetStudyDetail = (id: string) => {
     () => studyApi.getStudyDetail(id),
     {
       enabled: !!id,
+      staleTime: 5 * 60 * 1000,
     },
   );
 };
