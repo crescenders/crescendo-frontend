@@ -1,5 +1,7 @@
+import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import useModal from '@hooks/useModal';
 import { formatUTC } from '@utils/formatUTC';
 import DOMPurify from 'dompurify';
 import Image from 'next/image';
@@ -11,6 +13,7 @@ import getDiffDate from 'utils/getDiffDate';
 const StudyDetailContent = () => {
   const router = useRouter();
   const id = String(router.query.id);
+  const { openModal } = useModal();
   const { data: study } = useGetStudyDetail(id);
   const { mutate: deleteStudy } = useDeleteStudy();
 
@@ -32,8 +35,17 @@ const StudyDetailContent = () => {
             </span>
             <span
               onClick={() => {
-                deleteStudy(id);
-                router.replace(`/`);
+                openModal(
+                  <DeleteModal
+                    handleClick={() => {
+                      deleteStudy(id);
+                      router.replace(`/`);
+                    }}
+                    title="스터디 삭제"
+                    firstText="삭제한 결과는 복구할 수 없어요."
+                    secondText="그래도 삭제를 진행하시겠어요?"
+                  />,
+                );
               }}
             >
               삭제
