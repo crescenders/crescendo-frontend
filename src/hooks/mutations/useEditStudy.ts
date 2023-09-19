@@ -17,7 +17,7 @@ export const useEditStudy = () => {
     ({ id, formData }: EditStudyParamType) => studyApi.editStudy(id, formData),
     {
       onSuccess: (_, { id }) => {
-        queryClient.invalidateQueries(['useGetStudyDetail']);
+        queryClient.invalidateQueries(['useGetStudyDetail', id]);
         router.replace(`/study/detail/${id}`);
         showToast({
           type: 'success',
