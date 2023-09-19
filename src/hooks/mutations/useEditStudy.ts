@@ -16,7 +16,7 @@ export const useEditStudy = () => {
     ({ id, formData }: EditStudyParamType) => studyApi.editStudy(id, formData),
     {
       onSuccess: (_, { id }) => {
-        router.push(`/study/detail/${id}`);
+        router.replace(`/study/detail/${id}`);
         showToast({
           type: 'success',
           message: '글을 수정했어요.',
