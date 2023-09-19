@@ -1,6 +1,6 @@
 import studyApi from '@apis/study/studyApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
 export type EditStudyParamType = {
@@ -11,11 +11,13 @@ export type EditStudyParamType = {
 export const useEditStudy = () => {
   const { showToast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   return useMutation(
     ({ id, formData }: EditStudyParamType) => studyApi.editStudy(id, formData),
     {
       onSuccess: (_, { id }) => {
+        queryClient.invalidateQueries(['useGetStudyDetail']);
         router.replace(`/study/detail/${id}`);
         showToast({
           type: 'success',
