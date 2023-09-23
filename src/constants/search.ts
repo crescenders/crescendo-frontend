@@ -1,8 +1,3 @@
-export type SelectListType = {
-  id: number;
-  name: SortType;
-};
-
 export type SortType = '최신순' | '마감순' | '모집중' | '모집완료';
 
 export type SortStateType = {
@@ -16,12 +11,14 @@ export const SORT_OBJ: SortStateType = {
   모집완료: false,
 };
 
-export const LEFT_SELECT_OPTION: SelectListType[] = [
-  { id: 1, name: '최신순' },
-  { id: 2, name: '마감순' },
+export const LEFT_SELECT_OPTION = [
+  { id: 1, name: '최신순', query: 'created_at' },
+  { id: 2, name: '마감순', query: 'deadline' },
 ];
 
-export const RIGHT_SELECT_OPTION: SelectListType[] = [
-  { id: 1, name: '모집중' },
-  { id: 2, name: '모집완료' },
+export const RIGHT_SELECT_OPTION = [
+  { id: 1, name: '모집중', query: 'false' },
+  { id: 2, name: '모집완료', query: 'false' },
 ];
+
+export type OptionsType = typeof LEFT_SELECT_OPTION;
