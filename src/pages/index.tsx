@@ -17,6 +17,12 @@ const Home = () => {
     setKeyword(e.target.value);
   };
 
+  const handleSearchClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (!(e.target instanceof HTMLImageElement) || !keyword) return;
+    if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
+    else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!(e.target instanceof HTMLInputElement) || !keyword) return;
     if (e.key === 'Enter') {
@@ -88,15 +94,14 @@ const Home = () => {
               placeholder="제목, 스터디명 또는 태그를 검색해주세요."
               className="h-[40px] w-[368px] rounded-xl bg-white py-[10px] pl-[12px] pr-[32px] focus:outline-none"
             />
-            <Link href={`/search?keyword=${keyword}`}>
-              <Image
-                src={'/svg/search_icon.svg'}
-                width={16}
-                height={16}
-                alt="searchIcon"
-                className="absolute bottom-[13px] right-[12px] cursor-pointer"
-              />
-            </Link>
+            <Image
+              src={'/svg/search_icon.svg'}
+              width={16}
+              height={16}
+              alt="searchIcon"
+              className="absolute bottom-[13px] right-[12px] cursor-pointer"
+              onClick={handleSearchClick}
+            />
           </div>
           <div className="flex h-[28px] w-[215px] cursor-pointer gap-3">
             <Tag onClick={() => router.push(`/search?tags=React`)}>#React</Tag>
