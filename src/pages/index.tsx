@@ -26,7 +26,7 @@ const Home = () => {
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!(e.target instanceof HTMLInputElement) || !keyword) return;
+    if (!(e.target instanceof HTMLInputElement)) return;
 
     if (e.key === 'Enter') {
       if (!keyword) router.push('/search');
