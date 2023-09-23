@@ -24,22 +24,24 @@ const Search = () => {
   const [rightValue, setRightValue] = useState<string>('모집중');
 
   const router = useRouter();
+  const { pathname } = router;
 
   const handleSearchClick = () => {
     if (!inputRef.current) return;
     const { value } = inputRef.current;
 
-    if (value.split('')[0] === '#') {
+    if (value === '') router.replace(pathname);
+    else if (value.split('')[0] === '#')
       router.replace({
-        pathname: router.pathname,
+        pathname: pathname,
         query: {
           ...router.query,
           tags: value.replace('#', ''),
         },
       });
-    } else
+    else
       router.replace({
-        pathname: router.pathname,
+        pathname: pathname,
         query: {
           ...router.query,
           post_title: value,
@@ -53,9 +55,10 @@ const Search = () => {
     const { value } = inputRef.current;
 
     if (e.key === 'Enter') {
-      if (value.split('')[0] === '#')
+      if (value === '') router.replace(pathname);
+      else if (value.split('')[0] === '#')
         router.replace({
-          pathname: router.pathname,
+          pathname: pathname,
           query: {
             ...router.query,
             tags: value.replace('#', ''),
@@ -63,7 +66,7 @@ const Search = () => {
         });
       else
         router.replace({
-          pathname: router.pathname,
+          pathname: pathname,
           query: {
             ...router.query,
             post_title: value,
