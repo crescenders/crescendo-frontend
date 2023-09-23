@@ -18,9 +18,10 @@ const Home = () => {
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
+    if (!(e.target instanceof HTMLInputElement) || !keyword) return;
     if (e.key === 'Enter') {
-      router.push(`/search?keyword=${keyword}`);
+      if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
+      else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
     }
   };
 
@@ -63,7 +64,7 @@ const Home = () => {
       img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/7c2fdee4-de2f-4fef-80c6-02e51e0715ac',
       title: '테스트 타이틀 4',
       studyName: '테스트 스터디명 4',
-      writer: 'Lami4',
+      writer: 'Lami   4',
       participant: 3,
       personnel: 6,
       tags: ['태그1', '태그2', '태그3'],
@@ -97,10 +98,12 @@ const Home = () => {
               />
             </Link>
           </div>
-          <div className="flex h-[28px] w-[215px] gap-3">
-            <Tag>#React</Tag>
-            <Tag>#Django</Tag>
-            <Tag>#Java</Tag>
+          <div className="flex h-[28px] w-[215px] cursor-pointer gap-3">
+            <Tag onClick={() => router.push(`/search?tags=React`)}>#React</Tag>
+            <Tag onClick={() => router.push(`/search?tags=Django`)}>
+              #Django
+            </Tag>
+            <Tag onClick={() => router.push(`/search?tags=Java`)}>#Java</Tag>
           </div>
         </div>
         <div className="h-[280px] w-[300px] ">
@@ -135,11 +138,11 @@ const Home = () => {
               key={id}
               path={`/post/${id}`}
               size="big"
-              isCanApply={true}
+              isClosed={true}
               img={img}
               title={title}
               studyName={studyName}
-              writer={writer}
+              writer={[]}
               participant={participant}
               personnel={personnel}
               tags={tags}
