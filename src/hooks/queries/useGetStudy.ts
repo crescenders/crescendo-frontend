@@ -7,8 +7,8 @@ export const useGetStudyGroupList = (params = '') => {
     ({ pageParam = '' }) => {
       const cursor = params
         ? pageParam
-          ? params + `&${pageParam}`
-          : params
+          ? `?${params}` + `&${pageParam}`
+          : `?${params}`
         : `${pageParam}`;
       return studyApi.getStudyGroupList(cursor).then((studies) => studies);
     },

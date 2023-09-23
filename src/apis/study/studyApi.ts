@@ -2,7 +2,7 @@ import instance from '@apis/instance';
 
 const studyApi = {
   getStudyGroupList: async (params = ''): Promise<StudyList> => {
-    const { data } = await instance.get(`/api/v1/studygroup/studies?${params}`);
+    const { data } = await instance.get(`/api/v1/studygroup/studies${params}`);
     return data;
   },
   createStudy: async (formData: FormData): Promise<CreateStudy> => {
