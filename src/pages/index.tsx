@@ -18,8 +18,10 @@ const Home = () => {
   };
 
   const handleSearchClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    if (!(e.target instanceof HTMLImageElement) || !keyword) return;
-    if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
+    if (!(e.target instanceof HTMLImageElement)) return;
+
+    if (!keyword) router.push('/search');
+    else if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
     else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
   };
 
