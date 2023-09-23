@@ -7,28 +7,31 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
   variant: 'small' | 'middle' | 'large';
   required?: boolean;
-  label: string;
+  label?: string;
   link?: boolean;
   error?: string;
 };
 
 type StyledInputProps = {
   $variant: string;
-  disabled?: boolean;
-  $link?: boolean;
+  disabled: boolean;
+  $link: boolean;
+  $label: string;
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ id, label, required, variant, link, error, ...rest }, ref) => {
     return (
-      <Container>
-        <LabelContainer>
-          {required && (
-            <span className="text-status-error mr-1">{REQUIRED}</span>
-          )}
-          <Label htmlFor={id}>{label}</Label>
-        </LabelContainer>
-        <div className="flex relative items-center">
+      <Container $label={label}>
+        {label && (
+          <LabelContainer>
+            {required && (
+              <span className="mr-1 text-status-error">{REQUIRED}</span>
+            )}
+            <Label htmlFor={id}>{label}</Label>
+          </LabelContainer>
+        )}
+        <div className="relative flex items-center">
           {link && (
             <Image
               src="/svg/link.svg"
@@ -40,7 +43,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <InputBox ref={ref} $variant={variant} $link={link} {...rest} />
         </div>
-        <span className="text-status-error text-12 h-2">{error}</span>
+        {error && (
+          <span className="h-2 text-12 text-status-error">{error}</span>
+        )}
       </Container>
     );
   },
@@ -50,10 +55,10 @@ Input.displayName = 'Input';
 
 export default Input;
 
-const Container = tw.div`
+const Container = tw.div<Partial<StyledInputProps>>`
+  ${({ $label }) => $label && 'gap-y-2'}
   flex
   flex-col
-  gap-y-2
 `;
 
 const LabelContainer = tw.div`
@@ -66,7 +71,7 @@ const Label = tw.label`
   font-bold
 `;
 
-const InputBox = tw.input<StyledInputProps>`
+const InputBox = tw.input<Partial<StyledInputProps>>`
   ${({ $variant }) =>
     ($variant === 'small' && 'w-[270px]') ||
     ($variant === 'middle' && 'w-[340px]') ||
