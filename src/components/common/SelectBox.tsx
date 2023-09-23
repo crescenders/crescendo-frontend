@@ -1,7 +1,7 @@
 import { OptionsType, SORT_OBJ, SortStateType } from '@constants/search';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import tw from 'tailwind-styled-components';
 
 type SelectListProps = {
@@ -10,6 +10,8 @@ type SelectListProps = {
   setValue: Dispatch<SetStateAction<string>>;
   isOpen: SortStateType;
   setIsOpen: Dispatch<SetStateAction<SortStateType>>;
+  queryParam?: string;
+  setQueryParam?: Dispatch<SetStateAction<string>>;
 };
 
 const SelectBox = ({
@@ -18,8 +20,11 @@ const SelectBox = ({
   setValue,
   isOpen,
   setIsOpen,
+  queryParam,
+  setQueryParam,
 }: SelectListProps) => {
   const router = useRouter();
+
   return (
     <div className="flex flex-col">
       <SelectBoxWrapper
@@ -46,21 +51,15 @@ const SelectBox = ({
                     : { ...prev, [value]: true };
                 });
                 setValue(name);
-                name === '최신순' || name === '마감순'
-                  ? router.replace({
-                      pathname: router.pathname,
-                      query: {
-                        ...router.query,
-                        ordering: query,
-                      },
-                    })
-                  : router.replace({
-                      pathname: router.pathname,
-                      query: {
-                        ...router.query,
-                        is_closed: query,
-                      },
-                    });
+                !queryParam &&
+                  router.replace({
+                    pathname: router.pathname,
+                    query: {
+                      ...router.query,
+                      is_closed: query,
+                    },
+                  });
+                setQueryParam && queryParam && setQueryParam(queryParam);
               }}
             >
               {name}

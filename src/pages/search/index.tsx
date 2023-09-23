@@ -7,7 +7,7 @@ import {
   SORT_OBJ,
   SortStateType,
 } from '@constants/search';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 import Input from '@components/common/Input';
@@ -22,6 +22,7 @@ const Search = () => {
   const [isOpen, setIsOpen] = useState<SortStateType>(SORT_OBJ);
   const [leftValue, setLeftValue] = useState<string>('최신순');
   const [rightValue, setRightValue] = useState<string>('모집중');
+  const [queryParam, setQueryParam] = useState<string>('created_at');
 
   const router = useRouter();
   const { pathname } = router;
@@ -76,6 +77,16 @@ const Search = () => {
     }
   };
 
+  useEffect(() => {
+    router.replace({
+      pathname: pathname,
+      query: {
+        ...router.query,
+        ordering: queryParam,
+      },
+    });
+  }, [queryParam]);
+
   return (
     <PageLayout>
       <div className="flex justify-center">
@@ -86,6 +97,8 @@ const Search = () => {
             setValue={setLeftValue}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            queryParam={queryParam}
+            setQueryParam={setQueryParam}
           />
           <SelectBox
             options={RIGHT_SELECT_OPTION}
