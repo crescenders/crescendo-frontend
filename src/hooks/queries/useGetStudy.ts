@@ -1,18 +1,21 @@
 import studyApi from '@apis/study/studyApi';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-export const useGetStudyByKeyword = (keyword: string) => {
+export const useGetStudyGroupList = (params = '') => {
   return useInfiniteQuery(
-    ['useGetStudy', keyword],
-    ({ pageParam = 1 }) =>
-      studyApi
-        .getStudyByKeyword(keyword, pageParam)
-        .then((studies) => ({ studies, page: pageParam })),
+    ['useGetStudyGroupList', params],
+    ({ pageParam = '' }) => {
+      const cursor = params
+        ? pageParam
+          ? params + `&${pageParam}`
+          : params
+        : `${pageParam}`;
+      return studyApi.getStudyGroupList(cursor).then((studies) => studies);
+    },
     {
       getNextPageParam: (lastPage) => {
-        return lastPage.studies.length > 0 ? lastPage.page + 1 : undefined;
+        return lastPage.next ? lastPage.next.split('?')[1] : null;
       },
-      enabled: !!keyword,
     },
   );
 };
