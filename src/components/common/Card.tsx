@@ -35,7 +35,6 @@ const Card = ({
   endDate,
   deadline,
 }: CardProps) => {
-  console.log(deadline);
   return (
     <Wrapper href={path} className={`${WrapperStyle[size]}`}>
       {size === 'medium' && !isApprove && (
