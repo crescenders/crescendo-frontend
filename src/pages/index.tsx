@@ -8,8 +8,10 @@ import tw from 'tailwind-styled-components';
 import Lottie from 'lottie-react';
 import animation from '@public/animation/main.json';
 import { categories } from '@constants/categories';
+import useStudyList from '@hooks/useStudyList';
 
 const Home = () => {
+  const { studySearchRouter } = useStudyList();
   const [keyword, setKeyword] = useState('');
   const router = useRouter();
 
@@ -21,7 +23,8 @@ const Home = () => {
     if (!(e.target instanceof HTMLImageElement)) return;
 
     if (!keyword) router.push('/search');
-    else if (keyword.startsWith('#')) router.push(`/search?tag=${keyword}`);
+    else if (keyword.startsWith('#'))
+      router.push(`/search?tags=${keyword.replace('#', '')}`);
     else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
   };
 
@@ -30,7 +33,8 @@ const Home = () => {
 
     if (e.key === 'Enter') {
       if (!keyword) router.push('/search');
-      else if (keyword.startsWith('#')) router.push(`/search?tag=${keyword}`);
+      else if (keyword.startsWith('#'))
+        router.push(`/search?tags=${keyword.replace('#', '')}`);
       else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
     }
   };
