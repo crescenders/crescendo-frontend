@@ -1,28 +1,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import tw from 'tailwind-styled-components';
-import getDiffDate from 'utils/getDiffDate';
 
 type CardProps = {
   path: string;
   size: 'big' | 'medium' | 'small';
-  isCanApply?: boolean;
+  isClosed?: boolean;
   isApprove?: boolean;
   img: string;
   title?: string;
   studyName: string;
   tags?: string[];
-  writer?: string;
+  writer?: string[];
   participant?: number;
   personnel?: number;
-  startDate: string;
+  startDate?: string;
   endDate?: string;
+  deadline?: number;
 };
 
 const Card = ({
   path,
   size,
-  isCanApply,
+  isClosed,
   isApprove,
   img,
   title,
@@ -33,6 +33,7 @@ const Card = ({
   participant,
   startDate,
   endDate,
+  deadline,
 }: CardProps) => {
   return (
     <Wrapper href={path} className={`${WrapperStyle[size]}`}>
@@ -40,20 +41,28 @@ const Card = ({
         <div className="absolute z-[2] h-[172px] w-[187px] rounded-[7px] bg-white/50"></div>
       )}
       <ImageBox className={`${ImageBoxStyle[size]} relative`}>
-        {size === 'big' && isCanApply && (
+        {size === 'big' && !isClosed && (
           <DDayBox
             className={`${
-              typeof getDiffDate(startDate) === 'number'
+              deadline && deadline > 0
                 ? 'bg-[#8266FF]'
-                : 'bg-status-error'
+                : deadline === 0
+                ? 'bg-status-error'
+                : ''
             } `}
           >
-            D - {getDiffDate(startDate)}
+            {deadline && deadline > 0 && deadline < 99
+              ? `D - ${deadline}`
+              : deadline === 0
+              ? 'D-Day'
+              : deadline && deadline >= 99
+              ? 'D - 99+'
+              : ''}
           </DDayBox>
         )}
         <Image src={img} alt="thumbnail" fill className="object-cover" />
-        {size === 'big' && !isCanApply && (
-          <div className="absolute flex h-full  w-full flex-col items-center justify-center gap-2 bg-black/50">
+        {size === 'big' && isClosed && (
+          <div className="absolute flex h-full w-full flex-col items-center justify-center gap-2 bg-black/50">
             <Image
               src="/svg/check_circle.svg"
               width={52}
@@ -66,18 +75,23 @@ const Card = ({
       </ImageBox>
       <InfoBox className={`${InfoBoxStyle[size]}`}>
         {size === 'big' ? (
-          <>
-            <div className="text-14">{title}</div>
+          <div className="pt-1">
+            <div className="overflow-hidden text-ellipsis whitespace-nowrap text-14">
+              {title}
+            </div>
             <div className="my-[8px] text-12">{studyName}</div>
             <div className="flex gap-x-1">
               {tags?.map((tag) => (
-                <div key={tag} className="mb-[8px] text-[8px]">
-                  {tag}
+                <div key={tag} className="">
+                  <span className="text-[9px]">#{tag}</span>
                 </div>
               ))}
             </div>
-
-            <div className="flex items-center justify-between text-[12px] text-[#666666]">
+            <div
+              className={`${
+                !tags?.length && 'mt-6'
+              } flex items-center justify-between text-[12px] text-[#666666]`}
+            >
               <div>{writer}</div>
               <div className="flex items-center justify-center gap-[5px]">
                 <Image
@@ -89,20 +103,20 @@ const Card = ({
                 {participant} / {personnel}
               </div>
             </div>
-          </>
+          </div>
         ) : (
           <>
             <div
               className={`${
                 size === 'medium' ? 'text-14' : 'text-12'
-              } mb-[4px] font-bold `}
+              } mb-[4px] font-bold`}
             >
               {studyName}
             </div>
             <div
               className={`${
                 size === 'medium' ? 'text-12' : 'text-10'
-              } text-text-primary `}
+              } text-text-primary`}
             >
               {startDate} ~ {endDate}
             </div>
@@ -124,7 +138,7 @@ const Wrapper = tw(Link)`
 `;
 
 const WrapperStyle = {
-  big: 'w-[210px] h-[237px]',
+  big: 'w-[210px] h-[245px]',
   medium: 'w-[187px] h-[172px]',
   small: 'w-[160px] h-[148px]',
 };

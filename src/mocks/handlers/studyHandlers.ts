@@ -1,11 +1,10 @@
 import { rest } from 'msw';
 import studyList from '@mocks/data/studyList.json';
 import studyInfo from '@mocks/data/studyInfo.json';
-import { CONFIG } from '@config';
 
 export const studyHandlers = [
   // 검색어로 스터디 조회
-  rest.get(`${CONFIG.BASE_URL}/api/v1/studies`, (req, res, ctx) => {
+  rest.get(`/api/v1/studies`, (req, res, ctx) => {
     const PAGINATE_UNIT = 12;
     const keyword = String(req.url.searchParams.get('keyword'));
     const page = Number(req.url.searchParams.get('page'));
@@ -19,6 +18,7 @@ export const studyHandlers = [
     );
     const paginatedStudies = findByKeyword.map((study, idx) => ({
       ...study,
+      id: PAGINATE_UNIT * (page - 1) + 1 + idx,
       title: study.title + `${page}`,
     }));
 

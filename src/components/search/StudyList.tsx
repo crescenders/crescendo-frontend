@@ -1,4 +1,4 @@
-import { useGetStudyByKeyword } from '@hooks/queries/useGetStudy';
+import { useGetStudyGroupList } from '@hooks/queries/useGetStudy';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useIntersection from '@hooks/useIntersection';
@@ -8,57 +8,55 @@ import Card from '@components/common/Card';
 const StudyList = () => {
   const router = useRouter();
   const { targetRef, isIntersecting } = useIntersection({ threshold: 0.4 });
+  const params = router.asPath.split('?')[1];
   const {
     data: studies,
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
-  } = useGetStudyByKeyword(router.query.keyword as string);
+  } = useGetStudyGroupList(params);
 
   useEffect(() => {
     if (isIntersecting && hasNextPage && !isFetching) {
       fetchNextPage();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, isFetching]);
 
   return (
     <>
-      {studies?.pages.map(({ studies }) =>
-        studies.map(
+      {studies?.pages.flatMap((pages) =>
+        pages.results.map(
           ({
-            id,
-            title,
-            studyName,
-            writer,
+            uuid,
+            head_image,
+            leaders,
+            post_title,
+            study_name,
+            is_closed,
             tags,
-            isCanApply,
-            img,
-            participant,
-            personnel,
-            startDate,
-            endDate,
+            current_member_count,
+            member_limit,
+            until_deadline,
           }) => (
             <Card
-              path={`/study/detail/${id}`}
-              key={id}
+              path={`/study/detail/${uuid}`}
+              key={uuid}
               size="big"
-              title={title}
-              studyName={studyName}
-              writer={writer}
+              title={post_title}
+              studyName={study_name}
+              writer={leaders.map((leader) => leader.username)}
               tags={tags}
-              isCanApply={isCanApply}
-              img={img}
-              participant={participant}
-              personnel={personnel}
-              startDate={startDate}
-              endDate={endDate}
+              isClosed={is_closed}
+              img={head_image}
+              participant={current_member_count}
+              personnel={member_limit}
+              deadline={until_deadline}
             />
           ),
         ),
       )}
-      {isFetchingNextPage && <StudyListSkeleton />}
-      <div className="absolute bottom-0" ref={targetRef} />
+      {isFetching && <StudyListSkeleton />}
+      <div ref={targetRef} />
     </>
   );
 };

@@ -1,10 +1,11 @@
-import { SORT_OBJ, SelectListType, SortStateType } from '@constants/search';
+import { OptionsType, SORT_OBJ, SortStateType } from '@constants/search';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
 import tw from 'tailwind-styled-components';
 
 type SelectListProps = {
-  options: SelectListType[];
+  options: OptionsType;
   value: string;
   setValue: Dispatch<SetStateAction<string>>;
   isOpen: SortStateType;
@@ -18,6 +19,8 @@ const SelectBox = ({
   isOpen,
   setIsOpen,
 }: SelectListProps) => {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col">
       <SelectBoxWrapper
@@ -29,12 +32,12 @@ const SelectBox = ({
         }
         className={`${isOpen[value] ? 'border-[#8266FF]' : 'border-[#E2E0E0]'}`}
       >
-        <span className="text-13 ml-3">{value}</span>
+        <span className="ml-3 text-13">{value}</span>
         <Image src={'/svg/chevron-down.svg'} width={16} height={16} alt="" />
       </SelectBoxWrapper>
       {isOpen[value] && (
         <SelectList>
-          {options.map(({ id, name }) => (
+          {options.map(({ id, name, query }) => (
             <SelectItem
               key={id}
               onClick={() => {
@@ -44,6 +47,21 @@ const SelectBox = ({
                     : { ...prev, [value]: true };
                 });
                 setValue(name);
+                name === '최신순' || name === '마감순'
+                  ? router.replace({
+                      pathname: router.pathname,
+                      query: {
+                        ...router.query,
+                        ordering: query,
+                      },
+                    })
+                  : router.replace({
+                      pathname: router.pathname,
+                      query: {
+                        ...router.query,
+                        is_closed: query,
+                      },
+                    });
               }}
             >
               {name}
@@ -83,6 +101,7 @@ const SelectList = tw.ul`
   rounded-[7px]
   border-[1px]
   border-[#E2E0E0]
+  bg-white
 `;
 
 const SelectItem = tw.li`
