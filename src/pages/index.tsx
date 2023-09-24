@@ -21,7 +21,7 @@ const Home = () => {
     if (!(e.target instanceof HTMLImageElement)) return;
 
     if (!keyword) router.push('/search');
-    else if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
+    else if (keyword.startsWith('#')) router.push(`/search?tag=${keyword}`);
     else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
   };
 
@@ -30,7 +30,7 @@ const Home = () => {
 
     if (e.key === 'Enter') {
       if (!keyword) router.push('/search');
-      else if (keyword.includes('#')) router.push(`/search?tag=${keyword}`);
+      else if (keyword.startsWith('#')) router.push(`/search?tag=${keyword}`);
       else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
     }
   };
