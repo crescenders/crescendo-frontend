@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { KeyboardEvent, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import Input from '@components/common/Input';
+import { validateTag } from '@utils/validate';
 
 type TagInputProps = {
   tagList: string[];
@@ -25,9 +26,8 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
         setErrorMessage('중복된 태그입니다.');
         return;
       }
-
-      setErrorMessage('');
-      setTagList('tags', [...tagList, newTag]);
+      setErrorMessage(validateTag(newTag));
+      if (!validateTag(newTag)) setTagList('tags', [...tagList, newTag]);
     }
   };
 
