@@ -18,36 +18,18 @@ import useStudyList from '@hooks/useStudyList';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { handleCategoryList } = useStudyList();
+  const { handleCategoryList, studySearchRouter } = useStudyList();
   const [isOpen, setIsOpen] = useState<SortStateType>(SORT_OBJ);
   const [leftValue, setLeftValue] = useState<string>('최신순');
   const [rightValue, setRightValue] = useState<string>('모집중');
 
   const router = useRouter();
-  const { pathname } = router;
 
   const handleSearchClick = () => {
     if (!inputRef.current) return;
     const { value } = inputRef.current;
 
-    if (value === '') router.replace(pathname);
-    else if (value.split('')[0] === '#')
-      router.replace({
-        pathname: pathname,
-        query: {
-          ...router.query,
-          tags: value.replace('#', ''),
-        },
-      });
-    else
-      router.replace({
-        pathname: pathname,
-        query: {
-          ...router.query,
-          post_title: value,
-          study_title: value,
-        },
-      });
+    studySearchRouter(value);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -55,24 +37,7 @@ const Search = () => {
     const { value } = inputRef.current;
 
     if (e.key === 'Enter') {
-      if (value === '') router.replace(pathname);
-      else if (value.split('')[0] === '#')
-        router.replace({
-          pathname: pathname,
-          query: {
-            ...router.query,
-            tags: value.replace('#', ''),
-          },
-        });
-      else
-        router.replace({
-          pathname: pathname,
-          query: {
-            ...router.query,
-            post_title: value,
-            study_title: value,
-          },
-        });
+      studySearchRouter(value);
     }
   };
 

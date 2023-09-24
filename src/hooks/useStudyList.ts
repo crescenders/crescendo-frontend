@@ -2,20 +2,22 @@ import { useRouter } from 'next/router';
 
 const useStudyList = () => {
   const router = useRouter();
+  const { pathname } = router;
 
   const handleCategoryList = (name: string) => {
     const { categories, ...restQuery } = router.query;
+
     if (categories?.includes(name)) {
       if (typeof categories === 'string') {
         router.replace({
-          pathname: router.pathname,
+          pathname,
           query: {
             ...restQuery,
           },
         });
       } else if (Array.isArray(categories))
         router.replace({
-          pathname: router.pathname,
+          pathname,
           query: {
             ...router.query,
             categories: categories.filter((category) => category !== name),
@@ -24,7 +26,7 @@ const useStudyList = () => {
     } else {
       if (typeof categories === 'string')
         router.replace({
-          pathname: router.pathname,
+          pathname,
           query: {
             ...router.query,
             categories: [categories, name],
@@ -32,7 +34,7 @@ const useStudyList = () => {
         });
       else if (Array.isArray(categories))
         router.replace({
-          pathname: router.pathname,
+          pathname,
           query: {
             ...router.query,
             categories: [...categories, name],
@@ -40,7 +42,7 @@ const useStudyList = () => {
         });
       else
         router.replace({
-          pathname: router.pathname,
+          pathname,
           query: {
             ...router.query,
             categories: name,
@@ -49,7 +51,28 @@ const useStudyList = () => {
     }
   };
 
-  return { handleCategoryList };
+  const studySearchRouter = (value: string) => {
+    if (value === '') router.replace(pathname);
+    else if (value.startsWith('#'))
+      router.replace({
+        pathname,
+        query: {
+          ...router.query,
+          tags: value.replace('#', ''),
+        },
+      });
+    else
+      router.replace({
+        pathname,
+        query: {
+          ...router.query,
+          post_title: value,
+          study_title: value,
+        },
+      });
+  };
+
+  return { handleCategoryList, studySearchRouter };
 };
 
 export default useStudyList;
