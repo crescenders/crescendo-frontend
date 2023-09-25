@@ -17,10 +17,13 @@ const localStorageEffect =
     });
   };
 
-export const userState = atom<{ isLogin: boolean; username: string }>({
+export const userState = atom<{
+  uuid: string;
+  username: string;
+}>({
   key: 'user',
   default: {
-    isLogin: false,
+    uuid: '',
     username: '',
   },
   effects: [localStorageEffect('user')],
