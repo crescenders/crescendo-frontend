@@ -11,7 +11,7 @@ type CardProps = {
   title?: string;
   studyName: string;
   tags?: string[];
-  writer?: string[];
+  writer?: string;
   participant?: number;
   personnel?: number;
   startDate?: string;

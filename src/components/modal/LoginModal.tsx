@@ -37,8 +37,8 @@ const LoginModal = () => {
     if (token) {
       setToken({ accessToken: access });
       setCookie('refreshToken', refresh);
-      const { username } = await userApi.getUser();
-      setUserInfo({ isLogin: true, username });
+      const { uuid, username } = await userApi.getUser();
+      setUserInfo({ uuid, username });
       closeModal();
     }
   };

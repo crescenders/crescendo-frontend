@@ -11,7 +11,7 @@ import Loader from '@components/common/Loader';
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
 const Header = () => {
-  const { isLogin, username } = useRecoilValue(userState);
+  const { username } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
 
@@ -26,7 +26,7 @@ const Header = () => {
           className="h-[24px] w-[124px] cursor-pointer"
         />
       </Link>
-      {isLogin ? (
+      {username ? (
         <div className="relative flex cursor-pointer gap-x-7">
           <Link href={'/study/create'}>
             <span className="text-16 font-medium">스터디 개설</span>
