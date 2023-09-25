@@ -81,31 +81,23 @@ const Search = () => {
       </div>
       <div className="flex justify-center">
         <ul className="flex items-center mt-4 gap-x-2">
-          {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) =>
-            id === 0 ? (
-              <CategoryBox
-                key={id}
-                className={`${
-                  router.pathname === router.asPath &&
-                  'border-[#8266FF] text-[#8266FF]'
-                }`}
-                onClick={() => router.replace(router.pathname)}
-              >
-                {name}
-              </CategoryBox>
-            ) : (
-              <CategoryBox
-                key={id}
-                className={`${
-                  router.query.categories?.includes(name) &&
-                  'border-[#8266FF] text-[#8266FF]'
-                }`}
-                onClick={() => handleCategoryList(name)}
-              >
-                {name}
-              </CategoryBox>
-            ),
-          )}
+          {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
+            <CategoryBox
+              key={id}
+              className={`${
+                ((id === 0 && router.pathname === router.asPath) ||
+                  router.query.categories?.includes(name)) &&
+                'border-[#8266FF] text-[#8266FF]'
+              }`}
+              onClick={() => {
+                id === 0
+                  ? router.replace(router.pathname)
+                  : handleCategoryList(name);
+              }}
+            >
+              {name}
+            </CategoryBox>
+          ))}
         </ul>
       </div>
       <StudyListContainer>
