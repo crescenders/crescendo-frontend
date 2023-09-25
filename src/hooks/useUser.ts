@@ -10,7 +10,7 @@ const useUser = () => {
     deleteToken();
     deleteCookie('refreshToken');
     setUserState({
-      isLogin: false,
+      uuid: '',
       username: '',
     });
   };

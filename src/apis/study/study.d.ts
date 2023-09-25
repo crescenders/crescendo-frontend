@@ -5,6 +5,7 @@ type StudyList = {
     Study & {
       uuid: string;
       _links: Link[];
+      leaders: Leaders[];
     },
   ];
 };
@@ -30,6 +31,7 @@ type Link = {
 };
 
 type Leaders = {
+  uuid: string;
   username: string;
   _links: Link[];
 };

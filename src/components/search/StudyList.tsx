@@ -44,7 +44,7 @@ const StudyList = () => {
               size="big"
               title={post_title}
               studyName={study_name}
-              writer={leaders.map((leader) => leader.username)}
+              writer={leaders[0] && leaders[0].username} // admin 페이지에서 생성한 게시물은 leaders가 없다. 추후 수정 필요
               tags={tags}
               isClosed={is_closed}
               img={head_image}

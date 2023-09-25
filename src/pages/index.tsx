@@ -155,7 +155,7 @@ const Home = () => {
               img={img}
               title={title}
               studyName={studyName}
-              writer={[]}
+              writer={''}
               participant={participant}
               personnel={personnel}
               tags={tags}
