@@ -58,6 +58,7 @@ module.exports = {
         slideDown: 'slide 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
         slideUp: 'slideUp 0.3s',
         'skeleton-gradient': 'skeleton-gradient 1.35s infinite ease-in-out',
+        'skeleton-gradient1': 'skeleton-gradient1 1.35s infinite ease-in-out',
       },
       keyframes: {
         slide: {
@@ -79,6 +80,17 @@ module.exports = {
           },
           '100%': {
             'background-color': 'rgba(165, 165, 165, 0.7)',
+          },
+        },
+        'skeleton-gradient1': {
+          '0%': {
+            'background-color': 'rgba(215, 215, 215, 0.7)',
+          },
+          '50%': {
+            'background-color': 'rgba(200, 200, 200, 0.99)',
+          },
+          '100%': {
+            'background-color': 'rgba(215, 215, 215, 0.7)',
           },
         },
         slideUp: {
