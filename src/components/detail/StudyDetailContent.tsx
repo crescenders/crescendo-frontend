@@ -20,8 +20,6 @@ const StudyDetailContent = () => {
   const { data: study } = useGetStudyDetail(id);
   const { mutate: deleteStudy } = useDeleteStudy();
 
-  console.log(study);
-
   return (
     <div className="mb-12 w-full px-[200px]">
       <div className="mt-[50px] flex flex-col gap-y-2">
