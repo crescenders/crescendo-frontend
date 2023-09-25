@@ -1,11 +1,11 @@
 import ApplyBottomSheet from '@components/detail/ApplyBottomSheet';
-import Loader from '@components/common/Loader';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
 import tw from 'tailwind-styled-components';
+import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
 
 const StudyDetail = () => {
   const router = useRouter();
@@ -21,8 +21,7 @@ const StudyDetail = () => {
           path={`/study/detail/assignment/${id}`}
         />
       </MenuWrapper>
-      {/* TODO: 스켈레톤으로 대체 */}
-      <Suspense fallback={<Loader isFull />}>
+      <Suspense fallback={<StudyDetailSkeleton />}>
         <StudyDetailContent />
       </Suspense>
       <ApplyBottomSheet />
