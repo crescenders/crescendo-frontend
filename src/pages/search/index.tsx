@@ -7,7 +7,7 @@ import {
   SORT_OBJ,
   SortStateType,
 } from '@constants/search';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 import Input from '@components/common/Input';
@@ -74,13 +74,13 @@ const Search = () => {
             width={16}
             height={16}
             alt="searchIcon"
-            className="relative cursor-pointer right-10"
+            className="relative right-10 cursor-pointer"
             onClick={handleSearchClick}
           />
         </div>
       </div>
       <div className="flex justify-center">
-        <ul className="flex items-center mt-4 gap-x-2">
+        <ul className="mt-4 flex items-center gap-x-2">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <CategoryBox
               key={id}
@@ -113,8 +113,8 @@ export default Search;
 
 const StudyListContainer = tw.div`
   mt-[100px]
-  grid
-  grid-cols-4
+  flex
+  flex-wrap
   items-center
   gap-8
   px-2
