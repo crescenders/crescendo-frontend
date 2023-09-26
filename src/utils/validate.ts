@@ -29,3 +29,11 @@ export const validateStudy = <T>(input: T): string => {
   }
   return '';
 };
+
+export const validateTag = (tag: string) => {
+  if (!REGEX.tag.test(tag)) return ERROR_MESSAGE.regex;
+  if (tag.length < 1 || tag.length > 20) {
+    return ERROR_MESSAGE.tag;
+  }
+  return '';
+};

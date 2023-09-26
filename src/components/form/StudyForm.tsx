@@ -23,7 +23,6 @@ const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
   const { data: study } = useGetStudyDetail(id);
   const {
     studyForm,
-    initStudyForm,
     getInputRef,
     handleDeleteImage,
     handleDateChange,

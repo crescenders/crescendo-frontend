@@ -79,7 +79,7 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
 
   const getSubmitImage = (image: HTMLInputElement) => {
     if (image.files?.length) return image.files[0];
-    if (initialStudy?.head_image === image.src) return initialStudy.head_image;
+    if (initialStudy?.head_image !== image.src) return new File([], '');
   };
 
   const handleSubmitInput = () => {
@@ -100,7 +100,6 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
 
   return {
     studyForm,
-    initStudyForm,
     getInputRef,
     handleDeleteImage,
     handleDateChange,
