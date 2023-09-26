@@ -21,7 +21,7 @@ const NotFoundStudyList = ({ keyword }: NotFoundStudyListProps) => {
         모집 중인 모든 스터디를 둘러보세요!
       </p>
       <button
-        className="mt-8 h-[34px] w-[100px] rounded bg-[#9455D3]"
+        className="mt-8 h-[34px] w-[100px] rounded bg-[#9455D3] duration-100 ease-in-out hover:bg-[#BB86EF]"
         onClick={() => router.replace('/search')}
       >
         <span className="text-14 font-bold text-white">전체 보기</span>
