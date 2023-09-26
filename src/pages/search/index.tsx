@@ -74,21 +74,26 @@ const Search = () => {
             width={16}
             height={16}
             alt="searchIcon"
-            className="relative right-10 cursor-pointer"
+            className="relative cursor-pointer right-10"
             onClick={handleSearchClick}
           />
         </div>
       </div>
       <div className="flex justify-center">
-        <ul className="mt-4 flex items-center gap-x-2">
+        <ul className="flex items-center mt-4 gap-x-2">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <CategoryBox
               key={id}
               className={`${
-                router.query.categories?.includes(name) &&
+                ((id === 0 && router.pathname === router.asPath) ||
+                  router.query.categories?.includes(name)) &&
                 'border-[#8266FF] text-[#8266FF]'
               }`}
-              onClick={() => handleCategoryList(name)}
+              onClick={() => {
+                id === 0
+                  ? router.replace(router.pathname)
+                  : handleCategoryList(name);
+              }}
             >
               {name}
             </CategoryBox>

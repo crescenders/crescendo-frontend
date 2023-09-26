@@ -4,12 +4,12 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 export const useGetStudyGroupList = (params = '') => {
   return useInfiniteQuery(
     ['useGetStudyGroupList', params],
-    ({ pageParam = undefined }) => {
+    ({ pageParam = '' }) => {
       const cursor = params
         ? pageParam
           ? `?${params}` + `&${pageParam}`
           : `?${params}`
-        : `${pageParam}`;
+        : `?${pageParam}`;
       return studyApi.getStudyGroupList(cursor);
     },
     {
