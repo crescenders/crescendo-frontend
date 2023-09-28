@@ -7,7 +7,8 @@ export const useCreateStudy = () => {
   const { showToast } = useToast();
   const router = useRouter();
 
-  return useMutation((formData: FormData) => studyApi.createStudy(formData), {
+  return useMutation({
+    mutationFn: (formData: FormData) => studyApi.createStudy(formData),
     onSuccess: ({ uuid }) => {
       router.push(`/study/detail/${uuid}`);
       showToast({

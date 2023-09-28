@@ -7,7 +7,8 @@ export const useDeleteUser = () => {
   const { showToast } = useToast();
   const { initUserState } = useUser();
 
-  return useMutation(() => userApi.deleteUser(), {
+  return useMutation({
+    mutationFn: () => userApi.deleteUser(),
     onSuccess: () => {
       initUserState();
       showToast({

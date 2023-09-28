@@ -1,9 +1,9 @@
 import '@styles/globals.css';
 import type { AppProps } from 'next/app';
 import {
+  HydrationBoundary,
   QueryClient,
   QueryClientProvider,
-  Hydrate,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@components/common/Layout';
@@ -26,7 +26,7 @@ const queryClient = new QueryClient({
     },
     mutations: {
       retry: 0,
-      useErrorBoundary: true,
+      throwOnError: true,
     },
   },
 });
@@ -42,12 +42,15 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Hydrate state={pageProps.dehydratedState}>
+        <ReactQueryDevtools
+          initialIsOpen={false}
+          buttonPosition="bottom-left"
+        />
+        <HydrationBoundary state={pageProps.dehydratedState}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </Hydrate>
+        </HydrationBoundary>
       </QueryClientProvider>
     </RecoilRoot>
   );

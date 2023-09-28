@@ -7,11 +7,11 @@ import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
 
 const CreateStudy = () => {
   const router = useRouter();
-  const { mutate: createStudy, isLoading } = useCreateStudy();
+  const { mutate: createStudy, isPending } = useCreateStudy();
 
   return (
     <PageLayout>
-      {isLoading ? (
+      {isPending ? (
         <Loader isFull />
       ) : (
         <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">

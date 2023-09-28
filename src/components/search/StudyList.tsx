@@ -25,8 +25,8 @@ const StudyList = () => {
 
   return (
     <>
-      {studies && studies?.pages.flatMap((page) => page.results).length > 0 ? (
-        studies?.pages.flatMap((pages) =>
+      {studies.pages.flatMap((page) => page.results).length > 0 ? (
+        studies.pages.flatMap((pages) =>
           pages.results.map(
             ({
               uuid,
