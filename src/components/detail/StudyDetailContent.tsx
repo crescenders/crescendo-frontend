@@ -23,16 +23,16 @@ const StudyDetailContent = () => {
   return (
     <div className="mb-12 w-full px-[200px]">
       <div className="mt-[50px] flex flex-col gap-y-2">
-        <Title>{study?.post_title}</Title>
+        <Title>{study.post_title}</Title>
         <div className="flex gap-x-1">
-          <BoldText>{study?.leaders.map((v) => v.username)}</BoldText>
+          <BoldText>{study.leaders.map((v) => v.username)}</BoldText>
           <span>(user@email.com)</span>
         </div>
         <div className="flex justify-between">
           <span className="text-text-secondary">
-            작성일 {formatUTC(study?.created_at as string)}
+            작성일 {formatUTC(study.created_at as string)}
           </span>
-          {uuid === study?.leaders[0].uuid && (
+          {uuid === study.leaders[0].uuid && (
             <div className="flex cursor-pointer gap-x-1 text-14">
               {study.until_deadline > 0 ? (
                 <span>
@@ -68,7 +68,7 @@ const StudyDetailContent = () => {
         <ImageBox>
           {
             <Image
-              src={study?.head_image as string}
+              src={study.head_image as string}
               fill
               alt="head-image"
               className="object-contain"
@@ -79,7 +79,7 @@ const StudyDetailContent = () => {
           <div className="flex flex-col gap-y-4">
             <div className="flex gap-x-1.5 text-18">
               <GrayText>스터디명</GrayText>
-              <BoldText>{study?.study_name}</BoldText>
+              <BoldText>{study.study_name}</BoldText>
             </div>
             <GrayText>카테고리</GrayText>
           </div>
@@ -87,29 +87,29 @@ const StudyDetailContent = () => {
             <div className="flex gap-x-1.5">
               <GrayText>스터디 기간</GrayText>
               <BoldText>
-                {study?.start_date} ~ {study?.end_date}
+                {study.start_date} ~ {study.end_date}
               </BoldText>
             </div>
             <div className="flex items-center gap-x-1.5">
               <GrayText>모집 기간</GrayText>
-              <BoldText>{study?.deadline}</BoldText>
+              <BoldText>{study.deadline}</BoldText>
               <span className="text-13 font-bold text-status-error">
-                {study && study?.until_deadline > 0
-                  ? `(D-${study?.until_deadline})`
+                {study && study.until_deadline > 0
+                  ? `(D-${study.until_deadline})`
                   : '마감'}
               </span>
             </div>
           </div>
         </InfoTextContainer>
         <ul className="flex gap-x-2">
-          {study?.categories.map((category) => (
+          {study.categories.map((category) => (
             <CategoryBox key={category}>{category}</CategoryBox>
           ))}
         </ul>
         <TagContainer>
           <GrayText>태그</GrayText>
           <ul className="ml-1 flex gap-x-1.5">
-            {study?.tags.map((tag) => (
+            {study.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </ul>

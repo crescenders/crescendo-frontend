@@ -10,7 +10,7 @@ import { categories } from '@constants/categories';
 import { ERROR_MESSAGE } from '@constants/validation';
 import useStudyForm from '@hooks/useStudyForm';
 import useToast from '@hooks/useToast';
-import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import { useGetStudyDetailInStudyForm } from '@hooks/queries/useGetStudy';
 import { validateStudy } from '@utils/validate';
 
 type StudyFormProps = {
@@ -20,7 +20,7 @@ type StudyFormProps = {
 
 const StudyForm = ({ id = '', onSubmit }: StudyFormProps) => {
   const { showToast } = useToast();
-  const { data: study } = useGetStudyDetail(id);
+  const { data: study } = useGetStudyDetailInStudyForm(id);
   const {
     studyForm,
     getInputRef,

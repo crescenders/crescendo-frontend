@@ -8,11 +8,11 @@ import { useEditStudy } from '@hooks/mutations/useEditStudy';
 const EditStudy = () => {
   const router = useRouter();
   const id = String(router.query.id);
-  const { mutate: editStudy, isLoading } = useEditStudy();
+  const { mutate: editStudy, isPending } = useEditStudy();
 
   return (
     <PageLayout>
-      {isLoading ? (
+      {isPending ? (
         <Loader isFull />
       ) : (
         <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">

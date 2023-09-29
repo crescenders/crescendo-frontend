@@ -5,7 +5,8 @@ import { useMutation } from '@tanstack/react-query';
 export const useDeleteStudy = () => {
   const { showToast } = useToast();
 
-  return useMutation((id: string) => studyApi.deleteStudy(id), {
+  return useMutation({
+    mutationFn: (id: string) => studyApi.deleteStudy(id),
     onSuccess: () => {
       showToast({
         type: 'success',

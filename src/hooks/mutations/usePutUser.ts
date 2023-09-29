@@ -8,14 +8,11 @@ export const usePutUser = () => {
   const { showToast } = useToast();
   const setUserInfo = useSetRecoilState(userState);
 
-  return useMutation((nickname: string) => userApi.putUser(nickname), {
+  return useMutation({
+    mutationFn: (nickname: string) => userApi.putUser(nickname),
     onSuccess: (_, nickname) => {
       setUserInfo((info) => {
         return { ...info, username: nickname };
-      });
-      showToast({
-        type: 'success',
-        message: '프로필을 저장했어요.',
       });
     },
     onError: () => {
