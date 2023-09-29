@@ -20,6 +20,7 @@ const SelectBox = ({
   setIsOpen,
 }: SelectListProps) => {
   const router = useRouter();
+  const { is_closed, ...restQuery } = router.query;
 
   return (
     <div className="flex flex-col">
@@ -55,11 +56,18 @@ const SelectBox = ({
                         ordering: query,
                       },
                     })
-                  : router.replace({
+                  : query
+                  ? router.replace({
                       pathname: router.pathname,
                       query: {
                         ...router.query,
                         is_closed: query,
+                      },
+                    })
+                  : router.replace({
+                      pathname: router.pathname,
+                      query: {
+                        ...restQuery,
                       },
                     });
               }}
@@ -92,7 +100,7 @@ const SelectList = tw.ul`
   absolute
   mt-[45px]
   flex
-  h-[68px]
+  h-fit
   w-[92px]
   cursor-pointer
   flex-col

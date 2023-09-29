@@ -21,7 +21,7 @@ const Search = () => {
   const { handleCategoryList, studySearchRouter } = useStudyList();
   const [isOpen, setIsOpen] = useState<SortStateType>(SORT_OBJ);
   const [leftValue, setLeftValue] = useState<string>('최신순');
-  const [rightValue, setRightValue] = useState<string>('모집중');
+  const [rightValue, setRightValue] = useState<string>('모집여부');
 
   const router = useRouter();
 
@@ -80,12 +80,13 @@ const Search = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <ul className="mt-4 flex items-center gap-x-2">
+        <ul className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-3">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <CategoryBox
               key={id}
               className={`${
                 ((id === 0 && router.pathname === router.asPath) ||
+                  (id === 0 && !router.query.categories) ||
                   router.query.categories?.includes(name)) &&
                 'border-[#8266FF] text-[#8266FF]'
               }`}
