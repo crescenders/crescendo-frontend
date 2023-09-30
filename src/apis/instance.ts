@@ -42,8 +42,8 @@ instance.interceptors.response.use(
       } else {
         alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
         CONFIG.ENV === 'development'
-          ? (window.location.href = `${CONFIG.LOCAL}`)
-          : (window.location.href = `${CONFIG.DOMAIN}`);
+          ? (window.location.href = `${CONFIG.LOCAL}/login`)
+          : (window.location.href = `${CONFIG.DOMAIN}/login`);
       }
     }
     return Promise.reject(error);
