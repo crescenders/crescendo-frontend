@@ -38,6 +38,8 @@ const Search = () => {
 
     if (e.key === 'Enter') {
       studySearchRouter(value);
+      setLeftValue('최신순');
+      setRightValue('모집여부');
     }
   };
 
@@ -85,8 +87,7 @@ const Search = () => {
             <CategoryBox
               key={id}
               className={`${
-                ((id === 0 && router.pathname === router.asPath) ||
-                  (id === 0 && !router.query.categories) ||
+                ((id === 0 && !router.query.categories) ||
                   router.query.categories?.includes(name)) &&
                 'border-[#8266FF] text-[#8266FF]'
               }`}
