@@ -32,6 +32,12 @@ const studyApi = {
   deleteStudy: async (id: string): Promise<void> => {
     return await instance.delete(`/api/v1/studygroup/studies/${id}/`);
   },
+  getMyStudyGroupList: async (params: string): Promise<StudyList> => {
+    const { data } = await instance.get(
+      `/api/v1/auth/profiles/me/studies?${params}`,
+    );
+    return data;
+  },
 };
 
 export default studyApi;

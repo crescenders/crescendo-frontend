@@ -40,3 +40,16 @@ export const useGetStudyDetailInStudyForm = (id: string) => {
     enabled: !!id,
   });
 };
+
+export const useGetMyStudyGroupList = (filter: string) => {
+  return useSuspenseInfiniteQuery({
+    queryKey: ['useGetMyStudyGroupList', filter],
+    queryFn: ({ pageParam }) => {
+      return studyApi.getMyStudyGroupList(pageParam);
+    },
+    initialPageParam: '',
+    getNextPageParam: (lastPage) => {
+      return lastPage.next && lastPage.next.split('?')[1];
+    },
+  });
+};
