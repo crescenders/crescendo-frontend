@@ -1,103 +1,29 @@
 import Button from '@components/common/Button';
 import PageLayout from '@components/common/PageLayout';
-import OpenStudyCard, {
-  MyStudyListType,
-} from '@components/manage/OpenStudyCard';
+import MyStudyList from '@components/manage/MyStudyList';
+import MyStudyListSkeleton from '@components/skeleton/MyStudyListSkeleton';
+import { useRouter } from 'next/router';
+import { Suspense } from 'react';
 import tw from 'tailwind-styled-components';
 
-const MY_STUDY_LIST: MyStudyListType[] = [
-  {
-    id: 1,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-  {
-    id: 2,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-  {
-    id: 3,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-  {
-    id: 4,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-  {
-    id: 5,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-  {
-    id: 6,
-    title: '스터디명스터디명스터디명스터디명',
-    category: ['Frontend', 'Backend', 'interview'],
-    personnel: 5,
-    study_period: '2023.01.01 - 2023.02.02',
-    recruitment_period: '2023.01.01 - 2023.02.02',
-  },
-];
-
 const StudyManage = () => {
+  const router = useRouter();
+
   return (
-    <PageLayout>
+    <PageLayout className="flex flex-col items-center">
       <TitleArea>
-        <Title>개설한 스터디</Title>
+        <Title>내가 맡은 스터디</Title>
       </TitleArea>
-      {MY_STUDY_LIST.length > 0 ? (
-        <StudyList>
-          {MY_STUDY_LIST.map(
-            ({
-              id,
-              title,
-              category,
-              personnel,
-              study_period,
-              recruitment_period,
-            }) => (
-              <OpenStudyCard
-                key={id}
-                id={id}
-                title={title}
-                category={category}
-                personnel={personnel}
-                study_period={study_period}
-                recruitment_period={recruitment_period}
-              />
-            ),
-          )}
-          <Button className="w-[134px] h-9 mb-4" text="스터디 개설하기" />
-        </StudyList>
-      ) : (
-        <>
-          <div className="flex h-[70vh] items-center justify-center ">
-            <span className="text-center text-[#8A8A8A]">
-              등록한 과제가 없습니다. <br /> 새로운 과제를 등록해보세요!
-            </span>
-          </div>
-          <div className="flex justify-center">
-            <Button className="w-[134px] h-9" text="스터디 개설하기" />
-          </div>
-        </>
-      )}
+      <StudyListArea>
+        <Suspense fallback={<MyStudyListSkeleton />}>
+          <MyStudyList />
+        </Suspense>
+        <Button
+          className="h-9 w-[134px]"
+          text="스터디 개설하기"
+          onClick={() => router.push('/study/create')}
+        />
+      </StudyListArea>
     </PageLayout>
   );
 };
@@ -110,14 +36,17 @@ const Title = tw.span`
 `;
 
 const TitleArea = tw.div`
-  ml-48
-  mt-[125px]
+  w-[100%]
+  pl-48
+  pt-[125px]
 `;
 
-const StudyList = tw.div`
-  mt-5
+const StudyListArea = tw.div`
   flex
+  grow
   flex-col
   items-center
+  justify-between
   gap-y-5
+  py-5
 `;
