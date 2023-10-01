@@ -78,7 +78,6 @@ const StudyList = () => {
 export default StudyList;
 
 const StudyListContainer = tw.div`
-  mt-10
   flex
   w-full
   flex-wrap
