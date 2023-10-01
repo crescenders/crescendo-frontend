@@ -14,6 +14,10 @@ export const usePutUser = () => {
       setUserInfo((info) => {
         return { ...info, username: nickname };
       });
+      showToast({
+        type: 'success',
+        message: '프로필을 저장했어요.',
+      });
     },
     onError: () => {
       showToast({
