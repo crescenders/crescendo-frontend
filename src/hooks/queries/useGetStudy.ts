@@ -45,11 +45,13 @@ export const useGetMyStudyGroupList = (filter: string) => {
   return useSuspenseInfiniteQuery({
     queryKey: ['useGetMyStudyGroupList', filter],
     queryFn: ({ pageParam }) => {
-      return studyApi.getMyStudyGroupList(pageParam);
+      return studyApi.getMyStudyGroupList(
+        `filter=${filter}&cursor=${pageParam}`,
+      );
     },
     initialPageParam: '',
     getNextPageParam: (lastPage) => {
-      return lastPage.next && lastPage.next.split('?')[1];
+      return lastPage.next && new URL(lastPage.next).searchParams.get('cursor');
     },
   });
 };
