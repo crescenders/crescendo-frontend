@@ -1,4 +1,3 @@
-import Card from '@components/common/Card';
 import PageLayout from '@components/common/PageLayout';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,10 +7,9 @@ import tw from 'tailwind-styled-components';
 import Lottie from 'lottie-react';
 import animation from '@public/animation/main.json';
 import { categories } from '@constants/categories';
-import useStudyList from '@hooks/useStudyList';
+import HomeStudyList from '@components/home/HomeStudyList';
 
 const Home = () => {
-  const { studySearchRouter } = useStudyList();
   const [keyword, setKeyword] = useState('');
   const router = useRouter();
 
@@ -38,53 +36,6 @@ const Home = () => {
       else router.push(`/search?post_title=${keyword}&study_name=${keyword}`);
     }
   };
-
-  const DUMMY_DATALIST = [
-    {
-      id: 1,
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/d458744c-54b6-4018-9de5-ba354e6da407',
-      title: '테스트 타이틀 1',
-      studyName: '테스트 스터디명 1',
-      writer: 'Lami',
-      participant: 3,
-      personnel: 5,
-      tags: ['태그1', '태그2', '태그3'],
-      startDate: '2023.06.04',
-    },
-    {
-      id: 2,
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/777979ee-45f3-4f00-88c3-cb32119249fe',
-      title: '테스트 타이틀 2',
-      studyName: '테스트 스터디명 2',
-      writer: 'Lami2',
-      participant: 4,
-      personnel: 10,
-      tags: ['태그1', '태그2', '태그3'],
-      startDate: '2023.06.12',
-    },
-    {
-      id: 3,
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/396933ec-8d20-4faf-9412-f18e06332558',
-      title: '테스트 타이틀 3',
-      studyName: '테스트 스터디명 3',
-      writer: 'Lami3',
-      participant: 2,
-      personnel: 8,
-      tags: ['태그1', '태그2', '태그3'],
-      startDate: '2023.06.05',
-    },
-    {
-      id: 4,
-      img: 'https://github.com/crescenders/crescendo-frontend/assets/87893624/7c2fdee4-de2f-4fef-80c6-02e51e0715ac',
-      title: '테스트 타이틀 4',
-      studyName: '테스트 스터디명 4',
-      writer: 'Lami   4',
-      participant: 3,
-      personnel: 6,
-      tags: ['태그1', '태그2', '태그3'],
-      startDate: '2023.06.20',
-    },
-  ];
 
   return (
     <PageLayout>
@@ -134,36 +85,7 @@ const Home = () => {
             ),
         )}
       </div>
-      <div className="flex justify-center gap-[41px]">
-        {DUMMY_DATALIST.map(
-          ({
-            id,
-            img,
-            title,
-            studyName,
-            writer,
-            participant,
-            personnel,
-            tags,
-            startDate,
-          }) => (
-            <Card
-              key={id}
-              path={`/post/${id}`}
-              size="big"
-              isClosed={true}
-              img={img}
-              title={title}
-              studyName={studyName}
-              writer={''}
-              participant={participant}
-              personnel={personnel}
-              tags={tags}
-              startDate={startDate as string}
-            />
-          ),
-        )}
-      </div>
+      <HomeStudyList />
     </PageLayout>
   );
 };
@@ -191,4 +113,14 @@ const Category = tw(Link)`
   rounded-[19px]
   border-[#C4A9D8]
   hover:border
+`;
+
+const StudyListContainer = tw.div`
+  flex
+  w-full
+  flex-wrap
+  items-center
+  justify-center
+  gap-8
+  pb-8
 `;

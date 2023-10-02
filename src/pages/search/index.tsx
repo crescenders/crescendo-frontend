@@ -81,7 +81,7 @@ const Search = () => {
           />
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="mb-10 flex justify-center">
         <ul className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-3">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <CategoryBox
@@ -102,26 +102,14 @@ const Search = () => {
           ))}
         </ul>
       </div>
-      <StudyListContainer>
-        <Suspense fallback={<StudyListSkeleton />}>
-          <StudyList />
-        </Suspense>
-      </StudyListContainer>
+      <Suspense fallback={<StudyListSkeleton />}>
+        <StudyList />
+      </Suspense>
     </PageLayout>
   );
 };
 
 export default Search;
-
-const StudyListContainer = tw.div`
-  mt-[100px]
-  flex
-  flex-wrap
-  items-center
-  gap-8
-  px-2
-  pb-8
-`;
 
 const CategoryBox = tw.li`
   flex

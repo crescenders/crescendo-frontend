@@ -23,6 +23,13 @@ export const useGetStudyGroupList = (params = '') => {
   });
 };
 
+export const useGetRandomStudyGroupList = () => {
+  return useQuery({
+    queryKey: ['useGetRandomStudyGroupList'],
+    queryFn: () => studyApi.getStudyGroupList('?random=true'),
+  });
+};
+
 export const useGetStudyDetail = (id: string) => {
   return useSuspenseQuery({
     queryKey: ['useGetStudyDetail', id],
