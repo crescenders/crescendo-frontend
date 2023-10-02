@@ -3,6 +3,7 @@ import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import useModal from '@hooks/useModal';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 
 export type MyStudyListType = {
@@ -24,18 +25,19 @@ const OpenStudyCard = ({
   study_period,
   recruitment_period,
 }: MyStudyListType) => {
+  const router = useRouter();
   const { openModal, closeModal } = useModal();
   const { mutate: deleteStudy } = useDeleteStudy();
 
   return (
-    <StudyCard>
+    <StudyCard
+      onClick={() => router.push(`/study/manage/assignment/${id}`)}
+      className="cursor-pointer"
+    >
       <div className="flex w-[100%] justify-between gap-x-1">
-        <Link
-          href={`/study/manage/assignment/${id}`}
-          className="block shrink truncate"
-        >
-          <span className="whitespace-nowrap text-[17px]">{title}</span>
-        </Link>
+        <div className="shrink truncate whitespace-nowrap text-[17px]">
+          {title}
+        </div>
         <div className="mr-2 flex items-center gap-x-0.5">
           <Image src="/svg/person.svg" width={18} height={18} alt="인원" />
           <span className="text-12">{personnel}</span>
@@ -66,7 +68,8 @@ const OpenStudyCard = ({
           height={40}
           alt="삭제"
           className="cursor-pointer"
-          onClick={() =>
+          onClick={(e) => {
+            e.stopPropagation();
             openModal(
               <DeleteModal
                 handleClick={() => {
@@ -77,8 +80,8 @@ const OpenStudyCard = ({
                 firstText="삭제한 스터디는 복구할 수 없어요."
                 secondText="그래도 삭제를 진행하시겠어요?"
               />,
-            )
-          }
+            );
+          }}
         />
       </div>
     </StudyCard>
