@@ -7,23 +7,23 @@ import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 
 export type MyStudyListType = {
-  id: string;
-  title: string;
-  category: string[];
-  personnel: number;
+  uuid: string;
+  postTitle: string;
+  categories: string[];
+  memberLimit: number;
   isClosed: boolean;
-  study_period: string;
-  recruitment_period: string;
+  studyPeriod: string;
+  recruitmentPeriod: string;
 };
 
 const OpenStudyCard = ({
-  id,
-  title,
-  category,
-  personnel,
+  uuid,
+  postTitle,
+  categories,
+  memberLimit,
   isClosed,
-  study_period,
-  recruitment_period,
+  studyPeriod,
+  recruitmentPeriod,
 }: MyStudyListType) => {
   const router = useRouter();
   const { openModal, closeModal } = useModal();
@@ -31,31 +31,31 @@ const OpenStudyCard = ({
 
   return (
     <StudyCard
-      onClick={() => router.push(`/study/manage/assignment/${id}`)}
+      onClick={() => router.push(`/study/manage/assignment/${uuid}`)}
       className="cursor-pointer"
     >
-      <div className="flex w-[100%] justify-between gap-x-1">
+      <div className="flex w-full justify-between gap-x-1">
         <div className="shrink truncate whitespace-nowrap text-[17px]">
-          {title}
+          {postTitle}
         </div>
         <div className="mr-2 flex items-center gap-x-0.5">
           <Image src="/svg/person.svg" width={18} height={18} alt="인원" />
-          <span className="text-12">{personnel}</span>
+          <span className="text-12">{memberLimit}</span>
         </div>
       </div>
       <div className="mt-[11px] flex gap-x-2 text-12 ">
-        {category.map((category, idx) => (
+        {categories.map((category, idx) => (
           <span key={idx}>{category}</span>
         ))}
       </div>
       <div className="mt-11 flex items-center justify-between">
         <div className="flex flex-col">
           <span className="text-12 text-text-secondary">
-            스터디 기간 {study_period}
+            스터디 기간 {studyPeriod}
           </span>
           <span className="flex gap-x-2">
             <span className="text-12 text-text-secondary">
-              모집 기간 {recruitment_period}
+              모집 기간 {recruitmentPeriod}
             </span>
             {isClosed && (
               <span className="text-12 font-bold text-status-error">마감</span>
@@ -73,7 +73,7 @@ const OpenStudyCard = ({
             openModal(
               <DeleteModal
                 handleClick={() => {
-                  deleteStudy(id);
+                  deleteStudy(uuid);
                   closeModal();
                 }}
                 title="스터디 삭제"

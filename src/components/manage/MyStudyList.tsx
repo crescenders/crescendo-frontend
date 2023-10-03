@@ -26,13 +26,13 @@ const MyStudyList = () => {
           ({ uuid, post_title, categories, member_limit, is_closed }) => (
             <OpenStudyCard
               key={uuid}
-              id={uuid}
-              title={post_title}
-              category={categories}
-              personnel={member_limit}
+              uuid={uuid}
+              postTitle={post_title}
+              categories={categories}
+              memberLimit={member_limit}
               isClosed={is_closed}
-              study_period="YYYY-MM-DD - YYYY-MM-DD"
-              recruitment_period="YYYY-MM-DD - YYYY-MM-DD"
+              studyPeriod="YYYY-MM-DD - YYYY-MM-DD"
+              recruitmentPeriod="YYYY-MM-DD - YYYY-MM-DD"
             />
           ),
         ),
