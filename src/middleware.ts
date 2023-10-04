@@ -8,5 +8,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/mypage/:path*', '/study/create'],
+  matcher: ['/mypage/:path*', '/study/create', '/study/manage/:path*'],
 };

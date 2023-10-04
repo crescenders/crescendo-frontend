@@ -47,3 +47,18 @@ export const useGetStudyDetailInStudyForm = (id: string) => {
     enabled: !!id,
   });
 };
+
+export const useGetMyStudyGroupList = (filter: string) => {
+  return useSuspenseInfiniteQuery({
+    queryKey: ['useGetMyStudyGroupList', filter],
+    queryFn: ({ pageParam }) => {
+      return studyApi.getMyStudyGroupList(
+        `filter=${filter}&cursor=${pageParam}`,
+      );
+    },
+    initialPageParam: '',
+    getNextPageParam: (lastPage) => {
+      return lastPage.next && new URL(lastPage.next).searchParams.get('cursor');
+    },
+  });
+};

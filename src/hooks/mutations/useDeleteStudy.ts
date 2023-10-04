@@ -1,13 +1,15 @@
 import studyApi from '@apis/study/studyApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useDeleteStudy = () => {
   const { showToast } = useToast();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (id: string) => studyApi.deleteStudy(id),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['useGetMyStudyGroupList'] });
       showToast({
         type: 'success',
         message: '성공적으로 글을 삭제했어요.',
