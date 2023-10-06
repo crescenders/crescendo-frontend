@@ -1,7 +1,6 @@
 import authApi from '@apis/auth/authApi';
 import userApi from '@apis/user/userApi';
 import { CredentialResponse } from '@components/modal/LoginModal';
-import { CONFIG } from '@config';
 import useScript from '@hooks/useScript';
 import useUser from '@hooks/useUser';
 import { userState } from '@recoil/auth';
@@ -41,7 +40,7 @@ const Login = () => {
   };
   useScript('https://accounts.google.com/gsi/client', () => {
     window.google.accounts.id.initialize({
-      client_id: CONFIG.API_KEY.GOOGLE_CLIENT_ID,
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID,
       callback: handleGoogleLogin,
       auto_select: false,
     });

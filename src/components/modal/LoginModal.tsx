@@ -5,7 +5,6 @@ import authApi from '@apis/auth/authApi';
 import { setToken } from '@utils/token';
 import { useRef } from 'react';
 import useScript from '@hooks/useScript';
-import { CONFIG } from '@config';
 import { useSetRecoilState } from 'recoil';
 import { userState } from '@recoil/auth';
 import useModal from '@hooks/useModal';
@@ -44,7 +43,7 @@ const LoginModal = () => {
   };
   useScript('https://accounts.google.com/gsi/client', () => {
     window.google.accounts.id.initialize({
-      client_id: CONFIG.API_KEY.GOOGLE_CLIENT_ID,
+      client_id: process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID,
       callback: handleGoogleLogin,
       auto_select: false,
     });
