@@ -1,5 +1,6 @@
 import authApi from '@apis/auth/authApi';
 import userApi from '@apis/user/userApi';
+import PageLayout from '@components/common/PageLayout';
 import { CredentialResponse } from '@components/modal/LoginModal';
 import useScript from '@hooks/useScript';
 import useUser from '@hooks/useUser';
@@ -23,7 +24,7 @@ const Login = () => {
     const el = document.querySelector(
       'div[aria-labelledby="button-label"]',
     ) as HTMLDivElement;
-    el.click();
+    el?.click();
   };
 
   const handleGoogleLogin = async (res: CredentialResponse) => {
@@ -54,26 +55,33 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
-      <Image src="/svg/logo_symbol_small.svg" width={203} height={130} alt="" />
-      <span className="mt-[85px] whitespace-pre-wrap text-center text-[20px] font-bold leading-9 tracking-tight text-[#4f4f4f]">
-        {'로그인을 하여 스터디에 \n 참여해보세요!'}
-      </span>
-      <div ref={googleSignInButton} className="hidden" />
-      <LoginButton onClick={handleClickButton}>
+    <PageLayout>
+      <Container>
         <Image
-          className="absolute left-[23px]"
-          src={'/svg/google_symbol.svg'}
-          width={24}
-          height={24}
-          alt="logo"
+          src="/svg/logo_symbol_small.svg"
+          width={203}
+          height={130}
+          alt=""
         />
-        <span className="text-18">Google 로그인</span>
-      </LoginButton>
-      <StartWithoutLogin onClick={() => router.back()}>
-        로그인 없이 이용하기
-      </StartWithoutLogin>
-    </div>
+        <span className="mt-[85px] whitespace-pre-wrap text-center text-[20px] font-bold leading-9 tracking-tight text-[#4f4f4f]">
+          {'로그인을 하여 스터디에 \n 참여해보세요!'}
+        </span>
+        <div ref={googleSignInButton} className="hidden" />
+        <LoginButton onClick={handleClickButton}>
+          <Image
+            className="absolute left-[23px]"
+            src={'/svg/google_symbol.svg'}
+            width={24}
+            height={24}
+            alt="logo"
+          />
+          <span className="text-18">Google 로그인</span>
+        </LoginButton>
+        <StartWithoutLogin onClick={() => router.back()}>
+          로그인 없이 이용하기
+        </StartWithoutLogin>
+      </Container>
+    </PageLayout>
   );
 };
 
@@ -113,4 +121,12 @@ const StartWithoutLogin = tw.button`
   font-bold
   tracking-tight
   hover:bg-[rgba(161,184,255,0.2)]
+`;
+
+const Container = tw.div`
+  flex
+  h-screen
+  flex-col
+  items-center
+  justify-center
 `;
