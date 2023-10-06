@@ -7,7 +7,7 @@ import tw from 'tailwind-styled-components';
 import Lottie from 'lottie-react';
 import animation from '@public/animation/main.json';
 import { categories } from '@constants/categories';
-import HomeStudyList from '@components/home/HomeStudyList';
+import RandomStudyList from '@components/home/RandomStudyList';
 
 const Home = () => {
   const [keyword, setKeyword] = useState('');
@@ -85,7 +85,7 @@ const Home = () => {
             ),
         )}
       </div>
-      <HomeStudyList />
+      <RandomStudyList />
     </PageLayout>
   );
 };
