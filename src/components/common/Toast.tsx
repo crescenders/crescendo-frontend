@@ -17,7 +17,7 @@ const ToastItem = ({ type, message }) => {
 
   return (
     <div
-      className={`fixed bottom-[47px] left-1/2 flex w-fit translate-x-[-50%] select-none justify-center rounded bg-dark px-12 py-3 transition-all duration-500 ease-in-out ${
+      className={`fixed bottom-[47px] left-1/2 z-[1000] flex w-fit translate-x-[-50%] select-none justify-center rounded bg-dark px-12 py-3 transition-all duration-500 ease-in-out ${
         isVisible ? 'opacity-80' : 'opacity-0'
       }`}
     >
