@@ -1,3 +1,4 @@
+import { usePostLogout } from '@hooks/mutations/usePostLogout';
 import useUser from '@hooks/useUser';
 import Link from 'next/link';
 
@@ -8,9 +9,11 @@ type NavigateListProps = {
 
 const NavigateList = ({ text, path }: NavigateListProps) => {
   const { initUserState } = useUser();
+  const { mutate } = usePostLogout();
 
   const handleLogout = () => {
     if (text === '로그아웃') {
+      mutate();
       initUserState();
     }
   };
