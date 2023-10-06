@@ -19,7 +19,7 @@ export default PageLayout;
 
 const PageLayoutBox = tw.div`
   relative
-  min-h-screen
+  h-full
   w-full
   max-w-[1024px]
   bg-white
