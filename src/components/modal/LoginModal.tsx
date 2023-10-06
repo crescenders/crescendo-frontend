@@ -26,7 +26,7 @@ const LoginModal = () => {
     const el = document.querySelector(
       'div[aria-labelledby="button-label"]',
     ) as HTMLDivElement;
-    el.click();
+    el?.click();
   };
 
   const handleGoogleLogin = async (res: CredentialResponse) => {
