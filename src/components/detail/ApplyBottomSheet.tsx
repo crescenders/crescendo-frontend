@@ -12,7 +12,7 @@ const ApplyBottomSheet = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { showToast } = useToast();
-  const { mutate: applyStudy, isSuccess } = useApplyStudy();
+  const { mutate: applyStudy } = useApplyStudy();
 
   const handleApplyStudy = () => {
     const uuid = String(router.query.id);
@@ -26,7 +26,7 @@ const ApplyBottomSheet = () => {
       return;
     }
     applyStudy({ uuid, message });
-    if (isSuccess) setIsOpen(false);
+    setIsOpen(false);
   };
 
   return (
