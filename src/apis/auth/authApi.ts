@@ -7,11 +7,16 @@ const authApi = {
     });
     return data;
   },
-  refreshToken: async (refreshToken: string | undefined): Promise<Token> => {
+  refreshToken: async (refresh: string | null): Promise<Token> => {
     const { data } = await instance.post(`/api/v1/auth/login/refresh/`, {
-      refresh: refreshToken,
+      refresh,
     });
     return data;
+  },
+  logout: async (refresh: string | null): Promise<void> => {
+    return await instance.post(`/api/v1/auth/logout/`, {
+      refresh,
+    });
   },
 };
 

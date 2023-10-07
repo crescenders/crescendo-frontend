@@ -1,11 +1,10 @@
-import { CONFIG } from '@config';
 import { deleteToken, getToken, setToken } from '@utils/token';
 import axios from 'axios';
 import authApi from '@apis/auth/authApi';
 import { getCookie } from '@utils/cookie';
 
 const instance = axios.create({
-  baseURL: CONFIG.BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
 });
 
@@ -41,9 +40,9 @@ instance.interceptors.response.use(
         return instance.request(originalRequest);
       } else {
         alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
-        CONFIG.ENV === 'development'
-          ? (window.location.href = `${CONFIG.LOCAL}/login`)
-          : (window.location.href = `${CONFIG.DOMAIN}/login`);
+        process.env.NODE_ENV === 'development'
+          ? (window.location.href = `${process.env.NEXT_PUBLIC_LOCAL}/login`)
+          : (window.location.href = `${process.env.NEXT_PUBLIC_DOMAIN}/login`);
       }
     }
     return Promise.reject(error);
