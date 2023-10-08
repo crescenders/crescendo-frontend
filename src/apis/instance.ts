@@ -1,4 +1,4 @@
-import { deleteToken, getToken, setToken } from '@utils/token';
+import { getToken, setToken } from '@utils/token';
 import axios from 'axios';
 import authApi from '@apis/auth/authApi';
 import { getCookie } from '@utils/cookie';
