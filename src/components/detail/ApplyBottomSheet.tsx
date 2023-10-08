@@ -1,12 +1,33 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import TextArea from '@components/common/TextArea';
 import Button from '@components/common/Button';
+import { useApplyStudy } from '@hooks/mutations/useApplyStudy';
+import useToast from '@hooks/useToast';
 
 const ApplyBottomSheet = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const { showToast } = useToast();
+  const { mutate: applyStudy } = useApplyStudy();
+
+  const handleApplyStudy = () => {
+    const uuid = String(router.query.id);
+    const message = String(ref.current?.value);
+
+    if (!message.length) {
+      showToast({
+        type: 'fail',
+        message: '내용을 입력해주세요.',
+      });
+      return;
+    }
+    applyStudy({ uuid, message });
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -29,6 +50,7 @@ const ApplyBottomSheet = () => {
               <Button
                 text="제출하기"
                 className="h-[32px] w-[74px] rounded-full"
+                onClick={handleApplyStudy}
               />
             </div>
             <ApplyBtn

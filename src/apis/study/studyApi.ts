@@ -38,6 +38,16 @@ const studyApi = {
     );
     return data;
   },
+  applyStudyGroup: async (
+    uuid: string,
+    message: string,
+  ): Promise<{ request_message: string }> => {
+    const { data } = await instance.post(
+      `/api/v1/studygroup/studies/${uuid}/members/`,
+      { request_message: message },
+    );
+    return data;
+  },
 };
 
 export default studyApi;
