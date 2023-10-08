@@ -7,6 +7,7 @@ import Toast from '@components/common/Toast';
 const Layout = ({ children }: PropsWithChildren) => {
   const isModal = useRecoilValue(modalVisibleState);
   const modalComponent = useRecoilValue(modalComponentState);
+
   return (
     <LayoutWrapper>
       {children}
@@ -20,7 +21,7 @@ export default Layout;
 
 const LayoutWrapper = tw.div`
   flex
-  h-screen
+  h-full
   w-screen
   justify-center
   overflow-x-hidden

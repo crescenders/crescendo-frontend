@@ -15,6 +15,7 @@ const StudyList = () => {
     data: studies,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
     isFetching,
   } = useGetStudyGroupList(params);
 
@@ -69,7 +70,7 @@ const StudyList = () => {
           />
         )}
       </StudyListContainer>
-      {isFetching && <StudyListSkeleton />}
+      {isFetchingNextPage && <StudyListSkeleton />}
       <div ref={targetRef} />
     </>
   );

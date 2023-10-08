@@ -8,7 +8,7 @@ const NotFoundStudyList = ({ keyword }: NotFoundStudyListProps) => {
   const router = useRouter();
 
   return (
-    <div className="flex w-full select-none flex-col items-center justify-center">
+    <div className="flex h-[60vh] w-full select-none flex-col items-center justify-center">
       {keyword ? (
         <p className="tracking-[-0.8px]">
           &apos;<span className="font-bold">{keyword}</span>
