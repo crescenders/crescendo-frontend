@@ -7,7 +7,7 @@ const authApi = {
     });
     return data;
   },
-  refreshToken: async (refreshToken: string | undefined): Promise<Token> => {
+  refreshToken: async (refreshToken: string | null): Promise<Token> => {
     const { data } = await instance.post(`/api/v1/auth/login/refresh/`, {
       refresh: refreshToken,
     });
