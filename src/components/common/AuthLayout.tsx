@@ -1,5 +1,4 @@
 import tw from 'tailwind-styled-components';
-import Header from '@components/common/Header';
 
 type AuthLayoutProps = {
   children: React.ReactNode;
