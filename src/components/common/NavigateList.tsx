@@ -18,7 +18,18 @@ const NavigateList = ({ text, path }: NavigateListProps) => {
     }
   };
 
-  return path ? (
+  return text === '로그아웃' ? (
+    <Link href={`${path}`}>
+      <li
+        className="flex h-[47px] items-center justify-center bg-white px-7"
+        onClick={handleLogout}
+      >
+        <span className="whitespace-nowrap text-16 font-medium hover:font-bold hover:text-brand">
+          {text}
+        </span>
+      </li>
+    </Link>
+  ) : (
     <Link href={`${path}`}>
       <li className="flex h-[47px] items-center justify-center bg-white px-7">
         <span className="whitespace-nowrap text-16 font-medium hover:font-bold hover:text-brand">
@@ -26,15 +37,6 @@ const NavigateList = ({ text, path }: NavigateListProps) => {
         </span>
       </li>
     </Link>
-  ) : (
-    <li
-      className="flex h-[47px] items-center justify-center bg-white px-7"
-      onClick={handleLogout}
-    >
-      <span className="whitespace-nowrap text-16 font-medium hover:font-bold hover:text-brand">
-        {text}
-      </span>
-    </li>
   );
 };
 
