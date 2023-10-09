@@ -23,16 +23,25 @@ const MyStudyList = () => {
     <>
       {studies.pages.flatMap((pages) =>
         pages.results.map(
-          ({ uuid, post_title, categories, member_limit, is_closed }) => (
+          ({
+            uuid,
+            name,
+            current_member_count,
+            is_closed,
+            created_at,
+            deadline,
+            start_date,
+            end_date,
+          }) => (
             <OpenStudyCard
               key={uuid}
               uuid={uuid}
-              postTitle={post_title}
-              categories={categories}
-              memberLimit={member_limit}
+              postTitle={name}
+              categories={[]}
+              memberLimit={current_member_count}
               isClosed={is_closed}
-              studyPeriod="YYYY-MM-DD - YYYY-MM-DD"
-              recruitmentPeriod="YYYY-MM-DD - YYYY-MM-DD"
+              studyPeriod={`${created_at} - ${deadline}`}
+              recruitmentPeriod={`${start_date} - ${end_date}`}
             />
           ),
         ),

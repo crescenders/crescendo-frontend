@@ -2,7 +2,6 @@ import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import useModal from '@hooks/useModal';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 
@@ -44,7 +43,7 @@ const OpenStudyCard = ({
         </div>
       </div>
       <div className="mt-[11px] flex gap-x-2 text-12 ">
-        {categories.map((category, idx) => (
+        {categories?.map((category, idx) => (
           <span key={idx}>{category}</span>
         ))}
       </div>
