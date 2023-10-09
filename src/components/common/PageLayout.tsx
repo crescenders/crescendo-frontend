@@ -1,12 +1,15 @@
 import tw from 'tailwind-styled-components';
 import Header from '@components/common/Header';
+import { PropsWithChildren } from 'react';
 
 type PageLayoutProps = {
-  children: React.ReactNode;
   className?: React.ComponentProps<'div'>['className'];
 };
 
-const PageLayout = ({ children, ...rest }: PageLayoutProps) => {
+const PageLayout = ({
+  children,
+  ...rest
+}: PropsWithChildren<PageLayoutProps>) => {
   return (
     <PageLayoutBox {...rest}>
       <Header />

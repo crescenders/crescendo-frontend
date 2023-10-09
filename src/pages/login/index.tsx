@@ -1,6 +1,6 @@
 import authApi from '@apis/auth/authApi';
 import userApi from '@apis/user/userApi';
-import PageLayout from '@components/common/PageLayout';
+import AuthLayout from '@components/common/AuthLayout';
 import { CredentialResponse } from '@components/modal/LoginModal';
 import useScript from '@hooks/useScript';
 import useUser from '@hooks/useUser';
@@ -55,7 +55,7 @@ const Login = () => {
   }, []);
 
   return (
-    <PageLayout>
+    <AuthLayout>
       <Container>
         <Image
           src="/svg/logo_symbol_small.svg"
@@ -81,7 +81,7 @@ const Login = () => {
           로그인 없이 이용하기
         </StartWithoutLogin>
       </Container>
-    </PageLayout>
+    </AuthLayout>
   );
 };
 
