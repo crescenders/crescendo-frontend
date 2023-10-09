@@ -29,7 +29,7 @@ instance.interceptors.response.use(
     if (response?.status === 401) {
       if (
         response.data.messages &&
-        response.data?.messages[0].token_type === 'access'
+        response.data.messages[0].token_type === 'access'
       ) {
         const refreshToken = getCookie('refreshToken');
         try {
