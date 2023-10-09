@@ -1,11 +1,14 @@
+import { PropsWithChildren } from 'react';
 import tw from 'tailwind-styled-components';
 
 type AuthLayoutProps = {
-  children: React.ReactNode;
   className?: React.ComponentProps<'div'>['className'];
 };
 
-const AuthLayout = ({ children, ...rest }: AuthLayoutProps) => {
+const AuthLayout = ({
+  children,
+  ...rest
+}: PropsWithChildren<AuthLayoutProps>) => {
   return <AuthLayoutBox {...rest}>{children}</AuthLayoutBox>;
 };
 
