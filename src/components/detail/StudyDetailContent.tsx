@@ -16,7 +16,7 @@ const StudyDetailContent = () => {
   const id = String(router.query.id);
 
   const { uuid } = useRecoilValue(userState);
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { data: study } = useGetStudyDetail(id);
   const { mutate: deleteStudy } = useDeleteStudy();
 
@@ -26,7 +26,7 @@ const StudyDetailContent = () => {
         <Title>{study.post_title}</Title>
         <div className="flex gap-x-1">
           <BoldText>{study.leaders.map((v) => v.username)}</BoldText>
-          <span>(user@email.com)</span>
+          <span>({study.leaders[0].email})</span>
         </div>
         <div className="flex justify-between">
           <span className="text-text-secondary">
@@ -51,6 +51,7 @@ const StudyDetailContent = () => {
                     <DeleteModal
                       handleClick={() => {
                         deleteStudy(id);
+                        closeModal();
                         router.replace(`/`);
                       }}
                       title="스터디 삭제"

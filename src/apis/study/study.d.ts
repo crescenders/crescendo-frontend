@@ -4,7 +4,6 @@ type StudyList = {
   results: [
     Study & {
       uuid: string;
-      _links: Link[];
       leaders: Leaders[];
     },
   ];
@@ -17,23 +16,16 @@ type StudyDetail = Study & {
   start_date: string;
   end_date: string;
   deadline: string;
-  _links: Link[];
 };
 
 type CreateStudy = Study & {
   uuid: string;
-  _links: Link[];
-};
-
-type Link = {
-  rel: string;
-  href: string;
 };
 
 type Leaders = {
   uuid: string;
   username: string;
-  _links: Link[];
+  email: string;
 };
 
 type Study = {
