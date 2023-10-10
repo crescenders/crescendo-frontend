@@ -40,8 +40,8 @@ const MyStudyList = () => {
               categories={[]}
               memberLimit={current_member_count}
               isClosed={is_closed}
-              studyPeriod={`${created_at} - ${deadline}`}
-              recruitmentPeriod={`${start_date} - ${end_date}`}
+              studyPeriod={`${start_date} - ${end_date}`}
+              recruitmentPeriod={`${created_at} - ${deadline}`}
             />
           ),
         ),
