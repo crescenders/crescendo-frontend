@@ -46,11 +46,17 @@ const Assignment = () => {
         <Title>등록한 과제</Title>
       </TitleArea>
       <div className="flex gap-x-1 text-13 text-text-secondary justify-end mr-[202px] mt-2 cursor-pointer">
-        <span onClick={() => openModal(<MemberModal uuid={id} type="apply" />)}>
+        <span
+          onClick={() =>
+            openModal(<MemberModal uuid={id} title="참여 신청자" />)
+          }
+        >
           참여 신청자 |{' '}
         </span>
         <span
-          onClick={() => openModal(<MemberModal uuid={id} type="member" />)}
+          onClick={() =>
+            openModal(<MemberModal uuid={id} title="스터디원 관리" />)
+          }
         >
           스터디원 관리
         </span>
