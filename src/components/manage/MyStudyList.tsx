@@ -32,12 +32,13 @@ const MyStudyList = () => {
             deadline,
             start_date,
             end_date,
+            categories,
           }) => (
             <OpenStudyCard
               key={uuid}
               uuid={uuid}
               postTitle={name}
-              categories={[]}
+              categories={categories}
               memberLimit={current_member_count}
               isClosed={is_closed}
               studyPeriod={`${start_date} - ${end_date}`}

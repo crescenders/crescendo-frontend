@@ -24,6 +24,7 @@ type MyStudyList = {
       until_deadline: number;
       is_closed: boolean;
       current_member_count: number;
+      categories: string[];
     },
   ];
 };
