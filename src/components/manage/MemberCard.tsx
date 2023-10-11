@@ -65,7 +65,7 @@ const MemberCard = ({
         )}
       </div>
       {requestMessage && (
-        <div className="text-10 text-text-secondary">
+        <div className="text-12 text-text-secondary">
           {!isReadMore && requestMessage.length > 50
             ? requestMessage.slice(0, 50)
             : requestMessage}
