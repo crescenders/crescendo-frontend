@@ -55,7 +55,7 @@ const Assignment = () => {
         </span>
         <span
           onClick={() =>
-            openModal(<MemberModal uuid={id} title="스터디원 관리" />)
+            openModal(<MemberModal uuid={id} title="스터디원 목록" />)
           }
         >
           스터디원 관리
