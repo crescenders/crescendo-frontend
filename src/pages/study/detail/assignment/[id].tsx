@@ -3,6 +3,8 @@ import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
+import MemberModal from '@components/modal/MemberModal';
+import useModal from '@hooks/useModal';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { AssignmentListType } from 'pages/study/manage/assignment/[id]';
@@ -51,6 +53,8 @@ const ViewAssiginment = () => {
 
   const router = useRouter();
   const id = String(router.query.id);
+  const { openModal } = useModal();
+
   return (
     <PageLayout>
       <div className="flex items-center mt-[105px] flex-col">
@@ -76,57 +80,79 @@ const ViewAssiginment = () => {
               </span>
             )}
           </div>
-          <div className="flex justify-end mr-[240px] mt-8 cursor-pointer">
-            {isEdit ? (
+          <div className="mx-[240px] mt-8 flex justify-between">
+            <div className="flex cursor-pointer">
               <Image
-                src="/svg/edit_clicked.svg"
+                src="/svg/member_list.svg"
                 width={40}
                 height={40}
-                alt="수정"
-                onClick={() => {
-                  setIsEdit(false);
-                  setIsDelete(false);
-                  setIsSubmit(true);
-                }}
+                alt="스터디원 목록"
+                onClick={() =>
+                  openModal(<MemberModal uuid={id} title="스터디원 목록" />)
+                }
               />
-            ) : (
               <Image
-                src="/svg/edit.svg"
+                src="/svg/apply_list.svg"
                 width={40}
                 height={40}
-                alt="수정"
-                onClick={() => {
-                  setIsEdit(true);
-                  setIsDelete(false);
-                  setIsSubmit(false);
-                }}
+                alt="참여 신청자"
+                onClick={() =>
+                  openModal(<MemberModal uuid={id} title="참여 신청자" />)
+                }
               />
-            )}
-            {isDelete ? (
-              <Image
-                src="/svg/trashcan_clicked.svg"
-                width={40}
-                height={40}
-                alt="삭제"
-                onClick={() => {
-                  setIsDelete(false);
-                  setIsEdit(false);
-                  setIsSubmit(true);
-                }}
-              />
-            ) : (
-              <Image
-                src="/svg/trashcan.svg"
-                width={40}
-                height={40}
-                alt="삭제"
-                onClick={() => {
-                  setIsEdit(false);
-                  setIsDelete(true);
-                  setIsSubmit(false);
-                }}
-              />
-            )}
+            </div>
+            <div className="flex cursor-pointer">
+              {isEdit ? (
+                <Image
+                  src="/svg/edit_clicked.svg"
+                  width={40}
+                  height={40}
+                  alt="수정"
+                  onClick={() => {
+                    setIsEdit(false);
+                    setIsDelete(false);
+                    setIsSubmit(true);
+                  }}
+                />
+              ) : (
+                <Image
+                  src="/svg/edit.svg"
+                  width={40}
+                  height={40}
+                  alt="수정"
+                  onClick={() => {
+                    setIsEdit(true);
+                    setIsDelete(false);
+                    setIsSubmit(false);
+                  }}
+                />
+              )}
+              {isDelete ? (
+                <Image
+                  src="/svg/trashcan_clicked.svg"
+                  width={40}
+                  height={40}
+                  alt="삭제"
+                  onClick={() => {
+                    setIsDelete(false);
+                    setIsEdit(false);
+                    setIsSubmit(true);
+                  }}
+                />
+              ) : (
+                <Image
+                  src="/svg/trashcan.svg"
+                  width={40}
+                  height={40}
+                  alt="삭제"
+                  onClick={() => {
+                    setIsEdit(false);
+                    setIsDelete(true);
+                    setIsSubmit(false);
+                  }}
+                />
+              )}
+            </div>
           </div>
           <AssignmentList>
             {ASSIGNMENT_INFO.assignments.map(({ id, week, period, content }) =>

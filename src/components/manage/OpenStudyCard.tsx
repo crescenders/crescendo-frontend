@@ -2,7 +2,6 @@ import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import useModal from '@hooks/useModal';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 

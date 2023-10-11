@@ -1,7 +1,10 @@
 import Button from '@components/common/Button';
 import PageLayout from '@components/common/PageLayout';
 import AssignmentCard from '@components/manage/AssignmentCard';
+import MemberModal from '@components/modal/MemberModal';
+import useModal from '@hooks/useModal';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import tw from 'tailwind-styled-components';
 
 export type AssignmentListType = {
@@ -33,14 +36,30 @@ const ASSIGNMENT_LIST: AssignmentListType[] = [
 ];
 
 const Assignment = () => {
+  const router = useRouter();
+  const id = String(router.query.id);
+  const { openModal } = useModal();
+
   return (
     <PageLayout>
       <TitleArea>
         <Title>등록한 과제</Title>
       </TitleArea>
       <div className="flex gap-x-1 text-13 text-text-secondary justify-end mr-[202px] mt-2 cursor-pointer">
-        <span>참여 신청자 | </span>
-        <span>스터디원 관리</span>
+        <span
+          onClick={() =>
+            openModal(<MemberModal uuid={id} title="참여 신청자" />)
+          }
+        >
+          참여 신청자 |{' '}
+        </span>
+        <span
+          onClick={() =>
+            openModal(<MemberModal uuid={id} title="스터디원 목록" />)
+          }
+        >
+          스터디원 관리
+        </span>
       </div>
       {ASSIGNMENT_LIST.length > 0 ? (
         ASSIGNMENT_LIST.length < 3 ? (
