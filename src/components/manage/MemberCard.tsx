@@ -22,19 +22,14 @@ const MemberCard = ({
   const [isReadMore, setIsReadMore] = useState(false);
 
   return (
-    <div className="relative flex w-[342px] flex-col justify-between gap-3 rounded-lg border border-[#F2F2F2] px-[14px] py-[12px] hover:border-brand">
+    <div
+      className={`relative flex w-[342px] flex-col justify-between gap-3 rounded-lg border border-[#F2F2F2] px-[14px] py-[12px] ${
+        isLeader && 'border-brand'
+      }`}
+    >
       <div className="flex w-full cursor-default flex-col gap-0">
         <div className="flex w-full justify-between gap-2">
-          <div className="flex shrink gap-1 overflow-hidden">
-            <span className="shrink truncate text-sm/6 font-bold">
-              {username}
-            </span>
-            {isLeader && (
-              <span className="whitespace-nowrap text-12/6 font-bold text-status-error">
-                리더
-              </span>
-            )}
-          </div>
+          <div className="shrink truncate text-sm/6 font-bold">{username}</div>
           <div className="flex gap-[6px]">
             {requestMessage && (
               <Button onClick={handleClickCheckButton}>
