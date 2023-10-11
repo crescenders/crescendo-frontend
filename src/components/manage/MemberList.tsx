@@ -1,5 +1,5 @@
 import { useGetStudyMembers } from '@hooks/queries/useGetStudyMembers';
-import MemberCard from './MemberCard';
+import MemberCard from '@components/manage/MemberCard';
 
 type MemberListProps = {
   uuid: string;
@@ -11,8 +11,8 @@ const MemberList = ({ uuid, isApproved }: MemberListProps) => {
 
   return (
     <>
-      {members?.length ? (
-        members?.map((member: StudyGroupMember) => (
+      {members.length ? (
+        members.map((member: StudyGroupMember) => (
           <MemberCard
             key={member.id}
             username={member.user.username}

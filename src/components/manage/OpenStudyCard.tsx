@@ -43,7 +43,7 @@ const OpenStudyCard = ({
         </div>
       </div>
       <div className="mt-[11px] flex gap-x-2 text-12 ">
-        {categories?.map((category, idx) => (
+        {categories.map((category, idx) => (
           <span key={idx}>{category}</span>
         ))}
       </div>
