@@ -59,10 +59,12 @@ const ViewAssiginment = () => {
     <PageLayout>
       <div className="flex items-center mt-[105px] flex-col">
         <MenuBar
-          focusedPosition="right"
+          focusedPosition="center"
           leftText="정보 보기"
-          rightText="과제 보기"
-          path={`/study/detail/${id}`}
+          centerText="과제 보기"
+          rightText="멤버 보기"
+          leftPath={`/study/detail/${id}`}
+          rightPath={`/study/detail/member/${id}`}
         />
         <StudyTitle>{ASSIGNMENT_INFO.title}</StudyTitle>
       </div>

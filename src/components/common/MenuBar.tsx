@@ -2,43 +2,62 @@ import Link from 'next/link';
 import tw from 'tailwind-styled-components';
 
 type MenuBarProps = {
-  focusedPosition: 'left' | 'right';
+  focusedPosition: 'left' | 'right' | 'center';
   leftText: string;
+  centerText?: string;
   rightText: string;
-  path: string;
+  leftPath?: string;
+  centerPath?: string;
+  rightPath?: string;
 };
 
 const focusStyle = {
-  focus:
-    'z-[2] border border-solid border-white bg-[#9969BB] font-bold text-white px-[26px]',
-  notFocus: 'text-[#AC85C8] px-[23px]',
+  focus: 'z-[3] bg-[#9969BB] font-bold text-white w-[155px]',
+  notFocus: 'text-[#AC85C8]',
 };
 
 const MenuBar = ({
   focusedPosition,
   leftText,
+  centerText,
   rightText,
-  path,
+  leftPath,
+  centerPath,
+  rightPath,
 }: MenuBarProps) => {
   return (
     <Wrapper>
       <Basic
-        href={focusedPosition === 'left' ? '#' : path}
+        href={leftPath || '#'}
         className={`${
           focusedPosition === 'left'
             ? focusStyle['focus']
-            : focusStyle['notFocus']
+            : `${focusStyle['notFocus']} justify-start`
         }`}
       >
         {leftText}
       </Basic>
+      {centerText && (
+        <Basic
+          href={centerPath || '#'}
+          className={`${
+            focusedPosition === 'center'
+              ? focusStyle['focus']
+              : `${focusStyle['notFocus']} ${
+                  focusedPosition === 'left' ? 'justify-end' : 'justify-start'
+                }`
+          } z-[2] ml-[-40px]`}
+        >
+          {centerText}
+        </Basic>
+      )}
       <Basic
-        href={focusedPosition === 'left' ? path : '#'}
+        href={rightPath || '#'}
         className={`${
-          focusedPosition === 'left'
-            ? focusStyle['notFocus']
-            : focusStyle['focus']
-        } ml-[-14px]`}
+          focusedPosition === 'right'
+            ? focusStyle['focus']
+            : `${focusStyle['notFocus']} justify-end`
+        } ml-[-40px]`}
       >
         {rightText}
       </Basic>
@@ -53,18 +72,23 @@ const Wrapper = tw.div`
   text-18
   relative
   flex
-  w-[296px]
-  rounded-[50px]
+  overflow-hidden
+  rounded-full
+  border-white
   leading-[100%]
 `;
 
 const Basic = tw(Link)`
   bg-brand
   flex
-  w-[155px]
+  w-[165px]
   cursor-pointer
   items-center
   justify-center
-  rounded-[50px]
+  rounded-full
+  px-[35px]
   py-[14px]
+  leading-[100%]
+  ring-1
+  ring-white
 `;
