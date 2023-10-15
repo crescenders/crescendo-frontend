@@ -89,18 +89,12 @@ const ViewAssiginment = () => {
                 width={40}
                 height={40}
                 alt="스터디원 목록"
-                onClick={() =>
-                  openModal(<MemberModal uuid={id} title="스터디원 목록" />)
-                }
               />
               <Image
                 src="/svg/apply_list.svg"
                 width={40}
                 height={40}
                 alt="참여 신청자"
-                onClick={() =>
-                  openModal(<MemberModal uuid={id} title="참여 신청자" />)
-                }
               />
             </div>
             <div className="flex cursor-pointer">
