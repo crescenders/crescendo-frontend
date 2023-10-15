@@ -1,17 +1,9 @@
-import studyApi from '@apis/study/studyApi';
+import memberApi from '@apis/member/memberApi';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-export type GetStudyMembersParamType = {
-  uuid: string;
-  isApproved?: boolean;
-};
-
-export const useGetStudyMembers = ({
-  uuid,
-  isApproved,
-}: GetStudyMembersParamType) => {
+export const useGetStudyMembers = (id: string) => {
   return useSuspenseQuery({
-    queryKey: ['useGetStudyMembers', isApproved],
-    queryFn: () => studyApi.getStudyGroupMemberList({ uuid, isApproved }),
+    queryKey: ['useGetStudyMembers', id],
+    queryFn: () => memberApi.getMemberList(id),
   });
 };
