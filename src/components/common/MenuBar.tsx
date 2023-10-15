@@ -85,6 +85,7 @@ const Basic = tw(Link)`
   cursor-pointer
   items-center
   justify-center
+  whitespace-nowrap
   rounded-full
   px-[35px]
   py-[14px]
