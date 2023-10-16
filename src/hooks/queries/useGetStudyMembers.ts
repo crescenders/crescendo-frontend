@@ -1,9 +1,13 @@
 import memberApi from '@apis/member/memberApi';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
-export const useGetStudyMembers = (id: string) => {
-  return useSuspenseQuery({
+export const useGetStudyMembers = (
+  id: string,
+): UseQueryResult<Member[], AxiosError> => {
+  return useQuery({
     queryKey: ['useGetStudyMembers', id],
     queryFn: () => memberApi.getMemberList(id),
+    throwOnError: false,
   });
 };
