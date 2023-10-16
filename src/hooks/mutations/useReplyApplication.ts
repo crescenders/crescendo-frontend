@@ -1,6 +1,7 @@
 import applicationApi from '@apis/application/applicationApi';
 import useToast from '@hooks/useToast';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
+import { queryClient } from 'pages/_app';
 
 export type managementParamType = {
   uuid: string;
@@ -9,7 +10,6 @@ export type managementParamType = {
 
 export const useApproveApplication = () => {
   const { showToast } = useToast();
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
@@ -32,7 +32,6 @@ export const useApproveApplication = () => {
 
 export const useRefuseApplication = () => {
   const { showToast } = useToast();
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
