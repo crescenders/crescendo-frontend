@@ -28,8 +28,8 @@ const Member = () => {
         />
       </MenuWrapper>
       <StudyTitle>{study.post_title}</StudyTitle>
-      <div className="flex grow flex-col justify-center px-[200px] pb-[23px]">
-        <div className="flex justify-around">
+      <div className="flex grow flex-col justify-center pb-[23px]">
+        <div className="flex justify-center gap-x-[70px]">
           <Card
             className="bg-[#F7B12A]"
             onClick={() => openModal(<MemberModal title="스터디원 목록" />)}
@@ -65,6 +65,7 @@ const StudyTitle = tw.div`
   mt-9
   cursor-default
   px-[200px]
+  text-center
   font-bold
 `;
 
