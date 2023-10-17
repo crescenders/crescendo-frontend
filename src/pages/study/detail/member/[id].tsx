@@ -7,6 +7,7 @@ import PageLayout from '@components/common/PageLayout';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import useModal from '@hooks/useModal';
 import MemberModal from '@components/modal/MemberModal';
+import Image from 'next/image';
 
 const Member = () => {
   const router = useRouter();
@@ -34,7 +35,14 @@ const Member = () => {
             className="bg-[#F7B12A]"
             onClick={() => openModal(<MemberModal title="스터디원 목록" />)}
           >
-            <Icon>👨‍👧‍👦</Icon>
+            <Icon>
+              <Image
+                src="/svg/emoji_members.svg"
+                width={60}
+                height={60}
+                alt=""
+              />
+            </Icon>
             <InnerCard>스터디원 목록</InnerCard>
           </Card>
           {study.leaders[0].uuid === uuid && (
@@ -42,7 +50,14 @@ const Member = () => {
               className="bg-[#33C954]"
               onClick={() => openModal(<MemberModal title="참여 신청자" />)}
             >
-              <Icon>📥</Icon>
+              <Icon>
+                <Image
+                  src="/svg/emoji_inbox.svg"
+                  width={60}
+                  height={60}
+                  alt=""
+                />
+              </Icon>
               <InnerCard>참여 신청자 목록</InnerCard>
             </Card>
           )}
@@ -101,5 +116,4 @@ const Icon = tw.div`
   grow
   items-center
   justify-center
-  text-[60px]
 `;
