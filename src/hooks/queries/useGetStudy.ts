@@ -1,4 +1,5 @@
 import studyApi from '@apis/study/studyApi';
+import userApi from '@apis/user/userApi';
 import {
   useSuspenseQuery,
   useSuspenseInfiniteQuery,
@@ -52,7 +53,7 @@ export const useGetMyStudyGroupList = (filter: string) => {
   return useSuspenseInfiniteQuery({
     queryKey: ['useGetMyStudyGroupList', filter],
     queryFn: ({ pageParam }) => {
-      return studyApi.getMyStudyGroupList(
+      return userApi.getMyStudyGroupList(
         `filter=${filter}&cursor=${pageParam}`,
       );
     },
