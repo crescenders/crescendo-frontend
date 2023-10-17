@@ -20,8 +20,6 @@ const DisApprovedStudyList = () => {
     }
   }, [isIntersecting, isFetching]);
 
-  console.log(isIntersecting);
-
   return (
     <>
       <div className="mt-10 flex flex-wrap gap-x-[33px]">
