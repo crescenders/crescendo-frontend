@@ -16,7 +16,9 @@ type MyStudyList = {
   results: [
     {
       uuid: string;
+      head_image: string;
       name: string;
+      categories: string[];
       start_date: string;
       end_date: string;
       created_at: string;
@@ -24,7 +26,6 @@ type MyStudyList = {
       until_deadline: number;
       is_closed: boolean;
       current_member_count: number;
-      categories: string[];
     },
   ];
 };
