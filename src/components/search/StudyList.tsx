@@ -64,7 +64,7 @@ const StudyList = () => {
           <NotFoundStudyList
             keyword={
               (router.query.post_title as string) ||
-              (router.query.study_title as string) ||
+              (router.query.study_name as string) ||
               (router.query.tags as string)
             }
           />
@@ -80,9 +80,7 @@ export default StudyList;
 
 const StudyListContainer = tw.div`
   flex
-  w-full
   flex-wrap
-  items-center
   justify-center
   gap-8
   pb-8

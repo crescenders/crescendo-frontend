@@ -68,7 +68,7 @@ const Search = () => {
             placeholder="제목, 스터디명 또는 태그를 검색해주세요."
             className="w-[500px] text-14"
             ref={inputRef}
-            defaultValue={router.query.study_title || router.query.post_title}
+            defaultValue={router.query.study_name || router.query.post_title}
             onKeyDown={onKeyDown}
           />
           <Image
