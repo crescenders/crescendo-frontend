@@ -23,5 +23,5 @@ const LayoutContainer = tw.div`
   flex
   w-screen
   justify-center
-  overflow-x-hidden
+  overflow-hidden
 `;
