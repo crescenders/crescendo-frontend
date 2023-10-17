@@ -6,8 +6,8 @@
 
 * {
   font-family: NotoSans;
-}
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

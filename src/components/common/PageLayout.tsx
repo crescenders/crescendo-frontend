@@ -27,5 +27,6 @@ const PageLayoutBox = tw.main`
   w-full
   max-w-[1024px]
   flex-col
+  overflow-y-auto
   bg-white
 `;
