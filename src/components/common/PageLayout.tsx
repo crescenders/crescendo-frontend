@@ -20,10 +20,12 @@ const PageLayout = ({
 
 export default PageLayout;
 
-const PageLayoutBox = tw.div`
+const PageLayoutBox = tw.main`
   relative
+  flex
   h-full
   w-full
   max-w-[1024px]
+  flex-col
   bg-white
 `;
