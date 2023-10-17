@@ -12,7 +12,7 @@ const Status = () => {
           focusedPosition="left"
           leftText="스터디 현황"
           rightText="신청한 스터디"
-          path={'/mypage/apply'}
+          rightPath={'/mypage/apply'}
         />
       </div>
       <div className="mt-12 flex flex-col px-[46px] ">
