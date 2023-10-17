@@ -3,13 +3,17 @@ import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
-import MemberModal from '@components/modal/MemberModal';
-import useModal from '@hooks/useModal';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { AssignmentListType } from 'pages/study/manage/assignment/[id]';
 import { useState } from 'react';
 import tw from 'tailwind-styled-components';
+
+type AssignmentListType = {
+  id: number;
+  week: number;
+  period: string;
+  content: string;
+};
 
 type studyInfoType = {
   title: string;
@@ -53,16 +57,17 @@ const ViewAssiginment = () => {
 
   const router = useRouter();
   const id = String(router.query.id);
-  const { openModal } = useModal();
 
   return (
     <PageLayout>
       <div className="flex items-center mt-[105px] flex-col">
         <MenuBar
-          focusedPosition="right"
+          focusedPosition="center"
           leftText="정보 보기"
-          rightText="과제 보기"
-          path={`/study/detail/${id}`}
+          centerText="과제 보기"
+          rightText="멤버 보기"
+          leftPath={`/study/detail/${id}`}
+          rightPath={`/study/detail/member/${id}`}
         />
         <StudyTitle>{ASSIGNMENT_INFO.title}</StudyTitle>
       </div>
@@ -87,18 +92,12 @@ const ViewAssiginment = () => {
                 width={40}
                 height={40}
                 alt="스터디원 목록"
-                onClick={() =>
-                  openModal(<MemberModal uuid={id} title="스터디원 목록" />)
-                }
               />
               <Image
                 src="/svg/apply_list.svg"
                 width={40}
                 height={40}
                 alt="참여 신청자"
-                onClick={() =>
-                  openModal(<MemberModal uuid={id} title="참여 신청자" />)
-                }
               />
             </div>
             <div className="flex cursor-pointer">

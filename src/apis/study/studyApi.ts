@@ -1,5 +1,4 @@
 import instance from '@apis/instance';
-import { GetStudyMembersParamType } from '@hooks/queries/useGetStudyMembers';
 
 const studyApi = {
   getStudyGroupList: async (params = ''): Promise<StudyList> => {
@@ -38,23 +37,9 @@ const studyApi = {
     return await instance.delete(`/api/v1/studygroup/studies/${id}/`);
   },
 
-  applyStudyGroup: async (
-    uuid: string,
-    message: string,
-  ): Promise<{ request_message: string }> => {
-    const { data } = await instance.post(
-      `/api/v1/studygroup/studies/${uuid}/members/`,
-      { request_message: message },
-    );
-    return data;
-  },
-
-  getStudyGroupMemberList: async ({
-    uuid,
-    isApproved,
-  }: GetStudyMembersParamType): Promise<StudyGroupMember[]> => {
+  getMyStudyGroupList: async (params: string): Promise<MyStudyList> => {
     const { data } = await instance.get(
-      `/api/v1/studygroup/studies/${uuid}/members?is_approved=${isApproved}`,
+      `/api/v1/auth/profiles/me/studies?${params}`,
     );
     return data;
   },

@@ -11,7 +11,7 @@ const Apply = () => {
           focusedPosition="right"
           leftText="스터디 현황"
           rightText="신청한 스터디"
-          path={'/mypage/status'}
+          leftPath={'/mypage/status'}
         />
       </div>
       <div className="mb-7 mt-12 flex flex-col px-[46px]">

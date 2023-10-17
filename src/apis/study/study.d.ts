@@ -40,18 +40,3 @@ type Study = {
   current_member_count: number;
   member_limit: number;
 };
-
-type StudyGroupMember = {
-  id: number;
-  user: {
-    uuid: string;
-    email: string;
-    username: string;
-    created_at: string;
-    updated_at: string;
-  };
-  is_leader: boolean;
-  is_approved: boolean;
-  request_message: string;
-  created_at: string;
-};

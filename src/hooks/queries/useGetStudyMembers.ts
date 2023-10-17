@@ -1,17 +1,13 @@
-import studyApi from '@apis/study/studyApi';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import memberApi from '@apis/member/memberApi';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
-export type GetStudyMembersParamType = {
-  uuid: string;
-  isApproved?: boolean;
-};
-
-export const useGetStudyMembers = ({
-  uuid,
-  isApproved,
-}: GetStudyMembersParamType) => {
-  return useSuspenseQuery({
-    queryKey: ['useGetStudyMembers', isApproved],
-    queryFn: () => studyApi.getStudyGroupMemberList({ uuid, isApproved }),
+export const useGetStudyMembers = (
+  id: string,
+): UseQueryResult<Member[], AxiosError> => {
+  return useQuery({
+    queryKey: ['useGetStudyMembers', id],
+    queryFn: () => memberApi.getMemberList(id),
+    throwOnError: false,
   });
 };
