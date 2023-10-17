@@ -12,8 +12,8 @@ type MenuBarProps = {
 };
 
 const focusStyle = {
-  focus: 'z-[3] bg-[#9969BB] font-bold text-white w-[155px]',
-  notFocus: 'text-[#AC85C8]',
+  focus: 'z-[3] bg-[#9969BB] font-bold text-white w-[155px] justify-center',
+  notFocus: 'text-[#AC85C8] font-bold',
 };
 
 const MenuBar = ({
@@ -55,9 +55,14 @@ const MenuBar = ({
         href={rightPath || '#'}
         className={`${
           focusedPosition === 'right'
-            ? focusStyle['focus']
-            : `${focusStyle['notFocus']} justify-end`
-        } ml-[-40px]`}
+            ? centerText
+              ? `${focusStyle['focus']} justify-center`
+              : `${focusStyle['focus']} justify-center`
+            : centerText
+            ? `${focusStyle['notFocus']} justify-end`
+            : `${focusStyle['notFocus']}`
+        }
+         ${centerText ? 'ml-[-40px]' : 'ml-[-30px]'}`}
       >
         {rightText}
       </Basic>
@@ -82,9 +87,8 @@ const Basic = tw(Link)`
   bg-brand
   flex
   w-[165px]
+  flex-1
   cursor-pointer
-  items-center
-  justify-center
   whitespace-nowrap
   rounded-full
   px-[35px]
