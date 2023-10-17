@@ -66,7 +66,7 @@ const MemberCard = ({
             : requestMessage}
           {requestMessage.length > 50 && (
             <span
-              className="cursor-pointer hover:underline"
+              className="cursor-pointer text-text-primary hover:underline"
               onClick={() => setIsReadMore((prev) => !prev)}
             >
               {isReadMore ? '접기' : ' ...더보기'}

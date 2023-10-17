@@ -1,4 +1,4 @@
-import studyApi from '@apis/study/studyApi';
+import applicationApi from '@apis/application/applicationApi';
 import useToast from '@hooks/useToast';
 import { UseMutationResult, useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -20,7 +20,8 @@ export const useApplyStudy = (): UseMutationResult<
   const { showToast } = useToast();
 
   return useMutation({
-    mutationFn: ({ uuid, message }) => studyApi.applyStudyGroup(uuid, message),
+    mutationFn: ({ uuid, message }) =>
+      applicationApi.postApplication(uuid, message),
     onSuccess: () => {
       showToast({
         type: 'success',

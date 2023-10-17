@@ -17,8 +17,10 @@ const StudyDetail = () => {
         <MenuBar
           focusedPosition="left"
           leftText="정보 보기"
-          rightText="과제 보기"
-          path={`/study/detail/assignment/${id}`}
+          centerText="과제 보기"
+          rightText="멤버 보기"
+          centerPath={`/study/detail/assignment/${id}`}
+          rightPath={`/study/detail/member/${id}`}
         />
       </MenuWrapper>
       <Suspense fallback={<StudyDetailSkeleton />}>

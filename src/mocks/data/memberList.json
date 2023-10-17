@@ -5,13 +5,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": true,
-    "is_approved": true,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 1,
@@ -19,13 +17,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": true,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 2,
@@ -33,13 +29,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": true,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 3,
@@ -47,13 +41,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": true,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 4,
@@ -61,13 +53,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": true,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 5,
@@ -75,13 +65,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": false,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 6,
@@ -89,13 +77,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": false,
-    "request_message": "신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. 신청합니다. ",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 7,
@@ -103,13 +89,11 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": false,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
   },
   {
     "id": 8,
@@ -117,12 +101,22 @@
       "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "email": "user@example.com",
       "username": "닉네임",
-      "created_at": "2023-10-09T19:21:13.136Z",
-      "updated_at": "2023-10-09T19:21:13.136Z"
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
     },
     "is_leader": false,
-    "is_approved": false,
-    "request_message": "신청합니다.",
-    "created_at": "2023-10-09T19:21:13.136Z"
+    "created_at": "2023-10-15T17:06:30.021Z"
+  },
+  {
+    "id": 9,
+    "user": {
+      "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "email": "user@example.com",
+      "username": "닉네임",
+      "created_at": "2023-10-15T17:06:30.021Z",
+      "updated_at": "2023-10-15T17:06:30.021Z"
+    },
+    "is_leader": false,
+    "created_at": "2023-10-15T17:06:30.021Z"
   }
 ]

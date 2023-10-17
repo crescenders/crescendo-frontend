@@ -53,7 +53,7 @@ const CurrentStatus = () => {
           focusedPosition="left"
           leftText="스터디 현황"
           rightText="신청한 스터디"
-          path={'/study/apply'}
+          rightPath={'/study/apply'}
         />
         <div className="mt-[74px] w-full ">
           <div>

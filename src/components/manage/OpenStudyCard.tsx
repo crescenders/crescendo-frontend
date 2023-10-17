@@ -30,7 +30,7 @@ const OpenStudyCard = ({
 
   return (
     <StudyCard
-      onClick={() => router.push(`/study/manage/assignment/${uuid}`)}
+      onClick={() => router.push(`/study/detail/${uuid}`)}
       className="cursor-pointer"
     >
       <div className="flex w-full justify-between gap-x-1">
