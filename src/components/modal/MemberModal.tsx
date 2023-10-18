@@ -13,7 +13,7 @@ const MemberModal = ({ title }: MemberModalProps) => {
     <ModalPortal>
       <div className="flex h-[378px] w-[414px] flex-col items-center justify-between gap-8 p-9">
         <span className="font-bold text-brand">{title}</span>
-        <div className="no-scrollbar relative flex h-[250px] w-[342px] flex-col items-center gap-6 overflow-y-scroll">
+        <div className="relative flex h-[250px] w-[342px] flex-col items-center gap-6 overflow-y-scroll">
           <Suspense fallback={<Loader />}>
             {title === '스터디원 목록' ? <MemberList /> : <ApplicationList />}
           </Suspense>

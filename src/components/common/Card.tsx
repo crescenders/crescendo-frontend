@@ -6,7 +6,7 @@ type CardProps = {
   path: string;
   size: 'big' | 'medium' | 'small';
   isClosed?: boolean;
-  isApprove?: boolean;
+  disapproved?: boolean;
   img: string;
   title?: string;
   studyName: string;
@@ -23,7 +23,7 @@ const Card = ({
   path,
   size,
   isClosed,
-  isApprove,
+  disapproved,
   img,
   title,
   studyName,
@@ -37,7 +37,7 @@ const Card = ({
 }: CardProps) => {
   return (
     <Wrapper href={path} className={`${WrapperStyle[size]}`}>
-      {size === 'medium' && !isApprove && (
+      {size === 'medium' && disapproved && (
         <div className="absolute z-[2] h-[172px] w-[187px] rounded-[7px] bg-white/50"></div>
       )}
       <ImageBox className={`${ImageBoxStyle[size]} relative`}>
@@ -76,10 +76,8 @@ const Card = ({
       <InfoBox className={`${InfoBoxStyle[size]}`}>
         {size === 'big' ? (
           <div className="pt-1">
-            <div className="overflow-hidden text-ellipsis whitespace-nowrap text-14">
-              {title}
-            </div>
-            <div className="my-[8px] text-12">{studyName}</div>
+            <div className="truncate text-14">{title}</div>
+            <div className="my-[8px] truncate text-12">{studyName}</div>
             <div className="flex gap-x-1">
               {tags?.map((tag) => (
                 <div key={tag} className="">
@@ -109,7 +107,7 @@ const Card = ({
             <div
               className={`${
                 size === 'medium' ? 'text-14' : 'text-12'
-              } mb-[4px] font-bold`}
+              } mb-[4px] truncate font-bold`}
             >
               {studyName}
             </div>

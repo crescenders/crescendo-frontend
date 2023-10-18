@@ -9,20 +9,19 @@ const Layout = ({ children }: PropsWithChildren) => {
   const modalComponent = useRecoilValue(modalComponentState);
 
   return (
-    <LayoutWrapper>
+    <LayoutContainer style={{ height: '100svh' }}>
       {children}
       {isModal && modalComponent}
       <Toast />
-    </LayoutWrapper>
+    </LayoutContainer>
   );
 };
 
 export default Layout;
 
-const LayoutWrapper = tw.div`
+const LayoutContainer = tw.div`
   flex
-  h-full
   w-screen
   justify-center
-  overflow-x-hidden
+  overflow-hidden
 `;
