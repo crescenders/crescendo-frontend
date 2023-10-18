@@ -20,7 +20,7 @@ const Status = () => {
           <h2 className="text-[24px] font-bold text-text-secondary">
             진행 중인 스터디
           </h2>
-          <Link href={'/study/manage'}>
+          <Link href={'/mypage/manage'}>
             <span className="text-12 font-normal">내가 맡은 스터디 관리</span>
           </Link>
         </div>
