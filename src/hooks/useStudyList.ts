@@ -67,7 +67,7 @@ const useStudyList = () => {
         query: {
           ...router.query,
           post_title: value,
-          study_title: value,
+          study_name: value,
         },
       });
   };
