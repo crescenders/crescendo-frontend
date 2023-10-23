@@ -91,7 +91,7 @@ const StudyTitle = tw.h1`
   font-bold
 `;
 
-const AssignmentList = tw.div`
+const AssignmentList = tw.ul`
   mb-20
   mt-[47px]
   flex
