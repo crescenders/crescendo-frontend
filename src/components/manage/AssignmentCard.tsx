@@ -1,137 +1,46 @@
-import Button from '@components/common/Button';
-import DeleteModal from '@components/modal/DeleteModal';
-import EditModal from '@components/modal/EditModal';
-import SubmitModal from '@components/modal/SubmitModal';
-import useModal from '@hooks/useModal';
-import { useEffect, useState } from 'react';
-import tw from 'tailwind-styled-components';
+import { formatUTC } from '@utils/formatUTC';
+import { useRouter } from 'next/router';
 
 type AssignmentListProps = {
-  week: number;
-  period: string;
+  id: number;
+  title: string;
   content: string;
-  isInitialFold?: boolean;
-  isSubmit?: boolean;
-  isEdit?: boolean;
-  isDelete?: boolean;
+  period: string;
 };
 
 const AssignmentCard = ({
-  week,
-  period,
+  id,
+  title,
   content,
-  isInitialFold,
-  isSubmit,
-  isEdit,
-  isDelete,
+  period,
 }: AssignmentListProps) => {
-  const [isFold, setIsFold] = useState(isInitialFold ?? false);
-  const { openModal } = useModal();
+  const router = useRouter();
+  const uuid = String(router.query.id);
 
   return (
-    <>
-      {isFold ? (
-        <StudyCard className="py-6">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <span className="font-bold text-brand text-17">
-                {week}주차 과제
-              </span>
-              <span className="text-status-error text-13 font-medium ml-4">
-                제출 기간 {period}
-              </span>
-            </div>
-            <span
-              className="cursor-pointer text-13"
-              onClick={() => setIsFold(false)}
-            >
-              펼치기
-            </span>
-          </div>
-        </StudyCard>
-      ) : (
-        <StudyCard>
-          <div className="flex justify-between items-center mb-[60px]">
-            <div className="flex flex-col gap-y-1">
-              <span className="font-bold text-brand text-17">
-                {week}주차 과제
-              </span>
-              <span className="text-status-error text-13 font-medium">
-                제출 기간 {period}
-              </span>
-            </div>
-            <span
-              className="cursor-pointer text-13"
-              onClick={() => setIsFold(true)}
-            >
-              접기
-            </span>
-          </div>
-          <span>{content}</span>
-          {isSubmit && (
-            <ButtonWrapper>
-              <Button
-                text="과제 제출"
-                className="w-[75px] h-[34px]"
-                onClick={() =>
-                  openModal(
-                    <SubmitModal handleClick={() => console.log('click')} />,
-                  )
-                }
-              />
-            </ButtonWrapper>
-          )}
-          {isEdit && (
-            <ButtonWrapper>
-              <Button
-                text="과제 수정"
-                className="w-[75px] h-[34px]"
-                onClick={() =>
-                  openModal(
-                    <EditModal handleClick={() => console.log('click')} />,
-                  )
-                }
-              />
-            </ButtonWrapper>
-          )}
-          {isDelete && (
-            <ButtonWrapper>
-              <Button
-                text="삭제하기"
-                className="w-[75px] h-[34px]"
-                onClick={() =>
-                  openModal(
-                    <DeleteModal
-                      handleClick={() => alert('삭제')}
-                      title="과제 삭제"
-                      firstText="삭제한 결과는 복구할 수 없어요."
-                      secondText="삭제 진행하시겠어요?"
-                    />,
-                  )
-                }
-              />
-            </ButtonWrapper>
-          )}
-        </StudyCard>
-      )}
-    </>
+    <li
+      onClick={() => router.push(`/study/assignment/detail/${uuid}/${id}`)}
+      className="flex h-[236px] w-[544px] cursor-pointer list-none flex-col overflow-hidden rounded-[20px] bg-white p-7 shadow-studyCard"
+    >
+      <div className="flex justify-between">
+        <h1 className="text-17 font-bold text-text-secondary">{title}</h1>
+
+        <span
+          onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
+            e.stopPropagation();
+            router.push('/'); // TODO: 과제 목록 페이지로 이동
+          }}
+          className="flex cursor-pointer items-end text-13 text-text-secondary"
+        >
+          과제 제출 목록
+        </span>
+      </div>
+      <p className="mt-[52px]">{content}</p>
+      <span className="flex h-full items-end justify-end text-12 font-bold text-text-primary">
+        {formatUTC(period, true)}
+      </span>
+    </li>
   );
 };
 
 export default AssignmentCard;
-
-const StudyCard = tw.div`
-  shadow-studyCard
-  h-fit
-  w-[544px]
-  rounded-[20px]
-  bg-white
-  px-8
-  py-8
-`;
-
-const ButtonWrapper = tw.div`
-  mt-[35px]
-  flex
-  justify-end
-`;
