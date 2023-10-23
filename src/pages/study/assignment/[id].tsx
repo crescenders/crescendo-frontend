@@ -3,7 +3,7 @@ import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
-import { useGetAssignment } from '@hooks/queries/useGetAssignment';
+import { useGetAssignmentList } from '@hooks/queries/useGetAssignment';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import { getProgress } from '@utils/getProgress';
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ const Assignment = () => {
   const router = useRouter();
   const uuid = String(router.query.id);
   const { data: study } = useGetStudyDetail(uuid);
-  const { data: assignment } = useGetAssignment(uuid);
+  const { data: assignment } = useGetAssignmentList(uuid);
 
   const progress = getProgress(study.start_date, study.end_date);
 

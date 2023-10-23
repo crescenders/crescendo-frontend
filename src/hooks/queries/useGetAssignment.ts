@@ -1,9 +1,9 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-export const useGetAssignment = (uuid: string) => {
+export const useGetAssignmentList = (uuid: string) => {
   return useQuery({
-    queryKey: ['useGetAssignment', uuid],
+    queryKey: ['useGetAssignmentList', uuid],
     queryFn: () => assingmentApi.getAssignmentList(uuid),
   });
 };

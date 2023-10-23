@@ -14,7 +14,7 @@ export const useDeleteAssignmentDetail = () => {
       assingmentApi.deleteAssignmentDetail(id, uuid),
     onSuccess: (_, { uuid }) => {
       queryClient.invalidateQueries({
-        queryKey: ['useGetAssignment', uuid],
+        queryKey: ['useGetAssignmentList', uuid],
       }),
         showToast({ type: 'success', message: '과제를 삭제하였습니다.' });
       router.back();

@@ -16,7 +16,9 @@ export const usePostAssignment = () => {
     }: Pick<Assignment, 'title' | 'content'> & { uuid: string }) =>
       assingmentApi.postAssignmentDetail(uuid, title, content),
     onSuccess: (_, { uuid }) => {
-      queryClient.invalidateQueries({ queryKey: ['useGetAssignment', uuid] });
+      queryClient.invalidateQueries({
+        queryKey: ['useGetAssignmentList', uuid],
+      });
       router.back();
       showToast({
         type: 'success',

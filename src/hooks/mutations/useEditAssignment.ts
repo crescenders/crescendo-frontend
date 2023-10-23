@@ -21,10 +21,13 @@ export const useEditAssignmentDetail = () => {
       title: string;
       content: string;
     }) => assingmentApi.putAssignmentDetail(id, uuid, title, content),
-    onSuccess: (_, { uuid }) => {
+    onSuccess: (_, { uuid, id }) => {
       queryClient.invalidateQueries({
-        queryKey: ['useGetAssignment', uuid],
+        queryKey: ['useGetAssignmentList', uuid],
       }),
+        queryClient.invalidateQueries({
+          queryKey: ['useGetAssignmentDetail', uuid, id],
+        }),
         showToast({
           type: 'success',
           message: '과제를 수정하였습니다.',
