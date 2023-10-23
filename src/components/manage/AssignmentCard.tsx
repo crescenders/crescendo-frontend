@@ -24,7 +24,6 @@ const AssignmentCard = ({
     >
       <div className="flex justify-between">
         <h1 className="text-17 font-bold text-text-secondary">{title}</h1>
-
         <span
           onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
             e.stopPropagation();
