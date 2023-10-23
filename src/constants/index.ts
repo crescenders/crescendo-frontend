@@ -10,3 +10,7 @@ export const NAVIGATE_LIST = [
 export const WEEKDAYS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'] as const;
 
 export const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
+export const TOAST_MESSAGE = {
+  fail: '오류가 발생하였습니다. 잠시 후 시도해주세요.',
+};
