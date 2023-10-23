@@ -1,10 +1,10 @@
 import studyApi from '@apis/study/studyApi';
 import useToast from '@hooks/useToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { queryClient } from 'pages/_app';
 
 export const useDeleteStudy = () => {
   const { showToast } = useToast();
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (id: string) => studyApi.deleteStudy(id),
