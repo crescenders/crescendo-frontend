@@ -13,7 +13,7 @@ export const getProgress = (startDate: string, endDate: string) => {
   );
 
   const totalDays = Math.floor(
-    (endDateObj.getTime() - startDateObj.getTime()) / (1000 * 60 * 60 * 24),
+    (endDateObj.getTime() - startDateObj.getTime()) / (1000 * 60 * 60 * 24) + 1,
   );
 
   const progressPercentage = Math.floor((progressInDays / totalDays) * 100);
