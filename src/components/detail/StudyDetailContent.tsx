@@ -21,7 +21,7 @@ const StudyDetailContent = () => {
   const { mutate: deleteStudy } = useDeleteStudy();
 
   const topEvent = () => {
-    if (study.until_deadline) router.push(`/study/detail/edit/${id}`);
+    if (study.until_deadline >= 0) router.push(`/study/detail/edit/${id}`);
     else alert('마감된 스터디는 수정할 수 없습니다.');
   };
 
@@ -39,6 +39,8 @@ const StudyDetailContent = () => {
       />,
     );
   };
+
+  console.log(study.until_deadline);
 
   return (
     <div className="mb-12 w-full px-[200px]">
