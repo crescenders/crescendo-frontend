@@ -19,8 +19,8 @@ const StudyDetail = () => {
           leftText="정보 보기"
           centerText="과제 보기"
           rightText="멤버 보기"
-          centerPath={`/study/detail/assignment/${id}`}
-          rightPath={`/study/detail/member/${id}`}
+          centerPath={`/study/assignment/${id}`}
+          rightPath={`/study/member/${id}`}
         />
       </MenuWrapper>
       <Suspense fallback={<StudyDetailSkeleton />}>

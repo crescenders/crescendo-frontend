@@ -6,10 +6,6 @@ type User = {
   username: string;
 };
 
-type TUser = TResponse & {
-  results: User[];
-};
-
 type MyStudyList = {
   next: string;
   previous: string;

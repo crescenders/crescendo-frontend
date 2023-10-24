@@ -25,7 +25,7 @@ const Member = () => {
           centerText="과제 보기"
           rightText="멤버 보기"
           leftPath={`/study/detail/${id}`}
-          centerPath={`/study/detail/assignment/${id}`}
+          centerPath={`/study/assignment/${id}`}
         />
       </MenuWrapper>
       <StudyTitle>{study.post_title}</StudyTitle>

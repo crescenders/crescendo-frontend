@@ -1,7 +1,6 @@
 type TResponse = {
-  count: number;
-  next_page: number | null;
-  previous_page: number | null;
+  next: string;
+  previous: string;
 };
 
 type TDate = Date | null;

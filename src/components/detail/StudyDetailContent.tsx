@@ -1,3 +1,4 @@
+import DropBox from '@components/common/DropBox';
 import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
@@ -6,7 +7,6 @@ import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
 import DOMPurify from 'dompurify';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import tw from 'tailwind-styled-components';
@@ -19,6 +19,28 @@ const StudyDetailContent = () => {
   const { openModal, closeModal } = useModal();
   const { data: study } = useGetStudyDetail(id);
   const { mutate: deleteStudy } = useDeleteStudy();
+
+  const topEvent = () => {
+    if (study.until_deadline >= 0) router.push(`/study/detail/edit/${id}`);
+    else alert('마감된 스터디는 수정할 수 없습니다.');
+  };
+
+  const bottomEvent = () => {
+    openModal(
+      <DeleteModal
+        handleClick={() => {
+          deleteStudy(id);
+          closeModal();
+          router.replace(`/`);
+        }}
+        title="스터디 삭제"
+        firstText="삭제한 결과는 복구할 수 없어요."
+        secondText="그래도 삭제를 진행하시겠어요?"
+      />,
+    );
+  };
+
+  console.log(study.until_deadline);
 
   return (
     <div className="mb-12 w-full px-[200px]">
@@ -33,37 +55,7 @@ const StudyDetailContent = () => {
             작성일 {formatUTC(study.created_at as string)}
           </span>
           {uuid === study.leaders[0].uuid && (
-            <div className="flex cursor-pointer gap-x-1 text-14">
-              {study.until_deadline > 0 ? (
-                <span>
-                  <Link href={`/study/detail/edit/${id}`}>수정</Link> /
-                </span>
-              ) : (
-                <span
-                  onClick={() => alert('마감된 스터디는 수정할 수 없습니다.')}
-                >
-                  수정 /
-                </span>
-              )}
-              <span
-                onClick={() => {
-                  openModal(
-                    <DeleteModal
-                      handleClick={() => {
-                        deleteStudy(id);
-                        closeModal();
-                        router.replace(`/`);
-                      }}
-                      title="스터디 삭제"
-                      firstText="삭제한 결과는 복구할 수 없어요."
-                      secondText="그래도 삭제를 진행하시겠어요?"
-                    />,
-                  );
-                }}
-              >
-                삭제
-              </span>
-            </div>
+            <DropBox topEvent={topEvent} bottomEvent={bottomEvent} />
           )}
         </div>
         <ImageBox>

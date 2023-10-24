@@ -6,11 +6,11 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
 };
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const TextArea = forwardRef<HTMLTextAreaElement, Partial<TextAreaProps>>(
   ({ id, label, ...rest }, ref) => {
     return (
       <Container>
-        <Label htmlFor={id}>{label}</Label>
+        {label && <Label htmlFor={id}>{label}</Label>}
         <BaseTextArea ref={ref} {...rest} />
       </Container>
     );

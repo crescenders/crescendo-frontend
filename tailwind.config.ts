@@ -31,6 +31,7 @@ module.exports = {
         text: {
           primary: '#8A8A8A',
           secondary: '#5A5A5A',
+          tertiary: '#373737',
         },
         status: {
           success: '#2BD239',

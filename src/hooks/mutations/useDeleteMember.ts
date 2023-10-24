@@ -2,10 +2,11 @@ import memberApi from '@apis/member/memberApi';
 import useToast from '@hooks/useToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { managementParamType } from '@hooks/mutations/useReplyApplication';
+import { queryClient } from 'pages/_app';
+import { TOAST_MESSAGE } from '@constants/index';
 
 export const useDeleteMember = () => {
   const { showToast } = useToast();
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
@@ -20,7 +21,7 @@ export const useDeleteMember = () => {
     onError: () => {
       showToast({
         type: 'fail',
-        message: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+        message: TOAST_MESSAGE.fail,
       });
     },
   });

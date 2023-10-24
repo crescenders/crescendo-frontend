@@ -7,13 +7,23 @@ type ProgressBarProps = {
 
 const ProgressBar = ({ progress }: ProgressBarProps) => {
   return (
-    <div className="w-full max-w-[522px] rounded-full h-[10px] bg-[#C7D3EB] flex items-center">
+    <div className="relative flex h-[10px] w-full max-w-[522px] items-center rounded-full bg-[#C7D3EB]">
+      <div className="absolute bottom-5 left-0 flex items-center gap-x-1">
+        <Image
+          src="/svg/run.svg"
+          width={28}
+          height={28}
+          alt="progress"
+          className="mb-1 scale-x-[-1]"
+        />
+        <span className="text-14 font-bold text-brand">진행도</span>
+      </div>
       <div
-        className={`bg-brand h-[10px] rounded-full`}
+        className={`h-[10px] rounded-full bg-brand`}
         style={{ width: `${progress}%` }}
       />
       {progress === 100 ? (
-        <div className="bg-brand rounded-full w-5 h-5">
+        <div className="h-5 w-5 rounded-full bg-brand">
           <Image
             src={'/svg/success.svg'}
             width={20}
@@ -23,24 +33,24 @@ const ProgressBar = ({ progress }: ProgressBarProps) => {
           />
         </div>
       ) : (
-        <div className="bg-brand rounded-full w-5 h-5 relative right-1">
+        <div className="relative right-1 h-5 w-5 rounded-full bg-brand">
           {progress < 15 ? (
-            <div className="flex flex-col items-center bottom-16 relative">
-              <div className="w-[34px] h-[23px] bg-brand rounded flex justify-center items-center">
-                <span className="text-white font-semibold text-12">
+            <div className="relative bottom-16 flex flex-col items-center">
+              <div className="flex h-[23px] w-[34px] items-center justify-center rounded bg-brand">
+                <span className="text-12 font-semibold text-white">
                   {progress}%
                 </span>
               </div>
-              <div className="bg-brand w-[10px] h-[10px] rotate-[135deg] relative bottom-1.5" />
+              <div className="relative bottom-1.5 h-[10px] w-[10px] rotate-[135deg] bg-brand" />
             </div>
           ) : (
-            <div className="flex flex-col items-center bottom-12 relative">
-              <div className="w-[34px] h-[23px] bg-brand rounded flex justify-center items-center">
-                <span className="text-white font-semibold text-12">
+            <div className="relative bottom-12 flex flex-col items-center">
+              <div className="flex h-[23px] w-[34px] items-center justify-center rounded bg-brand">
+                <span className="text-12 font-semibold text-white">
                   {progress}%
                 </span>
               </div>
-              <div className="bg-brand w-[10px] h-[10px] rotate-[135deg] relative bottom-1.5" />
+              <div className="relative bottom-1.5 h-[10px] w-[10px] rotate-[135deg] bg-brand" />
             </div>
           )}
         </div>
