@@ -11,17 +11,16 @@ const PageLayout = ({
   ...rest
 }: PropsWithChildren<PageLayoutProps>) => {
   return (
-    <PageLayoutBox {...rest}>
+    <>
       <Header />
-      {children}
-    </PageLayoutBox>
+      <PageLayoutBox {...rest}>{children}</PageLayoutBox>
+    </>
   );
 };
 
 export default PageLayout;
 
 const PageLayoutBox = tw.main`
-  relative
   flex
   h-full
   w-full
