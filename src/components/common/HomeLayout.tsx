@@ -5,13 +5,11 @@ import Banner from '@components/home/Banner';
 
 const HomeLayout = ({ children, ...rest }: PropsWithChildren) => {
   return (
-    <>
+    <Container {...rest}>
       <Header />
-      <Container {...rest}>
-        <Banner />
-        {children}
-      </Container>
-    </>
+      <Banner />
+      {children}
+    </Container>
   );
 };
 
