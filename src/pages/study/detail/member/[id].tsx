@@ -17,7 +17,7 @@ const Member = () => {
   const { data: study } = useGetStudyDetail(id);
 
   return (
-    <PageLayout className="flex h-screen flex-col overflow-hidden">
+    <PageLayout className="items-center">
       <MenuWrapper>
         <MenuBar
           focusedPosition="right"
@@ -29,39 +29,27 @@ const Member = () => {
         />
       </MenuWrapper>
       <StudyTitle>{study.post_title}</StudyTitle>
-      <div className="flex grow flex-col justify-center pb-[23px]">
-        <div className="flex justify-center gap-x-[70px]">
+      <div className="flex grow flex-wrap items-center justify-evenly gap-x-[70px] gap-y-[50px] py-[50px]">
+        <Card
+          className="bg-[#F7B12A]"
+          onClick={() => openModal(<MemberModal title="스터디원 목록" />)}
+        >
+          <Icon>
+            <Image src="/svg/emoji_members.svg" width={60} height={60} alt="" />
+          </Icon>
+          <InnerCard>스터디원 목록</InnerCard>
+        </Card>
+        {study.leaders[0].uuid === uuid && (
           <Card
-            className="bg-[#F7B12A]"
-            onClick={() => openModal(<MemberModal title="스터디원 목록" />)}
+            className="bg-[#33C954]"
+            onClick={() => openModal(<MemberModal title="참여 신청자" />)}
           >
             <Icon>
-              <Image
-                src="/svg/emoji_members.svg"
-                width={60}
-                height={60}
-                alt=""
-              />
+              <Image src="/svg/emoji_inbox.svg" width={60} height={60} alt="" />
             </Icon>
-            <InnerCard>스터디원 목록</InnerCard>
+            <InnerCard>참여 신청자 목록</InnerCard>
           </Card>
-          {study.leaders[0].uuid === uuid && (
-            <Card
-              className="bg-[#33C954]"
-              onClick={() => openModal(<MemberModal title="참여 신청자" />)}
-            >
-              <Icon>
-                <Image
-                  src="/svg/emoji_inbox.svg"
-                  width={60}
-                  height={60}
-                  alt=""
-                />
-              </Icon>
-              <InnerCard>참여 신청자 목록</InnerCard>
-            </Card>
-          )}
-        </div>
+        )}
       </div>
     </PageLayout>
   );
@@ -78,8 +66,8 @@ const MenuWrapper = tw.div`
 const StudyTitle = tw.div`
   text-24
   mt-9
+  max-w-[600px]
   cursor-default
-  px-[200px]
   text-center
   font-bold
 `;
