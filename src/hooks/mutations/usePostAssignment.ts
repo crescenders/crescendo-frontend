@@ -1,4 +1,5 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
+import { TOAST_MESSAGE } from '@constants/index';
 import useToast from '@hooks/useToast';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
@@ -28,7 +29,7 @@ export const usePostAssignment = () => {
     onError: () =>
       showToast({
         type: 'fail',
-        message: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+        message: TOAST_MESSAGE.fail,
       }),
   });
 };
