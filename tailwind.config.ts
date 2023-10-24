@@ -58,6 +58,7 @@ module.exports = {
         bounce3: 'bounce 0.5s infinite 100ms',
         slideDown: 'slide 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
         slideUp: 'slideUp 0.3s',
+        neon: 'neon 2s linear infinite',
         'skeleton-gradient': 'skeleton-gradient 1.35s infinite ease-in-out',
         'skeleton-gradient1': 'skeleton-gradient1 1.35s infinite ease-in-out',
       },
@@ -102,6 +103,17 @@ module.exports = {
           '100%': {
             transform: 'translateY(0)',
             opacity: 1,
+          },
+        },
+        neon: {
+          '0%': {
+            filter: 'drop-shadow(0 0 10px rgba(110, 13, 208, 0.5))',
+          },
+          '50%': {
+            filter: 'drop-shadow(0 0 30px rgba(110, 13, 208, 0.5))',
+          },
+          '100%': {
+            filter: 'drop-shadow(0 0 10px rgba(110, 13, 208, 0.5))',
           },
         },
       },
