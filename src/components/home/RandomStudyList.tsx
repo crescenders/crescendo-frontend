@@ -48,6 +48,6 @@ const StudyListContainer = tw.div`
   flex-wrap
   items-center
   justify-center
-  gap-8
+  gap-12
   pb-8
 `;
