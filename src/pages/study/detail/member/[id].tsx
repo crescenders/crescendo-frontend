@@ -17,7 +17,7 @@ const Member = () => {
   const { data: study } = useGetStudyDetail(id);
 
   return (
-    <PageLayout className="flex flex-col items-center">
+    <PageLayout className="items-center">
       <MenuWrapper>
         <MenuBar
           focusedPosition="right"

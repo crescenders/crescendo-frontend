@@ -10,37 +10,27 @@ const StudyManage = () => {
   const router = useRouter();
 
   return (
-    <PageLayout className="flex flex-col items-center">
-      <Wrapper>
-        <Container>
-          <TitleArea>
-            <Title>내가 맡은 스터디</Title>
-          </TitleArea>
-          <StudyListArea>
-            <Suspense fallback={<MyStudyListSkeleton />}>
-              <MyStudyList />
-            </Suspense>
-            <Button
-              className="h-9 w-[134px]"
-              text="스터디 개설하기"
-              onClick={() => router.push('/study/create')}
-            />
-          </StudyListArea>
-        </Container>
-      </Wrapper>
+    <PageLayout>
+      <Container>
+        <TitleArea>
+          <Title>내가 맡은 스터디</Title>
+        </TitleArea>
+        <StudyListArea>
+          <Suspense fallback={<MyStudyListSkeleton />}>
+            <MyStudyList />
+          </Suspense>
+          <Button
+            className="h-9 w-[134px]"
+            text="스터디 개설하기"
+            onClick={() => router.push('/study/create')}
+          />
+        </StudyListArea>
+      </Container>
     </PageLayout>
   );
 };
 
 export default StudyManage;
-
-const Wrapper = tw.section`
-  flex
-  w-full
-  justify-center
-  px-7
-  pt-[125px]
-`;
 
 const Container = tw.div`
   flex
@@ -48,6 +38,8 @@ const Container = tw.div`
   flex-col
   items-start
   justify-start
+  px-7
+  pt-[125px]
 `;
 
 const Title = tw.div`
