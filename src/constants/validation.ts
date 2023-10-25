@@ -1,5 +1,5 @@
 export const REGEX = {
-  text: /^[가-힣a-zA-Z]+$/,
+  text: /^[가-힣a-zA-Z0-9]*$/,
   file: /(.*?)\.(jpg|jpeg|png)$/,
   code: /<pre((?!(<\/pre>))[\s\S])*<\/pre>/gi,
   htmlTag: /<[^>]*>?/gi,
