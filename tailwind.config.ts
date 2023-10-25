@@ -58,6 +58,7 @@ module.exports = {
         bounce3: 'bounce 0.5s infinite 100ms',
         slideDown: 'slide 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
         slideUp: 'slideUp 0.3s',
+        dropbox: 'dropbox 0.3s',
         neon: 'neon 2s linear infinite',
         'skeleton-gradient': 'skeleton-gradient 1.35s infinite ease-in-out',
         'skeleton-gradient1': 'skeleton-gradient1 1.35s infinite ease-in-out',
@@ -98,6 +99,16 @@ module.exports = {
         slideUp: {
           '0%': {
             transform: 'translateY(100%)',
+            opacity: 0,
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: 1,
+          },
+        },
+        dropbox: {
+          '0%': {
+            transform: 'translateY(-20%)',
             opacity: 0,
           },
           '100%': {

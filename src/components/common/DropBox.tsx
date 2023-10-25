@@ -20,7 +20,7 @@ const DropBox = ({ topEvent, bottomEvent }: DropBoxProps) => {
         onClick={() => setIsOpen((prev) => !prev)}
       />
       {isOpen && (
-        <ul className="absolute z-50 right-2 top-12 flex h-fit w-[85px] cursor-pointer list-none flex-col items-center gap-y-2 rounded-md border-[1px] border-[rgba(0,0,0,0.15)] bg-white py-2">
+        <ul className="absolute right-2 top-12 animate-dropbox z-50 flex h-fit w-[85px] cursor-pointer list-none  flex-col items-center gap-y-2 rounded-md border-[1px] border-[rgba(0,0,0,0.15)] bg-white py-2 duration-150">
           <li className="flex w-full justify-center gap-x-1 py-1 hover:bg-[rgba(52,58,64,0.1)] hover:transition-colors">
             <Image src="/svg/edit2.svg" width={18} height={18} alt="edit" />
             <span onClick={topEvent} className="text-15">
