@@ -34,8 +34,8 @@ const Banner = () => {
   };
 
   return (
-    <div className="mt-[70px] h-[283px] w-full">
-      <section className="flex items-center justify-around gap-x-10 bg-brand px-7 xl:justify-evenly">
+    <div className="mt-[70px] h-[283px] w-full bg-brand">
+      <section className="mx-auto my-0 flex w-full max-w-[1200px] items-center justify-between gap-x-10 px-12">
         <div className="flex flex-col justify-center">
           <h1 className="text-[32px] font-bold text-white">
             관심있는 스터디를 검색해보세요!
