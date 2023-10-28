@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import Lottie from 'lottie-react';
 import { useState } from 'react';
 import animation from '@public/animation/main.json';
+import { useGetTags } from '@hooks/queries/useGetTags';
 
 const Banner = () => {
   const router = useRouter();
+  const { data: tags } = useGetTags();
 
   const [keyword, setKeyword] = useState('');
 
@@ -58,25 +60,16 @@ const Banner = () => {
               onClick={handleSearchClick}
             />
           </div>
-          <ul className="flex h-[28px] w-[215px] cursor-pointer gap-3">
-            <li
-              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
-              onClick={() => router.push(`/search?tags=React`)}
-            >
-              #React
-            </li>
-            <li
-              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
-              onClick={() => router.push(`/search?tags=Django`)}
-            >
-              #Django
-            </li>
-            <li
-              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
-              onClick={() => router.push(`/search?tags=Java`)}
-            >
-              #Java
-            </li>
+          <ul className="flex cursor-pointer gap-3">
+            {tags?.map(({ name }) => (
+              <li
+                key={name}
+                className="flex w-fit items-center justify-center overflow-hidden rounded-[26px] bg-[#A77EC4] px-3 py-0.5 text-15 text-white"
+                onClick={() => router.push(`/search?tags=${name}`)}
+              >
+                #{name}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="flex h-[280px] max-w-[300px] items-center">
