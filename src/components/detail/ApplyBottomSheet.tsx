@@ -55,7 +55,6 @@ const ApplyBottomSheet = () => {
                 />
               </div>
             </div>
-
             <ApplyBtn
               className="absolute right-0 top-[-42px]"
               onClick={() => setIsOpen((prev) => !prev)}
