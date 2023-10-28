@@ -45,28 +45,28 @@ const Search = () => {
 
   return (
     <PageLayout>
-      <div className="flex justify-center">
-        <div className="mt-[150px] flex items-center gap-x-2">
-          <SelectBox
-            options={LEFT_SELECT_OPTION}
-            value={leftValue}
-            setValue={setLeftValue}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-          <SelectBox
-            options={RIGHT_SELECT_OPTION}
-            value={rightValue}
-            setValue={setRightValue}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+      <div className="mx-auto my-0 mt-[150px] flex w-full max-w-3xl items-center gap-x-2 px-5">
+        <SelectBox
+          options={LEFT_SELECT_OPTION}
+          value={leftValue}
+          setValue={setLeftValue}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+        <SelectBox
+          options={RIGHT_SELECT_OPTION}
+          value={rightValue}
+          setValue={setRightValue}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+        <div className="relative w-full max-w-[500px]">
           <Input
             id="search-bar"
             type="text"
             variant="middle"
             placeholder="제목, 스터디명 또는 태그를 검색해주세요."
-            className="w-[500px] text-14"
+            className="w-full text-14"
             ref={inputRef}
             defaultValue={router.query.study_name || router.query.post_title}
             onKeyDown={onKeyDown}
@@ -76,13 +76,13 @@ const Search = () => {
             width={16}
             height={16}
             alt="searchIcon"
-            className="relative right-10 cursor-pointer"
+            className="absolute right-3 top-3.5 cursor-pointer"
             onClick={handleSearchClick}
           />
         </div>
       </div>
-      <div className="mb-10 flex justify-center">
-        <ul className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-3">
+      <div className="mb-10 mt-4 w-full">
+        <ul className="mx-auto my-0 flex w-full max-w-3xl flex-wrap items-center gap-x-2 gap-y-3 px-5">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <CategoryBox
               key={id}
@@ -102,6 +102,7 @@ const Search = () => {
           ))}
         </ul>
       </div>
+
       <Suspense fallback={<StudyListSkeleton />}>
         <StudyList />
       </Suspense>
