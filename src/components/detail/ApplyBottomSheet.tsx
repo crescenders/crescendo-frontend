@@ -23,7 +23,6 @@ const ApplyBottomSheet = () => {
         type: 'fail',
         message: '내용을 입력해주세요.',
       });
-      ref.current?.focus();
       return;
     }
     applyStudy({ uuid, message });
@@ -39,23 +38,21 @@ const ApplyBottomSheet = () => {
               e.stopPropagation()
             }
           >
-            <div className="mx-auto my-0 w-full max-w-xl px-5">
+            <div className="flex justify-center">
               <TextArea
                 id="apply-textarea"
                 label="신청서 작성"
                 ref={ref}
                 placeholder="신청과 함께 본인을 소개하는 문구를 작성해주세요!"
-                className="w-full"
               />
-              <div className="mt-4 flex justify-end">
-                <Button
-                  text="제출하기"
-                  className="h-[32px] w-[74px] rounded-full"
-                  onClick={handleApplyStudy}
-                />
-              </div>
             </div>
-
+            <div className="mt-4 flex justify-end px-20">
+              <Button
+                text="제출하기"
+                className="h-[32px] w-[74px] rounded-full"
+                onClick={handleApplyStudy}
+              />
+            </div>
             <ApplyBtn
               className="absolute right-0 top-[-42px]"
               onClick={() => setIsOpen((prev) => !prev)}
