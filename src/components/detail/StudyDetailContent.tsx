@@ -5,6 +5,7 @@ import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import useModal from '@hooks/useModal';
 import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
+import { getProgress } from '@utils/getProgress';
 import DOMPurify from 'dompurify';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -39,8 +40,6 @@ const StudyDetailContent = () => {
       />,
     );
   };
-
-  console.log(study.until_deadline);
 
   return (
     <div className="mb-12 w-full px-[200px]">
@@ -92,6 +91,14 @@ const StudyDetailContent = () => {
                   : '마감'}
               </span>
             </div>
+            {study.until_deadline < 0 && (
+              <div className="flex items-center gap-x-1.5">
+                <GrayText>진행도</GrayText>
+                <BoldText>
+                  {`${getProgress(study.start_date, study.end_date)}%`}
+                </BoldText>
+              </div>
+            )}
           </div>
         </InfoTextContainer>
         <ul className="flex gap-x-2">

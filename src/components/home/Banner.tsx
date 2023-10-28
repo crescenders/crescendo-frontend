@@ -34,8 +34,8 @@ const Banner = () => {
   };
 
   return (
-    <div className="mt-[70px] h-[283px] w-full">
-      <section className="flex items-center justify-around gap-x-10 bg-brand px-7">
+    <div className="mt-[70px] h-[283px] w-full bg-brand">
+      <section className="mx-auto my-0 flex w-full max-w-[1200px] items-center justify-between gap-x-10 px-12">
         <div className="flex flex-col justify-center">
           <h1 className="text-[32px] font-bold text-white">
             관심있는 스터디를 검색해보세요!
@@ -60,19 +60,19 @@ const Banner = () => {
           </div>
           <ul className="flex h-[28px] w-[215px] cursor-pointer gap-3">
             <li
-              className="rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
+              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
               onClick={() => router.push(`/search?tags=React`)}
             >
               #React
             </li>
             <li
-              className="rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
+              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
               onClick={() => router.push(`/search?tags=Django`)}
             >
               #Django
             </li>
             <li
-              className="rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
+              className="flex items-center justify-center rounded-[26px] bg-[#A77EC4] px-[10px] py-[5px] text-white"
               onClick={() => router.push(`/search?tags=Java`)}
             >
               #Java
