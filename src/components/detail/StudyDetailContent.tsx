@@ -42,7 +42,7 @@ const StudyDetailContent = () => {
   };
 
   return (
-    <div className="mb-12 w-full px-[200px]">
+    <div className="mx-auto my-0 mb-12 w-full max-w-2xl px-7">
       <div className="mt-[50px] flex flex-col gap-y-2">
         <Title>{study.post_title}</Title>
         <div className="flex gap-x-1">
@@ -58,24 +58,17 @@ const StudyDetailContent = () => {
           )}
         </div>
         <ImageBox>
-          {
-            <Image
-              src={study.head_image as string}
-              fill
-              alt="head-image"
-              className="object-contain"
-            />
-          }
+          <Image src={study.head_image as string} fill alt="head-image" />
         </ImageBox>
         <InfoTextContainer>
-          <div className="flex flex-col gap-y-4">
-            <div className="flex gap-x-1.5 text-18">
+          <div className="flex flex-1 flex-col gap-y-4">
+            <div className="flex gap-x-1.5">
               <GrayText>스터디명</GrayText>
               <BoldText>{study.study_name}</BoldText>
             </div>
             <GrayText>카테고리</GrayText>
           </div>
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-1 flex-col gap-y-4">
             <div className="flex gap-x-1.5">
               <GrayText>스터디 기간</GrayText>
               <BoldText>
@@ -151,6 +144,7 @@ const ImageBox = tw.div`
   mt-2
   h-[254px]
   w-full
+  overflow-hidden
   rounded-lg
   border-[1px]
   border-black
@@ -159,7 +153,6 @@ const ImageBox = tw.div`
 const InfoTextContainer = tw.div`
   mt-7
   flex
-  items-center
   justify-between
   gap-x-12
 `;
@@ -181,6 +174,7 @@ const ContentTitle = tw.h2`
 
 const GrayText = tw.span`
   text-text-secondary
+  whitespace-nowrap
   font-bold
 `;
 
