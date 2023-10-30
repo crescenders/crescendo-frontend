@@ -1,5 +1,7 @@
+import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
 import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
 
 type AssignmentListProps = {
   id: number;
@@ -14,12 +16,15 @@ const AssignmentCard = ({
   content,
   period,
 }: AssignmentListProps) => {
+  const { username } = useRecoilValue(userState);
   const router = useRouter();
   const uuid = String(router.query.id);
 
   return (
     <li
-      onClick={() => router.push(`/study/assignment/detail/${uuid}/${id}`)}
+      onClick={() => {
+        username && router.push(`/study/assignment/detail/${uuid}/${id}`);
+      }}
       className="flex h-[236px] w-[544px] cursor-pointer list-none flex-col overflow-hidden rounded-[20px] bg-white p-7 shadow-studyCard"
     >
       <div className="flex justify-between">
