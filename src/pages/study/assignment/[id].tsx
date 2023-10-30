@@ -5,17 +5,25 @@ import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
 import { useGetAssignmentList } from '@hooks/queries/useGetAssignment';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import { userState } from '@recoil/auth';
 import { getProgress } from '@utils/getProgress';
 import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
 import tw from 'tailwind-styled-components';
 
 const Assignment = () => {
   const router = useRouter();
   const uuid = String(router.query.id);
+  const { uuid: userId } = useRecoilValue(userState);
   const { data: study } = useGetStudyDetail(uuid);
   const { data: assignment } = useGetAssignmentList(uuid);
 
   const progress = getProgress(study.start_date, study.end_date);
+
+  const handleRegisterButton = () => {
+    if (userId === study.leaders[0].uuid)
+      router.push(`/study/assignment/register/${uuid}`);
+  };
 
   return (
     <PageLayout>
@@ -36,8 +44,8 @@ const Assignment = () => {
             <ProgressBar progress={progress} />
             {progress !== 100 && (
               <span className="text-14 font-bold">
-                목표까지{' '}
-                <span className="text-brand">{`${100 - progress}`}% </span>
+                목표까지
+                <span className="text-brand">{` ${100 - progress}`}% </span>
                 남았어요!
               </span>
             )}
@@ -55,7 +63,7 @@ const Assignment = () => {
             <Button
               text="과제 등록하기"
               className="h-9 w-[143px]"
-              onClick={() => router.push(`/study/assignment/register/${uuid}`)}
+              onClick={handleRegisterButton}
             />
           </AssignmentList>
         </>
@@ -70,7 +78,7 @@ const Assignment = () => {
             <Button
               text="과제 등록하기"
               className="h-9 w-[143px]"
-              onClick={() => router.push(`/study/assignment/register/${uuid}`)}
+              onClick={handleRegisterButton}
             />
           </div>
         </>
