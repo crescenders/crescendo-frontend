@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import tw from 'tailwind-styled-components';
 
 type ProgressBarProps = {
   progress: number;
