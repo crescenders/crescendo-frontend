@@ -6,6 +6,12 @@ const getErrorMessage = (status: number) => {
         content: '',
         button: '이전페이지로 이동',
       };
+    case 404:
+      return {
+        title: '잘못된 요청입니다.',
+        content: '',
+        button: '이전페이지로 이동',
+      };
     default:
       return {
         title: '잠시 후 다시 시도해주세요.',
