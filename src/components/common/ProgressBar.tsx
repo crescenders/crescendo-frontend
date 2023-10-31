@@ -18,11 +18,11 @@ const ProgressBar = ({ progress }: ProgressBarProps) => {
         <span className="text-14 font-bold text-brand">진행도</span>
       </div>
       <div
-        className={`h-[10px] rounded-full bg-brand`}
+        className="relative h-[10px] rounded-full bg-brand"
         style={{ width: `${progress}%` }}
       />
       {progress === 100 ? (
-        <div className="h-5 w-5 rounded-full bg-brand">
+        <div className="absolute right-0 h-5 w-5 rounded-full bg-brand">
           <Image
             src={'/svg/success.svg'}
             width={20}
