@@ -32,7 +32,9 @@ const Member = () => {
       <div className="flex grow flex-wrap items-center justify-evenly gap-x-[70px] gap-y-[50px] py-[50px]">
         <Card
           className="bg-[#F7B12A]"
-          onClick={() => openModal(<MemberModal title="스터디원 목록" />)}
+          onClick={() =>
+            uuid && openModal(<MemberModal title="스터디원 목록" />)
+          }
         >
           <Icon>
             <Image src="/svg/emoji_members.svg" width={60} height={60} alt="" />
