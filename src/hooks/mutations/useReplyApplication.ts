@@ -36,6 +36,26 @@ export const useRefuseApplication = () => {
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
       applicationApi.refuseApplication(uuid, id),
+    onMutate: (param) => {
+      queryClient.cancelQueries({
+        queryKey: ['useGetApplications', param.uuid],
+      });
+
+      const prevData = queryClient.getQueryData([
+        'useGetApplications',
+        param.uuid,
+      ]) as Member[];
+      const optimisticData: Member[] = prevData.filter(
+        (data) => data.id !== param.id,
+      );
+
+      queryClient.setQueryData(
+        ['useGetApplications', param.uuid],
+        optimisticData,
+      );
+
+      return { prevData, optimisticData };
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetApplications'] });
       showToast({
@@ -43,7 +63,8 @@ export const useRefuseApplication = () => {
         message: '가입 요청을 거절했어요.',
       });
     },
-    onError: () => {
+    onError: (_error, _param, context) => {
+      queryClient.setQueryData(['useGetStudyMembers'], context?.prevData);
       showToast({
         type: 'fail',
         message: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
