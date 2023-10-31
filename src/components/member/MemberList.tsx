@@ -10,6 +10,12 @@ const MemberList = () => {
   const { data: members, isError, error } = useGetStudyMembers(uuid);
   const { mutate: deleteMember } = useDeleteMember();
 
+  const compareMembers = (a: Member, b: Member) => {
+    if (a.is_leader && !b.is_leader) return -1;
+    if (!a.is_leader && b.is_leader) return 1;
+    return 0;
+  };
+
   if (isError && error.response?.status === 403) {
     return (
       <div className="absolute top-10 flex w-full select-none flex-col items-center justify-center gap-8">
@@ -24,14 +30,16 @@ const MemberList = () => {
   return (
     <>
       {members?.length ? (
-        members.map(({ id, user, is_leader }: Member) => (
-          <MemberCard
-            key={id}
-            username={user.username}
-            isLeader={is_leader}
-            handleClickCrossButton={() => deleteMember({ uuid, id })}
-          />
-        ))
+        members
+          .sort(compareMembers)
+          .map(({ id, user, is_leader }: Member) => (
+            <MemberCard
+              key={id}
+              username={user.username}
+              isLeader={is_leader}
+              handleClickCrossButton={() => deleteMember({ uuid, id })}
+            />
+          ))
       ) : (
         <span className="absolute top-16 text-14 text-text-primary">
           현재 참여하고 있는 스터디원이 없습니다.
