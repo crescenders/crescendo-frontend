@@ -7,6 +7,7 @@ type MemberCardProps = {
   email?: string;
   requestMessage?: string;
   isLeader?: boolean;
+  isCurrentUserLeader: boolean;
   handleClickCheckButton?: () => void;
   handleClickCrossButton?: () => void;
 };
@@ -16,6 +17,7 @@ const MemberCard = ({
   email,
   requestMessage,
   isLeader,
+  isCurrentUserLeader,
   handleClickCheckButton,
   handleClickCrossButton,
 }: MemberCardProps) => {
@@ -42,7 +44,7 @@ const MemberCard = ({
                 />
               </Button>
             )}
-            {!isLeader && (
+            {!isLeader && isCurrentUserLeader && (
               <Button onClick={handleClickCrossButton}>
                 <Image
                   className="cursor-pointer brightness-200 grayscale hover:brightness-100 hover:grayscale-0"
