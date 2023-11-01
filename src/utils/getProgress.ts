@@ -19,6 +19,7 @@ export const getProgress = (startDate: string, endDate: string) => {
   const progressPercentage = Math.floor((progressInDays / totalDays) * 100);
 
   if (progressPercentage < 0) return 0;
+  else if (progressPercentage > 100) return 100;
 
   return progressPercentage;
 };
