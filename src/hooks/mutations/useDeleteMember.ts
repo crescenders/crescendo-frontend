@@ -37,8 +37,11 @@ export const useDeleteMember = () => {
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetStudyMembers'] });
     },
-    onError: (_error, _param, context) => {
-      queryClient.setQueryData(['useGetStudyMembers'], context?.prevData);
+    onError: (_error, param, context) => {
+      queryClient.setQueryData(
+        ['useGetStudyMembers', param.uuid],
+        context?.prevData,
+      );
       showToast({
         type: 'fail',
         message: TOAST_MESSAGE.fail,
