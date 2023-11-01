@@ -28,15 +28,14 @@ export const useDeleteMember = () => {
         ['useGetStudyMembers', param.uuid],
         optimisticData,
       );
-
-      return { prevData, optimisticData };
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['useGetStudyMembers'] });
       showToast({
         type: 'success',
         message: '성공적으로 멤버를 추방했어요.',
       });
+      return { prevData, optimisticData };
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['useGetStudyMembers'] });
     },
     onError: (_error, _param, context) => {
       queryClient.setQueryData(['useGetStudyMembers'], context?.prevData);
