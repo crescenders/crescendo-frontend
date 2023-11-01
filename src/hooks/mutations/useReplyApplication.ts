@@ -31,7 +31,6 @@ export const useApproveApplication = () => {
         ['useGetApplications', param.uuid],
         optimisticData,
       );
-
       showToast({
         type: 'success',
         message: '가입 요청을 승인했어요.',
@@ -41,7 +40,8 @@ export const useApproveApplication = () => {
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetApplications'] });
     },
-    onError: () => {
+    onError: (_error, _param, context) => {
+      queryClient.setQueryData(['useGetApplications'], context?.prevData);
       showToast({
         type: 'fail',
         message: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
@@ -83,7 +83,7 @@ export const useRefuseApplication = () => {
       queryClient.invalidateQueries({ queryKey: ['useGetApplications'] });
     },
     onError: (_error, _param, context) => {
-      queryClient.setQueryData(['useGetStudyMembers'], context?.prevData);
+      queryClient.setQueryData(['useGetApplications'], context?.prevData);
       showToast({
         type: 'fail',
         message: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
