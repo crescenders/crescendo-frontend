@@ -9,7 +9,7 @@ type MemberCardProps = {
   isLeader?: boolean;
   isCurrentUserLeader: boolean;
   handleClickCheckButton?: () => void;
-  handleClickCrossButton?: () => void;
+  handleClickRefuseButton?: () => void;
 };
 
 const MemberCard = ({
@@ -19,7 +19,7 @@ const MemberCard = ({
   isLeader,
   isCurrentUserLeader,
   handleClickCheckButton,
-  handleClickCrossButton,
+  handleClickRefuseButton,
 }: MemberCardProps) => {
   const [isReadMore, setIsReadMore] = useState(false);
 
@@ -45,7 +45,7 @@ const MemberCard = ({
               </Button>
             )}
             {!isLeader && isCurrentUserLeader && (
-              <Button onClick={handleClickCrossButton}>
+              <Button onClick={handleClickRefuseButton}>
                 <Image
                   className="cursor-pointer brightness-200 grayscale hover:brightness-100 hover:grayscale-0"
                   src="/svg/cross.svg"

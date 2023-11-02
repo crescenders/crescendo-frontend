@@ -23,12 +23,12 @@ const ApplicationList = () => {
         applications.map(({ id, user, request_message }: Application) => (
           <MemberCard
             key={id}
-            isCurrentUserLeader={true}
+            isCurrentUserLeader
             username={user.username}
             email={user.email}
             requestMessage={request_message}
             handleClickCheckButton={() => approveApplication({ uuid, id })}
-            handleClickCrossButton={() => {
+            handleClickRefuseButton={() => {
               openModal(
                 <DeleteMemberModal
                   handleClick={() => {

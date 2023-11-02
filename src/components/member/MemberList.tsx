@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useDeleteMember } from '@hooks/mutations/useDeleteMember';
 import Image from 'next/image';
 import useModal from '@hooks/useModal';
-import DeleteModal from '@components/modal/DeleteModal';
 import { userState } from '@recoil/auth';
 import { useRecoilValue } from 'recoil';
 import MemberModal from '@components/modal/MemberModal';
@@ -50,7 +49,7 @@ const MemberList = () => {
             username={user.username}
             isLeader={is_leader}
             isCurrentUserLeader={checkIsLeader()}
-            handleClickCrossButton={() => {
+            handleClickRefuseButton={() => {
               openModal(
                 <DeleteMemberModal
                   handleClick={() => {
