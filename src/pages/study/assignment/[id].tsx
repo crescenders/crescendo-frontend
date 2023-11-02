@@ -40,7 +40,7 @@ const Assignment = () => {
       <StudyTitle>{study.study_name}</StudyTitle>
       {assignment && assignment.results.length > 0 ? (
         <>
-          <div className="mt-8 flex flex-col items-center gap-y-2">
+          <div className="mt-14 flex flex-col items-center gap-y-2">
             <ProgressBar progress={progress} />
             {progress !== 100 && (
               <span className="text-14 font-bold">

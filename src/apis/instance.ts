@@ -1,7 +1,7 @@
 import { getToken, setToken } from '@utils/token';
 import axios from 'axios';
 import authApi from '@apis/auth/authApi';
-import { getCookie } from '@utils/cookie';
+import { getCookie, setCookie } from '@utils/cookie';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -24,19 +24,20 @@ instance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const { config: originalRequest, response } = error;
+    const {
+      config: originalRequest,
+      response: { data, status },
+    } = error;
 
-    if (response?.status === 401) {
-      if (
-        response.data.messages &&
-        response.data.messages[0].token_type === 'access'
-      ) {
+    if (status === 401) {
+      if (data.messages && data.messages[0].token_type === 'access') {
         const refreshToken = getCookie('refreshToken');
         try {
-          const accessToken = await authApi
-            .refreshToken(refreshToken)
-            .then((res) => res.access);
+          const { access: accessToken, refresh } = await authApi.refreshToken(
+            refreshToken,
+          );
           setToken({ accessToken });
+          setCookie('refreshToken', refresh);
           // 기존 header에 새로운 accessToken을 설정합니다.
           instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           // 원래 요청에도 새로운 accessToken을 설정합니다.
@@ -45,15 +46,11 @@ instance.interceptors.response.use(
           return instance.request(originalRequest);
         } catch (error) {
           alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
-          process.env.NODE_ENV === 'development'
-            ? (window.location.href = `${process.env.NEXT_PUBLIC_LOCAL}/login`)
-            : (window.location.href = `${process.env.NEXT_PUBLIC_DOMAIN}/login`);
+          window.location.href = '/login';
         }
       } else {
         alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
-        process.env.NODE_ENV === 'development'
-          ? (window.location.href = `${process.env.NEXT_PUBLIC_LOCAL}/login`)
-          : (window.location.href = `${process.env.NEXT_PUBLIC_DOMAIN}/login`);
+        window.location.href = '/login';
       }
     }
 
