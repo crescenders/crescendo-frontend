@@ -27,7 +27,7 @@ const AssignmentCard = ({
         <span
           onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
             e.stopPropagation();
-            router.push('/'); // TODO: 과제 목록 페이지로 이동
+            router.push(`/study/assignment/submission/${uuid}/${id}`);
           }}
           className="flex cursor-pointer items-end text-13 text-text-secondary"
         >
