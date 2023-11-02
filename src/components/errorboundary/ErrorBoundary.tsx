@@ -15,7 +15,7 @@ type ErrorBoundaryState = {
 
 /**
  * Suspense를 감싸는 컴포넌트가 에러를 발생했을 때 처리하는 컴포넌트입니다.
- * 에러를 다시 throw 할 지 결정하는 shouldRethrow state가 포함되어 있습니다.
+ * 에러를 다시 throw 할지 결정하는 shouldRethrow state가 포함되어 있습니다.
  */
 
 class ErrorBoundary extends Component<
