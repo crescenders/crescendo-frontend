@@ -10,6 +10,7 @@ type ErrorBoundaryProps = {
 
 type ErrorBoundaryState = {
   error: AxiosError | null;
+  shouldRethrow: boolean;
 };
 
 class ErrorBoundary extends Component<
@@ -19,12 +20,20 @@ class ErrorBoundary extends Component<
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
+      shouldRethrow: false,
       error: null,
     };
   }
 
+  // render 되기 전 error 정보를 state에 저장
   static getDerivedStateFromError(error: AxiosError): ErrorBoundaryState {
-    return { error };
+    if (error.response?.status === 404) {
+      return {
+        shouldRethrow: true,
+        error,
+      };
+    }
+    return { shouldRethrow: false, error };
   }
 
   resetError() {
@@ -32,12 +41,16 @@ class ErrorBoundary extends Component<
       this.props.reset();
     }
 
-    this.setState({ error: null });
+    this.setState({ error: null, shouldRethrow: false });
   }
 
   render() {
-    const { fallback: Fallback } = this.props;
-    const { error } = this.state;
+    const { fallback: Fallback, children } = this.props;
+    const { error, shouldRethrow } = this.state;
+
+    if (shouldRethrow) {
+      throw error;
+    }
 
     if (error) {
       return (
@@ -45,7 +58,7 @@ class ErrorBoundary extends Component<
       );
     }
 
-    return this.props.children;
+    return children;
   }
 }
 
