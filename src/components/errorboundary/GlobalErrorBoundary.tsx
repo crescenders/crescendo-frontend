@@ -12,6 +12,10 @@ type ErrorBoundaryState = {
   error: AxiosError | null;
 };
 
+/**
+ * Error Boundary에서 놓쳤거나 감싸지 않은 컴포넌트에서 발생한 에러를 처리합니다.
+ */
+
 class GlobalErrorBoundary extends Component<
   PropsWithChildren<ErrorBoundaryProps>,
   ErrorBoundaryState
