@@ -1,7 +1,6 @@
 import memberApi from '@apis/member/memberApi';
 import useToast from '@hooks/useToast';
 import { useMutation } from '@tanstack/react-query';
-import { managementParamType } from '@hooks/mutations/useReplyApplication';
 import { queryClient } from 'pages/_app';
 import { TOAST_MESSAGE } from '@constants/index';
 
@@ -9,7 +8,7 @@ export const useDeleteMember = () => {
   const { showToast } = useToast();
 
   return useMutation({
-    mutationFn: ({ uuid, id }: managementParamType) =>
+    mutationFn: ({ uuid, id }: { uuid: string; id: number }) =>
       memberApi.deleteMember(uuid, id),
     onMutate: async (param) => {
       await queryClient.cancelQueries({
