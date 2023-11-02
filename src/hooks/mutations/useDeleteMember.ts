@@ -11,18 +11,16 @@ export const useDeleteMember = () => {
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
       memberApi.deleteMember(uuid, id),
-    onMutate: (param) => {
-      queryClient.cancelQueries({
+    onMutate: async (param) => {
+      await queryClient.cancelQueries({
         queryKey: ['useGetStudyMembers', param.uuid],
       });
 
-      const prevData = queryClient.getQueryData([
+      const prevData = queryClient.getQueryData<Member[]>([
         'useGetStudyMembers',
         param.uuid,
-      ]) as Member[];
-      const optimisticData: Member[] = prevData.filter(
-        (data) => data.id !== param.id,
-      );
+      ]);
+      const optimisticData = prevData?.filter((data) => data.id !== param.id);
 
       queryClient.setQueryData(
         ['useGetStudyMembers', param.uuid],
@@ -32,7 +30,7 @@ export const useDeleteMember = () => {
         type: 'success',
         message: '성공적으로 멤버를 추방했어요.',
       });
-      return { prevData, optimisticData };
+      return { prevData };
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetStudyMembers'] });

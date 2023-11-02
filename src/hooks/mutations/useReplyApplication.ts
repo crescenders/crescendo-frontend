@@ -14,18 +14,16 @@ export const useApproveApplication = () => {
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
       applicationApi.approveApplication(uuid, id),
-    onMutate: (param) => {
-      queryClient.cancelQueries({
+    onMutate: async (param) => {
+      await queryClient.cancelQueries({
         queryKey: ['useGetApplications', param.uuid],
       });
 
-      const prevData = queryClient.getQueryData([
+      const prevData = queryClient.getQueryData<Application[]>([
         'useGetApplications',
         param.uuid,
-      ]) as Member[];
-      const optimisticData: Member[] = prevData.filter(
-        (data) => data.id !== param.id,
-      );
+      ]);
+      const optimisticData = prevData?.filter((data) => data.id !== param.id);
 
       queryClient.setQueryData(
         ['useGetApplications', param.uuid],
@@ -35,7 +33,7 @@ export const useApproveApplication = () => {
         type: 'success',
         message: '가입 요청을 승인했어요.',
       });
-      return { prevData, optimisticData };
+      return { prevData };
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetApplications'] });
@@ -59,18 +57,16 @@ export const useRefuseApplication = () => {
   return useMutation({
     mutationFn: ({ uuid, id }: managementParamType) =>
       applicationApi.refuseApplication(uuid, id),
-    onMutate: (param) => {
-      queryClient.cancelQueries({
+    onMutate: async (param) => {
+      await queryClient.cancelQueries({
         queryKey: ['useGetApplications', param.uuid],
       });
 
-      const prevData = queryClient.getQueryData([
+      const prevData = queryClient.getQueryData<Application[]>([
         'useGetApplications',
         param.uuid,
-      ]) as Member[];
-      const optimisticData: Member[] = prevData.filter(
-        (data) => data.id !== param.id,
-      );
+      ]);
+      const optimisticData = prevData?.filter((data) => data.id !== param.id);
 
       queryClient.setQueryData(
         ['useGetApplications', param.uuid],
@@ -80,7 +76,7 @@ export const useRefuseApplication = () => {
         type: 'success',
         message: '가입 요청을 거절했어요.',
       });
-      return { prevData, optimisticData };
+      return { prevData };
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['useGetApplications'] });
