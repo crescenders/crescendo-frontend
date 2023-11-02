@@ -2,6 +2,7 @@ import { getErrorMessage } from '@utils/getErrorMessage';
 import { AxiosError } from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import NotFound from 'pages/404';
 
 export type ErrorFallbackProps = {
   error: AxiosError;
@@ -14,9 +15,15 @@ const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
   const { title, content, button } = getErrorMessage(status);
   const router = useRouter();
 
+  if (status === 404) return <NotFound reset={resetErrorBoundary} />;
+
   return (
-    <div className="flex h-[70vh] w-full select-none flex-col items-center justify-center gap-y-6">
-      <Image src={'/svg/retry.svg'} width={28} height={28} alt="재시도" />
+    <div className="flex h-full w-full select-none flex-col items-center justify-center gap-y-6">
+      {isNotAuthorized ? (
+        <Image src="/svg/clear_button.svg" width={50} height={50} alt="" />
+      ) : (
+        <Image src={'/svg/retry.svg'} width={28} height={28} alt="재시도" />
+      )}
       <h3 className="text-center font-bold text-text-secondary">{title}</h3>
       <p className="whitespace-pre-wrap text-center text-14 text-text-secondary">
         {content}

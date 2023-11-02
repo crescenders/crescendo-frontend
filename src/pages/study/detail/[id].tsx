@@ -6,14 +6,10 @@ import { Suspense } from 'react';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
 import tw from 'tailwind-styled-components';
 import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
-import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
-import ErrorFallback from '@components/errorboundary/ErrorFallback';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const StudyDetail = () => {
   const router = useRouter();
   const id = String(router.query.id);
-  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <PageLayout>
@@ -27,11 +23,9 @@ const StudyDetail = () => {
           rightPath={`/study/member/${id}`}
         />
       </MenuWrapper>
-      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <Suspense fallback={<StudyDetailSkeleton />}>
-          <StudyDetailContent />
-        </Suspense>
-      </ErrorBoundary>
+      <Suspense fallback={<StudyDetailSkeleton />}>
+        <StudyDetailContent />
+      </Suspense>
       <ApplyBottomSheet />
     </PageLayout>
   );

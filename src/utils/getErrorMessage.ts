@@ -2,13 +2,7 @@ const getErrorMessage = (status: number) => {
   switch (status) {
     case 403:
       return {
-        title: '접근 권한이 없습니다.',
-        content: '',
-        button: '이전페이지로 이동',
-      };
-    case 404:
-      return {
-        title: '잘못된 요청입니다.',
+        title: '스터디 그룹 멤버만 확인하실 수 있어요.',
         content: '',
         button: '이전페이지로 이동',
       };

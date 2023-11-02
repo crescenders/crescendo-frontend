@@ -25,12 +25,12 @@ const AssignmentDetail = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
-        <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-          <Suspense fallback={<Loader isFull />}>
-            <AssignmentDetailContent />
-          </Suspense>
-        </ErrorBoundary>
       </div>
+      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
+        <Suspense fallback={<Loader isFull />}>
+          <AssignmentDetailContent />
+        </Suspense>
+      </ErrorBoundary>
     </PageLayout>
   );
 };
