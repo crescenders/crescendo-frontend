@@ -41,7 +41,7 @@ export const usePostApplication = (): UseMutationResult<
   });
 };
 
-export const usePostApplicationApprove = () => {
+export const usePostApproveApplication = () => {
   const { showToast } = useToast();
 
   return useMutation({
