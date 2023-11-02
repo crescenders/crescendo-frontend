@@ -28,12 +28,14 @@ const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
       <p className="whitespace-pre-wrap text-center text-14 text-text-secondary">
         {content}
       </p>
-      <button
-        className="mt-8 h-[34px] w-fit rounded bg-[#9455D3] px-3 duration-100 ease-in-out hover:bg-[#BB86EF]"
-        onClick={() => (isNotAuthorized ? router.back() : resetErrorBoundary())}
-      >
-        <span className="text-14 font-bold text-white">{button}</span>
-      </button>
+      {!isNotAuthorized && (
+        <button
+          className="mt-8 h-[34px] w-fit rounded bg-[#9455D3] px-3 duration-100 ease-in-out hover:bg-[#BB86EF]"
+          onClick={() => resetErrorBoundary()}
+        >
+          <span className="text-14 font-bold text-white">{button}</span>
+        </button>
+      )}
     </div>
   );
 };
