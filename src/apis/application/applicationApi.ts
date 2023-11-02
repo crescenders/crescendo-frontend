@@ -17,12 +17,12 @@ const applicationApi = {
     );
     return data;
   },
-  approveApplication: async (uuid: string, id: number): Promise<void> => {
+  postApproveApplication: async (uuid: string, id: number): Promise<void> => {
     return await instance.post(
       `/api/v1/studygroup/studies/${uuid}/requests/${id}/`,
     );
   },
-  refuseApplication: async (uuid: string, id: number): Promise<void> => {
+  deleteApplication: async (uuid: string, id: number): Promise<void> => {
     return await instance.delete(
       `/api/v1/studygroup/studies/${uuid}/requests/${id}/`,
     );

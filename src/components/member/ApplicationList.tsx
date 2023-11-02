@@ -1,10 +1,8 @@
 import MemberCard from '@components/member/MemberCard';
 import DeleteMemberModal from '@components/modal/DeleteMemberModal';
 import MemberModal from '@components/modal/MemberModal';
-import {
-  useApproveApplication,
-  useRefuseApplication,
-} from '@hooks/mutations/useReplyApplication';
+import { useDeleteApplication } from '@hooks/mutations/useDeleteApplication';
+import { usePostApplicationApprove } from '@hooks/mutations/usePostApplication';
 import { useGetApplications } from '@hooks/queries/useGetApplications';
 import useModal from '@hooks/useModal';
 import { useRouter } from 'next/router';
@@ -14,8 +12,8 @@ const ApplicationList = () => {
   const uuid = String(router.query.id);
   const { openModal } = useModal();
   const { data: applications } = useGetApplications(uuid);
-  const { mutate: approveApplication } = useApproveApplication();
-  const { mutate: refuseApplication } = useRefuseApplication();
+  const { mutate: approveApplication } = usePostApplicationApprove();
+  const { mutate: refuseApplication } = useDeleteApplication();
 
   return (
     <>
