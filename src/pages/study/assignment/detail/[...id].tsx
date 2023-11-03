@@ -4,10 +4,14 @@ import PageLayout from '@components/common/PageLayout';
 import AssignmentDetailContent from '@components/detail/AssignmentDetailContent';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
+import ErrorFallback from '@components/errorboundary/ErrorFallback';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
 
 const AssignmentDetail = () => {
   const router = useRouter();
   const [uuid, id] = router.query.id as string[];
+  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <PageLayout>
@@ -21,10 +25,12 @@ const AssignmentDetail = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
+      </div>
+      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
         <Suspense fallback={<Loader isFull />}>
           <AssignmentDetailContent />
         </Suspense>
-      </div>
+      </ErrorBoundary>
     </PageLayout>
   );
 };

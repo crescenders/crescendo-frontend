@@ -1,8 +1,18 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const NotFound = () => {
+type NotFoundProps = {
+  reset?: () => void;
+};
+
+const NotFound = ({ reset }: NotFoundProps) => {
   const router = useRouter();
+
+  const handleHomeButton = () => {
+    reset?.();
+    router.replace('/');
+  };
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-11">
       <Image
@@ -20,7 +30,7 @@ const NotFound = () => {
       </div>
       <button
         className="rounded-md bg-[#6B21A8] focus:outline-none"
-        onClick={() => router.push('/')}
+        onClick={handleHomeButton}
       >
         <div className="translate-y-[-4px] whitespace-nowrap rounded-md bg-[#9333EA] px-4 py-2 text-center text-16 font-bold text-white transition-transform ease-out hover:translate-y-[-6px] active:translate-y-[-2px]">
           홈으로 가기

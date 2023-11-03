@@ -15,6 +15,9 @@ import Image from 'next/image';
 import { categories } from '@constants/categories';
 import { useRouter } from 'next/router';
 import useStudyList from '@hooks/useStudyList';
+import ErrorFallback from '@components/errorboundary/ErrorFallback';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,6 +27,7 @@ const Search = () => {
   const [rightValue, setRightValue] = useState<string>('모집여부');
 
   const router = useRouter();
+  const { reset } = useQueryErrorResetBoundary();
 
   const handleSearchClick = () => {
     if (!inputRef.current) return;
@@ -102,10 +106,11 @@ const Search = () => {
           ))}
         </ul>
       </div>
-
-      <Suspense fallback={<StudyListSkeleton />}>
-        <StudyList />
-      </Suspense>
+      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
+        <Suspense fallback={<StudyListSkeleton />}>
+          <StudyList />
+        </Suspense>
+      </ErrorBoundary>
     </PageLayout>
   );
 };
