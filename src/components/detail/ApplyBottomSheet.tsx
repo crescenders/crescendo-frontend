@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import TextArea from '@components/common/TextArea';
 import Button from '@components/common/Button';
-import { useApplyStudy } from '@hooks/mutations/useApplyStudy';
+import { usePostApplication } from '@hooks/mutations/usePostApplication';
 import useToast from '@hooks/useToast';
 
 const ApplyBottomSheet = () => {
@@ -12,7 +12,7 @@ const ApplyBottomSheet = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { showToast } = useToast();
-  const { mutate: applyStudy } = useApplyStudy();
+  const { mutate: postApplication } = usePostApplication();
 
   const handleApplyStudy = () => {
     const uuid = String(router.query.id);
@@ -26,7 +26,7 @@ const ApplyBottomSheet = () => {
       ref.current?.focus();
       return;
     }
-    applyStudy({ uuid, message });
+    postApplication({ uuid, message });
     setIsOpen(false);
   };
 
