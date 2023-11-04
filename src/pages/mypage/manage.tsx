@@ -20,9 +20,9 @@ const StudyManage = () => {
             <MyStudyList />
           </Suspense>
           <Button
-            className="h-9 w-[134px]"
+            className="fixed bottom-11 h-9 w-[134px]"
             text="스터디 개설하기"
-            onClick={() => router.push('/study/create')}
+            onClick={() => router.push('/create')}
           />
         </StudyListArea>
       </Container>
