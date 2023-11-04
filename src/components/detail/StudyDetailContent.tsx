@@ -67,6 +67,11 @@ const StudyDetailContent = () => {
               <BoldText>{study.study_name}</BoldText>
             </div>
             <GrayText>카테고리</GrayText>
+            <ul className="flex flex-wrap gap-2">
+              {study.categories.map((category) => (
+                <CategoryBox key={category}>{category}</CategoryBox>
+              ))}
+            </ul>
           </div>
           <div className="flex flex-1 flex-col gap-y-4">
             <div className="flex gap-x-1.5">
@@ -94,14 +99,9 @@ const StudyDetailContent = () => {
             )}
           </div>
         </InfoTextContainer>
-        <ul className="flex gap-x-2">
-          {study.categories.map((category) => (
-            <CategoryBox key={category}>{category}</CategoryBox>
-          ))}
-        </ul>
         <TagContainer>
           <GrayText>태그</GrayText>
-          <ul className="ml-1 flex gap-x-1.5">
+          <ul className="ml-1 flex flex-wrap gap-x-1.5 gap-y-2">
             {study.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
@@ -134,8 +134,9 @@ const CategoryBox = tw.li`
   border-[1.5px]
   border-[#8266FF]
   bg-white
-  px-4
+  px-3
   py-2
+  text-[13px]
   text-[#8266FF]
 `;
 
@@ -153,8 +154,6 @@ const ImageBox = tw.div`
 const InfoTextContainer = tw.div`
   mt-7
   flex
-  justify-between
-  gap-x-12
 `;
 
 const DivisionBar = tw.span`
@@ -190,7 +189,6 @@ const Title = tw.h1`
 const TagContainer = tw.div`
   mt-2
   flex
-  items-center
   gap-x-1.5
 `;
 

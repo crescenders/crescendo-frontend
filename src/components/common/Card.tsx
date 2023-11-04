@@ -78,13 +78,13 @@ const Card = ({
           <div className="pt-1">
             <div className="truncate text-14">{title}</div>
             <div className="my-[8px] truncate text-12">{studyName}</div>
-            <div className="flex gap-x-1">
-              {tags?.map((tag) => (
-                <div key={tag} className="">
+            <ul className="flex gap-x-1">
+              {tags?.slice(0, 5).map((tag) => (
+                <li key={tag} className="truncate">
                   <span className="text-[9px]">#{tag}</span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
             <div
               className={`${
                 !tags?.length && 'mt-6'
