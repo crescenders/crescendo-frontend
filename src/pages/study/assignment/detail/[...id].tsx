@@ -15,7 +15,7 @@ const AssignmentDetail = () => {
 
   return (
     <PageLayout>
-      <div className="mt-[119px] flex flex-col items-center px-7">
+      <div className="mt-[119px] flex h-full flex-col items-center px-7">
         <MenuBar
           focusedPosition="center"
           leftText="정보 보기"
@@ -25,12 +25,12 @@ const AssignmentDetail = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
+        <ErrorBoundary fallback={ErrorFallback} reset={reset}>
+          <Suspense fallback={<Loader isFull />}>
+            <AssignmentDetailContent />
+          </Suspense>
+        </ErrorBoundary>
       </div>
-      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <Suspense fallback={<Loader isFull />}>
-          <AssignmentDetailContent />
-        </Suspense>
-      </ErrorBoundary>
     </PageLayout>
   );
 };
