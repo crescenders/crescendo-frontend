@@ -9,3 +9,7 @@ type Submission = {
 type SubmissionList = TResponse & {
   results: Submission[];
 };
+
+type SubmissionDetail = Submission & {
+  content: string;
+};
