@@ -154,6 +154,7 @@ const ImageBox = tw.div`
 const InfoTextContainer = tw.div`
   mt-7
   flex
+  gap-x-2
 `;
 
 const DivisionBar = tw.span`
