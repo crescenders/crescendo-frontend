@@ -6,6 +6,7 @@ import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 import TextEditor from '@components/editor/TextEditor';
 import { usePostSubmission } from '@hooks/mutations/usePostSubmission';
+import useToast from '@hooks/useToast';
 
 const SubmitSubmission = () => {
   const router = useRouter();
@@ -13,6 +14,7 @@ const SubmitSubmission = () => {
   const contentRef = useRef<ReactQuill>(null);
   const [uuid, assignmnetId] = router.query.id as string[];
   const { mutate } = usePostSubmission();
+  const { showToast } = useToast();
 
   const handleSubmitButton = () => {
     if (!titleRef.current || !contentRef.current) return;
@@ -21,6 +23,13 @@ const SubmitSubmission = () => {
     const title = titleRef.current.value;
     const content = String(contentRef.current.value);
 
+    if (!title.length || !content.length) {
+      showToast({
+        type: 'fail',
+        message: '내용을 모두 입력해주세요.',
+      });
+      return;
+    }
     mutate({ uuid, id, title, content });
   };
 

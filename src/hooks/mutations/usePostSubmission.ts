@@ -2,6 +2,7 @@ import submissionApi from '@apis/submission/submissionApi';
 import { TOAST_MESSAGE } from '@constants/index';
 import useToast from '@hooks/useToast';
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 import { queryClient } from 'pages/_app';
 
@@ -22,16 +23,21 @@ export const usePostSubmission = () => {
       queryClient.invalidateQueries({
         queryKey: ['useGetSubmissionList', uuid, id],
       });
-      router.back();
+      router.replace(`/study/assignment/submission/${uuid}/${id}/`);
       showToast({
         type: 'success',
         message: '과제를 제출하였습니다.',
       });
     },
-    onError: () =>
-      showToast({
-        type: 'fail',
-        message: TOAST_MESSAGE.fail,
-      }),
+    onError: (error: AxiosError) => {
+      const errorMessage = JSON.stringify(error.response?.data);
+      if (errorMessage.includes('already submitted'))
+        showToast({
+          type: 'fail',
+          message: errorMessage.includes('already submitted')
+            ? '이미 과제를 제출하였습니다.'
+            : TOAST_MESSAGE.fail,
+        });
+    },
   });
 };
