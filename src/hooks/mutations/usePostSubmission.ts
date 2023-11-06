@@ -31,13 +31,12 @@ export const usePostSubmission = () => {
     },
     onError: (error: AxiosError) => {
       const errorMessage = JSON.stringify(error.response?.data);
-      if (errorMessage.includes('already submitted'))
-        showToast({
-          type: 'fail',
-          message: errorMessage.includes('already submitted')
-            ? '이미 과제를 제출하였습니다.'
-            : TOAST_MESSAGE.fail,
-        });
+      showToast({
+        type: 'fail',
+        message: errorMessage.includes('already submitted')
+          ? '이미 과제를 제출하였습니다.'
+          : TOAST_MESSAGE.fail,
+      });
     },
   });
 };
