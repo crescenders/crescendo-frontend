@@ -1,5 +1,8 @@
 import submissionApi from '@apis/submission/submissionApi';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 export const useGetSubmissionList = (uuid: string, id: number) => {
   return useSuspenseInfiniteQuery({
@@ -10,5 +13,17 @@ export const useGetSubmissionList = (uuid: string, id: number) => {
     getNextPageParam: (lastPage) => {
       return lastPage.next ? lastPage.next.split('?')[1] : undefined;
     },
+  });
+};
+
+export const useGetSubmissionDetail = (
+  uuid: string,
+  assignmentId: number,
+  submissionId: number,
+) => {
+  return useSuspenseQuery({
+    queryKey: ['useGetSubmissionDetail', uuid, assignmentId, submissionId],
+    queryFn: () =>
+      submissionApi.getSubmissionDetail(uuid, assignmentId, submissionId),
   });
 };
