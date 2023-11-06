@@ -34,7 +34,9 @@ const Submission = () => {
         <Button
           text="과제 제출하기"
           className="fixed bottom-11 h-9 w-[143px]"
-          onClick={() => router.push(`/`)} // TODO: 과제 제출 페이지로 이동
+          onClick={() =>
+            router.push(`/study/assignment/submission/submit/${uuid}/${id}/`)
+          }
         />
       </Container>
     </PageLayout>
