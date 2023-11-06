@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import { useGetSubmissionList } from '@hooks/queries/useGetSubmission';
 import useIntersection from '@hooks/useIntersection';
 import { formatUTC } from '@utils/formatUTC';
+import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 
 const SubmissionList = () => {
   const router = useRouter();
-  const [uuid, id] = router.query.id as string[];
+  const [uuid, assignmentId] = router.query.id as string[];
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
-    useGetSubmissionList(uuid, Number(id));
+    useGetSubmissionList(uuid, Number(assignmentId));
   const { targetRef, isIntersecting } = useIntersection({ threshold: 0.4 });
 
   useEffect(() => {
@@ -25,7 +26,11 @@ const SubmissionList = () => {
             <div
               key={id}
               className="flex h-[130px] w-[544px] cursor-pointer flex-col justify-between rounded-2xl bg-[#F3F4F8] p-6"
-              onClick={() => router.push(`/`)} // TODO: 과제 상세 페이지로 이동
+              onClick={() =>
+                router.push(
+                  `/study/assignment/submission/detail/${uuid}/${assignmentId}/${id}/`,
+                )
+              }
             >
               <span className="text-16 font-bold text-text-secondary">
                 {title}
@@ -48,6 +53,7 @@ const SubmissionList = () => {
           </span>
         </div>
       )}
+      {isFetchingNextPage && <SubmissionListSkeleton />}
       <div ref={targetRef} />
     </div>
   );
