@@ -7,11 +7,15 @@ import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
+import ErrorFallback from '@components/errorboundary/ErrorFallback';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const Submission = () => {
   const router = useRouter();
   const [uuid, id] = router.query.id as string[];
   const { data: study } = useGetStudyDetail(uuid);
+  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <PageLayout>

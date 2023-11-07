@@ -1,8 +1,24 @@
 import Card from '@components/common/Card';
+import Loader from '@components/common/Loader';
 import { useGetMyStudyGroupList } from '@hooks/queries/useGetStudy';
+import useIntersection from '@hooks/useIntersection';
+import { useEffect } from 'react';
 
 const StudyInProgressList = () => {
-  const { data: studies } = useGetMyStudyGroupList('current');
+  const {
+    data: studies,
+    hasNextPage,
+    isFetching,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetMyStudyGroupList('current');
+  const { isIntersecting, targetRef } = useIntersection({ threshold: 0.4 });
+
+  useEffect(() => {
+    if (isIntersecting && hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  }, [isIntersecting, isFetching]);
 
   return (
     <>
@@ -29,6 +45,8 @@ const StudyInProgressList = () => {
           <div className="py-20" />
         ),
       )}
+      {isFetchingNextPage && <Loader />}
+      <div ref={targetRef} />
     </>
   );
 };
