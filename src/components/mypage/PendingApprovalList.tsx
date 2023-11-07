@@ -1,8 +1,24 @@
 import Card from '@components/common/Card';
+import Loader from '@components/common/Loader';
 import { useGetMyStudyGroupList } from '@hooks/queries/useGetStudy';
+import useIntersection from '@hooks/useIntersection';
+import { useEffect } from 'react';
 
 const PendingApprovalList = () => {
-  const { data: studies } = useGetMyStudyGroupList('requested');
+  const {
+    data: studies,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = useGetMyStudyGroupList('requested');
+  const { isIntersecting, targetRef } = useIntersection({ threshold: 0.4 });
+
+  useEffect(() => {
+    if (isIntersecting && hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  }, [isIntersecting, isFetching]);
 
   return (
     <>
@@ -23,6 +39,8 @@ const PendingApprovalList = () => {
           ),
         )}
       </div>
+      {isFetchingNextPage && <Loader />}
+      <div ref={targetRef} />
     </>
   );
 };

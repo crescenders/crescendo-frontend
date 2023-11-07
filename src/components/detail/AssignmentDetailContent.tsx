@@ -35,6 +35,7 @@ const AssignmentDetailContent = () => {
       />,
     );
   };
+
   return (
     <div className="mt-16 w-full max-w-[640px]">
       <h1 className="mb-[14px] text-[24px] font-bold text-text-tertiary">

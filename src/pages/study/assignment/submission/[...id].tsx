@@ -7,11 +7,15 @@ import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
+import ErrorFallback from '@components/errorboundary/ErrorFallback';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const Submission = () => {
   const router = useRouter();
   const [uuid, id] = router.query.id as string[];
   const { data: study } = useGetStudyDetail(uuid);
+  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <PageLayout>
@@ -26,17 +30,19 @@ const Submission = () => {
           rightPath={`/study/member/${uuid}`}
         />
       </MenuWrapper>
-      <StudyTitle>{study.study_name}</StudyTitle>
-      <Container>
-        <Suspense fallback={<SubmissionListSkeleton />}>
-          <SubmissionList />
-        </Suspense>
-        <Button
-          text="과제 제출하기"
-          className="fixed bottom-11 h-9 w-[143px]"
-          onClick={() => router.push(`/`)} // TODO: 과제 제출 페이지로 이동
-        />
-      </Container>
+      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
+        <StudyTitle>{study.study_name}</StudyTitle>
+        <Container>
+          <Suspense fallback={<SubmissionListSkeleton />}>
+            <SubmissionList />
+          </Suspense>
+          <Button
+            text="과제 제출하기"
+            className="fixed bottom-11 h-9 w-[143px]"
+            onClick={() => router.push(`/`)} // TODO: 과제 제출 페이지로 이동
+          />
+        </Container>
+      </ErrorBoundary>
     </PageLayout>
   );
 };

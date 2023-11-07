@@ -62,7 +62,7 @@ const Assignment = () => {
             ))}
             <Button
               text="과제 등록하기"
-              className="h-9 w-[143px]"
+              className="fixed bottom-11 h-9 w-[143px]"
               onClick={handleRegisterButton}
             />
           </AssignmentList>
@@ -77,7 +77,7 @@ const Assignment = () => {
           <div className="flex justify-center">
             <Button
               text="과제 등록하기"
-              className="h-9 w-[143px]"
+              className="fixed bottom-11 h-9 w-[143px]"
               onClick={handleRegisterButton}
             />
           </div>
