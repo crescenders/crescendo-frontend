@@ -44,18 +44,25 @@ const EditSubmission = () => {
       });
       return;
     }
-
-    if (data.title === title || data.content === content)
-      patchSubmission({
-        ...id,
-        data: data.title === title ? { content } : { title },
+    if (data.title === title && data.content === content) {
+      showToast({
+        type: 'fail',
+        message: '변경 사항이 없습니다.',
       });
-    else
+      return;
+    }
+    if (data.title !== title && data.content !== content) {
       putSubmission({
         ...id,
         title,
         content,
       });
+      return;
+    }
+    patchSubmission({
+      ...id,
+      data: data.title === title ? { content } : { title },
+    });
   };
 
   return (
