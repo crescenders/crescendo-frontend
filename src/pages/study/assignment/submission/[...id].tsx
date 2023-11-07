@@ -30,19 +30,19 @@ const Submission = () => {
           rightPath={`/study/member/${uuid}`}
         />
       </MenuWrapper>
-      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <StudyTitle>{study.study_name}</StudyTitle>
-        <Container>
-          <Suspense fallback={<SubmissionListSkeleton />}>
-            <SubmissionList />
-          </Suspense>
-          <Button
-            text="과제 제출하기"
-            className="fixed bottom-11 h-9 w-[143px]"
-            onClick={() => router.push(`/`)} // TODO: 과제 제출 페이지로 이동
-          />
-        </Container>
-      </ErrorBoundary>
+      <StudyTitle>{study.study_name}</StudyTitle>
+      <Container>
+        <Suspense fallback={<SubmissionListSkeleton />}>
+          <SubmissionList />
+        </Suspense>
+        <Button
+          text="과제 제출하기"
+          className="fixed bottom-11 h-9 w-[143px]"
+          onClick={() =>
+            router.push(`/study/assignment/submission/submit/${uuid}/${id}/`)
+          }
+        />
+      </Container>
     </PageLayout>
   );
 };
