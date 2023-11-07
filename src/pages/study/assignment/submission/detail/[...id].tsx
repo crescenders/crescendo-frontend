@@ -15,7 +15,7 @@ const SubmissionDetail = () => {
 
   return (
     <PageLayout>
-      <div className="mt-[119px] flex flex-col items-center px-7">
+      <div className="mx-auto mt-[119px] flex w-full max-w-[640px] grow flex-col items-center px-7">
         <MenuBar
           focusedPosition="center"
           leftText="정보 보기"
@@ -25,8 +25,6 @@ const SubmissionDetail = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
-      </div>
-      <div className="mx-auto min-w-[550px]">
         <ErrorBoundary fallback={ErrorFallback} reset={reset}>
           <Suspense fallback={<Loader isFull />}>
             <SubmissionDetailContent />
