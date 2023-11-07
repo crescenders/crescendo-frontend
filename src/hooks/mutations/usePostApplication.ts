@@ -1,7 +1,10 @@
 import applicationApi from '@apis/application/applicationApi';
 import useToast from '@hooks/useToast';
-import { UseMutationResult, useMutation } from '@tanstack/react-query';
-import { queryClient } from 'pages/_app';
+import {
+  UseMutationResult,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 type ErrorMessageType = {
@@ -42,6 +45,7 @@ export const usePostApplication = (): UseMutationResult<
 };
 
 export const usePostApproveApplication = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
 
   return useMutation({

@@ -2,7 +2,6 @@ import studyApi from '@apis/study/studyApi';
 import useToast from '@hooks/useToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
-import { queryClient } from 'pages/_app';
 
 export type EditStudyParamType = {
   id: string;
@@ -10,6 +9,7 @@ export type EditStudyParamType = {
 };
 
 export const useEditStudy = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
   const router = useRouter();
 

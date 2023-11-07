@@ -1,10 +1,10 @@
 import memberApi from '@apis/member/memberApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
-import { queryClient } from 'pages/_app';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { TOAST_MESSAGE } from '@constants/index';
 
 export const useDeleteMember = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
 
   return useMutation({

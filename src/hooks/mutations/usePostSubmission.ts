@@ -1,12 +1,12 @@
 import submissionApi from '@apis/submission/submissionApi';
 import { TOAST_MESSAGE } from '@constants/index';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
-import { queryClient } from 'pages/_app';
 
 export const usePostSubmission = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
   const router = useRouter();
 
