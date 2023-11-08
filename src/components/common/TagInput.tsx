@@ -39,16 +39,16 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   };
 
   return (
-    <Container $isError={!!errorMessage}>
+    <Container>
       <Input
         id="tags"
         variant="large"
-        label=""
         placeholder="태그 입력 후 엔터를 눌러주세요."
         onKeyDown={handleKeyDown}
         error={errorMessage}
+        className={errorMessage && 'mb-2'}
       />
-      <TagContainer>
+      <TagContainer $isError={!!errorMessage}>
         {tagList &&
           tagList.map((tag, index) => (
             <TagItem key={index}>
@@ -70,14 +70,14 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
 
 export default TagInput;
 
-const Container = tw.div<{ $isError: boolean }>`
-  ${({ $isError }) => $isError && 'gap-y-4'}
+const Container = tw.div`
   flex
   w-[550px]
   flex-col
 `;
 
-const TagContainer = tw.div`
+const TagContainer = tw.div<{ $isError: boolean }>`
+  ${({ $isError }) => ($isError ? 'mt-4' : 'mt-3')}
   flex
   w-full
   select-none
@@ -93,11 +93,10 @@ const TagItem = tw.div`
   border-solid
   border-purple-300
   py-[5px]
-  pl-[10px]
-  pr-[7px]
+  pl-3
+  pr-2
 `;
 
 const TagLabel = tw.p`
-  pt-[2px]
   text-[12px]
 `;

@@ -64,7 +64,7 @@ const SelectDateBox = ({
           alt=""
           className="cursor-pointer"
         />
-        <div className="grow pt-[2px] text-left text-[13px]">
+        <div className="grow pt-[2px] text-left text-[12px]">
           {selectedDate || 'YYYY-MM-DD'}
           {setSelectedEndDate && ` ~ ${selectedEndDate || 'YYYY-MM-DD'}`}
         </div>
