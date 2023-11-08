@@ -1,11 +1,11 @@
-import instance from '@apis/instance';
+import { privateInstance, publicInstance } from '@apis/instance';
 
 const assingmentApi = {
   getAssignmentList: async (
     uuid: string,
     truncate = 120,
   ): Promise<AssignmentList> => {
-    const { data } = await instance.get(
+    const { data } = await publicInstance.get(
       `/api/v1/studygroup/studies/${uuid}/assignments/?truncate=${truncate}`,
     );
     return data;
@@ -16,7 +16,7 @@ const assingmentApi = {
     title: string,
     content: string,
   ): Promise<Pick<Assignment, 'title' | 'content'>> => {
-    const { data } = await instance.post(
+    const { data } = await privateInstance.post(
       `/api/v1/studygroup/studies/${uuid}/assignments/`,
       {
         title,
@@ -30,7 +30,7 @@ const assingmentApi = {
     uuid: string,
     id: number,
   ): Promise<Assignment> => {
-    const { data } = await instance.get(
+    const { data } = await privateInstance.get(
       `/api/v1/studygroup/studies/${uuid}/assignments/${id}`,
     );
     return data;
@@ -42,7 +42,7 @@ const assingmentApi = {
     title: string,
     content: string,
   ): Promise<Assignment> => {
-    const { data } = await instance.put(
+    const { data } = await privateInstance.put(
       `/api/v1/studygroup/studies/${uuid}/assignments/${id}`,
       {
         title,
@@ -53,7 +53,7 @@ const assingmentApi = {
   },
 
   deleteAssignmentDetail: async (id: number, uuid: string): Promise<void> => {
-    return await instance.delete(
+    return await privateInstance.delete(
       `/api/v1/studygroup/studies/${uuid}/assignments/${id}/`,
     );
   },

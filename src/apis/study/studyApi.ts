@@ -1,13 +1,15 @@
-import instance from '@apis/instance';
+import { privateInstance, publicInstance } from '@apis/instance';
 
 const studyApi = {
   getStudyGroupList: async (params = ''): Promise<StudyList> => {
-    const { data } = await instance.get(`/api/v1/studygroup/studies${params}`);
+    const { data } = await publicInstance.get(
+      `/api/v1/studygroup/studies${params}`,
+    );
     return data;
   },
 
   createStudy: async (formData: FormData): Promise<CreateStudy> => {
-    const { data } = await instance.post(
+    const { data } = await privateInstance.post(
       '/api/v1/studygroup/studies/',
       formData,
       {
@@ -18,12 +20,14 @@ const studyApi = {
   },
 
   getStudyDetail: async (id: string): Promise<StudyDetail> => {
-    const { data } = await instance.get(`/api/v1/studygroup/studies/${id}/`);
+    const { data } = await publicInstance.get(
+      `/api/v1/studygroup/studies/${id}/`,
+    );
     return data;
   },
 
   editStudy: async (id: string, formData: FormData): Promise<StudyDetail> => {
-    const { data } = await instance.put(
+    const { data } = await privateInstance.put(
       `/api/v1/studygroup/studies/${id}/`,
       formData,
       {
@@ -34,7 +38,7 @@ const studyApi = {
   },
 
   deleteStudy: async (id: string): Promise<void> => {
-    return await instance.delete(`/api/v1/studygroup/studies/${id}/`);
+    return await privateInstance.delete(`/api/v1/studygroup/studies/${id}/`);
   },
 };
 
