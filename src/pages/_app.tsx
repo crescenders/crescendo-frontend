@@ -13,6 +13,7 @@ import useIsWorker from '@hooks/useIsWorker';
 import useIsMounted from '@hooks/useIsMounted';
 import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import GlobalErrorBoundary from '@components/errorboundary/GlobalErrorBoundary';
+import React from 'react';
 
 declare global {
   interface Window {
@@ -20,22 +21,25 @@ declare global {
   }
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 0,
-      refetchOnWindowFocus: false,
-      suspense: true,
-    },
-    mutations: {
-      retry: 0,
-    },
-  },
-});
-
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 0,
+            refetchOnWindowFocus: false,
+            throwOnError: true,
+            staleTime: 60 * 1000,
+          },
+          mutations: {
+            retry: 0,
+          },
+        },
+      }),
+  );
   const { shouldRender } = useIsWorker();
   const isMounted = useIsMounted();
   const { reset } = useQueryErrorResetBoundary();
@@ -60,5 +64,3 @@ export default function App({ Component, pageProps }: AppProps) {
     </RecoilRoot>
   );
 }
-
-export { queryClient };

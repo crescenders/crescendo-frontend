@@ -1,11 +1,11 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
 import { TOAST_MESSAGE } from '@constants/index';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
-import { queryClient } from 'pages/_app';
 
 export const usePostAssignment = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
   const router = useRouter();
 

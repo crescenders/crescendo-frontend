@@ -1,10 +1,10 @@
 import applicationApi from '@apis/application/applicationApi';
 import useToast from '@hooks/useToast';
-import { useMutation } from '@tanstack/react-query';
-import { queryClient } from 'pages/_app';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApplicationParamType } from '@hooks/mutations/usePostApplication';
 
 export const useDeleteApplication = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useToast();
 
   return useMutation({
