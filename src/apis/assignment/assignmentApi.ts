@@ -5,7 +5,7 @@ const assingmentApi = {
     uuid: string,
     truncate = 120,
   ): Promise<AssignmentList> => {
-    const { data } = await publicInstance.get(
+    const { data } = await privateInstance.get(
       `/api/v1/studygroup/studies/${uuid}/assignments/?truncate=${truncate}`,
     );
     return data;
