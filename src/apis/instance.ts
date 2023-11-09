@@ -3,12 +3,17 @@ import axios from 'axios';
 import authApi from '@apis/auth/authApi';
 import { getCookie, setCookie } from '@utils/cookie';
 
-const instance = axios.create({
+export const publicInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
 });
 
-instance.interceptors.request.use(
+export const privateInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  timeout: 10000,
+});
+
+privateInstance.interceptors.request.use(
   (config) => {
     const token = getToken().accessToken;
     if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -19,7 +24,7 @@ instance.interceptors.request.use(
   },
 );
 
-instance.interceptors.response.use(
+privateInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -39,11 +44,11 @@ instance.interceptors.response.use(
           setToken({ accessToken });
           setCookie('refreshToken', refresh);
           // 기존 header에 새로운 accessToken을 설정합니다.
-          instance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          privateInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           // 원래 요청에도 새로운 accessToken을 설정합니다.
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
-          return instance.request(originalRequest);
+          return privateInstance.request(originalRequest);
         } catch (error) {
           alert('세션이 만료되었습니다. 다시 로그인을 시도해주세요.');
           window.location.href = '/login';
@@ -57,5 +62,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-export default instance;
