@@ -14,7 +14,7 @@ import useIsMounted from '@hooks/useIsMounted';
 import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import GlobalErrorBoundary from '@components/errorboundary/GlobalErrorBoundary';
 import React from 'react';
-import Head from 'next/head';
+import CustomHead from '@components/common/CustomHead';
 
 declare global {
   interface Window {
@@ -49,9 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <Head>
-        <title>Crescendo - 소규모 스터디 플랫폼</title>
-      </Head>
+      <CustomHead />
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools
           initialIsOpen={false}
