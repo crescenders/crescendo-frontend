@@ -28,7 +28,9 @@ const ToastItem = ({ type, message }) => {
         alt=""
         className="absolute left-4"
       />
-      <p className="ml-3 text-center text-[14px] text-white">{message}</p>
+      <p className="ml-3 whitespace-nowrap text-center text-[14px] text-white">
+        {message}
+      </p>
     </div>
   );
 };
