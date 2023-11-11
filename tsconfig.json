@@ -28,8 +28,9 @@
       "@recoil/*": ["./recoil/*"],
       "@constants/*": ["./constants/*"],
       "@mocks/*": ["./mocks/*"]
-    }
+    },
+    "types": ["@types/jest", "@types/node"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../__tests__/*"],
   "exclude": ["node_modules"]
 }
