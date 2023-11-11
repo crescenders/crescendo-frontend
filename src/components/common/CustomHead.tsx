@@ -9,6 +9,10 @@ const CustomHead = () => {
         name="description"
         content="관심 있는 스터디를 검색하고 활동해 보세요!"
       />
+      <meta
+        name="google-site-verification"
+        content="4IgZuY7RUsBTkLbFi6lBrBS48mhJ-o3A2smcuBy3G0s"
+      />
 
       {/* Facebook Meta Tags */}
       <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
