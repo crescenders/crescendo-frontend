@@ -49,7 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <CustomHead />
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools
           initialIsOpen={false}
