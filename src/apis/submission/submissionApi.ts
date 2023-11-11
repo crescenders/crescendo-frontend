@@ -1,4 +1,4 @@
-import instance from '@apis/instance';
+import { privateInstance } from '@apis/instance';
 
 const submissionApi = {
   getSubmissionList: async (
@@ -6,7 +6,7 @@ const submissionApi = {
     id: number,
     cursor: string,
   ): Promise<SubmissionList> => {
-    const { data } = await instance.get(
+    const { data } = await privateInstance.get(
       `/api/v1/studygroup/studies/${uuid}/assignments/${id}/submissions?${cursor}`,
     );
     return data;
@@ -17,7 +17,7 @@ const submissionApi = {
     title: string,
     content: string,
   ): Promise<Pick<SubmissionDetail, 'title' | 'content'>> => {
-    const { data } = await instance.post(
+    const { data } = await privateInstance.post(
       `/api/v1/studygroup/studies/${uuid}/assignments/${id}/submissions/`,
       {
         title,
@@ -31,7 +31,7 @@ const submissionApi = {
     assignmentId: number,
     submissionId: number,
   ): Promise<SubmissionDetail> => {
-    const { data } = await instance.get(
+    const { data } = await privateInstance.get(
       `/api/v1/studygroup/studies/${uuid}/assignments/${assignmentId}/submissions/${submissionId}/`,
     );
     return data;
@@ -43,7 +43,7 @@ const submissionApi = {
     title: string,
     content: string,
   ): Promise<Pick<SubmissionDetail, 'title' | 'content'>> => {
-    const { data } = await instance.put(
+    const { data } = await privateInstance.put(
       `/api/v1/studygroup/studies/${uuid}/assignments/${assignmentId}/submissions/${submissionId}/`,
       {
         title,
@@ -58,7 +58,7 @@ const submissionApi = {
     submissionId: number,
     patchedData: Partial<SubmissionDetail>,
   ): Promise<SubmissionDetail> => {
-    const { data } = await instance.patch(
+    const { data } = await privateInstance.patch(
       `/api/v1/studygroup/studies/${uuid}/assignments/${assignmentId}/submissions/${submissionId}/`,
       patchedData,
     );
@@ -69,7 +69,7 @@ const submissionApi = {
     assignmentId: number,
     submissionId: number,
   ): Promise<SubmissionDetail> => {
-    const { data } = await instance.delete(
+    const { data } = await privateInstance.delete(
       `/api/v1/studygroup/studies/${uuid}/assignments/${assignmentId}/submissions/${submissionId}/`,
     );
     return data;
