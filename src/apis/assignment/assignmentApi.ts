@@ -2,11 +2,14 @@ import { privateInstance, publicInstance } from '@apis/instance';
 
 const assingmentApi = {
   getAssignmentList: async (
+    cursor = '',
     uuid: string,
     truncate = 120,
   ): Promise<AssignmentList> => {
     const { data } = await privateInstance.get(
-      `/api/v1/studygroup/studies/${uuid}/assignments/?truncate=${truncate}`,
+      `/api/v1/studygroup/studies/${uuid}/assignments/?${
+        cursor ? cursor : `truncate=${truncate}`
+      }`,
     );
     return data;
   },
