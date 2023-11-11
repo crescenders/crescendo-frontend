@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /mypage/
+Disallow: /study/assignment/detail/
+Disallow: /study/assignment/submission/
+Allow: /study/detail/
+Allow: /study/assignment/
