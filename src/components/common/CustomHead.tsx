@@ -4,7 +4,6 @@ const CustomHead = () => {
   return (
     <Head>
       {/* HTML Meta Tags */}
-      <title>Crescendo - 소규모 스터디 플랫폼</title>
       <meta
         name="description"
         content="관심 있는 스터디를 검색하고 활동해 보세요!"
