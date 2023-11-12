@@ -15,7 +15,7 @@ const AssignmentDetail = () => {
 
   return (
     <PageLayout>
-      <div className="mt-[119px] flex h-full flex-col items-center px-7">
+      <div className="mt-[105px] flex h-full flex-col items-center px-7">
         <MenuBar
           focusedPosition="center"
           leftText="정보 보기"
