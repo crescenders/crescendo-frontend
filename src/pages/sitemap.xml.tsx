@@ -12,7 +12,7 @@ const insideXMLString = (xmlContent: string): string => {
   `;
 };
 
-Sitemap.getInitialProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const { res } = ctx;
   let pagesXML = '';
   let cursor = '';
@@ -33,7 +33,7 @@ Sitemap.getInitialProps = async (ctx) => {
   studies.map((study) => {
     pagesXML += `
       <url>
-        <loc>${process.env.NEXT_PUBLIC_LOCAL}/study/detail/${study.uuid}</loc>
+        <loc>${process.env.NEXT_PUBLIC_DOMAIN}/study/detail/${study.uuid}</loc>
         <lastmod>${new Date()}</lastmod>
       </url>
     `;
@@ -45,7 +45,7 @@ Sitemap.getInitialProps = async (ctx) => {
     res.end();
   }
 
-  return {};
+  return { props: {} };
 };
 
 export default Sitemap;
