@@ -11,7 +11,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Partial<TextAreaProps>>(
     return (
       <Container>
         {label && <Label htmlFor={id}>{label}</Label>}
-        <BaseTextArea ref={ref} {...rest} />
+        <BaseTextArea id={id} ref={ref} {...rest} />
       </Container>
     );
   },
