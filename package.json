@@ -1,7 +1,25 @@
 {
-  "name": "cresenders",
+  "name": "crescendo-frontend",
   "version": "0.1.0",
-  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "project",
+   "url": "https://github.com/crescenders/crescendo-frontend"
+  },
+  "contributors": [
+    {
+      "name": "Tae Hyeon Kim",
+      "email": "thyeonee@gmail.com"
+    },
+    {
+      "name": "Ha Lam Lee",
+      "email": "halam.lee.lami@gmail.com"
+    },
+    {
+      "name": "Tae Yeong Kim",
+      "email": "rlaxodud911@gmail.com"
+    }
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
