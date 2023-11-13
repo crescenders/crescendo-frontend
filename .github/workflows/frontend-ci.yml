@@ -34,7 +34,7 @@ jobs:
         run: yarn build
 
       - name: Unit Test & Integration Test
-        run: yarn test
+        run: yarn test:coverage
 
       - name: e2e Test
         run: yarn e2e
