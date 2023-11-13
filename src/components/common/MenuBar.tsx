@@ -9,6 +9,7 @@ type MenuBarProps = {
   leftPath?: string;
   centerPath?: string;
   rightPath?: string;
+  className?: React.ComponentProps<'div'>['className'];
 };
 
 const focusStyle = {
@@ -24,9 +25,10 @@ const MenuBar = ({
   leftPath,
   centerPath,
   rightPath,
+  ...rest
 }: MenuBarProps) => {
   return (
-    <Wrapper>
+    <Wrapper {...rest}>
       <Basic
         href={leftPath || '#'}
         className={`${

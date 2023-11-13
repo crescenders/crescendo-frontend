@@ -1,10 +1,20 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useQuery,
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 export const useGetAssignmentList = (uuid: string) => {
-  return useQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: ['useGetAssignmentList', uuid],
-    queryFn: () => assingmentApi.getAssignmentList(uuid),
+    queryFn: ({ pageParam }) =>
+      assingmentApi.getAssignmentList(pageParam, uuid),
+    initialPageParam: '',
+    getNextPageParam: ({ next }) => {
+      return next ? next.split('?')[1] : undefined;
+    },
   });
 };
 

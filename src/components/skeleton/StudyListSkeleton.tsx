@@ -2,7 +2,7 @@ const StudyListSkeleton = () => {
   const array = Array.from({ length: 8 }, (_, i) => i);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-8">
+    <ul className="flex flex-wrap items-center justify-center gap-8">
       {array.map((_, i) => (
         <li
           key={i}
@@ -22,7 +22,7 @@ const StudyListSkeleton = () => {
           </div>
         </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

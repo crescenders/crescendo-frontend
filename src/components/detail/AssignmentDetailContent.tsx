@@ -43,7 +43,7 @@ const AssignmentDetailContent = () => {
       </h1>
       <div className="flex justify-between pr-3">
         <span className="font-medium text-text-primary">
-          {data.author.username} | {formatUTC(data.author.created_at)}
+          {data.author.username} | {formatUTC(data.created_at)}
         </span>
         {userId === data.author.uuid && (
           <DropBox topEvent={topEvent} bottomEvent={BottomEvent} />
