@@ -1,18 +1,14 @@
-import { useGetStudyMembers } from '@hooks/queries/useGetStudyMembers';
 import MemberCard from '@components/member/MemberCard';
-import { useRouter } from 'next/router';
+import { useGetStudyMembers } from '@hooks/queries/useGetStudyMembers';
 import { useDeleteMember } from '@hooks/mutations/useDeleteMember';
-import Image from 'next/image';
-import useModal from '@hooks/useModal';
 import { userState } from '@recoil/auth';
 import { useRecoilValue } from 'recoil';
-import MemberModal from '@components/modal/MemberModal';
-import DeleteMemberModal from '@components/modal/DeleteMemberModal';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const MemberList = () => {
   const router = useRouter();
   const uuid = String(router.query.id);
-  const { openModal } = useModal();
   const { username } = useRecoilValue(userState);
   const { data: members, isError, error } = useGetStudyMembers(uuid);
   const { mutate: deleteMember } = useDeleteMember();
@@ -43,27 +39,21 @@ const MemberList = () => {
   return (
     <>
       {members?.length ? (
-        members.sort(compareMembers).map(({ id, user, is_leader }: Member) => (
-          <MemberCard
-            key={id}
-            username={user.username}
-            isLeader={is_leader}
-            isCurrentUserLeader={checkIsLeader()}
-            handleClickRefuseButton={() => {
-              openModal(
-                <DeleteMemberModal
-                  handleClick={() => {
-                    deleteMember({ uuid, id });
-                    openModal(<MemberModal title="스터디원 목록" />);
-                  }}
-                  title="멤버 추방"
-                  firstText="추방한 멤버는 복구할 수 없어요."
-                  secondText={`정말로 ${user.username} 님을 추방하시겠어요?`}
-                />,
-              );
-            }}
-          />
-        ))
+        members
+          .sort(compareMembers)
+          .map(({ id, user, is_leader }: Member) => (
+            <MemberCard
+              key={id}
+              username={user.username}
+              isLeader={is_leader}
+              isCurrentUserLeader={checkIsLeader()}
+              handleClickRefuseButton={() =>
+                confirm(
+                  `추방한 멤버는 복구할 수 없어요.\n정말로 ${user.username} 님을 추방하시겠어요?`,
+                ) && deleteMember({ uuid, id })
+              }
+            />
+          ))
       ) : (
         <span className="absolute top-16 text-14 text-text-primary">
           현재 참여하고 있는 스터디원이 없습니다.
