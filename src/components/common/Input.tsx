@@ -8,19 +8,17 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   variant: 'small' | 'middle' | 'large';
   required?: boolean;
   label?: string;
-  link?: boolean;
   error?: string;
 };
 
 type StyledInputProps = {
   $variant: string;
   disabled: boolean;
-  $link: boolean;
   $label: string;
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, label, required, variant, link, error, ...rest }, ref) => {
+  ({ id, label, required, variant, error, ...rest }, ref) => {
     return (
       <Container $label={label}>
         {label && (
@@ -32,16 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </LabelContainer>
         )}
         <div className="relative flex items-center">
-          {link && (
-            <Image
-              src="/svg/link.svg"
-              width={18}
-              height={18}
-              alt="link"
-              className="absolute left-4"
-            />
-          )}
-          <InputBox ref={ref} $variant={variant} $link={link} {...rest} />
+          <InputBox id={id} ref={ref} $variant={variant} {...rest} />
         </div>
         {error && (
           <span className="h-2 text-12 text-status-error">{error}</span>
@@ -77,12 +66,12 @@ const InputBox = tw.input<Partial<StyledInputProps>>`
     ($variant === 'middle' && 'w-[340px]') ||
     ($variant === 'large' && 'w-[550px]')}
   ${({ disabled }) => disabled && 'text-text-primary bg-[#F0F0F0]'}
-  ${({ $link }) => ($link ? 'px-11' : 'pl-[18px]')}
   border-line-primary
   focus:border-brand
   placeholder:text-14
   h-11
   rounded-lg
   border-[1px]
+  pl-[18px]
   outline-none
 `;
