@@ -1,3 +1,4 @@
+import CustomHead from '@components/common/CustomHead';
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
@@ -6,6 +7,7 @@ export default function Document() {
       <Head>
         <link rel="manifest" href="/manifest.json" />
       </Head>
+      <CustomHead />
       <body>
         <Main />
         <NextScript />

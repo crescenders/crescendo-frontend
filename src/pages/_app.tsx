@@ -14,6 +14,7 @@ import useIsMounted from '@hooks/useIsMounted';
 import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import GlobalErrorBoundary from '@components/errorboundary/GlobalErrorBoundary';
 import React from 'react';
+import Head from 'next/head';
 import MobilePage from '@components/common/MobilePage';
 import { getDevice } from '@utils/getDevice';
 
@@ -51,6 +52,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
+      <Head>
+        <title>Crescendo - 소규모 스터디 플랫폼</title>
+      </Head>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools
           initialIsOpen={false}
