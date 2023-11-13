@@ -34,7 +34,7 @@ export const getServerSideProps = async (ctx) => {
     pagesXML += `
       <url>
         <loc>${process.env.NEXT_PUBLIC_DOMAIN}/study/detail/${study.uuid}</loc>
-        <lastmod>${new Date()}</lastmod>
+        <lastmod>${new Date().toISOString()}</lastmod>
       </url>
     `;
   });
