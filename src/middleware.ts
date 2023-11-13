@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/mypage/:path*',
-    '/study/create',
+    '/create',
     '/study/manage/:path*',
     '/study/assignment/detail/:path*',
     '/study/assignment/submission/:path*',
