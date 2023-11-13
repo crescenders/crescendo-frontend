@@ -48,7 +48,7 @@ const AssignmentList = () => {
         <>
           <ProgressBar progress={progress} />
           {progress !== 100 && (
-            <span className="text-14 font-bold">
+            <span className="mt-2 text-14 font-bold">
               목표까지
               <span className="text-brand">{` ${100 - progress}`}% </span>
               남았어요!
