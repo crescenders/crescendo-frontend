@@ -4,13 +4,12 @@ import { useDeleteMember } from '@hooks/mutations/useDeleteMember';
 import { userState } from '@recoil/auth';
 import { useRecoilValue } from 'recoil';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
 const MemberList = () => {
   const router = useRouter();
   const uuid = String(router.query.id);
   const { username } = useRecoilValue(userState);
-  const { data: members, isError, error } = useGetStudyMembers(uuid);
+  const { data: members } = useGetStudyMembers(uuid);
   const { mutate: deleteMember } = useDeleteMember();
 
   const compareMembers = (a: Member, b: Member) => {
@@ -25,20 +24,9 @@ const MemberList = () => {
     return leaders?.user.username === username;
   };
 
-  if (isError && error.response?.status === 403) {
-    return (
-      <div className="absolute top-10 flex w-full select-none flex-col items-center justify-center gap-8">
-        <Image src="/svg/clear_button.svg" width={60} height={60} alt="" />
-        <span className="text-14 text-text-primary">
-          스터디 그룹 멤버만 확인할 수 있어요.
-        </span>
-      </div>
-    );
-  }
-
   return (
     <>
-      {members?.length ? (
+      {members.length ? (
         members
           .sort(compareMembers)
           .map(({ id, user, is_leader }: Member) => (
