@@ -29,7 +29,7 @@
       "@constants/*": ["./constants/*"],
       "@mocks/*": ["./mocks/*"]
     },
-    "types": ["@types/jest", "@types/node"]
+    "types": ["@types/jest", "@types/node", "@testing-library/jest-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../__tests__/*"],
   "exclude": ["node_modules"]
