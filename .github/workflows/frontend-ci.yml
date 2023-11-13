@@ -37,4 +37,7 @@ jobs:
         run: yarn test:coverage
 
       - name: e2e Test
-        run: yarn e2e
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: yarn test:e2e
