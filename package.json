@@ -1,7 +1,6 @@
 {
   "name": "crescendo-frontend",
   "version": "0.1.0",
-  "type": "module",
   "repository": {
     "type": "project",
     "url": "https://github.com/crescenders/crescendo-frontend"
