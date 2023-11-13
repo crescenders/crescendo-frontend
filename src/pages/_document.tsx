@@ -8,6 +8,10 @@ export default function Document() {
           name="description"
           content="관심 있는 스터디를 검색하고 활동해 보세요!"
         />
+        <meta
+          name="google-site-verification"
+          content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
+        />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ko_KR" />
