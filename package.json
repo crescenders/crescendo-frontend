@@ -27,8 +27,7 @@
     "test": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "cypress:open": "cypress open --e2e --browser chrome",
-    "cypress:run": "cypress run --e2e --browser chrome --headless",
-    "test:e2e": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
+    "cypress:run": "cypress run --e2e --browser chrome --headless"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.7.2",

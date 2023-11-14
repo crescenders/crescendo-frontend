@@ -36,8 +36,10 @@ jobs:
       - name: Unit Test & Integration Test
         run: yarn test:coverage
 
-      - name: e2e Test
-        uses: cypress-io/github-action@v2
+      - name: E2E Test
+        uses: cypress-io/github-action@v6
         with:
-          install: false
-          command: yarn test:e2e
+          command-prefix: yarn dlx
+          start: yarn dev
+          wait-on: 'http://localhost:3000'
+          browser: chrome
