@@ -4142,9 +4142,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cresenders@workspace:.":
+"crescendo-frontend@workspace:.":
   version: 0.0.0-use.local
-  resolution: "cresenders@workspace:."
+  resolution: "crescendo-frontend@workspace:."
   dependencies:
     "@tailwindcss/typography": ^0.5.10
     "@tanstack/react-query": ^5.7.2
