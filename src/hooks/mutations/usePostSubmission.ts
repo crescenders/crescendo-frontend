@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 export const usePostSubmission = (): UseMutationResult<
   Pick<SubmissionDetail, 'title' | 'content'>,
-  AxiosError<TError>,
+  AxiosError<TNonFieldError>,
   Pick<SubmissionDetail, 'id' | 'title' | 'content'> & {
     uuid: string;
   }

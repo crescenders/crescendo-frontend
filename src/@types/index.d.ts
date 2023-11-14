@@ -3,7 +3,7 @@ type TResponse = {
   previous: string;
 };
 
-type TError = {
+type TNonFieldError = {
   non_field_errors: string;
 };
 

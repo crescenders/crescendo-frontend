@@ -16,7 +16,7 @@ export type ApplicationParamType = {
 
 export const usePostApplication = (): UseMutationResult<
   { request_message: string },
-  AxiosError<TError>,
+  AxiosError<TNonFieldError>,
   Omit<ApplicationParamType, 'id'>
 > => {
   const { showToast } = useToast();
