@@ -33,8 +33,8 @@ const OpenStudyCard = ({
       onClick={() => router.push(`/study/detail/${uuid}`)}
       className="cursor-pointer"
     >
-      <div className="flex w-full justify-between gap-x-1">
-        <div className="shrink truncate whitespace-nowrap text-[17px]">
+      <div className="flex justify-between gap-x-5">
+        <div className="w-full max-w-[360px] truncate text-[17px] ">
           {postTitle}
         </div>
         <div className="mr-2 flex items-center gap-x-0.5">
