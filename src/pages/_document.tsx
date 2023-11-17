@@ -37,6 +37,7 @@ export default function Document() {
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/open_graph.png`}
         />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
         <Main />
