@@ -1,12 +1,11 @@
 import Card from '@components/common/Card';
 import { useGetRandomStudyGroupList } from '@hooks/queries/useGetStudy';
-import tw from 'tailwind-styled-components';
 
 const RandomStudyList = () => {
   const { data } = useGetRandomStudyGroupList();
 
   return (
-    <StudyListContainer>
+    <ul className="flex w-full flex-wrap items-center justify-center gap-12 pb-8">
       {data?.results.map(
         ({
           uuid,
@@ -36,18 +35,8 @@ const RandomStudyList = () => {
           />
         ),
       )}
-    </StudyListContainer>
+    </ul>
   );
 };
 
 export default RandomStudyList;
-
-const StudyListContainer = tw.div`
-  flex
-  w-full
-  flex-wrap
-  items-center
-  justify-center
-  gap-12
-  pb-8
-`;

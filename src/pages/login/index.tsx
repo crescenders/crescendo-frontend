@@ -11,7 +11,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
-import tw from 'tailwind-styled-components';
 
 const Login = () => {
   const { initUserState } = useUser();
@@ -56,7 +55,7 @@ const Login = () => {
 
   return (
     <AuthLayout>
-      <Container>
+      <div className="flex h-screen flex-col items-center justify-center">
         <Image
           src="/svg/logo_symbol_small.svg"
           width={203}
@@ -67,7 +66,10 @@ const Login = () => {
           {'로그인을 하여 스터디에 \n 참여해보세요!'}
         </span>
         <div ref={googleSignInButton} className="hidden" />
-        <LoginButton onClick={handleClickButton}>
+        <button
+          onClick={handleClickButton}
+          className="relative mt-[117px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-brand font-bold tracking-tight text-white shadow-loginButton hover:opacity-80"
+        >
           <Image
             className="absolute left-[23px]"
             src={'/svg/google_symbol.svg'}
@@ -76,57 +78,16 @@ const Login = () => {
             alt="logo"
           />
           <span className="text-18">Google 로그인</span>
-        </LoginButton>
-        <StartWithoutLogin onClick={() => router.back()}>
+        </button>
+        <button
+          onClick={() => router.back()}
+          className="relative mt-[15px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-[#F3F4F8] font-bold tracking-tight text-text-secondary shadow-loginButton hover:bg-[rgba(161,184,255,0.2)]"
+        >
           로그인 없이 이용하기
-        </StartWithoutLogin>
-      </Container>
+        </button>
+      </div>
     </AuthLayout>
   );
 };
 
 export default Login;
-
-const LoginButton = tw.button`
-  bg-brand
-  shadow-loginButton
-  relative
-  mt-[117px]
-  flex
-  h-[56px]
-  w-[454px]
-  cursor-pointer
-  items-center
-  justify-center
-  rounded-2xl
-  font-bold
-  tracking-tight
-  text-white
-  hover:opacity-80
-`;
-
-const StartWithoutLogin = tw.button`
-  text-text-secondary
-  shadow-loginButton
-  relative
-  mt-[15px]
-  flex
-  h-[56px]
-  w-[454px]
-  cursor-pointer
-  items-center
-  justify-center
-  rounded-2xl
-  bg-[#F3F4F8]
-  font-bold
-  tracking-tight
-  hover:bg-[rgba(161,184,255,0.2)]
-`;
-
-const Container = tw.div`
-  flex
-  h-screen
-  flex-col
-  items-center
-  justify-center
-`;

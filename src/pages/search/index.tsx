@@ -8,7 +8,6 @@ import {
   SortStateType,
 } from '@constants/search';
 import { Suspense, useRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
 import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 import Input from '@components/common/Input';
 import Image from 'next/image';
@@ -88,13 +87,13 @@ const Search = () => {
       <div className="mb-10 mt-4 w-full">
         <ul className="mx-auto my-0 flex w-full max-w-3xl flex-wrap items-center gap-x-2 gap-y-3 px-5">
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
-            <CategoryBox
+            <li
               key={id}
               className={`${
                 ((id === 0 && !router.query.categories) ||
                   router.query.categories?.includes(name)) &&
                 'border-[#8266FF] text-[#8266FF]'
-              }`}
+              } flex h-fit w-fit cursor-pointer list-none items-center justify-center rounded-[7px] border-[1.5px] border-[#EAEAEB] bg-white px-4 py-2 text-[14px]`}
               onClick={() => {
                 id === 0
                   ? router.replace(router.pathname)
@@ -102,7 +101,7 @@ const Search = () => {
               }}
             >
               {name}
-            </CategoryBox>
+            </li>
           ))}
         </ul>
       </div>
@@ -116,20 +115,3 @@ const Search = () => {
 };
 
 export default Search;
-
-const CategoryBox = tw.li`
-  flex
-  h-fit
-  w-fit
-  cursor-pointer
-  list-none
-  items-center
-  justify-center
-  rounded-[7px]
-  border-[1.5px]
-  border-[#EAEAEB]
-  bg-white
-  px-4
-  py-2
-  text-[14px]
-`;

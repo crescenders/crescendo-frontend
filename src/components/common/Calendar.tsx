@@ -10,7 +10,6 @@ import {
   startOfToday,
   isSameDay,
 } from 'date-fns';
-import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 import { WEEKDAYS } from '@constants/index';
 
@@ -21,15 +20,6 @@ export type CalendarProps = {
   optionalDate?: TDate;
   setOptionalDate?: React.Dispatch<React.SetStateAction<TDate>>;
 };
-
-type StyledDayProps = {
-  $isWeekend?: boolean;
-  $isToday: boolean;
-  $compareToMinDate: number;
-  $isSelected: boolean;
-  $roundedStyle?: string;
-};
-
 const Calendar = ({
   minDate,
   date,
@@ -135,31 +125,50 @@ const Calendar = ({
       </div>
       <div className="grid grid-cols-[repeat(7,minmax(33px,auto))] text-center">
         {WEEKDAYS.map((day, index) => (
-          <Day key={index} $isWeekend={[5, 6].includes(index)}>
+          <div
+            key={index}
+            className={`${
+              [5, 6].includes(index) && 'text-warning'
+            } flex aspect-square items-center justify-center text-center`}
+          >
             {day}
-          </Day>
+          </div>
         ))}
         {Array.from(
           { length: firstDayOfMonth ? firstDayOfMonth - 1 : 6 },
           (_, index) => (
-            <Day key={index} />
+            <div key={index}></div>
           ),
         )}
         {calendarDays.map((calendarDay) => {
           const day = new Date(year, month, calendarDay);
 
+          const roundedStyle = getRoundedStyle(day);
+
           return (
-            <CalendarDay
+            <div
               key={calendarDay}
-              $isWeekend={isWeekend(day)}
-              $isToday={isSameDay(day, today)}
-              $compareToMinDate={compareAsc(day, minDate || today)}
-              $isSelected={isDateSelected(day)}
-              $roundedStyle={getRoundedStyle(day)}
+              className={`
+                ${isWeekend(day) && 'text-warning'}
+                flex aspect-square items-center justify-center text-center
+                ${isDateSelected(day) && 'bg-brand text-white'}
+                ${
+                  (roundedStyle === 'full' && 'rounded-full') ||
+                  (roundedStyle === 'left' && 'rounded-l-full') ||
+                  (roundedStyle === 'right' && 'rounded-r-full') ||
+                  'rounded-none'
+                }
+                ${isSameDay(day, today) && 'bg-gray-200'}
+                ${
+                  compareAsc(day, minDate || today) === -1
+                    ? 'opacity-30'
+                    : 'cursor-pointer'
+                }
+              `}
               onClick={() => handleClickDate(day)}
             >
               {calendarDay}
-            </CalendarDay>
+            </div>
           );
         })}
       </div>
@@ -168,25 +177,3 @@ const Calendar = ({
 };
 
 export default Calendar;
-
-const Day = tw.div<Pick<StyledDayProps, '$isWeekend'>>`
-  ${({ $isWeekend }) => $isWeekend && 'text-warning'}
-  flex
-  aspect-square
-  items-center
-  justify-center
-  text-center
-`;
-
-const CalendarDay = tw(Day)<StyledDayProps>`
-  ${({ $isSelected }) => $isSelected && 'bg-brand text-white'}
-  ${({ $roundedStyle }) =>
-    ($roundedStyle === 'full' && 'rounded-full') ||
-    ($roundedStyle === 'left' && 'rounded-l-full') ||
-    ($roundedStyle === 'right' && 'rounded-r-full') ||
-    'rounded-none'}
-  ${({ $isToday }) => $isToday && 'bg-gray-200'}
-  ${({ $compareToMinDate }) =>
-    ($compareToMinDate === -1 && 'opacity-30') ||
-    ($compareToMinDate === 1 && 'cursor-pointer')}
-`;

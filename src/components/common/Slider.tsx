@@ -1,5 +1,4 @@
 import { forwardRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
 
 const Slider = forwardRef<
   HTMLInputElement,
@@ -14,11 +13,12 @@ const Slider = forwardRef<
         style={{ width: `calc(100%/9*${+(memberLimit || defaultValue) - 1})` }}
         className="absolute left-[7px] top-2 h-2 rounded-full bg-brand after:block after:h-2 after:w-2 after:rounded-full after:bg-white after:ring-[7px] after:ring-brand"
       />
-      <RangeInput
+      <input
         ref={ref}
         type="range"
         min="2"
         step="1"
+        className={`absolute left-[calc(10%+7px)] top-2 w-[90%] cursor-pointer appearance-none bg-transparent focus:outline-none [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:appearance-none  [&::-webkit-slider-thumb]:rounded-full  [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:ring-[7px] [&::-webkit-slider-thumb]:ring-brand`}
         defaultValue={defaultValue}
         onInput={(e) => setMemberLimit(e.currentTarget.value)}
         {...rest}
@@ -44,21 +44,3 @@ const Slider = forwardRef<
 Slider.displayName = 'Slider';
 
 export default Slider;
-
-const RangeInput = tw.input`
-  [&::-webkit-slider-thumb]:ring-brand
-  absolute
-  left-[calc(10%+7px)]
-  top-2
-  w-[90%]
-  cursor-pointer
-  appearance-none
-  bg-transparent
-  focus:outline-none
-  [&::-webkit-slider-thumb]:h-2
-  [&::-webkit-slider-thumb]:w-2
-  [&::-webkit-slider-thumb]:appearance-none
-  [&::-webkit-slider-thumb]:rounded-full
-  [&::-webkit-slider-thumb]:bg-white
-  [&::-webkit-slider-thumb]:ring-[7px]
-`;

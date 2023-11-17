@@ -1,4 +1,3 @@
-import tw from 'tailwind-styled-components';
 import ModalPortal from '@components/portal/ModalPortal';
 import Image from 'next/image';
 import authApi from '@apis/auth/authApi';
@@ -54,7 +53,7 @@ const LoginModal = () => {
 
   return (
     <ModalPortal>
-      <ModalWrapper>
+      <div className="mx-[58px] mb-[50px] mt-[38px] flex flex-col items-center">
         <Image src={'/svg/logo_symbol.svg'} width={63} height={100} alt={''} />
         <Image
           className="mb-[66px] mt-[15px]"
@@ -63,12 +62,15 @@ const LoginModal = () => {
           height={42}
           alt="logo"
         />
-        <TextWrapper>
+        <div className="flex flex-col items-center justify-center gap-[13px] text-[20px] font-bold tracking-tight text-[#4f4f4f]">
           <span>로그인을 하여</span>
           <span>스터디에 참여해보세요!</span>
-        </TextWrapper>
+        </div>
         <div ref={googleSignInButton} className="hidden" />
-        <LoginButton onClick={handleClickButton}>
+        <button
+          onClick={handleClickButton}
+          className="relative mt-[117px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-brand font-bold tracking-tight text-white shadow-loginButton hover:opacity-80"
+        >
           <Image
             className="absolute left-[23px]"
             src={'/svg/google_symbol.svg'}
@@ -77,70 +79,16 @@ const LoginModal = () => {
             alt="logo"
           />
           <span className="text-18">Google 로그인</span>
-        </LoginButton>
-        <StartWithoutLogin onClick={closeModal}>
+        </button>
+        <button
+          onClick={closeModal}
+          className="relative mt-[15px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-[#F3F4F8] font-bold tracking-tight text-text-secondary shadow-loginButton hover:bg-[rgba(161,184,255,0.2)]"
+        >
           로그인 없이 이용하기
-        </StartWithoutLogin>
-      </ModalWrapper>
+        </button>
+      </div>
     </ModalPortal>
   );
 };
 
 export default LoginModal;
-
-const ModalWrapper = tw.div`
-  mx-[58px]
-  mb-[50px]
-  mt-[38px]
-  flex
-  flex-col
-  items-center
-`;
-
-const TextWrapper = tw.div`
-  flex
-  flex-col
-  items-center
-  justify-center
-  gap-[13px]
-  text-[20px]
-  font-bold
-  tracking-tight
-  text-[#4f4f4f]
-`;
-
-const LoginButton = tw.button`
-  bg-brand
-  shadow-loginButton
-  relative
-  mt-[117px]
-  flex
-  h-[56px]
-  w-[454px]
-  cursor-pointer
-  items-center
-  justify-center
-  rounded-2xl
-  font-bold
-  tracking-tight
-  text-white
-  hover:opacity-80
-`;
-
-const StartWithoutLogin = tw.button`
-  text-text-secondary
-  shadow-loginButton
-  relative
-  mt-[15px]
-  flex
-  h-[56px]
-  w-[454px]
-  cursor-pointer
-  items-center
-  justify-center
-  rounded-2xl
-  bg-[#F3F4F8]
-  font-bold
-  tracking-tight
-  hover:bg-[rgba(161,184,255,0.2)]
-`;

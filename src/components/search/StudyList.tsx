@@ -2,10 +2,9 @@ import { useGetStudyGroupList } from '@hooks/queries/useGetStudy';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useIntersection from '@hooks/useIntersection';
-import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 import Card from '@components/common/Card';
-import NotFoundStudyList from '@components/search/NotFoundStudyList';
-import tw from 'tailwind-styled-components';
+import NotFoundStudyList from './NotFoundStudyList';
+import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 
 const StudyList = () => {
   const router = useRouter();
@@ -27,7 +26,7 @@ const StudyList = () => {
 
   return (
     <>
-      <StudyListContainer>
+      <ul className="flex flex-wrap justify-center gap-8 px-5 pb-8">
         {studies.pages.flatMap((page) => page.results).length > 0 ? (
           studies.pages.flatMap((pages) =>
             pages.results.map(
@@ -69,7 +68,7 @@ const StudyList = () => {
             }
           />
         )}
-      </StudyListContainer>
+      </ul>
       {isFetchingNextPage && <StudyListSkeleton />}
       <div ref={targetRef} />
     </>
@@ -77,12 +76,3 @@ const StudyList = () => {
 };
 
 export default StudyList;
-
-const StudyListContainer = tw.div`
-  flex
-  flex-wrap
-  justify-center
-  gap-8
-  px-5
-  pb-8
-`;

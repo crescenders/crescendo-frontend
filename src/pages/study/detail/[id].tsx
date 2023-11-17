@@ -4,7 +4,6 @@ import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
-import tw from 'tailwind-styled-components';
 import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
 
 const StudyDetail = () => {
@@ -13,7 +12,7 @@ const StudyDetail = () => {
 
   return (
     <PageLayout>
-      <MenuWrapper>
+      <div className="mt-[105px] flex justify-center">
         <MenuBar
           focusedPosition="left"
           leftText="정보 보기"
@@ -22,7 +21,7 @@ const StudyDetail = () => {
           centerPath={`/study/assignment/${id}`}
           rightPath={`/study/member/${id}`}
         />
-      </MenuWrapper>
+      </div>
       <Suspense fallback={<StudyDetailSkeleton />}>
         <StudyDetailContent />
       </Suspense>
@@ -32,9 +31,3 @@ const StudyDetail = () => {
 };
 
 export default StudyDetail;
-
-const MenuWrapper = tw.div`
-  mt-[105px]
-  flex
-  justify-center
-`;
