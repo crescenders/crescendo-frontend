@@ -15,8 +15,6 @@ import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import GlobalErrorBoundary from '@components/errorboundary/GlobalErrorBoundary';
 import React from 'react';
 import Head from 'next/head';
-import MobilePage from '@components/common/MobilePage';
-import { getDevice } from '@utils/getDevice';
 
 declare global {
   interface Window {
@@ -43,7 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       }),
   );
-  const device = getDevice();
   const { shouldRender } = useIsWorker();
   const isMounted = useIsMounted();
   const { reset } = useQueryErrorResetBoundary();
@@ -63,11 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <HydrationBoundary state={pageProps.dehydratedState}>
           <Layout>
             <GlobalErrorBoundary fallback={ErrorFallback} reset={reset}>
-              {device === 'desktop' ? (
-                <Component {...pageProps} />
-              ) : (
-                <MobilePage />
-              )}
+              <Component {...pageProps} />
             </GlobalErrorBoundary>
           </Layout>
         </HydrationBoundary>
