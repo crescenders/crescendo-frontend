@@ -4,18 +4,17 @@ import MyStudyList from '@components/manage/MyStudyList';
 import MyStudyListSkeleton from '@components/skeleton/MyStudyListSkeleton';
 import { useRouter } from 'next/router';
 import { Suspense } from 'react';
-import tw from 'tailwind-styled-components';
 
 const StudyManage = () => {
   const router = useRouter();
 
   return (
     <PageLayout>
-      <Container>
-        <TitleArea>
-          <Title>내가 맡은 스터디</Title>
-        </TitleArea>
-        <StudyListArea>
+      <div className="flex w-full flex-col items-start justify-start px-7 pt-[125px]">
+        <div className="flex w-full justify-center">
+          <h1 className="w-[645px] text-20 font-bold">내가 맡은 스터디</h1>
+        </div>
+        <div className="flex w-full grow flex-col items-center justify-between gap-y-5 py-5">
           <Suspense fallback={<MyStudyListSkeleton />}>
             <MyStudyList />
           </Suspense>
@@ -24,43 +23,10 @@ const StudyManage = () => {
             text="스터디 개설하기"
             onClick={() => router.push('/create')}
           />
-        </StudyListArea>
-      </Container>
+        </div>
+      </div>
     </PageLayout>
   );
 };
 
 export default StudyManage;
-
-const Container = tw.div`
-  flex
-  w-full
-  flex-col
-  items-start
-  justify-start
-  px-7
-  pt-[125px]
-`;
-
-const Title = tw.div`
-  text-20
-  w-[645px]
-  font-bold
-`;
-
-const TitleArea = tw.div`
-  flex
-  w-full
-  justify-center
-`;
-
-const StudyListArea = tw.div`
-  flex
-  w-full
-  grow
-  flex-col
-  items-center
-  justify-between
-  gap-y-5
-  py-5
-`;

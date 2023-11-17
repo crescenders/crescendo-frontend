@@ -10,7 +10,6 @@ import useToast from '@hooks/useToast';
 import { validateUsername } from '@utils/validate';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
 
 const Edit = () => {
   const { mutate: putUser } = usePutUser();
@@ -59,7 +58,10 @@ const Edit = () => {
 
   return (
     <PageLayout>
-      <EditForm onSubmit={SubmitMyInfo}>
+      <form
+        onSubmit={SubmitMyInfo}
+        className="relative flex h-screen flex-col items-center justify-center gap-y-4"
+      >
         <Input
           id="username-input"
           variant="small"
@@ -88,19 +90,9 @@ const Edit = () => {
         >
           회원 탈퇴하기
         </span>
-      </EditForm>
+      </form>
     </PageLayout>
   );
 };
 
 export default Edit;
-
-const EditForm = tw.form`
-  relative
-  flex
-  h-screen
-  flex-col
-  items-center
-  justify-center
-  gap-y-4
-`;

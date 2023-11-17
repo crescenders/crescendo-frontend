@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Calendar from '@components/common/Calendar';
 import { format, startOfDay } from 'date-fns';
-import tw from 'tailwind-styled-components';
 import Image from 'next/image';
 
 type SelectDateBoxProps = {
@@ -51,11 +50,12 @@ const SelectDateBox = ({
         </div>
         <span className="h-2 w-full text-12 text-status-error">{error}</span>
       </div>
-
-      <SelectBoxWrapper
+      <button
         type="button"
         onClick={handleClickSelectBox}
-        className={`${isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'} z-20`}
+        className={`${
+          isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'
+        } relative z-20 flex w-[260px] cursor-pointer items-center justify-between gap-2 rounded-[7px] border-[1px] bg-white py-[14px] pl-[16px] pr-[10px]`}
       >
         <Image
           src={`/svg/calendar.svg`}
@@ -75,8 +75,7 @@ const SelectDateBox = ({
           alt=""
           className={`duration-300 ease-in-out ${isOpen && 'rotate-[-180deg]'}`}
         />
-      </SelectBoxWrapper>
-
+      </button>
       {isOpen && (
         <div
           className={`absolute right-0 top-[110px] z-10 rounded-lg bg-white p-4 shadow-base ${
@@ -96,20 +95,3 @@ const SelectDateBox = ({
 };
 
 export default SelectDateBox;
-
-const SelectBoxWrapper = tw.button`
-  relative
-  z-10
-  flex
-  w-[260px]
-  cursor-pointer
-  items-center
-  justify-between
-  gap-[8px]
-  rounded-[7px]
-  border-[1px]
-  bg-white
-  py-[14px]
-  pl-[16px]
-  pr-[10px]
-`;

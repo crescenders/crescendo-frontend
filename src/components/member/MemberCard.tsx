@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import tw from 'tailwind-styled-components';
 
 type MemberCardProps = {
   username: string;
@@ -34,7 +33,10 @@ const MemberCard = ({
           <div className="shrink truncate text-sm/6 font-bold">{username}</div>
           <div className="flex gap-[6px]">
             {requestMessage && (
-              <Button onClick={handleClickCheckButton}>
+              <button
+                onClick={handleClickCheckButton}
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2B2D31]"
+              >
                 <Image
                   className="cursor-pointer brightness-200 grayscale hover:brightness-100 hover:grayscale-0"
                   src="/svg/check.svg"
@@ -42,10 +44,13 @@ const MemberCard = ({
                   height={14}
                   alt=""
                 />
-              </Button>
+              </button>
             )}
             {!isLeader && isCurrentUserLeader && (
-              <Button onClick={handleClickRefuseButton}>
+              <button
+                onClick={handleClickRefuseButton}
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2B2D31]"
+              >
                 <Image
                   className="cursor-pointer brightness-200 grayscale hover:brightness-100 hover:grayscale-0"
                   src="/svg/cross.svg"
@@ -53,7 +58,7 @@ const MemberCard = ({
                   height={14}
                   alt=""
                 />
-              </Button>
+              </button>
             )}
           </div>
         </div>
@@ -81,13 +86,3 @@ const MemberCard = ({
 };
 
 export default MemberCard;
-
-const Button = tw.button`
-  flex
-  h-6
-  w-6
-  items-center
-  justify-center
-  rounded-full
-  bg-[#2B2D31]
-`;

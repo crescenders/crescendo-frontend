@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
 import TextArea from '@components/common/TextArea';
 import Button from '@components/common/Button';
 import { usePostApplication } from '@hooks/mutations/usePostApplication';
@@ -56,11 +55,13 @@ const ApplyBottomSheet = () => {
   return (
     <>
       {isOpen ? (
-        <Container onClick={() => setIsOpen(false)}>
-          <BottomSheetBox
-            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-              e.stopPropagation()
-            }
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-x-0 bottom-0 z-[999] flex h-screen w-screen items-end justify-center bg-[rgba(51,51,53,0.6)]"
+        >
+          <section
+            onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}
+            className="relative bottom-0 z-[999] mx-auto my-0 flex w-full max-w-3xl animate-slideUp flex-col rounded-t-md bg-white p-6"
           >
             <div className="mx-auto my-0 w-full max-w-xl px-5">
               <TextArea
@@ -78,11 +79,13 @@ const ApplyBottomSheet = () => {
                 />
               </div>
             </div>
-            <ApplyBtn
-              className="absolute right-0 top-[-42px]"
+            <button
+              className="absolute right-0 top-[-42px] z-[1000] flex h-[42px] w-[120px] items-center justify-center gap-x-1 rounded-md bg-brand hover:bg-[#a24ec8] hover:duration-500 hover:ease-in-out"
               onClick={() => setIsOpen((prev) => !prev)}
             >
-              <BtnText>신청하기</BtnText>
+              <span className="select-none text-14 font-bold text-white">
+                신청하기
+              </span>
               <Image
                 src="/svg/arrow_up.svg"
                 width={20}
@@ -90,17 +93,19 @@ const ApplyBottomSheet = () => {
                 alt="신청하기"
                 className={`${isOpen && 'rotate-[-180deg]'}`}
               />
-            </ApplyBtn>
-          </BottomSheetBox>
-        </Container>
+            </button>
+          </section>
+        </div>
       ) : (
         <div className="flex justify-center">
           <div className="fixed bottom-0 w-full max-w-3xl">
-            <ApplyBtn
-              className="absolute bottom-0 right-0"
+            <button
+              className="absolute right-0 top-[-42px] z-[1000] flex h-[42px] w-[120px] items-center justify-center gap-x-1 rounded-md bg-brand hover:bg-[#a24ec8] hover:duration-500 hover:ease-in-out"
               onClick={handleOpenApplySheet}
             >
-              <BtnText>신청하기</BtnText>
+              <span className="select-none text-14 font-bold text-white">
+                신청하기
+              </span>
               <Image
                 src="/svg/arrow_up.svg"
                 width={20}
@@ -108,7 +113,7 @@ const ApplyBottomSheet = () => {
                 alt="신청하기"
                 className={`${isOpen && 'rotate-[-180deg]'}`}
               />
-            </ApplyBtn>
+            </button>
           </div>
         </div>
       )}
@@ -117,55 +122,3 @@ const ApplyBottomSheet = () => {
 };
 
 export default ApplyBottomSheet;
-
-const Container = tw.div`
-  fixed
-  bottom-0
-  left-0
-  right-0
-  z-[999]
-  flex
-  h-screen
-  w-screen
-  items-end
-  justify-center
-  bg-[rgba(51,51,53,0.6)]
-`;
-const BottomSheetBox = tw.section`
-  animate-slideUp
-  relative
-  bottom-0
-  z-[999]
-  mx-auto
-  my-0
-  flex
-  w-full
-  max-w-3xl
-  flex-col
-  rounded-t-md
-  bg-white
-  px-6
-  py-6
-`;
-
-const ApplyBtn = tw.button`
-  bg-brand
-  z-[1000]
-  flex
-  h-[42px]
-  w-[120px]
-  items-center
-  justify-center
-  gap-x-1
-  rounded-md
-  hover:bg-[#a24ec8]
-  hover:duration-500
-  hover:ease-in-out
-`;
-
-const BtnText = tw.span`
-  text-14
-  select-none
-  font-bold
-  text-white
-`;

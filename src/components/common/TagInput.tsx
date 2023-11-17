@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { KeyboardEvent, useState } from 'react';
-import tw from 'tailwind-styled-components';
 import Input from '@components/common/Input';
 import { validateTag } from '@utils/validate';
 
@@ -39,7 +38,7 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
   };
 
   return (
-    <Container>
+    <div className="flex w-[550px] flex-col">
       <Input
         id="tags"
         variant="large"
@@ -48,11 +47,18 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
         error={errorMessage}
         className={errorMessage && 'mb-2'}
       />
-      <TagContainer $isError={!!errorMessage}>
+      <div
+        className={`${
+          !!errorMessage ? 'mt-4' : 'mt-3'
+        } flex w-full select-none flex-wrap gap-2`}
+      >
         {tagList &&
           tagList.map((tag, index) => (
-            <TagItem key={index}>
-              <TagLabel>{tag}</TagLabel>
+            <div
+              key={index}
+              className="flex gap-1 rounded-full border border-solid border-purple-300 py-[5px] pl-3 pr-2"
+            >
+              <p className="text-[12px]">{tag}</p>
               <Image
                 src="/svg/clear_button_nobackground.svg"
                 width={12}
@@ -61,42 +67,11 @@ const TagInput = ({ tagList, setTagList }: TagInputProps) => {
                 className="cursor-pointer"
                 onClick={() => handleClickRemoveButton(tag)}
               />
-            </TagItem>
+            </div>
           ))}
-      </TagContainer>
-    </Container>
+      </div>
+    </div>
   );
 };
 
 export default TagInput;
-
-const Container = tw.div`
-  flex
-  w-[550px]
-  flex-col
-`;
-
-const TagContainer = tw.div<{ $isError: boolean }>`
-  ${({ $isError }) => ($isError ? 'mt-4' : 'mt-3')}
-  flex
-  w-full
-  select-none
-  flex-wrap
-  gap-2
-`;
-
-const TagItem = tw.div`
-  flex
-  gap-1
-  rounded-full
-  border
-  border-solid
-  border-purple-300
-  py-[5px]
-  pl-3
-  pr-2
-`;
-
-const TagLabel = tw.p`
-  text-[12px]
-`;

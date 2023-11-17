@@ -1,25 +1,20 @@
 import { Suspense } from 'react';
 import { useRouter } from 'next/router';
-import tw from 'tailwind-styled-components';
 import Button from '@components/common/Button';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
-import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
-import ErrorFallback from '@components/errorboundary/ErrorFallback';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const Submission = () => {
   const router = useRouter();
   const [uuid, id] = router.query.id as string[];
   const { data: study } = useGetStudyDetail(uuid);
-  const { reset } = useQueryErrorResetBoundary();
 
   return (
     <PageLayout>
-      <MenuWrapper>
+      <div className="mt-[105px] flex justify-center">
         <MenuBar
           focusedPosition="center"
           leftText="정보 보기"
@@ -29,9 +24,11 @@ const Submission = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
-      </MenuWrapper>
-      <StudyTitle>{study.study_name}</StudyTitle>
-      <Container>
+      </div>
+      <h1 className="mx-8 mb-[23px] mt-9 text-center text-[24px] font-bold text-text-secondary">
+        {study.study_name}
+      </h1>
+      <div className="flex flex-col items-center pb-[80px]">
         <Suspense fallback={<SubmissionListSkeleton />}>
           <SubmissionList />
         </Suspense>
@@ -42,32 +39,9 @@ const Submission = () => {
             router.push(`/study/assignment/submission/submit/${uuid}/${id}/`)
           }
         />
-      </Container>
+      </div>
     </PageLayout>
   );
 };
 
 export default Submission;
-
-const MenuWrapper = tw.div`
-  mt-[105px]
-  flex
-  justify-center
-`;
-
-const StudyTitle = tw.h1`
-  text-text-secondary
-  mx-8
-  mb-[23px]
-  mt-9
-  text-center
-  text-[24px]
-  font-bold
-`;
-
-const Container = tw.div`
-  flex
-  flex-col
-  items-center
-  pb-[80px]
-`;

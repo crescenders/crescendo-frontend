@@ -3,7 +3,6 @@ import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
 import useModal from '@hooks/useModal';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import tw from 'tailwind-styled-components';
 
 export type MyStudyListType = {
   uuid: string;
@@ -29,9 +28,9 @@ const OpenStudyCard = ({
   const { mutate: deleteStudy } = useDeleteStudy();
 
   return (
-    <StudyCard
+    <div
       onClick={() => router.push(`/study/detail/${uuid}`)}
-      className="cursor-pointer"
+      className="flex h-[171px] w-[445px] cursor-pointer flex-col justify-between rounded-[20px] bg-white p-5 shadow-studyCard"
     >
       <div className="flex justify-between gap-x-5">
         <div className="w-full max-w-[360px] truncate text-[17px] ">
@@ -83,20 +82,8 @@ const OpenStudyCard = ({
           }}
         />
       </div>
-    </StudyCard>
+    </div>
   );
 };
 
 export default OpenStudyCard;
-
-const StudyCard = tw.div`
-  shadow-studyCard
-  flex
-  h-[171px]
-  w-[445px]
-  flex-col
-  justify-between
-  rounded-[20px]
-  bg-white
-  p-5
-`;

@@ -1,7 +1,5 @@
 import { REQUIRED } from '@constants/index';
-import Image from 'next/image';
 import { InputHTMLAttributes, forwardRef } from 'react';
-import tw from 'tailwind-styled-components';
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
@@ -11,31 +9,43 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-type StyledInputProps = {
-  $variant: string;
-  disabled: boolean;
-  $label: string;
-};
-
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, label, required, variant, error, ...rest }, ref) => {
+  (
+    { id, label, required, variant, error, className, disabled, ...rest },
+    ref,
+  ) => {
     return (
-      <Container $label={label}>
+      <div className={`flex flex-col ${label && 'gap-y-2'}`}>
         {label && (
-          <LabelContainer>
+          <div className="flex">
             {required && (
               <span className="mr-1 text-status-error">{REQUIRED}</span>
             )}
-            <Label htmlFor={id}>{label}</Label>
-          </LabelContainer>
+            <label
+              htmlFor={id}
+              className="text-14 font-bold text-text-secondary"
+            >
+              {label}
+            </label>
+          </div>
         )}
         <div className="relative flex items-center">
-          <InputBox id={id} ref={ref} $variant={variant} {...rest} />
+          <input
+            id={id}
+            ref={ref}
+            className={`h-11 rounded-lg border-[1px] border-line-primary pl-[18px] outline-none placeholder:text-14 focus:border-brand ${
+              (variant === 'small' && 'w-[270px]') ||
+              (variant === 'middle' && 'w-[340px]') ||
+              (variant === 'large' && 'w-[540px]')
+            } ${disabled && 'bg-[#F0F0F0] text-text-primary'} ${className}`}
+            disabled={disabled}
+            {...rest}
+          />
         </div>
         {error && (
           <span className="h-2 text-12 text-status-error">{error}</span>
         )}
-      </Container>
+      </div>
     );
   },
 );
@@ -43,35 +53,3 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = 'Input';
 
 export default Input;
-
-const Container = tw.div<Partial<StyledInputProps>>`
-  ${({ $label }) => $label && 'gap-y-2'}
-  flex
-  flex-col
-`;
-
-const LabelContainer = tw.div`
-  flex
-`;
-
-const Label = tw.label`
-  text-14
-  text-text-secondary
-  font-bold
-`;
-
-const InputBox = tw.input<Partial<StyledInputProps>>`
-  ${({ $variant }) =>
-    ($variant === 'small' && 'w-[270px]') ||
-    ($variant === 'middle' && 'w-[340px]') ||
-    ($variant === 'large' && 'w-[550px]')}
-  ${({ disabled }) => disabled && 'text-text-primary bg-[#F0F0F0]'}
-  border-line-primary
-  focus:border-brand
-  placeholder:text-14
-  h-11
-  rounded-lg
-  border-[1px]
-  pl-[18px]
-  outline-none
-`;

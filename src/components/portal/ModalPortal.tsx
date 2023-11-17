@@ -1,7 +1,6 @@
 import useModal from '@hooks/useModal';
 import { PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
-import tw from 'tailwind-styled-components';
 
 const ModalPortal = ({ children }: PropsWithChildren) => {
   const { closeModal } = useModal();
@@ -11,10 +10,15 @@ const ModalPortal = ({ children }: PropsWithChildren) => {
   return (
     <>
       {createPortal(
-        <Wrapper>
-          <Overlay onClick={closeModal} />
-          <Box>{children}</Box>
-        </Wrapper>,
+        <div className="fixed left-0 top-0 z-[999] flex h-full w-full items-center justify-center">
+          <div
+            onClick={closeModal}
+            className="fixed left-0 top-0 z-20 h-screen w-screen cursor-pointer bg-[#333335] opacity-40"
+          />
+          <div className="z-[10000] h-fit w-fit rounded-[8px] bg-white shadow-card">
+            {children}
+          </div>
+        </div>,
         portalDiv,
       )}
     </>
@@ -22,36 +26,3 @@ const ModalPortal = ({ children }: PropsWithChildren) => {
 };
 
 export default ModalPortal;
-
-const Wrapper = tw.div`
-  fixed
-  left-0
-  top-0
-  z-[999]
-  flex
-  h-full
-  w-full
-  items-center
-  justify-center
-`;
-
-const Overlay = tw.div`
-  fixed
-  left-0
-  top-0
-  z-20
-  h-screen
-  w-screen
-  cursor-pointer
-  bg-[#333335]
-  opacity-40
-`;
-
-const Box = tw.div`
-  shadow-card
-  z-[10000]
-  h-fit
-  w-fit
-  rounded-[8px]
-  bg-white
-`;

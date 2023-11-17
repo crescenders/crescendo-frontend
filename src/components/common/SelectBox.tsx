@@ -2,7 +2,6 @@ import { OptionsType, SORT_OBJ, SortStateType } from '@constants/search';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
-import tw from 'tailwind-styled-components';
 
 type SelectListProps = {
   options: OptionsType;
@@ -24,23 +23,26 @@ const SelectBox = ({
 
   return (
     <div className="flex flex-col">
-      <SelectBoxWrapper
+      <button
         onClick={() =>
           setIsOpen({
             ...SORT_OBJ,
             [value]: !isOpen[value],
           })
         }
-        className={`${isOpen[value] ? 'border-[#8266FF]' : 'border-[#E2E0E0]'}`}
+        className={`${
+          isOpen[value] ? 'border-[#8266FF]' : 'border-[#E2E0E0]'
+        } flex h-9 w-[92px] cursor-pointer items-center justify-evenly rounded-[7px] border-[1px] bg-white`}
       >
         <span className="ml-3 text-13">{value}</span>
         <Image src={'/svg/chevron-down.svg'} width={16} height={16} alt="" />
-      </SelectBoxWrapper>
+      </button>
       {isOpen[value] && (
-        <SelectList>
+        <ul className="absolute mt-[45px] flex h-fit w-[92px] cursor-pointer flex-col items-center justify-center rounded-[7px] border-[1px] border-[#E2E0E0] bg-white text-13">
           {options.map(({ id, name, query }) => (
-            <SelectItem
+            <li
               key={id}
+              className="flex h-[30px] w-[84px] items-center justify-center rounded-[5px] hover:bg-[rgba(130,102,255,0.41)]"
               onClick={() => {
                 setIsOpen((prev) => {
                   return isOpen[value]
@@ -73,51 +75,12 @@ const SelectBox = ({
               }}
             >
               {name}
-            </SelectItem>
+            </li>
           ))}
-        </SelectList>
+        </ul>
       )}
     </div>
   );
 };
 
 export default SelectBox;
-
-const SelectBoxWrapper = tw.button`
-  flex
-  h-9
-  w-[92px]
-  cursor-pointer
-  items-center
-  justify-evenly
-  rounded-[7px]
-  border-[1px]
-  bg-white
-`;
-
-const SelectList = tw.ul`
-  text-13
-  absolute
-  mt-[45px]
-  flex
-  h-fit
-  w-[92px]
-  cursor-pointer
-  flex-col
-  items-center
-  justify-center
-  rounded-[7px]
-  border-[1px]
-  border-[#E2E0E0]
-  bg-white
-`;
-
-const SelectItem = tw.li`
-  flex
-  h-[30px]
-  w-[84px]
-  items-center
-  justify-center
-  rounded-[5px]
-  hover:bg-[rgba(130,102,255,0.41)]
-`;
