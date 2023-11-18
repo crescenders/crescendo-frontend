@@ -26,7 +26,7 @@ const ApplyBottomSheet = () => {
       });
       return;
     }
-    if (study?.leaders[0].username === username) {
+    if (study.leaders[0].username === username) {
       showToast({
         type: 'fail',
         message: '본인이 개설한 스터디에요.',
