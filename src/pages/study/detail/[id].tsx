@@ -1,4 +1,3 @@
-import ApplyBottomSheet from '@components/detail/ApplyBottomSheet';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
@@ -25,7 +24,6 @@ const StudyDetail = () => {
       <Suspense fallback={<StudyDetailSkeleton />}>
         <StudyDetailContent />
       </Suspense>
-      <ApplyBottomSheet />
     </PageLayout>
   );
 };

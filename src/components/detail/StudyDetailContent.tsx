@@ -10,6 +10,7 @@ import DOMPurify from 'dompurify';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
+import ApplyBottomSheet from '@components/detail/ApplyBottomSheet';
 
 const StudyDetailContent = () => {
   const router = useRouter();
@@ -41,107 +42,110 @@ const StudyDetailContent = () => {
   };
 
   return (
-    <div className="mx-auto my-0 mb-12 w-full max-w-2xl px-7">
-      <div className="mt-[50px] flex flex-col gap-y-2">
-        <h1 className="text-24 font-bold">{study.post_title}</h1>
-        <div className="flex gap-x-1">
-          <span className="font-bold">
-            {study.leaders.map((v) => v.username)}
-          </span>
-          <span>({study.leaders[0].email})</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-text-secondary">
-            작성일 {formatUTC(study.created_at as string)}
-          </span>
-          {uuid === study.leaders[0].uuid && (
-            <DropBox topEvent={topEvent} bottomEvent={bottomEvent} />
-          )}
-        </div>
-        <div className="relative mt-2 h-[254px] w-full overflow-hidden rounded-lg border-[1px] border-black">
-          <Image src={study.head_image as string} fill alt="head-image" />
-        </div>
-        <div className="mt-7 flex gap-x-2">
-          <div className="flex flex-1 flex-col gap-y-4">
-            <div className="flex gap-x-1.5">
-              <span className="whitespace-nowrap font-bold text-text-secondary">
-                스터디명
-              </span>
-              <span className="font-bold">{study.study_name}</span>
-            </div>
-            <span className="whitespace-nowrap font-bold text-text-secondary">
-              카테고리
+    <>
+      <div className="mx-auto my-0 mb-12 w-full max-w-2xl px-7">
+        <div className="mt-[50px] flex flex-col gap-y-2">
+          <h1 className="text-24 font-bold">{study.post_title}</h1>
+          <div className="flex gap-x-1">
+            <span className="font-bold">
+              {study.leaders.map((v) => v.username)}
             </span>
-            <ul className="flex flex-wrap gap-2">
-              {study.categories.map((category) => (
+            <span>({study.leaders[0].email})</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-text-secondary">
+              작성일 {formatUTC(study.created_at as string)}
+            </span>
+            {uuid === study.leaders[0].uuid && (
+              <DropBox topEvent={topEvent} bottomEvent={bottomEvent} />
+            )}
+          </div>
+          <div className="relative mt-2 h-[254px] w-full overflow-hidden rounded-lg border-[1px] border-black">
+            <Image src={study.head_image as string} fill alt="head-image" />
+          </div>
+          <div className="mt-7 flex gap-x-2">
+            <div className="flex flex-1 flex-col gap-y-4">
+              <div className="flex gap-x-1.5">
+                <span className="whitespace-nowrap font-bold text-text-secondary">
+                  스터디명
+                </span>
+                <span className="font-bold">{study.study_name}</span>
+              </div>
+              <span className="whitespace-nowrap font-bold text-text-secondary">
+                카테고리
+              </span>
+              <ul className="flex flex-wrap gap-2">
+                {study.categories.map((category) => (
+                  <li
+                    key={category}
+                    className="flex h-fit w-fit cursor-pointer list-none items-center justify-center rounded-[7px] border-[1.5px] border-[#8266FF] bg-white px-3 py-2 text-[13px] text-[#8266FF]"
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-1 flex-col gap-y-4">
+              <div className="flex gap-x-1.5">
+                <span className="whitespace-nowrap font-bold text-text-secondary">
+                  스터디 기간
+                </span>
+                <span className="font-bold">
+                  {study.start_date} ~ {study.end_date}
+                </span>
+              </div>
+              <div className="flex items-center gap-x-1.5">
+                <span className="whitespace-nowrap font-bold text-text-secondary">
+                  모집 기간
+                </span>
+                <span className="font-bold">{study.deadline}</span>
+                <span className="text-13 font-bold text-status-error">
+                  {study && study.until_deadline > 0
+                    ? `(D-${study.until_deadline})`
+                    : '마감'}
+                </span>
+              </div>
+              {study.until_deadline < 0 && (
+                <div className="flex items-center gap-x-1.5">
+                  <span className="whitespace-nowrap font-bold text-text-secondary">
+                    진행도
+                  </span>
+                  <span className="font-bold">
+                    {`${getProgress(study.start_date, study.end_date)}%`}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-2 flex gap-x-1.5">
+            <span className="whitespace-nowrap font-bold text-text-secondary">
+              태그
+            </span>
+            <ul className="ml-1 flex flex-wrap gap-x-1.5 gap-y-2">
+              {study.tags.map((tag) => (
                 <li
-                  key={category}
-                  className="flex h-fit w-fit cursor-pointer list-none items-center justify-center rounded-[7px] border-[1.5px] border-[#8266FF] bg-white px-3 py-2 text-[13px] text-[#8266FF]"
+                  key={tag}
+                  className="h-fit w-fit cursor-pointer rounded-full border-[1px] border-[#C8B4FF] px-3 py-1 text-13"
                 >
-                  {category}
+                  {tag}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="flex flex-1 flex-col gap-y-4">
-            <div className="flex gap-x-1.5">
-              <span className="whitespace-nowrap font-bold text-text-secondary">
-                스터디 기간
-              </span>
-              <span className="font-bold">
-                {study.start_date} ~ {study.end_date}
-              </span>
-            </div>
-            <div className="flex items-center gap-x-1.5">
-              <span className="whitespace-nowrap font-bold text-text-secondary">
-                모집 기간
-              </span>
-              <span className="font-bold">{study.deadline}</span>
-              <span className="text-13 font-bold text-status-error">
-                {study && study.until_deadline > 0
-                  ? `(D-${study.until_deadline})`
-                  : '마감'}
-              </span>
-            </div>
-            {study.until_deadline < 0 && (
-              <div className="flex items-center gap-x-1.5">
-                <span className="whitespace-nowrap font-bold text-text-secondary">
-                  진행도
-                </span>
-                <span className="font-bold">
-                  {`${getProgress(study.start_date, study.end_date)}%`}
-                </span>
-              </div>
-            )}
-          </div>
+          <span className="mb-3 mt-6 h-[0.1px] w-full bg-text-secondary opacity-30" />
+          <h2 className="text-[20px] font-bold text-text-secondary">
+            스터디 소개
+          </h2>
+          <div
+            className="prose mt-10"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(study?.post_content as string),
+            }}
+          />
         </div>
-        <div className="mt-2 flex gap-x-1.5">
-          <span className="whitespace-nowrap font-bold text-text-secondary">
-            태그
-          </span>
-          <ul className="ml-1 flex flex-wrap gap-x-1.5 gap-y-2">
-            {study.tags.map((tag) => (
-              <li
-                key={tag}
-                className="h-fit w-fit cursor-pointer rounded-full border-[1px] border-[#C8B4FF] px-3 py-1 text-13"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <span className="mb-3 mt-6 h-[0.1px] w-full bg-text-secondary opacity-30" />
-        <h2 className="text-[20px] font-bold text-text-secondary">
-          스터디 소개
-        </h2>
-        <div
-          className="prose mt-10"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(study?.post_content as string),
-          }}
-        />
       </div>
-    </div>
+      <ApplyBottomSheet />
+    </>
   );
 };
 
