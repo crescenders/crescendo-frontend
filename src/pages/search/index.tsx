@@ -7,7 +7,7 @@ import {
   SORT_OBJ,
   SortStateType,
 } from '@constants/search';
-import { Suspense, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import StudyListSkeleton from '@components/skeleton/StudyListSkeleton';
 import Input from '@components/common/Input';
 import Image from 'next/image';
@@ -17,6 +17,7 @@ import useStudyList from '@hooks/useStudyList';
 import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -89,11 +90,11 @@ const Search = () => {
           {[{ name: 'All', id: 0 }, ...categories].map(({ id, name }) => (
             <li
               key={id}
-              className={`${
+              className={`flex h-fit w-fit cursor-pointer list-none items-center justify-center rounded-[7px] border-[1.5px] bg-white px-4 py-2 text-[14px] ${
                 ((id === 0 && !router.query.categories) ||
                   router.query.categories?.includes(name)) &&
                 'border-[#8266FF] text-[#8266FF]'
-              } flex h-fit w-fit cursor-pointer list-none items-center justify-center rounded-[7px] border-[1.5px] border-[#EAEAEB] bg-white px-4 py-2 text-[14px]`}
+              }`}
               onClick={() => {
                 id === 0
                   ? router.replace(router.pathname)
@@ -106,9 +107,9 @@ const Search = () => {
         </ul>
       </div>
       <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <Suspense fallback={<StudyListSkeleton />}>
+        <SSRSafeSuspense fallback={<StudyListSkeleton />}>
           <StudyList />
-        </Suspense>
+        </SSRSafeSuspense>
       </ErrorBoundary>
     </PageLayout>
   );
