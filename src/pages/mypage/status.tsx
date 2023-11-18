@@ -4,7 +4,7 @@ import Link from 'next/link';
 import StudyInProgressList from '@components/mypage/StudyInProgressList';
 import PendingApprovalList from '@components/mypage/PendingApprovalList';
 import StatusStudySkeleton from '@components/skeleton/StatusStudySkeleton';
-import ClientSuspense from '@components/common/ClientSuspense';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 
 const Status = () => {
   return (
@@ -26,15 +26,15 @@ const Status = () => {
             <span className="text-12 font-normal">내가 맡은 스터디 관리</span>
           </Link>
         </div>
-        <ClientSuspense fallback={<StatusStudySkeleton />}>
+        <SSRSafeSuspense fallback={<StatusStudySkeleton />}>
           <StudyInProgressList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
         <h2 className="mb-10 mt-[46px] text-[24px] font-bold text-text-secondary">
           승인 대기 중 스터디
         </h2>
-        <ClientSuspense fallback={<StatusStudySkeleton />}>
+        <SSRSafeSuspense fallback={<StatusStudySkeleton />}>
           <PendingApprovalList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
       </div>
     </PageLayout>
   );

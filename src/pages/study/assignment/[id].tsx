@@ -1,5 +1,5 @@
 import AssignmentList from '@components/assignment/AssignmentList';
-import ClientSuspense from '@components/common/ClientSuspense';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
@@ -26,9 +26,9 @@ const Assignment = () => {
         />
       </div>
       <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <ClientSuspense fallback={<AssignmentListSkeleton />}>
+        <SSRSafeSuspense fallback={<AssignmentListSkeleton />}>
           <AssignmentList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
       </ErrorBoundary>
     </PageLayout>
   );

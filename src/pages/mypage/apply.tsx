@@ -1,4 +1,4 @@
-import ClientSuspense from '@components/common/ClientSuspense';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ApprovedStudyList from '@components/mypage/ApprovedStudyList';
@@ -20,15 +20,15 @@ const Apply = () => {
         <h2 className="mb-10 text-[24px] font-bold text-text-secondary">
           승인된 스터디
         </h2>
-        <ClientSuspense fallback={<ApplyStudySkeleton />}>
+        <SSRSafeSuspense fallback={<ApplyStudySkeleton />}>
           <ApprovedStudyList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
         <h2 className="mb-10 mt-[46px] text-[24px] font-bold text-text-secondary">
           거절당한 스터디
         </h2>
-        <ClientSuspense fallback={<ApplyStudySkeleton />}>
+        <SSRSafeSuspense fallback={<ApplyStudySkeleton />}>
           <DisApprovedStudyList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
       </div>
     </PageLayout>
   );

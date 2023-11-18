@@ -1,7 +1,7 @@
 import useIsMounted from '@hooks/useIsMounted';
 import { Suspense } from 'react';
 
-const ClientSuspense = (props: React.ComponentProps<typeof Suspense>) => {
+const SSRSafeSuspense = (props: React.ComponentProps<typeof Suspense>) => {
   const { fallback } = props;
   const isMounted = useIsMounted();
 
@@ -11,4 +11,4 @@ const ClientSuspense = (props: React.ComponentProps<typeof Suspense>) => {
   return <>{fallback}</>;
 };
 
-export default ClientSuspense;
+export default SSRSafeSuspense;

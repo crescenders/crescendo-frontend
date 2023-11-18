@@ -5,7 +5,7 @@ import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
-import ClientSuspense from '@components/common/ClientSuspense';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 
 const Submission = () => {
   const router = useRouter();
@@ -29,9 +29,9 @@ const Submission = () => {
         {study?.study_name}
       </h1>
       <div className="flex flex-col items-center pb-[80px]">
-        <ClientSuspense fallback={<SubmissionListSkeleton />}>
+        <SSRSafeSuspense fallback={<SubmissionListSkeleton />}>
           <SubmissionList />
-        </ClientSuspense>
+        </SSRSafeSuspense>
         <Button
           text="과제 제출하기"
           className="fixed bottom-11 h-9 w-[143px]"

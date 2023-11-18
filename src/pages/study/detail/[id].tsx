@@ -3,7 +3,7 @@ import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
 import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
-import ClientSuspense from '@components/common/ClientSuspense';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 
 const StudyDetail = () => {
   const router = useRouter();
@@ -21,9 +21,9 @@ const StudyDetail = () => {
           rightPath={`/study/member/${id}`}
         />
       </div>
-      <ClientSuspense fallback={<StudyDetailSkeleton />}>
+      <SSRSafeSuspense fallback={<StudyDetailSkeleton />}>
         <StudyDetailContent />
-      </ClientSuspense>
+      </SSRSafeSuspense>
     </PageLayout>
   );
 };
