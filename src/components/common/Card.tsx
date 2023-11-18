@@ -34,7 +34,6 @@ const Card = ({
   endDate,
   deadline,
 }: CardProps) => {
-  console.log(img);
   return (
     <Link href={path}>
       <li
