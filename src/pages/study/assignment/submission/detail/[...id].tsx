@@ -1,17 +1,11 @@
-import { Suspense } from 'react';
 import { useRouter } from 'next/router';
-import Loader from '@components/common/Loader';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
-import ErrorFallback from '@components/errorboundary/ErrorFallback';
-import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
 import SubmissionDetailContent from '@components/detail/SubmissionDetailContent';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const SubmissionDetail = () => {
   const router = useRouter();
-  const [uuid] = router.query.id as string[];
-  const { reset } = useQueryErrorResetBoundary();
+  const [uuid] = (router.query.id as string[]) || [''];
 
   return (
     <PageLayout>
@@ -25,11 +19,7 @@ const SubmissionDetail = () => {
           centerPath={`/study/assignment/${uuid}`}
           rightPath={`/study/member/${uuid}`}
         />
-        <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-          <Suspense fallback={<Loader isFull />}>
-            <SubmissionDetailContent />
-          </Suspense>
-        </ErrorBoundary>
+        <SubmissionDetailContent />
       </div>
     </PageLayout>
   );

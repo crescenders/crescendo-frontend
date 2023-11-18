@@ -9,7 +9,7 @@ import { useRef } from 'react';
 
 const Edit = () => {
   const router = useRouter();
-  const [uuid, id] = router.query.id as string[];
+  const [uuid, id] = (router.query.id as string[]) || [];
 
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -37,13 +37,13 @@ const Edit = () => {
             variant="large"
             required
             className="w-full"
-            defaultValue={assignment.title}
+            defaultValue={assignment?.title}
           />
           <TextArea
             ref={contentRef}
             placeholder="과제에 대해 설명해주세요!"
             className="min-h-[420px] w-full"
-            defaultValue={assignment.content}
+            defaultValue={assignment?.content}
           />
           <div className="mb-12 flex justify-end gap-x-[10px]">
             <Button

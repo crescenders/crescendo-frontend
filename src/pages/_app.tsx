@@ -9,8 +9,6 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Layout from '@components/common/Layout';
 import { RecoilEnv, RecoilRoot } from 'recoil';
-import useIsWorker from '@hooks/useIsWorker';
-import useIsMounted from '@hooks/useIsMounted';
 import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import GlobalErrorBoundary from '@components/errorboundary/GlobalErrorBoundary';
 import React from 'react';
@@ -41,11 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       }),
   );
-  const { shouldRender } = useIsWorker();
-  const isMounted = useIsMounted();
   const { reset } = useQueryErrorResetBoundary();
-
-  if (!shouldRender || !isMounted) return null;
 
   return (
     <RecoilRoot>

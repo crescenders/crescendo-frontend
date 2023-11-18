@@ -1,10 +1,9 @@
 import Button from '@components/common/Button';
-import Loader from '@components/common/Loader';
 import ProgressBar from '@components/common/ProgressBar';
 import AssignmentCard from '@components/manage/AssignmentCard';
 import AssignmentListSkeleton from '@components/skeleton/AssignmentListSkeleton';
 import { useGetAssignmentList } from '@hooks/queries/useGetAssignment';
-import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import { useSuspenseGetStudyDetail } from '@hooks/queries/useGetStudy';
 import useIntersection from '@hooks/useIntersection';
 import { userState } from '@recoil/auth';
 import { getProgress } from '@utils/getProgress';
@@ -16,7 +15,7 @@ const AssignmentList = () => {
   const router = useRouter();
   const uuid = String(router.query.id);
   const { targetRef, isIntersecting } = useIntersection({ threshold: 0.4 });
-  const { data: study } = useGetStudyDetail(uuid);
+  const { data: study } = useSuspenseGetStudyDetail(uuid);
   const {
     data: assignment,
     hasNextPage,
@@ -25,6 +24,8 @@ const AssignmentList = () => {
     fetchNextPage,
   } = useGetAssignmentList(uuid);
   const { uuid: userId } = useRecoilValue(userState);
+  // TODO: Suspense 내부에서 2개의 useQuery를 사용하기 때문에 waterfall 발생.
+  // useQueries를 통해 병렬적으로 가져오기
 
   const progress = getProgress(study.start_date, study.end_date);
 

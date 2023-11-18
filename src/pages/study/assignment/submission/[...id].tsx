@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { useRouter } from 'next/router';
 import Button from '@components/common/Button';
 import MenuBar from '@components/common/MenuBar';
@@ -6,10 +5,11 @@ import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 
 const Submission = () => {
   const router = useRouter();
-  const [uuid, id] = router.query.id as string[];
+  const [uuid, id] = (router.query.id as string[]) || [];
   const { data: study } = useGetStudyDetail(uuid);
 
   return (
@@ -26,12 +26,12 @@ const Submission = () => {
         />
       </div>
       <h1 className="mx-8 mb-[23px] mt-9 text-center text-[24px] font-bold text-text-secondary">
-        {study.study_name}
+        {study?.study_name}
       </h1>
       <div className="flex flex-col items-center pb-[80px]">
-        <Suspense fallback={<SubmissionListSkeleton />}>
+        <SSRSafeSuspense fallback={<SubmissionListSkeleton />}>
           <SubmissionList />
-        </Suspense>
+        </SSRSafeSuspense>
         <Button
           text="과제 제출하기"
           className="fixed bottom-11 h-9 w-[143px]"

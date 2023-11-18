@@ -37,7 +37,7 @@ const Card = ({
   return (
     <Link href={path}>
       <li
-        className={`cursor-pointer list-none overflow-hidden rounded-[7px] bg-white shadow-header ${
+        className={`relative cursor-pointer list-none overflow-hidden rounded-[7px] bg-white shadow-header ${
           (size === 'big' && 'w-[210px] h-[245px]') ||
           (size === 'medium' && 'w-[187px] h-[172px]') ||
           (size === 'small' && 'h-[148px] w-[160px]')

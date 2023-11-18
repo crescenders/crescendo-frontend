@@ -12,7 +12,7 @@ const SubmitSubmission = () => {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<ReactQuill>(null);
-  const [uuid, assignmnetId] = router.query.id as string[];
+  const [uuid, assignmnetId] = (router.query.id as string[]) || [];
   const { mutate } = usePostSubmission();
   const { showToast } = useToast();
 

@@ -23,7 +23,7 @@ const ApprovedStudyList = () => {
   return (
     <>
       {studies.pages.flatMap((page) => page.results).length > 0 ? (
-        <div className="mt-10 flex flex-wrap gap-x-[33px]">
+        <div className="flex flex-wrap gap-x-[33px]">
           {studies.pages.flatMap((page) =>
             page.results.map(
               ({ uuid, head_image, name, start_date, end_date }) => (

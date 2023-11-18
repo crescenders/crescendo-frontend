@@ -16,7 +16,8 @@ const EditSubmission = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<ReactQuill>(null);
   const router = useRouter();
-  const [uuid, assignmentId, submissionId] = router.query.id as string[];
+  const [uuid, assignmentId, submissionId] =
+    (router.query.id as string[]) || [];
   const { data } = useGetSubmissionDetail(
     uuid,
     Number(assignmentId),
@@ -44,14 +45,14 @@ const EditSubmission = () => {
       });
       return;
     }
-    if (data.title === title && data.content === content) {
+    if (data?.title === title && data?.content === content) {
       showToast({
         type: 'fail',
         message: '변경 사항이 없습니다.',
       });
       return;
     }
-    if (data.title !== title && data.content !== content) {
+    if (data?.title !== title && data?.content !== content) {
       putSubmission({
         ...id,
         title,
@@ -71,7 +72,7 @@ const EditSubmission = () => {
         <div className="my-auto flex w-full max-w-[550px] flex-col gap-y-9">
           <Input
             ref={titleRef}
-            defaultValue={data.title}
+            defaultValue={data?.title}
             label="제목을 입력해주세요."
             id="title-input"
             variant="large"
@@ -79,7 +80,7 @@ const EditSubmission = () => {
           />
           <TextEditor
             ref={contentRef}
-            defaultValue={data.content}
+            defaultValue={data?.content}
             className="w-full [&>.ql-container]:h-[400px]"
             placeholder="과제에 대해 설명해주세요!"
           />

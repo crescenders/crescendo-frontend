@@ -7,6 +7,7 @@ import { userState } from '@recoil/auth';
 import useModal from '@hooks/useModal';
 import { NAVIGATE_LIST } from '@constants/index';
 import Loader from '@components/common/Loader';
+import useIsMounted from '@hooks/useIsMounted';
 
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
@@ -14,6 +15,7 @@ const Header = () => {
   const { username } = useRecoilValue(userState);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
+  const isMounted = useIsMounted();
 
   return (
     <header className="fixed inset-x-0 top-0 z-[900] flex h-[70px] w-full items-center bg-white">
@@ -27,7 +29,7 @@ const Header = () => {
             className="h-[24px] w-[124px] cursor-pointer"
           />
         </Link>
-        {username ? (
+        {username && isMounted ? (
           <div className="relative flex cursor-pointer gap-x-7">
             <Link href={'/create'}>
               <span className="text-16 font-medium">스터디 개설</span>
@@ -52,9 +54,10 @@ const Header = () => {
                     setIsOpen(false);
                   }}
                 >
-                  {NAVIGATE_LIST.map(({ id, text, path }) => (
-                    <NavigateList key={id} text={text} path={path} />
-                  ))}
+                  {isMounted &&
+                    NAVIGATE_LIST.map(({ id, text, path }) => (
+                      <NavigateList key={id} text={text} path={path} />
+                    ))}
                 </ul>
               </div>
             )}

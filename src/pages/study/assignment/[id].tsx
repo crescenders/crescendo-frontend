@@ -1,4 +1,5 @@
 import AssignmentList from '@components/assignment/AssignmentList';
+import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
@@ -6,7 +7,6 @@ import ErrorFallback from '@components/errorboundary/ErrorFallback';
 import AssignmentListSkeleton from '@components/skeleton/AssignmentListSkeleton';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
-import { Suspense } from 'react';
 
 const Assignment = () => {
   const router = useRouter();
@@ -26,9 +26,9 @@ const Assignment = () => {
         />
       </div>
       <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <Suspense fallback={<AssignmentListSkeleton />}>
+        <SSRSafeSuspense fallback={<AssignmentListSkeleton />}>
           <AssignmentList />
-        </Suspense>
+        </SSRSafeSuspense>
       </ErrorBoundary>
     </PageLayout>
   );

@@ -7,7 +7,7 @@ import Button from '@components/common/Button';
 import Loader from '@components/common/Loader';
 import StudyForm from '@components/form/StudyForm';
 import { useEditStudy } from '@hooks/mutations/useEditStudy';
-import { useGetStudyDetailInStudyForm } from '@hooks/queries/useGetStudy';
+import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import useToast from '@hooks/useToast';
 
 const EditStudy = () => {
@@ -15,7 +15,7 @@ const EditStudy = () => {
   const id = String(router.query.id);
   const { showToast } = useToast();
   const { uuid } = useRecoilValue(userState);
-  const { data: study } = useGetStudyDetailInStudyForm(id);
+  const { data: study } = useGetStudyDetail(id);
   const { mutate: editStudy, isPending } = useEditStudy();
 
   useEffect(() => {

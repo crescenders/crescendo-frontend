@@ -1,4 +1,3 @@
-import DOMPurify from 'dompurify';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import DropBox from '@components/common/DropBox';
@@ -11,7 +10,8 @@ import { formatUTC } from '@utils/formatUTC';
 
 const SubmissionDetailContent = () => {
   const router = useRouter();
-  const [uuid, assignmentId, submissionId] = router.query.id as string[];
+  const [uuid, assignmentId, submissionId] =
+    (router.query.id as string[]) || [];
   const { uuid: userId } = useRecoilValue(userState);
   const { openModal, closeModal } = useModal();
   const { mutate } = useDeleteSubmissionDetail();
@@ -48,13 +48,13 @@ const SubmissionDetailContent = () => {
   return (
     <div className="mt-16 w-full">
       <h1 className="mb-[14px] text-[24px] font-bold text-text-tertiary">
-        {data.title}
+        {data?.title}
       </h1>
       <div className="flex h-10 items-center justify-between pr-3">
         <span className="font-medium text-text-primary">
-          {data.author.username} | {formatUTC(data.created_at)}
+          {data?.author.username} | {formatUTC(data?.created_at as string)}
         </span>
-        {userId === data.author.uuid && (
+        {userId === data?.author.uuid && (
           <DropBox topEvent={topEvent} bottomEvent={BottomEvent} />
         )}
       </div>
@@ -62,7 +62,7 @@ const SubmissionDetailContent = () => {
       <div
         className="prose mb-10"
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(data.content as string),
+          __html: data?.content as string,
         }}
       />
     </div>
