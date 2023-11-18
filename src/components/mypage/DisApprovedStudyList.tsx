@@ -22,23 +22,24 @@ const DisApprovedStudyList = () => {
 
   return (
     <>
-      <div className="mt-10 flex flex-wrap gap-x-[33px]">
-        {studies.pages.flatMap((page) =>
-          page.results.map(
-            ({ uuid, head_image, name, start_date, end_date }) => (
-              <Card
-                key={uuid}
-                path={`/study/detail/${uuid}`}
-                size="medium"
-                img={head_image}
-                startDate={start_date}
-                endDate={end_date}
-                studyName={name}
-                disapproved
-              />
+      <div className="flex flex-wrap gap-x-[33px]">
+        {studies &&
+          studies.pages.flatMap((page) =>
+            page.results.map(
+              ({ uuid, head_image, name, start_date, end_date }) => (
+                <Card
+                  key={uuid}
+                  path={`/study/detail/${uuid}`}
+                  size="medium"
+                  img={head_image}
+                  startDate={start_date}
+                  endDate={end_date}
+                  studyName={name}
+                  disapproved
+                />
+              ),
             ),
-          ),
-        )}
+          )}
       </div>
       {isFetchingNextPage && <Loader />}
       <div ref={targetRef} />

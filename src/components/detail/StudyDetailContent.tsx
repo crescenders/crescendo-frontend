@@ -1,7 +1,10 @@
 import DropBox from '@components/common/DropBox';
 import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteStudy } from '@hooks/mutations/useDeleteStudy';
-import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
+import {
+  useGetStudyDetail,
+  useSuspenseGetStudyDetail,
+} from '@hooks/queries/useGetStudy';
 import useModal from '@hooks/useModal';
 import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
@@ -18,7 +21,7 @@ const StudyDetailContent = () => {
 
   const { uuid } = useRecoilValue(userState);
   const { openModal, closeModal } = useModal();
-  const { data: study } = useGetStudyDetail(id);
+  const { data: study } = useSuspenseGetStudyDetail(id);
   const { mutate: deleteStudy } = useDeleteStudy();
 
   const topEvent = () => {

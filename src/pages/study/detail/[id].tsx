@@ -1,9 +1,9 @@
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
-import { Suspense } from 'react';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
 import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
+import ClientSuspense from '@components/common/ClientSuspense';
 
 const StudyDetail = () => {
   const router = useRouter();
@@ -21,9 +21,9 @@ const StudyDetail = () => {
           rightPath={`/study/member/${id}`}
         />
       </div>
-      <Suspense fallback={<StudyDetailSkeleton />}>
+      <ClientSuspense fallback={<StudyDetailSkeleton />}>
         <StudyDetailContent />
-      </Suspense>
+      </ClientSuspense>
     </PageLayout>
   );
 };

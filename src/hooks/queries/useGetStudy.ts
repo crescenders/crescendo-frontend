@@ -31,16 +31,15 @@ export const useGetRandomStudyGroupList = () => {
   });
 };
 
-export const useGetStudyDetail = (id: string) => {
+export const useSuspenseGetStudyDetail = (id: string) => {
   return useSuspenseQuery({
-    queryKey: ['useGetStudyDetail', id],
+    queryKey: ['useSuspenseGetStudyDetail', id],
     queryFn: () => studyApi.getStudyDetail(id),
     staleTime: 5 * 60 * 1000,
   });
 };
 
-// enabled 옵션을 사용하기 위한 훅입니다.
-export const useGetStudyDetailInStudyForm = (id: string) => {
+export const useGetStudyDetail = (id: string) => {
   return useQuery({
     queryKey: ['useGetStudyDetail', id],
     queryFn: () => studyApi.getStudyDetail(id),

@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Lottie from 'lottie-react';
 import { useState } from 'react';
 import animation from '@public/animation/main.json';
 import { useGetTags } from '@hooks/queries/useGetTags';
+import dynamic from 'next/dynamic';
+
+const Lottie = dynamic(() => import('lottie-react'), {
+  ssr: false,
+});
 
 const Banner = () => {
   const router = useRouter();

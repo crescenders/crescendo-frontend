@@ -28,7 +28,7 @@ const Member = () => {
         />
       </div>
       <h1 className="mt-9 max-w-[600px] cursor-default text-center text-24 font-bold">
-        {study.post_title}
+        {study?.post_title}
       </h1>
       <div className="flex grow flex-wrap items-center justify-evenly gap-x-[70px] gap-y-[50px] py-[50px]">
         <div
@@ -44,7 +44,7 @@ const Member = () => {
             스터디원 목록
           </div>
         </div>
-        {study.leaders[0].uuid === uuid && (
+        {study?.leaders[0].uuid === uuid && (
           <div
             className="flex h-[374px] w-[265px] cursor-pointer select-none flex-col justify-between rounded-2xl bg-[#33C954] p-5 shadow-button duration-500 hover:scale-105"
             onClick={() => openModal(<MemberModal title="참여 신청자" />)}
