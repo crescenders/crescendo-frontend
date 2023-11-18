@@ -60,7 +60,7 @@ const Banner = () => {
               onClick={handleSearchClick}
             />
           </div>
-          <ul className="flex cursor-pointer gap-3">
+          <ul className="flex h-7 w-full cursor-pointer gap-3">
             {tags?.map(({ name }) => (
               <li
                 key={name}
