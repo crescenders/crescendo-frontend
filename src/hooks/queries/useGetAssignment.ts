@@ -1,5 +1,9 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
-import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  useQuery,
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 export const useGetAssignmentList = (uuid: string) => {
   return useSuspenseInfiniteQuery({
@@ -14,7 +18,7 @@ export const useGetAssignmentList = (uuid: string) => {
 };
 
 export const useGetAssignmentDetail = (uuid: string, id: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['useGetAssignmentDetail', uuid, id],
     queryFn: () => assingmentApi.getAssignmentDetail(uuid, id),
     staleTime: 5 * 60 * 1000,

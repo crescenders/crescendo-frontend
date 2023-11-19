@@ -1,5 +1,8 @@
 import submissionApi from '@apis/submission/submissionApi';
-import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
 export const useGetSubmissionList = (uuid: string, id: number) => {
   return useSuspenseInfiniteQuery({
@@ -18,10 +21,9 @@ export const useGetSubmissionDetail = (
   assignmentId: number,
   submissionId: number,
 ) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['useGetSubmissionDetail', uuid, assignmentId, submissionId],
     queryFn: () =>
       submissionApi.getSubmissionDetail(uuid, assignmentId, submissionId),
-    enabled: !!uuid && !!assignmentId && !!submissionId,
   });
 };
