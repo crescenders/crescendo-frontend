@@ -7,7 +7,7 @@ import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton'
 
 const SubmissionList = () => {
   const router = useRouter();
-  const [uuid, assignmentId] = router.query.id as string[];
+  const [uuid, assignmentId] = (router.query.id as string[]) || [];
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useGetSubmissionList(uuid, Number(assignmentId));
   const { targetRef, isIntersecting } = useIntersection({ threshold: 0.4 });

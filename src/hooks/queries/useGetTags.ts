@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useGetTags = () => {
   return useQuery({
-    queryKey: ['tags'],
+    queryKey: ['useGetTags'],
     queryFn: () => tagApi.getTags(),
   });
 };

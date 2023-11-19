@@ -2,8 +2,10 @@ import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import { useRouter } from 'next/router';
 import StudyDetailContent from '@components/detail/StudyDetailContent';
-import StudyDetailSkeleton from '@components/skeleton/StudyDetailSkeleton';
-import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
+import { GetServerSideProps } from 'next';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import studyApi from '@apis/study/studyApi';
+import ApplyBottomSheet from '@components/detail/ApplyBottomSheet';
 
 const StudyDetail = () => {
   const router = useRouter();
@@ -21,11 +23,26 @@ const StudyDetail = () => {
           rightPath={`/study/member/${id}`}
         />
       </div>
-      <SSRSafeSuspense fallback={<StudyDetailSkeleton />}>
-        <StudyDetailContent />
-      </SSRSafeSuspense>
+      <StudyDetailContent />
+      <ApplyBottomSheet />
     </PageLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const id = String(query.id);
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['useGetStudyDetail', id],
+    queryFn: () => studyApi.getStudyDetail(id),
+  });
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 };
 
 export default StudyDetail;

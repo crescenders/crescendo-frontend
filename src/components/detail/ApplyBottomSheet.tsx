@@ -7,14 +7,14 @@ import { usePostApplication } from '@hooks/mutations/usePostApplication';
 import useToast from '@hooks/useToast';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
-import { useSuspenseGetStudyDetail } from '@hooks/queries/useGetStudy';
+import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 
 const ApplyBottomSheet = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { showToast } = useToast();
-  const { data: study } = useSuspenseGetStudyDetail(String(router.query.id));
+  const { data: study } = useGetStudyDetail(String(router.query.id));
   const { mutate: postApplication } = usePostApplication();
   const { username } = useRecoilValue(userState);
 
@@ -26,7 +26,7 @@ const ApplyBottomSheet = () => {
       });
       return;
     }
-    if (study.leaders[0].username === username) {
+    if (study?.leaders[0].username === username) {
       showToast({
         type: 'fail',
         message: '본인이 개설한 스터디에요.',

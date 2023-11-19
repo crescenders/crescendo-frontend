@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import DropBox from '@components/common/DropBox';
 import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteSubmissionDetail } from '@hooks/mutations/useDeleteSubmission';
-import { useGetSubmissionDetail } from '@hooks/queries/useGetSubmission';
+import { useSuspenseGetSubmissionDetail } from '@hooks/queries/useGetSubmission';
 import useModal from '@hooks/useModal';
 import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
@@ -15,7 +15,7 @@ const SubmissionDetailContent = () => {
   const { uuid: userId } = useRecoilValue(userState);
   const { openModal, closeModal } = useModal();
   const { mutate } = useDeleteSubmissionDetail();
-  const { data } = useGetSubmissionDetail(
+  const { data } = useSuspenseGetSubmissionDetail(
     uuid,
     Number(assignmentId),
     Number(submissionId),
