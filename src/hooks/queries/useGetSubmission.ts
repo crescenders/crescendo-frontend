@@ -1,5 +1,6 @@
 import submissionApi from '@apis/submission/submissionApi';
 import {
+  useQuery,
   useSuspenseInfiniteQuery,
   useSuspenseQuery,
 } from '@tanstack/react-query';
@@ -16,7 +17,7 @@ export const useGetSubmissionList = (uuid: string, id: number) => {
   });
 };
 
-export const useGetSubmissionDetail = (
+export const useSuspenseGetSubmissionDetail = (
   uuid: string,
   assignmentId: number,
   submissionId: number,
@@ -25,5 +26,18 @@ export const useGetSubmissionDetail = (
     queryKey: ['useGetSubmissionDetail', uuid, assignmentId, submissionId],
     queryFn: () =>
       submissionApi.getSubmissionDetail(uuid, assignmentId, submissionId),
+  });
+};
+
+export const useGetSubmissionDetail = (
+  uuid: string,
+  assignmentId: number,
+  submissionId: number,
+) => {
+  return useQuery({
+    queryKey: ['useGetSubmissionDetail', uuid, assignmentId, submissionId],
+    queryFn: () =>
+      submissionApi.getSubmissionDetail(uuid, assignmentId, submissionId),
+    enabled: !!uuid && !!assignmentId && !!submissionId,
   });
 };

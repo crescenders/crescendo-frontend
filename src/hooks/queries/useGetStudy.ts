@@ -33,7 +33,7 @@ export const useGetRandomStudyGroupList = () => {
 
 export const useSuspenseGetStudyDetail = (id: string) => {
   return useSuspenseQuery({
-    queryKey: ['useSuspenseGetStudyDetail', id],
+    queryKey: ['useGetStudyDetail', id],
     queryFn: () => studyApi.getStudyDetail(id),
     staleTime: 5 * 60 * 1000,
   });
