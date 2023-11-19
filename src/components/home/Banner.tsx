@@ -68,7 +68,7 @@ const Banner = () => {
             {tags?.map(({ name }) => (
               <li
                 key={name}
-                className="flex w-fit items-center justify-center overflow-hidden rounded-[26px] bg-[#A77EC4] px-3 py-0.5 text-15 text-white"
+                className="flex w-fit whitespace-nowrap items-center justify-center overflow-hidden rounded-[26px] bg-[#A77EC4] px-3 py-0.5 text-15 text-white"
                 onClick={() => router.push(`/search?tags=${name}`)}
               >
                 #{name}

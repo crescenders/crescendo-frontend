@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { categories } from '@constants/categories';
 import RandomStudyList from '@components/home/RandomStudyList';
 import HomeLayout from '@components/common/HomeLayout';
+import { GetServerSideProps } from 'next';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import studyApi from '@apis/study/studyApi';
 
 const Home = () => {
   return (
@@ -25,6 +28,21 @@ const Home = () => {
       </section>
     </HomeLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['useGetRandomStudyGroupList'],
+    queryFn: () => studyApi.getStudyGroupList('?random=true'),
+  });
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 };
 
 export default Home;
