@@ -2,5 +2,8 @@ User-agent: *
 Disallow: /mypage/
 Disallow: /study/assignment/detail/
 Disallow: /study/assignment/submission/
+Disallow: /404
+Allow: /
 Allow: /study/detail/
 Allow: /study/assignment/
+Allow: /search
