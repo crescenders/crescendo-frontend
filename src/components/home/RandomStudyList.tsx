@@ -5,7 +5,7 @@ const RandomStudyList = () => {
   const { data } = useGetRandomStudyGroupList();
 
   return (
-    <ul className="flex w-full flex-wrap items-center justify-center gap-12 pb-8">
+    <ul className="flex w-full flex-wrap items-center justify-center gap-12 pb-16">
       {data?.results.map(
         ({
           uuid,
