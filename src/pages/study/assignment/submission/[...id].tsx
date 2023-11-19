@@ -5,7 +5,7 @@ import PageLayout from '@components/common/PageLayout';
 import SubmissionList from '@components/submission/SubmissionList';
 import SubmissionListSkeleton from '@components/skeleton/SubmissionListSkeleton';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
-import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
+import SSRSafeSuspense from '@components/async/SSRSafeSuspense';
 
 const Submission = () => {
   const router = useRouter();

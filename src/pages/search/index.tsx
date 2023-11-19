@@ -14,10 +14,7 @@ import Image from 'next/image';
 import { categories } from '@constants/categories';
 import { useRouter } from 'next/router';
 import useStudyList from '@hooks/useStudyList';
-import ErrorFallback from '@components/errorboundary/ErrorFallback';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import ErrorBoundary from '@components/errorboundary/ErrorBoundary';
-import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
+import AsyncBoundary from '@components/async/AsyncBoundary';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -27,7 +24,6 @@ const Search = () => {
   const [rightValue, setRightValue] = useState<string>('모집여부');
 
   const router = useRouter();
-  const { reset } = useQueryErrorResetBoundary();
 
   const handleSearchClick = () => {
     if (!inputRef.current) return;
@@ -106,11 +102,9 @@ const Search = () => {
           ))}
         </ul>
       </div>
-      <ErrorBoundary fallback={ErrorFallback} reset={reset}>
-        <SSRSafeSuspense fallback={<StudyListSkeleton />}>
-          <StudyList />
-        </SSRSafeSuspense>
-      </ErrorBoundary>
+      <AsyncBoundary suspenseFallback={<StudyListSkeleton />}>
+        <StudyList />
+      </AsyncBoundary>
     </PageLayout>
   );
 };
