@@ -6,7 +6,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 };
 
 const TextArea = forwardRef<HTMLTextAreaElement, Partial<TextAreaProps>>(
-  ({ id, label, ...rest }, ref) => {
+  ({ id, label, className, ...rest }, ref) => {
     return (
       <div className="flex flex-col gap-y-2">
         {label && (
@@ -18,7 +18,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, Partial<TextAreaProps>>(
           ref={ref}
           id={id}
           {...rest}
-          className="h-[150px] w-[550px] resize-none rounded-lg border-[1px] border-line-primary p-4 outline-none placeholder:font-bold placeholder:text-text-primary focus:border-brand"
+          className={`h-[150px] w-[550px] resize-none rounded-lg border-[1px] border-line-primary p-4 outline-none placeholder:font-bold placeholder:text-text-primary focus:border-brand ${className}`}
         />
       </div>
     );
