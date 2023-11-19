@@ -1,4 +1,4 @@
-import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
+import SSRSafeSuspense from '@components/async/SSRSafeSuspense';
 import MenuBar from '@components/common/MenuBar';
 import PageLayout from '@components/common/PageLayout';
 import ApprovedStudyList from '@components/mypage/ApprovedStudyList';

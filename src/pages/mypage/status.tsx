@@ -4,7 +4,7 @@ import Link from 'next/link';
 import StudyInProgressList from '@components/mypage/StudyInProgressList';
 import PendingApprovalList from '@components/mypage/PendingApprovalList';
 import StatusStudySkeleton from '@components/skeleton/StatusStudySkeleton';
-import SSRSafeSuspense from '@components/common/SSRSafeSuspense';
+import SSRSafeSuspense from '@components/async/SSRSafeSuspense';
 
 const Status = () => {
   return (
