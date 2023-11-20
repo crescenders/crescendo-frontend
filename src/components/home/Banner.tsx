@@ -44,32 +44,32 @@ const Banner = () => {
   return (
     <div className="mt-[70px] flex min-h-[283px] w-full items-center bg-brand">
       <section className="mx-auto my-0 flex w-full max-w-[1200px] items-center justify-between gap-x-10 px-12">
-        <div className="flex flex-col justify-center">
-          <h1 className="text-[32px] font-bold text-white max-md:text-[20px]">
+        <div className="flex w-full max-w-[368px] flex-col justify-center">
+          <h1 className="text-[28px] font-bold text-white max-md:text-[20px]">
             관심있는 스터디를 검색해보세요!
           </h1>
-          <div className="relative mb-[19px] mr-5 mt-[34px] w-full pr-5">
+          <div className="relative mb-[19px] mt-[34px]">
             <input
               onChange={onChange}
               onKeyDown={onKeyDown}
               value={keyword}
               type="text"
               placeholder="제목, 스터디명 또는 태그를 검색해주세요."
-              className="relative h-[40px] w-full rounded-xl bg-white py-[10px] pl-[12px] pr-[32px] focus:outline-none max-md:text-13"
+              className="w-full rounded-xl bg-white py-[10px] pl-[12px] pr-[32px] focus:outline-none max-md:text-13"
             />
             <Image
               src={'/svg/search_icon.svg'}
               width={16}
               height={16}
               alt="searchIcon"
-              className="absolute right-8 top-3 cursor-pointer"
+              className="absolute right-3 top-3 cursor-pointer"
               onClick={handleSearchClick}
             />
-            <ul className="mt-5 flex h-7 w-full cursor-pointer gap-3">
+            <ul className="mt-5 flex h-7 w-full cursor-pointer gap-3 overflow-x-auto">
               {tags?.map(({ name }) => (
                 <li
                   key={name}
-                  className="flex w-fit items-center justify-center overflow-hidden whitespace-nowrap rounded-[26px] bg-[#A77EC4] px-3 py-0.5 text-15 text-white"
+                  className="flex w-fit items-center justify-center whitespace-nowrap rounded-[26px] bg-[#A77EC4] px-3 py-0.5 text-15 text-white"
                   onClick={() => router.push(`/search?tags=${name}`)}
                 >
                   #{name}

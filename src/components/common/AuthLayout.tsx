@@ -9,7 +9,10 @@ const AuthLayout = ({
   ...rest
 }: PropsWithChildren<AuthLayoutProps>) => {
   return (
-    <main className="relative h-full w-full max-w-[1024px] bg-white" {...rest}>
+    <main
+      className="relative flex h-full w-full max-w-[1024px] flex-col items-center bg-white"
+      {...rest}
+    >
       {children}
     </main>
   );
