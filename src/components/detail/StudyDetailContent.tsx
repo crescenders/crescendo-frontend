@@ -64,7 +64,7 @@ const StudyDetailContent = () => {
           <div className="relative mt-2 h-[254px] w-full overflow-hidden rounded-lg border-[1px] border-black">
             <Image src={study?.head_image as string} fill alt="head-image" />
           </div>
-          <div className="mt-7 flex gap-x-2">
+          <div className="mt-7 flex gap-x-2 max-md:text-12">
             <div className="flex flex-1 flex-col gap-y-4">
               <div className="flex gap-x-1.5">
                 <span className="whitespace-nowrap font-bold text-text-secondary">

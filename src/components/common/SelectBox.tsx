@@ -38,7 +38,7 @@ const SelectBox = ({
         <Image src={'/svg/chevron-down.svg'} width={16} height={16} alt="" />
       </button>
       {isOpen[value] && (
-        <ul className="absolute mt-[45px] flex h-fit w-[92px] cursor-pointer flex-col items-center justify-center rounded-[7px] border-[1px] border-[#E2E0E0] bg-white text-13">
+        <ul className="absolute mt-[45px] flex h-fit w-[92px] animate-dropbox cursor-pointer flex-col items-center justify-center rounded-[7px] border-[1px] border-[#E2E0E0] bg-white text-13">
           {options.map(({ id, name, query }) => (
             <li
               key={id}

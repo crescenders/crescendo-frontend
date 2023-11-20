@@ -30,38 +30,34 @@ const Header = () => {
           />
         </Link>
         {username && isMounted ? (
-          <div className="relative flex cursor-pointer gap-x-7">
-            <Link href={'/create'}>
-              <span className="text-16 font-medium">스터디 개설</span>
-            </Link>
-            <div className="h-7 w-[2px] bg-[#D9D9D9]" />
+          <>
             <span
-              className="relative mr-5 text-16 font-bold text-brand"
+              className="relative mr-5 cursor-pointer whitespace-nowrap text-16 font-bold text-brand max-md:mr-0 max-md:text-13"
               onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
                 e.stopPropagation();
                 setIsOpen(true);
               }}
             >
               {username} 님
+              {isOpen && (
+                <div className="absolute right-0 top-10 flex flex-col items-center">
+                  <div className="relative top-2 h-4 w-4 rotate-[135deg] bg-white shadow-header" />
+                  <ul
+                    className="z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-header"
+                    onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+                      e.stopPropagation();
+                      setIsOpen(false);
+                    }}
+                  >
+                    {isMounted &&
+                      NAVIGATE_LIST.map(({ id, text, path }) => (
+                        <NavigateList key={id} text={text} path={path} />
+                      ))}
+                  </ul>
+                </div>
+              )}
             </span>
-            {isOpen && (
-              <div className="absolute left-2/4 top-[50px] flex flex-col items-center">
-                <div className="relative top-2 h-4 w-4 rotate-[135deg] bg-white shadow-sm" />
-                <ul
-                  className="z-10 flex flex-col gap-y-[1px] bg-[#D1D1D1] shadow-xl"
-                  onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-                    e.stopPropagation();
-                    setIsOpen(false);
-                  }}
-                >
-                  {isMounted &&
-                    NAVIGATE_LIST.map(({ id, text, path }) => (
-                      <NavigateList key={id} text={text} path={path} />
-                    ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          </>
         ) : (
           <span
             className="cursor-pointer text-16 font-bold text-brand"

@@ -69,7 +69,7 @@ const ApplyBottomSheet = () => {
                 label="신청서 작성"
                 ref={ref}
                 placeholder="신청과 함께 본인을 소개하는 문구를 작성해주세요!"
-                className="w-full"
+                className="w-full max-md:text-14"
               />
               <div className="mt-4 flex justify-end">
                 <Button
