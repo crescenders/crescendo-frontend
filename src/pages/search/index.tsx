@@ -45,7 +45,7 @@ const Search = () => {
 
   return (
     <PageLayout>
-      <div className="mx-auto my-0 mt-[150px] flex w-full max-w-3xl items-center gap-x-2 px-5">
+      <div className="mx-auto my-0 mt-[150px] flex w-full max-w-3xl flex-wrap items-center gap-2 px-5">
         <SelectBox
           options={LEFT_SELECT_OPTION}
           value={leftValue}
