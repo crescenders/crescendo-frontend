@@ -8,6 +8,7 @@ import useModal from '@hooks/useModal';
 import { NAVIGATE_LIST } from '@constants/index';
 import Loader from '@components/common/Loader';
 import useIsMounted from '@hooks/useIsMounted';
+import useClickAway from '@hooks/useClickAway';
 
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
@@ -16,6 +17,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
   const isMounted = useIsMounted();
+
+  const ref = useClickAway<HTMLSpanElement>(() => setIsOpen(false));
 
   return (
     <header className="fixed inset-x-0 top-0 z-[900] flex h-[70px] w-full items-center bg-white">
@@ -30,34 +33,30 @@ const Header = () => {
           />
         </Link>
         {username && isMounted ? (
-          <>
-            <span
-              className="relative mr-5 cursor-pointer whitespace-nowrap text-16 font-bold text-brand max-md:mr-0 max-md:text-13"
-              onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
-                e.stopPropagation();
-                setIsOpen(true);
-              }}
-            >
-              {username} 님
-              {isOpen && (
-                <div className="absolute right-0 top-10 flex flex-col items-center">
-                  <div className="relative top-2 h-4 w-4 rotate-[135deg] bg-white shadow-header" />
-                  <ul
-                    className="z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-header"
-                    onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-                      e.stopPropagation();
-                      setIsOpen(false);
-                    }}
-                  >
-                    {isMounted &&
-                      NAVIGATE_LIST.map(({ id, text, path }) => (
-                        <NavigateList key={id} text={text} path={path} />
-                      ))}
-                  </ul>
-                </div>
-              )}
-            </span>
-          </>
+          <span
+            ref={ref}
+            className="relative mr-5 cursor-pointer whitespace-nowrap text-16 font-bold text-brand max-md:mr-0 max-md:text-13"
+            onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
+              e.stopPropagation();
+              setIsOpen(true);
+            }}
+          >
+            {username} 님
+            {isOpen && (
+              <ul
+                className="absolute right-0 top-10 z-10 flex max-w-[120px] flex-col rounded bg-gray-50 py-3 shadow-[0_0_5px_0,rgba(0,0,0,0.15)]"
+                onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+              >
+                {isMounted &&
+                  NAVIGATE_LIST.map(({ id, text, path }) => (
+                    <NavigateList key={id} text={text} path={path} />
+                  ))}
+              </ul>
+            )}
+          </span>
         ) : (
           <span
             className="cursor-pointer text-16 font-bold text-brand"
