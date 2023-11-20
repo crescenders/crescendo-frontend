@@ -9,7 +9,7 @@ const Layout = ({ children }: PropsWithChildren) => {
 
   return (
     <div
-      className="flex w-screen justify-center overflow-hidden"
+      className="flex w-screen justify-center overflow-x-hidden"
       style={{ height: '100svh' }}
     >
       {children}
