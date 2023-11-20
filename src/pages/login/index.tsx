@@ -55,7 +55,7 @@ const Login = () => {
 
   return (
     <AuthLayout>
-      <div className="flex h-screen flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center px-5">
         <Image
           src="/svg/logo_symbol_small.svg"
           width={203}
@@ -68,7 +68,7 @@ const Login = () => {
         <div ref={googleSignInButton} className="hidden" />
         <button
           onClick={handleClickButton}
-          className="relative mt-[117px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-brand font-bold tracking-tight text-white shadow-loginButton hover:opacity-80"
+          className="relative mt-[117px] flex h-[56px] w-full max-w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-brand font-bold tracking-tight text-white shadow-loginButton hover:opacity-80"
         >
           <Image
             className="absolute left-[23px]"
@@ -81,7 +81,7 @@ const Login = () => {
         </button>
         <button
           onClick={() => router.back()}
-          className="relative mt-[15px] flex h-[56px] w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-[#F3F4F8] font-bold tracking-tight text-text-secondary shadow-loginButton hover:bg-[rgba(161,184,255,0.2)]"
+          className="relative mt-[15px] flex h-[56px] w-full max-w-[454px] cursor-pointer items-center justify-center rounded-2xl bg-[#F3F4F8] font-bold tracking-tight text-text-secondary shadow-loginButton hover:bg-[rgba(161,184,255,0.2)]"
         >
           로그인 없이 이용하기
         </button>

@@ -21,7 +21,7 @@ const NavigateList = ({ text, path }: NavigateListProps) => {
   return text === '로그아웃' ? (
     <Link href={`${path}`}>
       <li
-        className="flex w-full items-center justify-center bg-white px-6 py-3 text-black hover:bg-[rgba(40,40,40,0.1)] hover:transition-all "
+        className="flex w-full items-center justify-center bg-white px-6 py-3 text-black hover:bg-[rgba(40,40,40,0.1)] hover:duration-500 hover:ease-in-out"
         onClick={handleLogout}
       >
         <span className="whitespace-nowrap text-14 font-medium">{text}</span>
