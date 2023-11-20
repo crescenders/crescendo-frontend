@@ -5,7 +5,7 @@ import Footer from '@components/common/Footer';
 
 const HomeLayout = ({ children }: PropsWithChildren) => {
   return (
-    <main className="relative flex h-full w-full flex-col items-center overflow-y-auto bg-white">
+    <main className="relative flex h-full w-full flex-col items-center overflow-y-auto overflow-x-hidden bg-white">
       <Header />
       <Banner />
       {children}
