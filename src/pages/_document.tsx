@@ -36,8 +36,11 @@ export default function Document() {
           name="twitter:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/open_graph.png`}
         />
+        <link
+          rel="icon"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/favicon.ico`}
+        />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
         <Main />
