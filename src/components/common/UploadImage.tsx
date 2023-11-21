@@ -85,8 +85,8 @@ const UploadImage = forwardRef<HTMLInputElement, UploadImageProps>(
               <div className="flex gap-3">
                 <Button
                   isNormal
-                  text="삭제"
-                  className="h-[40px] w-[60px] bg-white text-black"
+                  text="제거"
+                  className="h-[40px] w-[60px]"
                   onClick={() => {
                     deleteImage();
                     setImage({ file: null, url: '' });
