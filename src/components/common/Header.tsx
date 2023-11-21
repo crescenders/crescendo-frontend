@@ -44,7 +44,7 @@ const Header = () => {
             {username} 님
             {isOpen && (
               <ul
-                className="absolute right-0 top-10 z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-[0_0_5px_0,rgba(0,0,0,0.15)]"
+                className="absolute right-0 top-10 z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-[0_0_5px_0_rgba(0,0,0,0.15)]"
                 onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
                   e.stopPropagation();
                   setIsOpen(false);
