@@ -1,7 +1,10 @@
 import DropBox from '@components/common/DropBox';
 import DeleteModal from '@components/modal/DeleteModal';
 import { useDeleteAssignmentDetail } from '@hooks/mutations/useDeleteAssignment';
-import { useGetAssignmentDetail } from '@hooks/queries/useGetAssignment';
+import {
+  useGetAssignmentDetail,
+  useSuspenseGetAssignmentDetail,
+} from '@hooks/queries/useGetAssignment';
 import useModal from '@hooks/useModal';
 import { userState } from '@recoil/auth';
 import { formatUTC } from '@utils/formatUTC';
@@ -14,7 +17,7 @@ const AssignmentDetailContent = () => {
   const { uuid: userId } = useRecoilValue(userState);
   const { openModal, closeModal } = useModal();
 
-  const { data } = useGetAssignmentDetail(String(uuid), Number(id));
+  const { data } = useSuspenseGetAssignmentDetail(String(uuid), Number(id));
   const { mutate } = useDeleteAssignmentDetail();
 
   const topEvent = () => {
@@ -39,18 +42,18 @@ const AssignmentDetailContent = () => {
   return (
     <div className="mt-16 w-full max-w-[640px]">
       <h1 className="mb-[14px] text-[24px] font-bold text-text-tertiary">
-        {data?.title}
+        {data.title}
       </h1>
       <div className="flex justify-between pr-3">
         <span className="font-medium text-text-primary">
-          {data?.author.username} | {formatUTC(data?.created_at as string)}
+          {data.author.username} | {formatUTC(data.created_at as string)}
         </span>
-        {userId === data?.author.uuid && (
+        {userId === data.author.uuid && (
           <DropBox topEvent={topEvent} bottomEvent={BottomEvent} />
         )}
       </div>
       <div className="mb-10 mt-8 h-[0.2px] w-full bg-text-primary" />
-      <p className="whitespace-pre-wrap">{data?.content}</p>
+      <p className="whitespace-pre-wrap">{data.content}</p>
     </div>
   );
 };
