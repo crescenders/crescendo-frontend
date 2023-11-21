@@ -6,7 +6,7 @@ type ProgressBarProps = {
 
 const ProgressBar = ({ progress }: ProgressBarProps) => {
   return (
-    <div className="relative flex h-[10px] w-full max-w-[522px] items-center rounded-full bg-[#C7D3EB]">
+    <div className="relative mt-4 flex h-[10px] w-full max-w-[522px] items-center rounded-full bg-[#C7D3EB]">
       <div className="absolute bottom-5 left-0 flex items-center gap-x-1">
         <Image
           src="/svg/run.svg"
