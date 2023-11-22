@@ -51,7 +51,7 @@ const MyStudyList = () => {
       <div ref={targetRef} />
     </>
   ) : (
-    <div className="flex grow items-center justify-center ">
+    <div className="flex grow items-center justify-center">
       <span className="text-center text-[#8A8A8A]">
         개설한 스터디가 없습니다. <br /> 새로운 스터디를 개설해보세요!
       </span>
