@@ -22,9 +22,20 @@
       "@apis/*": ["./apis/*"],
       "@styles/*": ["./styles/*"],
       "@public/*": ["../public/*"],
-      "@config": ["../config.ts"]
-    }
+      "@config": ["../config.ts"],
+      "@utils/*": ["./utils/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@recoil/*": ["./recoil/*"],
+      "@constants/*": ["./constants/*"],
+      "@mocks/*": ["./mocks/*"]
+    },
+    "types": [
+      "@types/jest",
+      "@types/node",
+      "@testing-library/jest-dom",
+      "cypress"
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../__tests__/*"],
   "exclude": ["node_modules"]
 }

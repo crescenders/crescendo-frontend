@@ -1,38 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+<a href="https://crescendo-study.site">
+ <img src="https://hackmd.io/_uploads/ryeulfix46.png" width="150px" >
+</a>
 
-First, run the development server:
+## [Crescendo](https://crescendo-study.site)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<div align="center">
+    
+<a href="https://github.com/crescenders/crescendo-frontend/releases/tag/v1.0.0">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Release](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-v1.0.0-%237F44AA?label=release)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+</a>
+    
+</div>
+    
+[서비스 소개](#서비스-소개) | [기술적 세부사항](#⚙-기술적-세부-사항) | [팀원 소개](#팀원-소개)
+    
+</div>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 서비스 소개
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 👋 개발자를 위한 소규모 스터디 플랫폼, 크레센도입니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**🔊 `Crescendo`, 점점 더 크고 강하게.**
 
-## Learn More
+"크레센도"는 이탈리아어에서 유래한 음악 용어입니다. 이것은 '성장하다' 또는 '증가하다'를 의미합니다. 음악에서는 음량이 점점 증가하는 것을 나타내는 표현으로 사용되는데, 조용한 부분에서 시작하여 점차적으로 강하게, 또는 크게 플레이하라는 의미를 가집니다.
+분야를 막론하고, "성장" 이라는 단어는 스스로 발전하고자 하는 이들의 가슴을 두근거리게 합니다. 크레센도 서비스를 통해서, 발전을 원하는 열정적인 사람들과 "성장" 해 보세요. **_점점 더 크고, 강하게!_**
 
-To learn more about Next.js, take a look at the following resources:
+**👨‍👩‍👧‍👦 함께 성장하는 즐거움**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+크레센도를 통해 개발자들은 자신의 역량을 향상시키고, 다른 개발자들과 소통하며 지식을 공유할 수 있습니다. 또한, 다양한 개발 분야의 스터디에 참여하여 새로운 지식을 습득하고, 자신의 관심 분야를 확장할 수 있습니다. 여러가지 스터디를 즐기며, 열정적인 스터디 멤버들과 함께 성장하는 경험을 만나보세요!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**📈 체계적이고 효율적인 스터디 운영**
 
-## Deploy on Vercel
+크레센도는 개발자들이 자유롭게 스터디를 개설하고 참여할 수 있는 서비스입니다. 운영하고 싶은 스터디를 개설하고 과제를 등록할 수 있으며, 가입하고 싶은 스터디에 참여하여 과제를 제출할 수 있습니다. 팀원을 모집하고 과제를 등록하거나, 원하는 스터디에 참여하여 과제를 제출해보세요!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**📚 쉽고 빠른 스터디 탐색**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+개발 카테고리 별로 분류된 스터디를 탐색할 수 있으며, 키워드로 검색이 가능합니다. 가입하고 싶은 스터디를 찾았다면 참여 신청을 보내보세요. 스터디 멤버로 승인되었다면 스터디원으로서 활동할 수 있습니다.
+
+## ⚙ 기술적 세부 사항
+
+#### 기술 스택
+
+![image](https://hackmd.io/_uploads/rknWYO9Vp.png)
+
+- **Next.js**로 SSR를 적용하여 초기 렌더링 속도와 SEO를 해결하고 상황에 따라 SSG, CSR도 적절히 활용하였어요.
+- **Yarn Berry**로 PnP 모드를 사용하여 의존성을 관리하고 CI 시간을 단축하였어요.
+- **TailwindCSS**로 빌드 타임에 스타일을 생성하는 zero-runtime 으로 스타일링을 적용하였어요.
+- **TanStack Query**를 통해 비동기 처리 로직과 서버 상태를 효율적으로 관리하였어요. 캐싱 기능을 통해 서버 통신 비용을 줄이고 suspense 옵션을 통해 비동기 상태를 선언적으로 관리하였어요. 낙관적 업데이트를 통해 느린 네트워크 환경의 사용자 경험을 개선했어요.
+- **React-Quill**로 WYSIWYG 형태의 웹 에디터 기능을 구현하였어요.
+- **MSW**로 API를 모킹하여 개발 초기 단계에서 생산적인 개발을 하였어요.
+- **Jest, RTL**로 유닛, 통합테스트를 **Cypress**으로 사용자 시나리오를 기반으로 E2E 테스트를 작성하였어요. 덕분에 자신감 있게 리펙토링을 할 수 있었어요.
+- **PWA**를 적용하여 모바일 환경에서 간편하게 사용자가 접근할 수 있고 앱과 같은 인터페이스로 사용할 수 있어요.
+- **GitHub Actions**로 빌드 및 테스트 자동화를 구축하였어요.
+
+## 팀원 소개
+
+|                                    Frontend                                     |                                     Frontend                                      |                                     Frontend                                     |                                     Backend                                      |
+| :-----------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/87893624?v=4" width="150px"/> | <img src="https://avatars.githubusercontent.com/u/48711263?v=4" width="150px"  /> | <img src="https://avatars.githubusercontent.com/u/51291185?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/88619089?v=4" width="150px" /> |
+|                    **[이하람](https://github.com/halamlee)**                    |                     **[김태현](https://github.com/thyeone)**                      |                     **[김태영](https://github.com/overtae)**                     |                   **[정재균](https://github.com/TGoddessana)**                   |
