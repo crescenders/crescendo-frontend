@@ -8,7 +8,11 @@
 
 <div align="center">
     
-![Release](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-v1.0.0-%237F44AA?label=release)   
+<a href="https://github.com/crescenders/crescendo-frontend/releases/tag/v1.0.0">
+
+![Release](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-v1.0.0-%237F44AA?label=release)
+
+</a>
     
 </div>
     
