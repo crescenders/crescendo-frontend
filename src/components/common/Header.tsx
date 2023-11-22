@@ -32,45 +32,46 @@ const Header = () => {
             className="h-[24px] w-[124px] cursor-pointer"
           />
         </Link>
-        {username && isMounted ? (
-          <span
-            ref={ref}
-            className="relative mr-5 cursor-pointer whitespace-nowrap text-16 font-bold text-brand max-md:mr-0 max-md:text-13"
-            onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
-              e.stopPropagation();
-              setIsOpen(true);
-            }}
-          >
-            {username} 님
-            {isOpen && (
-              <ul
-                className="absolute right-0 top-10 z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-[0_0_5px_0_rgba(0,0,0,0.15)]"
-                onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
-                  e.stopPropagation();
-                  setIsOpen(false);
-                }}
-              >
-                {isMounted &&
-                  NAVIGATE_LIST.map(({ id, text, path }) => (
-                    <NavigateList key={id} text={text} path={path} />
-                  ))}
-              </ul>
-            )}
-          </span>
-        ) : (
-          <span
-            className="cursor-pointer text-16 font-bold text-brand"
-            onClick={() =>
-              openModal(
-                <Suspense fallback={<Loader isFull />}>
-                  <LoginModal />
-                </Suspense>,
-              )
-            }
-          >
-            로그인 / 회원가입
-          </span>
-        )}
+        {isMounted &&
+          (username ? (
+            <span
+              ref={ref}
+              className="relative mr-5 cursor-pointer whitespace-nowrap text-16 font-bold text-brand max-md:mr-0 max-md:text-13"
+              onMouseEnter={(e: React.MouseEvent<HTMLSpanElement>) => {
+                e.stopPropagation();
+                setIsOpen(true);
+              }}
+            >
+              {username} 님
+              {isOpen && (
+                <ul
+                  className="absolute right-0 top-10 z-10 flex max-w-[120px] flex-col rounded bg-white py-3 shadow-[0_0_5px_0_rgba(0,0,0,0.15)]"
+                  onMouseLeave={(e: React.MouseEvent<HTMLSpanElement>) => {
+                    e.stopPropagation();
+                    setIsOpen(false);
+                  }}
+                >
+                  {isMounted &&
+                    NAVIGATE_LIST.map(({ id, text, path }) => (
+                      <NavigateList key={id} text={text} path={path} />
+                    ))}
+                </ul>
+              )}
+            </span>
+          ) : (
+            <span
+              className="cursor-pointer text-16 font-bold text-brand"
+              onClick={() =>
+                openModal(
+                  <Suspense fallback={<Loader isFull />}>
+                    <LoginModal />
+                  </Suspense>,
+                )
+              }
+            >
+              로그인 / 회원가입
+            </span>
+          ))}
       </nav>
     </header>
   );
