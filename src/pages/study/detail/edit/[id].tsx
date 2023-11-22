@@ -19,7 +19,7 @@ const EditStudy = () => {
   const { mutate: editStudy, isPending } = useEditStudy();
 
   useEffect(() => {
-    if (study?.is_closed || uuid !== study?.leaders[0].uuid) {
+    if (study && (study.is_closed || uuid !== study.leaders[0].uuid)) {
       router.replace(`/study/detail/${id}`);
       showToast({
         type: 'fail',
@@ -66,3 +66,13 @@ const EditStudy = () => {
 };
 
 export default EditStudy;
+
+export const getServerSideProps = async ({
+  params: { id },
+}: {
+  params: { id: string };
+}) => {
+  return {
+    props: {},
+  };
+};
