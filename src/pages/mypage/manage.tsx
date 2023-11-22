@@ -10,11 +10,11 @@ const StudyManage = () => {
 
   return (
     <PageLayout>
-      <div className="flex w-full flex-col items-start justify-start px-7 pt-[125px]">
+      <div className="flex min-h-full w-full flex-col items-start justify-start px-7 pt-[125px]">
         <div className="flex w-full justify-center">
           <h1 className="w-[645px] text-20 font-bold">내가 맡은 스터디</h1>
         </div>
-        <div className="flex w-full grow flex-col items-center justify-between gap-y-5 py-5">
+        <div className="flex w-full grow flex-col items-center justify-between gap-y-5 pb-28 pt-5">
           <Suspense fallback={<MyStudyListSkeleton />}>
             <MyStudyList />
           </Suspense>
