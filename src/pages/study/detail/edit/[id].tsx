@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { userState } from '@recoil/auth';
 import PageLayout from '@components/common/PageLayout';
 import Button from '@components/common/Button';
@@ -9,6 +9,7 @@ import StudyForm from '@components/form/StudyForm';
 import { useEditStudy } from '@hooks/mutations/useEditStudy';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
 import useToast from '@hooks/useToast';
+import { calendarOpenState } from '@recoil/calendar';
 
 const EditStudy = () => {
   const router = useRouter();
@@ -17,6 +18,7 @@ const EditStudy = () => {
   const { uuid } = useRecoilValue(userState);
   const { data: study } = useGetStudyDetail(id);
   const { mutate: editStudy, isPending } = useEditStudy();
+  const closeCalendar = useResetRecoilState(calendarOpenState);
 
   useEffect(() => {
     if (study && (study.is_closed || uuid !== study.leaders[0].uuid)) {
@@ -38,7 +40,10 @@ const EditStudy = () => {
       {isPending ? (
         <Loader isFull />
       ) : (
-        <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">
+        <div
+          className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]"
+          onClick={closeCalendar}
+        >
           <div className="flex flex-col items-center justify-center gap-[34px]">
             <StudyForm
               study={study}
