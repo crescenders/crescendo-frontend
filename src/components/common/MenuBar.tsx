@@ -25,7 +25,7 @@ const MenuBar = ({
   rightPath,
 }: MenuBarProps) => {
   return (
-    <div className="relative flex overflow-hidden rounded-full border-white bg-brand text-18 leading-[100%]">
+    <div className="relative flex overflow-hidden rounded-full border-white bg-brand text-sm leading-[100%] sm:text-18">
       <Link
         href={leftPath || '#'}
         className={`${
