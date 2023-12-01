@@ -1,58 +1,46 @@
-import { useEffect, useState } from 'react';
-import Calendar from '@components/common/Calendar';
-import { format, startOfDay } from 'date-fns';
 import Image from 'next/image';
+import { format } from 'date-fns';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { calendarOpenState, dateState } from '@recoil/calendar';
+import Calendar from '@components/common/Calendar';
 
 type SelectDateBoxProps = {
-  minDate?: string;
-  selectedDate: string;
-  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
-  selectedEndDate?: string;
-  setSelectedEndDate?: React.Dispatch<React.SetStateAction<string>>;
+  isRange?: boolean;
+  isOpen: boolean;
   error: string;
 };
 
-const SelectDateBox = ({
-  error,
-  minDate,
-  selectedDate,
-  setSelectedDate,
-  selectedEndDate,
-  setSelectedEndDate,
-}: SelectDateBoxProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [date, setDate] = useState<TDate>(null);
-  const [optionalDate, setOptionalDate] = useState<TDate>(null);
+const SelectDateBox = ({ isRange, isOpen, error }: SelectDateBoxProps) => {
+  const [selectedDate, setSelectedDate] = useRecoilState(dateState);
+  const setIsOpen = useSetRecoilState(calendarOpenState);
 
-  const handleClickSelectBox = () => {
-    setIsOpen((prev) => !prev);
-    if (isOpen) {
-      setSelectedDate(date ? format(date, 'yyyy-MM-dd') : '');
-      if (setSelectedEndDate)
-        setSelectedEndDate(
-          optionalDate ? format(optionalDate, 'yyyy-MM-dd') : '',
-        );
-    }
+  const formatDate = (date: TDate): string => {
+    if (!date) return 'YYYY-MM-DD';
+    return format(date, 'yyyy-MM-dd');
   };
 
-  useEffect(() => {
-    setDate(selectedDate ? startOfDay(new Date(selectedDate)) : null);
-    setOptionalDate(
-      selectedEndDate ? startOfDay(new Date(selectedEndDate)) : null,
-    );
-  }, [selectedDate, selectedEndDate]);
+  const handleOpenCalendar = (isOpen?: boolean) => {
+    setIsOpen((prev) => {
+      return isRange
+        ? { ...prev, range: isOpen ?? !prev.range }
+        : { ...prev, date: isOpen ?? !prev.date };
+    });
+  };
 
   return (
     <div className="relative flex flex-col gap-[18px]">
       <div className="flex w-full flex-col gap-y-1">
         <div className="text-base font-bold">
-          {setSelectedEndDate ? '스터디 기간' : '모집 마감 날짜'}
+          {isRange ? '스터디 기간' : '모집 마감 날짜'}
         </div>
         <span className="h-2 w-full text-12 text-status-error">{error}</span>
       </div>
       <button
         type="button"
-        onClick={handleClickSelectBox}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleOpenCalendar();
+        }}
         className={`${
           isOpen ? 'border-[#8266FF]' : 'border-[#E2E0E0]'
         } relative z-20 flex w-[260px] cursor-pointer items-center justify-between gap-2 rounded-[7px] border-[1px] bg-white py-[14px] pl-[16px] pr-[10px]`}
@@ -65,8 +53,10 @@ const SelectDateBox = ({
           className="cursor-pointer"
         />
         <div className="grow pt-[2px] text-left text-[12px]">
-          {selectedDate || 'YYYY-MM-DD'}
-          {setSelectedEndDate && ` ~ ${selectedEndDate || 'YYYY-MM-DD'}`}
+          {isRange
+            ? `${formatDate(selectedDate.start_date)}
+             ~ ${formatDate(selectedDate.end_date)}`
+            : formatDate(selectedDate.deadline)}
         </div>
         <Image
           src={`/svg/arrow_down.svg`}
@@ -81,13 +71,46 @@ const SelectDateBox = ({
           className={`absolute right-0 top-[110px] z-10 rounded-lg bg-white p-4 shadow-base ${
             isOpen && 'animate-slideDown'
           }`}
+          onClick={(e) => e.stopPropagation()}
         >
-          <Calendar
-            minDate={minDate ? new Date(minDate) : null}
-            date={date}
-            setDate={setDate}
-            {...(setSelectedEndDate && { optionalDate, setOptionalDate })}
-          />
+          {isRange ? (
+            <Calendar
+              minDate={selectedDate.deadline}
+              date={selectedDate.start_date}
+              setDate={(startDate) =>
+                setSelectedDate((prev) => {
+                  return { ...prev, start_date: startDate };
+                })
+              }
+              optionalDate={selectedDate.end_date}
+              setOptionalDate={(endDate) => {
+                setSelectedDate((prev) => {
+                  return { ...prev, end_date: endDate };
+                });
+                endDate && handleOpenCalendar(false);
+              }}
+            />
+          ) : (
+            <Calendar
+              date={selectedDate.deadline}
+              setDate={(deadline) => {
+                setSelectedDate((prev) => {
+                  if (!deadline || !prev.start_date)
+                    return { ...prev, deadline };
+                  return {
+                    ...(deadline >= prev.start_date
+                      ? {
+                          start_date: null,
+                          end_date: null,
+                        }
+                      : prev),
+                    deadline,
+                  };
+                });
+                handleOpenCalendar(false);
+              }}
+            />
+          )}
         </div>
       )}
     </div>

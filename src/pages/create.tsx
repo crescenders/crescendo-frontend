@@ -4,17 +4,23 @@ import StudyForm from '@components/form/StudyForm';
 import Button from '@components/common/Button';
 import Loader from '@components/common/Loader';
 import { useCreateStudy } from '@hooks/mutations/useCreateStudy';
+import { useResetRecoilState } from 'recoil';
+import { calendarOpenState } from '@recoil/calendar';
 
 const CreateStudy = () => {
   const router = useRouter();
   const { mutate: createStudy, isPending } = useCreateStudy();
+  const closeCalendar = useResetRecoilState(calendarOpenState);
 
   return (
     <PageLayout>
       {isPending ? (
         <Loader isFull />
       ) : (
-        <div className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]">
+        <div
+          className="mb-[40px] mt-[90px] flex items-center justify-center pb-[34px]"
+          onClick={closeCalendar}
+        >
           <div className="flex flex-col items-center justify-center gap-[34px]">
             <StudyForm onSubmit={createStudy} />
             <div className="flex gap-3 self-end">
