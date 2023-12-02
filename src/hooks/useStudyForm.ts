@@ -1,8 +1,8 @@
-import { dateSelector, dateState } from '@recoil/calendar';
+import { dateSelector, dateState } from '@recoil/date';
 import { startOfDay } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 export type StudyFormType = {
   head_image?: File | string;
@@ -17,6 +17,7 @@ export type StudyFormType = {
 const useStudyForm = (initialStudy?: StudyDetail) => {
   const inputRef = useRef<(HTMLInputElement | ReactQuill)[]>([]);
   const setSelectedDate = useSetRecoilState(dateState);
+  const resetSelectedDate = useResetRecoilState(dateState);
   const selectedDate = useRecoilValue(dateSelector);
   const [studyForm, setStudyForm] = useState<StudyFormType>({
     head_image: '',
@@ -83,6 +84,7 @@ const useStudyForm = (initialStudy?: StudyDetail) => {
   };
 
   useEffect(() => {
+    resetSelectedDate();
     initStudyForm();
   }, []);
 
