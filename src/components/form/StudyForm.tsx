@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { calendarOpenState } from '@recoil/calendar';
 import Input from '@components/common/Input';
 import SelectDateBox from '@components/common/SelectDateBox';
 import TagInput from '@components/common/TagInput';
@@ -21,7 +19,6 @@ type StudyFormProps = {
 
 const StudyForm = ({ study, onSubmit }: StudyFormProps) => {
   const { showToast } = useToast();
-  const isOpen = useRecoilValue(calendarOpenState);
   const {
     studyForm,
     getInputRef,
@@ -149,12 +146,8 @@ const StudyForm = ({ study, onSubmit }: StudyFormProps) => {
         />
       </div>
       <div className="flex w-[550px] justify-between">
-        <SelectDateBox error={errorMessage.deadline} isOpen={isOpen.date} />
-        <SelectDateBox
-          isRange
-          error={errorMessage.end_date}
-          isOpen={isOpen.range}
-        />
+        <SelectDateBox error={errorMessage.deadline} />
+        <SelectDateBox isRange error={errorMessage.end_date} />
       </div>
       <div className="flex h-[380px] w-full flex-col items-center justify-start gap-[18px]">
         <div className="flex w-full flex-col gap-y-1">
