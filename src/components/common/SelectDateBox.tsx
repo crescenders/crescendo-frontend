@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { format } from 'date-fns';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { calendarOpenState, dateState } from '@recoil/calendar';
 import Calendar from '@components/common/Calendar';
+import { formatDate } from '@utils/formatUTC';
 
 type SelectDateBoxProps = {
   isRange?: boolean;
@@ -13,11 +13,6 @@ type SelectDateBoxProps = {
 const SelectDateBox = ({ isRange, isOpen, error }: SelectDateBoxProps) => {
   const [selectedDate, setSelectedDate] = useRecoilState(dateState);
   const setIsOpen = useSetRecoilState(calendarOpenState);
-
-  const formatDate = (date: TDate): string => {
-    if (!date) return 'YYYY-MM-DD';
-    return format(date, 'yyyy-MM-dd');
-  };
 
   const handleOpenCalendar = (isOpen?: boolean) => {
     setIsOpen((prev) => {
@@ -55,7 +50,7 @@ const SelectDateBox = ({ isRange, isOpen, error }: SelectDateBoxProps) => {
         <div className="grow pt-[2px] text-left text-[12px]">
           {isRange
             ? `${formatDate(selectedDate.start_date)}
-             ~ ${formatDate(selectedDate.end_date)}`
+            ~ ${formatDate(selectedDate.end_date)}`
             : formatDate(selectedDate.deadline)}
         </div>
         <Image

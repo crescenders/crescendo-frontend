@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { formatDate } from '@utils/formatUTC';
 import { atom, selector } from 'recoil';
 
 type CalendarOpenType = {
@@ -35,8 +35,7 @@ export const dateSelector = selector({
     const date = get(dateState);
     let formattedDate = {};
     Object.keys(date).map(
-      (key) =>
-        (formattedDate[key] = date[key] ? format(date[key], 'yyyy-MM-dd') : ''),
+      (key) => (formattedDate[key] = formatDate(date[key], '')),
     );
     return formattedDate;
   },
