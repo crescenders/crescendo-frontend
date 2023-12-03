@@ -55,7 +55,7 @@ const AssignmentList = () => {
               남았어요!
             </span>
           )}
-          <ul className="mb-5 mt-[47px] flex flex-col items-center gap-y-5">
+          <ul className="mb-5 mt-[47px] flex flex-col items-center gap-y-5 w-full">
             {assignment.pages.flatMap((page) =>
               page.results.map(({ id, title, created_at, content }) => (
                 <AssignmentCard

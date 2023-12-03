@@ -20,16 +20,14 @@ const StudyDetail = () => {
 
   return (
     <PageLayout>
-      <div className="mt-[105px] flex justify-center px-5">
-        <MenuBar
-          focusedPosition="left"
-          leftText="정보 보기"
-          centerText="과제 보기"
-          rightText="멤버 보기"
-          centerPath={`/study/assignment/${id}`}
-          rightPath={`/study/member/${id}`}
-        />
-      </div>
+      <MenuBar
+        focusedPosition="left"
+        leftText="정보 보기"
+        centerText="과제 보기"
+        rightText="멤버 보기"
+        centerPath={`/study/assignment/${id}`}
+        rightPath={`/study/member/${id}`}
+      />
       <StudyDetailContent />
       {study?.leaders[0].uuid !== uuid && isMounted && <ApplyBottomSheet />}
     </PageLayout>

@@ -14,17 +14,15 @@ const Submission = () => {
 
   return (
     <PageLayout>
-      <div className="mt-[105px] flex justify-center">
-        <MenuBar
-          focusedPosition="center"
-          leftText="정보 보기"
-          centerText="과제 보기"
-          rightText="멤버 보기"
-          leftPath={`/study/detail/${uuid}`}
-          centerPath={`/study/assignment/${uuid}`}
-          rightPath={`/study/member/${uuid}`}
-        />
-      </div>
+      <MenuBar
+        focusedPosition="center"
+        leftText="정보 보기"
+        centerText="과제 보기"
+        rightText="멤버 보기"
+        leftPath={`/study/detail/${uuid}`}
+        centerPath={`/study/assignment/${uuid}`}
+        rightPath={`/study/member/${uuid}`}
+      />
       <h1 className="mx-8 mb-[23px] mt-9 text-center text-[24px] font-bold text-text-secondary">
         {study?.study_name}
       </h1>

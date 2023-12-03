@@ -46,7 +46,7 @@ const SubmissionDetailContent = () => {
   };
 
   return (
-    <div className="mt-16 w-full">
+    <div className="mx-auto my-0 mt-16 w-full max-w-2xl">
       <h1 className="mb-[14px] text-[24px] font-bold text-text-tertiary">
         {data?.title}
       </h1>
