@@ -16,10 +16,11 @@ import { WEEKDAYS } from '@constants/index';
 export type CalendarProps = {
   minDate?: TDate;
   date: TDate;
-  setDate: React.Dispatch<React.SetStateAction<TDate>>;
+  setDate: (date: TDate) => void;
   optionalDate?: TDate;
-  setOptionalDate?: React.Dispatch<React.SetStateAction<TDate>>;
+  setOptionalDate?: (date: TDate) => void;
 };
+
 const Calendar = ({
   minDate,
   date,

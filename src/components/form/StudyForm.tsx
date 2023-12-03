@@ -23,7 +23,6 @@ const StudyForm = ({ study, onSubmit }: StudyFormProps) => {
     studyForm,
     getInputRef,
     handleDeleteImage,
-    handleDateChange,
     handleListChange,
     handleSubmitInput,
   } = useStudyForm(study);
@@ -147,25 +146,8 @@ const StudyForm = ({ study, onSubmit }: StudyFormProps) => {
         />
       </div>
       <div className="flex w-[550px] justify-between">
-        <SelectDateBox
-          selectedDate={studyForm.deadline}
-          setSelectedDate={(date) =>
-            handleDateChange('deadline', date as string)
-          }
-          error={errorMessage.deadline}
-        />
-        <SelectDateBox
-          minDate={studyForm.deadline}
-          selectedDate={studyForm.start_date}
-          setSelectedDate={(date) =>
-            handleDateChange('start_date', date as string)
-          }
-          selectedEndDate={studyForm.end_date}
-          setSelectedEndDate={(date) =>
-            handleDateChange('end_date', date as string)
-          }
-          error={errorMessage.end_date}
-        />
+        <SelectDateBox error={errorMessage.deadline} />
+        <SelectDateBox isRange error={errorMessage.end_date} />
       </div>
       <div className="flex h-[380px] w-full flex-col items-center justify-start gap-[18px]">
         <div className="flex w-full flex-col gap-y-1">
