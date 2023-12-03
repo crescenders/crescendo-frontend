@@ -55,10 +55,9 @@ const Header = () => {
                     setIsOpen(false);
                   }}
                 >
-                  {isMounted &&
-                    NAVIGATE_LIST.map(({ id, text, path }) => (
-                      <NavigateList key={id} text={text} path={path} />
-                    ))}
+                  {NAVIGATE_LIST.map(({ id, text, path }) => (
+                    <NavigateList key={id} text={text} path={path} />
+                  ))}
                 </ul>
               )}
             </span>
