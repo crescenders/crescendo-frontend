@@ -17,16 +17,14 @@ const Member = () => {
 
   return (
     <PageLayout className="items-center">
-      <div className="mt-[105px] flex justify-center">
-        <MenuBar
-          focusedPosition="right"
-          leftText="정보 보기"
-          centerText="과제 보기"
-          rightText="멤버 보기"
-          leftPath={`/study/detail/${id}`}
-          centerPath={`/study/assignment/${id}`}
-        />
-      </div>
+      <MenuBar
+        focusedPosition="right"
+        leftText="정보 보기"
+        centerText="과제 보기"
+        rightText="멤버 보기"
+        leftPath={`/study/detail/${id}`}
+        centerPath={`/study/assignment/${id}`}
+      />
       <h1 className="mt-9 max-w-[600px] cursor-default text-center text-24 font-bold">
         {study?.post_title}
       </h1>

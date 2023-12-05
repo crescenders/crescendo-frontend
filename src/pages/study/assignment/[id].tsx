@@ -11,16 +11,14 @@ const Assignment = () => {
 
   return (
     <PageLayout>
-      <div className="mb-9 mt-[105px] flex items-center justify-center">
-        <MenuBar
-          focusedPosition="center"
-          leftText="정보 보기"
-          centerText="과제 보기"
-          rightText="멤버 보기"
-          leftPath={`/study/detail/${uuid}`}
-          rightPath={`/study/member/${uuid}`}
-        />
-      </div>
+      <MenuBar
+        focusedPosition="center"
+        leftText="정보 보기"
+        centerText="과제 보기"
+        rightText="멤버 보기"
+        leftPath={`/study/detail/${uuid}`}
+        rightPath={`/study/member/${uuid}`}
+      />
       <AsyncBoundary suspenseFallback={<AssignmentListSkeleton />}>
         <AssignmentList />
       </AsyncBoundary>

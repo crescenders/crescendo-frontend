@@ -6,7 +6,7 @@ const AssignmentListSkeleton = () => {
       {array.map((_, i) => (
         <li
           key={i}
-          className="h-[236px] w-[544px] rounded-[20px] bg-white p-7 shadow-studyCard"
+          className="h-[236px] w-full max-w-[544px] rounded-[20px] bg-white p-7 shadow-studyCard"
         >
           <div className="mb-[52px] flex items-center justify-between">
             <div className="h-5 w-[200px] animate-skeleton-gradient1 rounded-sm " />

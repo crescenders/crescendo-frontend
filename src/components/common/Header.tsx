@@ -9,6 +9,8 @@ import { NAVIGATE_LIST } from '@constants/index';
 import Loader from '@components/common/Loader';
 import useIsMounted from '@hooks/useIsMounted';
 import useClickAway from '@hooks/useClickAway';
+import { getDevice } from '@utils/getDevice';
+import { useRouter } from 'next/router';
 
 const LoginModal = lazy(() => import('@components/modal/LoginModal'));
 
@@ -17,6 +19,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { openModal } = useModal();
   const isMounted = useIsMounted();
+  const router = useRouter();
+  const isMobile = getDevice();
 
   const ref = useClickAway<HTMLSpanElement>(() => setIsOpen(false));
 
@@ -51,10 +55,9 @@ const Header = () => {
                     setIsOpen(false);
                   }}
                 >
-                  {isMounted &&
-                    NAVIGATE_LIST.map(({ id, text, path }) => (
-                      <NavigateList key={id} text={text} path={path} />
-                    ))}
+                  {NAVIGATE_LIST.map(({ id, text, path }) => (
+                    <NavigateList key={id} text={text} path={path} />
+                  ))}
                 </ul>
               )}
             </span>
@@ -62,6 +65,13 @@ const Header = () => {
             <span
               className="cursor-pointer text-16 font-bold text-brand"
               onClick={() =>
+                isMobile
+                  ? router.push('/login')
+                  : openModal(
+                      <Suspense fallback={<Loader isFull />}>
+                        <LoginModal />
+                      </Suspense>,
+                    )
                 openModal(
                   <Suspense fallback={<Loader isFull />}>
                     <LoginModal />

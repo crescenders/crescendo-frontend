@@ -14,7 +14,7 @@ const PageLayout = ({
     <>
       <Header />
       <main
-        className={`flex h-full w-full max-w-5xl flex-col overflow-y-auto overflow-x-hidden bg-white ${className}`}
+        className={`flex h-full w-full max-w-5xl flex-col overflow-y-auto overflow-x-hidden bg-white px-5 ${className}`}
         {...rest}
       >
         {children}

@@ -25,16 +25,18 @@ const AssignmentCard = ({
       onClick={() => {
         username && router.push(`/study/assignment/detail/${uuid}/${id}`);
       }}
-      className="flex h-[236px] w-[544px] cursor-pointer list-none flex-col overflow-hidden rounded-[20px] bg-white p-7 shadow-studyCard"
+      className="flex h-[236px] w-full max-w-[544px] cursor-pointer list-none flex-col overflow-hidden rounded-[20px] bg-white p-7 shadow-studyCard"
     >
-      <div className="flex justify-between">
-        <h1 className="text-17 font-bold text-text-secondary">{title}</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-sm md:text-base font-bold text-text-secondary">
+          {title}
+        </h1>
         <span
           onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
             e.stopPropagation();
             router.push(`/study/assignment/submission/${uuid}/${id}`);
           }}
-          className="flex cursor-pointer items-end text-13 text-text-secondary"
+          className="flex cursor-pointer items-end whitespace-nowrap text-xs sm:text-13 text-text-secondary"
         >
           과제 제출 목록
         </span>
