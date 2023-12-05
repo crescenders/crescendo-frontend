@@ -2,10 +2,11 @@ import Header from '@components/common/Header';
 import { render, screen } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
 
+
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
-
+  
 beforeEach(() => {
   render(<Header />, {
     wrapper: RecoilRoot,

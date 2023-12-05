@@ -72,6 +72,11 @@ const Header = () => {
                         <LoginModal />
                       </Suspense>,
                     )
+                openModal(
+                  <Suspense fallback={<Loader isFull />}>
+                    <LoginModal />
+                  </Suspense>,
+                )
               }
             >
               로그인 / 회원가입
