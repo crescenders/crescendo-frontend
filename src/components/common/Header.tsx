@@ -65,7 +65,7 @@ const Header = () => {
             <span
               className="cursor-pointer text-16 font-bold text-brand"
               onClick={() =>
-                isMobile
+                isMobile === 'mobile'
                   ? router.push('/login')
                   : openModal(
                       <Suspense fallback={<Loader isFull />}>
