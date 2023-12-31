@@ -21,6 +21,8 @@ export const useGetStudyGroupList = (params = '') => {
     getNextPageParam: (lastPage) => {
       return lastPage.next ? lastPage.next.split('?')[1] : undefined;
     },
+    staleTime: 0,
+    gcTime: 0,
   });
 };
 
