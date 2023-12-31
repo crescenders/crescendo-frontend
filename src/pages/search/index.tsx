@@ -32,6 +32,12 @@ const Search = () => {
     studySearchRouter(value);
   };
 
+  const handleAllCategoryClick = () => {
+    router.replace(router.pathname);
+    setLeftValue('최신순');
+    setRightValue('모집여부');
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!(e.target instanceof HTMLInputElement) || !inputRef.current) return;
     const { value } = inputRef.current;
@@ -92,9 +98,7 @@ const Search = () => {
                 'border-[#8266FF] text-[#8266FF]'
               }`}
               onClick={() => {
-                id === 0
-                  ? router.replace(router.pathname)
-                  : handleCategoryList(name);
+                id === 0 ? handleAllCategoryClick() : handleCategoryList(name);
               }}
             >
               {name}
