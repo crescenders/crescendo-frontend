@@ -4,9 +4,9 @@ export const getProgress = (startDate: string, endDate: string) => {
     date.getMonth() + 1
   }-${date.getDate()}`;
 
-  const startDateObj = new Date(startDate);
-  const endDateObj = new Date(endDate);
-  const todayObj = new Date(today);
+  const startDateObj = new Date(startDate.replace(/-/g, '/'));
+  const endDateObj = new Date(endDate.replace(/-/g, '/'));
+  const todayObj = new Date(today.replace(/-/g, '/'));
 
   const progressInDays = Math.floor(
     (todayObj.getTime() - startDateObj.getTime()) / (1000 * 60 * 60 * 24),
