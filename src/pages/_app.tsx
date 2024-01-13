@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
             retry: 0,
             refetchOnWindowFocus: false,
             throwOnError: true,
-            staleTime: 60 * 1000,
+            staleTime: 5 * 1000,
           },
           mutations: {
             retry: 0,
