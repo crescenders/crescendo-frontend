@@ -9,9 +9,10 @@ import { userState } from '@recoil/auth';
 import { useToast } from '@providers/ToastProvider';
 
 const ApplyBottomSheet = () => {
+  const [applyValue, setApplyValue] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
   const { showToast } = useToast();
   const { mutate: postApplication } = usePostApplication();
   const { username } = useRecoilValue(userState);
@@ -25,6 +26,8 @@ const ApplyBottomSheet = () => {
       return;
     }
     setIsOpen(true);
+
+    console.log(ref.current?.value.length);
   };
 
   const handleApplyStudy = () => {
@@ -59,16 +62,29 @@ const ApplyBottomSheet = () => {
                 id="apply-textarea"
                 label="신청서 작성"
                 ref={ref}
-                placeholder="신청과 함께 본인을 소개하는 문구를 작성해주세요!"
+                placeholder="신청과 함께 본인을 소개하는 문구를 작성해주세요! (최대 500자)"
                 className="w-full max-md:text-14"
+                onChange={(e) => setApplyValue(e.target.value)}
                 maxLength={500}
               />
-              <div className="mt-4 flex justify-end">
-                <Button
-                  text="제출하기"
-                  className="h-[32px] w-[74px] rounded-full"
-                  onClick={handleApplyStudy}
-                />
+              <div className="mt-3 flex flex-col items-end gap-y-2">
+                <div className="flex flex-col items-center gap-y-2">
+                  <div className="flex gap-x-1 text-sm">
+                    <span
+                      className={`${
+                        applyValue.length === 500 && 'text-status-error'
+                      }`}
+                    >
+                      {applyValue.length} /
+                    </span>
+                    <span className="text-status-error">500</span>
+                  </div>
+                  <Button
+                    text="제출하기"
+                    className="h-[32px] w-[74px] rounded-full"
+                    onClick={handleApplyStudy}
+                  />
+                </div>
               </div>
             </div>
             <button
