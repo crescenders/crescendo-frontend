@@ -1,12 +1,11 @@
 import applicationApi from '@apis/application/applicationApi';
 import { TOAST_MESSAGE } from '@constants/index';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import {
   UseMutationResult,
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 
 export type ApplicationParamType = {
   uuid: string;
@@ -16,7 +15,7 @@ export type ApplicationParamType = {
 
 export const usePostApplication = (): UseMutationResult<
   { request_message: string },
-  AxiosError<TNonFieldError>,
+  unknown,
   Omit<ApplicationParamType, 'id'>
 > => {
   const { showToast } = useToast();
@@ -28,12 +27,6 @@ export const usePostApplication = (): UseMutationResult<
       showToast({
         type: 'success',
         message: '신청이 완료되었습니다.',
-      });
-    },
-    onError: (error) => {
-      showToast({
-        type: 'fail',
-        message: error.response?.data.non_field_errors || TOAST_MESSAGE.fail,
       });
     },
   });

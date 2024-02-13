@@ -6,7 +6,7 @@ import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 import TextEditor from '@components/editor/TextEditor';
 import { usePostSubmission } from '@hooks/mutations/usePostSubmission';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 
 const SubmitSubmission = () => {
   const router = useRouter();

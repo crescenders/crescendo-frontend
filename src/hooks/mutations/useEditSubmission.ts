@@ -1,6 +1,5 @@
 import submissionApi from '@apis/submission/submissionApi';
-import { TOAST_MESSAGE } from '@constants/index';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
@@ -40,11 +39,6 @@ export const usePutSubmissionDetail = () => {
         message: '과제를 수정하였습니다.',
       });
     },
-    onError: () =>
-      showToast({
-        type: 'fail',
-        message: TOAST_MESSAGE.fail,
-      }),
   });
 };
 
@@ -83,10 +77,10 @@ export const usePatchSubmissionDetail = () => {
         message: '과제를 수정하였습니다.',
       });
     },
-    onError: () =>
-      showToast({
-        type: 'fail',
-        message: TOAST_MESSAGE.fail,
-      }),
+    // onError: () =>
+    //   showToast({
+    //     type: 'fail',
+    //     message: TOAST_MESSAGE.fail,
+    //   }),
   });
 };
