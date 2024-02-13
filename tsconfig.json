@@ -27,7 +27,8 @@
       "@hooks/*": ["./hooks/*"],
       "@recoil/*": ["./recoil/*"],
       "@constants/*": ["./constants/*"],
-      "@mocks/*": ["./mocks/*"]
+      "@mocks/*": ["./mocks/*"],
+      "@providers/*": ["./providers/*"]
     },
     "types": [
       "@types/jest",
