@@ -1,4 +1,4 @@
-import ModalPortal from '@components/portal/ModalPortal';
+import ModalPortal from '@components/modal/ModalPortal';
 import Image from 'next/image';
 import authApi from '@apis/auth/authApi';
 import { setToken } from '@utils/token';

@@ -9,8 +9,8 @@ import { REQUIRED } from '@constants/index';
 import { categories } from '@constants/categories';
 import { ERROR_MESSAGE } from '@constants/validation';
 import useStudyForm from '@hooks/useStudyForm';
-import useToast from '@hooks/useToast';
 import { validateStudy } from '@utils/validate';
+import { useToast } from '@providers/ToastProvider';
 
 type StudyFormProps = {
   onSubmit: (formData: FormData) => void;

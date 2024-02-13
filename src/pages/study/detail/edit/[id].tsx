@@ -8,7 +8,7 @@ import Loader from '@components/common/Loader';
 import StudyForm from '@components/form/StudyForm';
 import { useEditStudy } from '@hooks/mutations/useEditStudy';
 import { useGetStudyDetail } from '@hooks/queries/useGetStudy';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 
 const EditStudy = () => {
   const router = useRouter();

@@ -1,6 +1,5 @@
 import submissionApi from '@apis/submission/submissionApi';
-import { TOAST_MESSAGE } from '@constants/index';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
@@ -26,12 +25,6 @@ export const useDeleteSubmissionDetail = () => {
       });
       router.replace(`/study/assignment/submission/${uuid}/${assignmentId}`);
       showToast({ type: 'success', message: '과제를 삭제하였습니다.' });
-    },
-    onError: () => {
-      showToast({
-        type: 'fail',
-        message: TOAST_MESSAGE.fail,
-      });
     },
   });
 };

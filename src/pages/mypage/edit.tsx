@@ -6,7 +6,7 @@ import { useDeleteUser } from '@hooks/mutations/useDeleteUser';
 import { usePutUser } from '@hooks/mutations/usePutUser';
 import { useGetProfile } from '@hooks/queries/useGetProfile';
 import useModal from '@hooks/useModal';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import { validateUsername } from '@utils/validate';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';

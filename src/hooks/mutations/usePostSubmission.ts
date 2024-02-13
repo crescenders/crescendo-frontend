@@ -1,6 +1,6 @@
 import submissionApi from '@apis/submission/submissionApi';
 import { TOAST_MESSAGE } from '@constants/index';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import {
   UseMutationResult,
   useMutation,
