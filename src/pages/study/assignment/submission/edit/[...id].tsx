@@ -10,7 +10,7 @@ import {
   usePutSubmissionDetail,
   usePatchSubmissionDetail,
 } from '@hooks/mutations/useEditSubmission';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 
 const EditSubmission = () => {
   const titleRef = useRef<HTMLInputElement>(null);

@@ -4,9 +4,9 @@ import React, { useRef, useState } from 'react';
 import TextArea from '@components/common/TextArea';
 import Button from '@components/common/Button';
 import { usePostApplication } from '@hooks/mutations/usePostApplication';
-import useToast from '@hooks/useToast';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@recoil/auth';
+import { useToast } from '@providers/ToastProvider';
 
 const ApplyBottomSheet = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -61,6 +61,7 @@ const ApplyBottomSheet = () => {
                 ref={ref}
                 placeholder="신청과 함께 본인을 소개하는 문구를 작성해주세요!"
                 className="w-full max-md:text-14"
+                maxLength={500}
               />
               <div className="mt-4 flex justify-end">
                 <Button

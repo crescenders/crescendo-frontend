@@ -1,6 +1,6 @@
 import MemberList from '@components/member/MemberList';
 import Loader from '@components/common/Loader';
-import ModalPortal from '@components/portal/ModalPortal';
+import ModalPortal from '@components/modal/ModalPortal';
 import ApplicationList from '@components/member/ApplicationList';
 import AsyncBoundary from '@components/async/AsyncBoundary';
 

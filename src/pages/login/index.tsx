@@ -35,7 +35,7 @@ const Login = () => {
       setCookie('refreshToken', refresh);
       const { uuid, username } = await userApi.getUser();
       setUserInfo({ uuid, username });
-      router.back();
+      router.replace('/');
     }
   };
   useScript('https://accounts.google.com/gsi/client', () => {

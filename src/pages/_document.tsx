@@ -43,7 +43,6 @@ export default function Document() {
         <Main />
         <NextScript />
         <div id="modal-root" />
-        <div id="toast-root" />
       </body>
     </Html>
   );

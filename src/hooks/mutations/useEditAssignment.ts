@@ -1,6 +1,6 @@
 import assingmentApi from '@apis/assignment/assignmentApi';
 import { TOAST_MESSAGE } from '@constants/index';
-import useToast from '@hooks/useToast';
+import { useToast } from '@providers/ToastProvider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 
