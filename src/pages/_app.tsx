@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Crescendo - 소규모 스터디 플랫폼</title>
+        <title>Crescendo - 개발자를 위한 스터디 플랫폼</title>
       </Head>
       <RecoilRoot>
         <ToastProvider>
